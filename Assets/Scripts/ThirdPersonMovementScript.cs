@@ -14,6 +14,7 @@ public class ThirdPersonMovementScript : MonoBehaviour
         private void Start()
     {
         anim = GetComponent<Animator>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
     // Update is called once per frame
 
@@ -45,6 +46,13 @@ public class ThirdPersonMovementScript : MonoBehaviour
             anim.SetFloat("Blend", 0.0f);
         }
 
-        
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = 10.0f;
+        }
+        else
+        {
+            speed = 6.0f;
+        }
     }
 }
