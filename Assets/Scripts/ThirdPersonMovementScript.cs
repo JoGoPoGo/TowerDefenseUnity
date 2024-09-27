@@ -39,11 +39,11 @@ public class ThirdPersonMovementScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
-            anim.SetFloat("Blend", 1.0f);
+            anim.SetFloat("Blend", 1.0f, 0.1f, Time.deltaTime);
         }
         else
         {
-            anim.SetFloat("Blend", 0.0f);
+            anim.SetFloat("Blend", 0.0f, 0.1f, Time.deltaTime);
         }
 
         if (Input.GetKey(KeyCode.LeftShift))
