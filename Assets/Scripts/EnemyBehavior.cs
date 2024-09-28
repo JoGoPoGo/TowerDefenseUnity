@@ -7,6 +7,7 @@ public class CylinderSpawner : MonoBehaviour
     public GameObject bot;   //was? -- siehe public
     public GameObject bot2;    //zweites objekt -- siehe public
     public Transform target;   //wohin? -- siehe public
+    public Transform start;     //Startpunkt
     
     public float moveSpeed = 2f;       // Wie schnell? -- siehe public
     public float wait = 3f; //wie lange warten bis zum nächsten botspawn? --siehe public
@@ -19,7 +20,7 @@ public class CylinderSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnPosition = transform.position;
+        spawnPosition = start.position;
         StartCoroutine(SpawnBots());
         
     }
