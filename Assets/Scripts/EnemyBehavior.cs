@@ -5,49 +5,57 @@ using UnityEngine;
 public class CylinderSpawner : MonoBehaviour
 {
     public GameObject bot;   //was? -- siehe public
+    public GameObject bot2;    //zweites objekt -- siehe public
+    public Transform target;   //wohin? -- siehe public
     
-    public float moveDistance = 8f;    // Wie weit läuft er? -- siehe public
     public float moveSpeed = 2f;       // Wie schnell? -- siehe public
+    public float wait = 3f; //wie lange warten bis zum nächsten botspawn? --siehe public
 
     private GameObject currentBot; // aktuelles objekt
+    private GameObject currentBot2; //aktuelles objekt zwei
     private Vector3 spawnPosition;// Wo?
+
+    private bool useBotA = true;
     // Start is called before the first frame update
     void Start()
     {
         spawnPosition = transform.position;
-        SpawnNewBot(); // Spawne den Bot
+        StartCoroutine(SpawnBots());
         
     }
 
-    // Spawnt einen neuen Bot
-    void SpawnNewBot()
+    IEnumerator SpawnBots()
     {
-        // Spawne den Zylinder am angegebenen Punkt
-        currentBot = Instantiate(bot, spawnPosition, Quaternion.identity);
+        while (true)
+        {
+            GameObject botToSpawn = useBotA ? bot : bot2;
+            SpawnNewBot(botToSpawn);
+
+            useBotA = !useBotA;
+
+            yield return new WaitForSeconds(wait);
+        }
+    }
+
+    // Spawnt einen neuen Bot
+    void SpawnNewBot(GameObject botPrefab)
+    {
+        // erstellt Kopie des Bots am angegebenen Punkt
+        currentBot = Instantiate(botPrefab, spawnPosition, Quaternion.identity);
         StartCoroutine(MoveBot(currentBot));
     }
 
-    // Bewegt den Zylinder nach vorne und zerstört ihn, sobald er die Distanz erreicht hat
+    // Zum Target und zerstört ihn nach dem erreichen des Ziels
     IEnumerator MoveBot(GameObject Enemy)
     {
-        Vector3 startPosition = Enemy.transform.position;
-        Vector3 endPosition = startPosition + Enemy.transform.forward * moveDistance;
-
-        // Bewege den Zylinder nach vorne
-        while (Vector3.Distance(Enemy.transform.position, endPosition) > 0.1f)
+        while (Vector3.Distance(Enemy.transform.position, target.position) > 0.1)
         {
-            Enemy.transform.position = Vector3.MoveTowards(Enemy.transform.position, endPosition, moveSpeed * Time.deltaTime);
-            yield return null;  // Warte bis zum nächsten Frame
+            Enemy.transform.position = Vector3.MoveTowards(Enemy.transform.position, target.position, moveSpeed * Time.deltaTime);
+            yield return null;
         }
 
         // Zerstöre den Zylinder, wenn er das Ziel erreicht hat
         Destroy(Enemy);
-
-        // Warte bis der nächste Bot spawnt
-        yield return new WaitForSeconds(0.1f);
-
-        // Spawne neuen Bot
-        SpawnNewBot();
     }
 
     //update Methode
