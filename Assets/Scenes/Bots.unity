@@ -154,9 +154,9 @@ MonoBehaviour:
   bot: {fileID: 6527733316472688957, guid: 1e4de7d38871b0442972200502cdfc29, type: 3}
   bot2: {fileID: 1950909171652577041, guid: 0b6e808b51d655c44a62c63364004be4, type: 3}
   target: {fileID: 434583776}
-  start: {fileID: 118503534}
-  moveSpeed: 4
-  wait: 4
+  start: {fileID: 570610625}
+  moveSpeed: 2
+  wait: 2
 --- !u!4 &118503534
 Transform:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ Transform:
   m_GameObject: {fileID: 118503532}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.81, y: 1, z: 1.07}
+  m_LocalPosition: {x: 15.16, y: 1, z: 5.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -529,10 +529,10 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 0.348
-    m_Bias: 0.65
-    m_NormalBias: 0.16
-    m_NearPlane: 0.2
+    m_Strength: 0.554
+    m_Bias: 1.1
+    m_NormalBias: 0
+    m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0

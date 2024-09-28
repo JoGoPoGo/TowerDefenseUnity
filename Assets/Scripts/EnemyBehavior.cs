@@ -62,6 +62,6 @@ public class CylinderSpawner : MonoBehaviour
     //update Methode
     void Update()
     {
-        
+        spawnPosition = start.position;
     }
 }
