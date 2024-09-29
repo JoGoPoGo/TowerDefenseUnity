@@ -746,7 +746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bot: {fileID: 6527733316472688957, guid: 1e4de7d38871b0442972200502cdfc29, type: 3}
-  bot2: {fileID: 1950909171652577041, guid: 0b6e808b51d655c44a62c63364004be4, type: 3}
+  bot2: {fileID: 1528915638184230, guid: 8e0f285c21cdcf14e8d5c06c57ba936b, type: 3}
   pathCreator: {fileID: 37357054}
   moveSpeed: 2
   wait: 3
