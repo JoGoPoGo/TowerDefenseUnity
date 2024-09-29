@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PathCreation; // Importiere PathCreation für den Pfad
 
-public class Enemies : MonoBehaviour
+public class botsOnPath : MonoBehaviour
 {
     public GameObject bot;   //was? -- siehe public
     public GameObject bot2;  // zweites objekt -- siehe public
@@ -14,6 +14,7 @@ public class Enemies : MonoBehaviour
 
     private GameObject currentBot;  // aktuelles Objekt
     private bool useBotA = true;    // Toggle zwischen bot und bot2
+    private int BotIndex = 0;
 
     // Start is called before the first frame update
     void Start()
