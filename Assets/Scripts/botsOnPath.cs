@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using PathCreation; // Importiere PathCreation für den Pfad
 
-public class botsOnPath : MonoBehaviour
+public class BotsOnPath : MonoBehaviour
 {
-    public GameObject bot;   //was? -- siehe public
+    public GameObject bot1;   //was? -- siehe public
     public GameObject bot2;  // zweites objekt -- siehe public
-    public GameObject healthbarPrefab; //BotsHealthPrefab -- siehe public
+    public GameObject bot3;   //drittes objekt -- siehe public
+
     public PathCreator pathCreator; // Referenz auf den PathCreator
     public float moveSpeed = 5f;    // Wie schnell? -- siehe public
     public float wait = 3f;         // wie lange warten bis zum nächsten botspawn? -- siehe public
     public bool loopPath = false;   // Soll der Bot immer im Kreis laufen?
 
     private GameObject currentBot;  // aktuelles Objekt
-    private bool useBotA = true;    // Toggle zwischen bot und bot2
-    private int BotIndex = 0;
+    private bool useBotA = true;    // bot und bot2
+    private int botIndex = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -28,32 +29,39 @@ public class botsOnPath : MonoBehaviour
     {
         while (true)
         {
-            GameObject botToSpawn = useBotA ? bot : bot2;
-            SpawnNewBot(botToSpawn);
+            GameObject botToSpawn = GetBotToSpawn(); //welcher bot?
 
-            // Wechsle zwischen bot und bot2
-            useBotA = !useBotA;
+            SpawnNewBot(botToSpawn); //spawnt bot
+
+            botIndex = (botIndex + 1) % 3;
 
             // Warte für die nächste Runde
             yield return new WaitForSeconds(wait);
+        }
+    }
+    GameObject GetBotToSpawn()
+    {
+        switch (botIndex)
+        {
+            case 0:
+                return bot1;
+            case 1:
+                return bot2;
+            case 2:
+                return bot3;
+            default:
+                return bot1;
         }
     }
 
     // Spawnt einen neuen Bot
     void SpawnNewBot(GameObject botPrefab)
     {
-        // Erstelle eine Kopie des Bots an der Startposition des Pfads
+        // Erstellt eine Kopie des Bots an der Startposition des Pfads (spawner)
         currentBot = Instantiate(botPrefab, pathCreator.path.GetPoint(0), Quaternion.identity);
-        GameObject healthbarInstance = Instantiate(healthbarPrefab); //neue Healthbar erstellen (für bot)
+        
 
-        HealthSlider healthSlider = healthbarInstance.GetComponent<HealthSlider>();
-        BotHealth botHealth = newBot.AddComponent<BotHealth> ();  //komponent BotHealth script
-        botHealth.InitializeHealth(100, healthSlider);
-
-        healthbarInstance.transform.SetParent(newBot.transform);
-        healthbarInstance.transform.localPosition = new Vector3(0, 2f, 0);
-
-        StartCoroutine(MoveBotAlongPath(newBot));
+        StartCoroutine(MoveBotAlongPath(currentBot));
     }
 
     // Bewegung des Bots entlang des Pfads
