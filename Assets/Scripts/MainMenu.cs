@@ -5,13 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-   public void PlayGame()
+    public void PlayGame()
     {
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void OpenOptions()
+    {
+        Debug.Log("Options menu opened");
     }
 
     public void QuitGame()
     {
+        Debug.Log("Game is quitting...");
         Application.Quit();
     }
 }
+
+

@@ -7,6 +7,7 @@ public class botsOnPath : MonoBehaviour
 {
     public GameObject bot;   //was? -- siehe public
     public GameObject bot2;  // zweites objekt -- siehe public
+    public GameObject healthbarPrefab; //BotsHealthPrefab -- siehe public
     public PathCreator pathCreator; // Referenz auf den PathCreator
     public float moveSpeed = 5f;    // Wie schnell? -- siehe public
     public float wait = 3f;         // wie lange warten bis zum nächsten botspawn? -- siehe public
@@ -43,7 +44,16 @@ public class botsOnPath : MonoBehaviour
     {
         // Erstelle eine Kopie des Bots an der Startposition des Pfads
         currentBot = Instantiate(botPrefab, pathCreator.path.GetPoint(0), Quaternion.identity);
-        StartCoroutine(MoveBotAlongPath(currentBot));
+        GameObject healthbarInstance = Instantiate(healthbarPrefab); //neue Healthbar erstellen (für bot)
+
+        HealthSlider healthSlider = healthbarInstance.GetComponent<HealthSlider>();
+        BotHealth botHealth = newBot.AddComponent<BotHealth> ();  //komponent BotHealth script
+        botHealth.InitializeHealth(100, healthSlider);
+
+        healthbarInstance.transform.SetParent(newBot.transform);
+        healthbarInstance.transform.localPosition = new Vector3(0, 2f, 0);
+
+        StartCoroutine(MoveBotAlongPath(newBot));
     }
 
     // Bewegung des Bots entlang des Pfads
