@@ -15,7 +15,6 @@ public class BotsOnPath : MonoBehaviour
     public bool loopPath = false;   // Soll der Bot immer im Kreis laufen?
 
     private GameObject currentBot;  // aktuelles Objekt
-    private bool useBotA = true;    // bot und bot2
     private int botIndex = 0;
 
     // Start is called before the first frame update

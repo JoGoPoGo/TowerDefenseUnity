@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class DamageTest : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
+    public int currentHealth; //Aktuelle Leben -- siehe public
+    public int maxHealth = 100; //leben -- siehe public
+    
 
     public HealthSlider healthbar;
 
@@ -20,7 +21,7 @@ public class DamageTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown("e"))
         {
             TakeDamage(20);
         }
