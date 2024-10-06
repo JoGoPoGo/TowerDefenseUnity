@@ -13,7 +13,7 @@ public class ThirdPersonMovementScript : MonoBehaviour
     Animator anim;
         private void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>(); 
         Cursor.lockState = CursorLockMode.Locked;
     }
     // Update is called once per frame
@@ -54,5 +54,18 @@ public class ThirdPersonMovementScript : MonoBehaviour
         {
             speed = 6.0f;
         }
+        if (Input.GetKey(KeyCode.T))
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+
     }
+    void lockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    void unlockCursor()
+    {
+            Cursor.lockState = CursorLockMode.None;
+    } 
 }

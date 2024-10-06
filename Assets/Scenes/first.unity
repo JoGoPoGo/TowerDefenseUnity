@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 823617959}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -595,6 +595,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 44588826056634885, guid: 690fe50e6da5f3e42a6477df9672645a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.16305792
+      objectReference: {fileID: 0}
     - target: {fileID: 981364002823919203, guid: 690fe50e6da5f3e42a6477df9672645a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -639,10 +643,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3988409811799636291, guid: 690fe50e6da5f3e42a6477df9672645a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3988409811799636291, guid: 690fe50e6da5f3e42a6477df9672645a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7107415630310297890, guid: 690fe50e6da5f3e42a6477df9672645a, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 823617962}
+    - target: {fileID: 8583364707189514024, guid: 690fe50e6da5f3e42a6477df9672645a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.1450849
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
