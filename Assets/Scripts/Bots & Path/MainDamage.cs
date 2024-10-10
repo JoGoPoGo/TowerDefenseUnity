@@ -7,32 +7,15 @@ public class MainDamage : MonoBehaviour
     public int damage = 10; // Schaden, den der Bot verursacht
     private BaseHealth baseHealth; // Referenz auf das BaseHealth-Skript
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // Suche das Objekt mit dem Tag "Base" in der Szene
-        GameObject baseObject = GameObject.FindWithTag("Base");
-        if (baseObject != null)
-        {
-            // Hole das BaseHealth-Skript vom Basisobjekt
-            baseHealth = baseObject.GetComponent<BaseHealth>();
-        }
-    }
+    public string targetObjectName = "Base2";
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        // Hier kannst du andere Dinge in deinem Update machen, falls nötig
-    }
-
-    private void OnCollisionEnter(Collision col)
-    {
-        // Überprüfe, ob der Bot mit der Basis kollidiert ist
-        if (col.gameObject.CompareTag("Base"))
+        if (collision.gameObject.name == targetObjectName)
         {
-            // Schaden zufügen und den Bot zerstören
             baseHealth.TakeDamage(damage);
             Destroy(gameObject);
+            return;
         }
     }
 }
