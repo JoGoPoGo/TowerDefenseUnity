@@ -1,46 +1,35 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseHealth : MonoBehaviour
 {
-    public float health;
-    public Transform enemy1;
-    public Transform enemy2;
-    public Transform enemy3;
+    public int maxHealth = 100;
+    public int health;
+    public HealthSlider healthbar;
 
-    public int damage;
-    public float detectionRange = 1f; //Wie weit entfernt erhält die Base schaden? --siehe public
-
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        health = maxHealth;
+
+        healthbar.SetMaxHealth(maxHealth);     //Referenz auf public void der healthbar
     }
-
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(int damage)    //Wie viel Damage soll die Base bekommen?
     {
-        CheckEnemyProximity(enemy1);
-        CheckEnemyProximity(enemy2);
-        CheckEnemyProximity(enemy3);
-    }
+        health -= damage;
 
-    void CheckEnemyProximity(Transform enemy)
-    {
-        if(Vector3.Distance(transform.position, enemy.position) < detectionRange)
-        {
-            TakeDamage(damage);
-        }
-    }
+        healthbar.Sethealth(health);        //Referenz auf public void der healthbar
 
-    void TakeDamage(float damageAmount)
-    {
-        health -= damageAmount;
-        if(health <= 0)
+        if (health <= 0 )
         {
             Destroy(gameObject);
         }
+    }
+
+    void Update()
+    {
+        healthbar.Sethealth(health);
+        
     }
 }

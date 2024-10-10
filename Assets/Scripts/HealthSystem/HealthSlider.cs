@@ -12,7 +12,7 @@ public class HealthSlider : MonoBehaviour
     public Image fill;
 
     // Setze die maximale Gesundheit im Slider
-    public void SetMaxHealth(int health)
+    public void SetMaxHealth(int health)    // Wie viel soll der Slider MAXIMAL anzeigen? 
     {
         slider.maxValue = health;
         slider.value = health;
@@ -21,7 +21,7 @@ public class HealthSlider : MonoBehaviour
     }
 
     // Aktualisiere die aktuelle Gesundheit im Slider
-    public void Sethealth(int health)
+    public void Sethealth(int health)       // Wie viel soll der Slider ANZEIGEN?
     {
         slider.value = health;
 

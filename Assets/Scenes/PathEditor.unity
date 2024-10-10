@@ -1093,6 +1093,17 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1498172470 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9192309820865128583, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
+  m_PrefabInstance: {fileID: 425592891}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5ef970953bb2f942b77c00d3f2b6db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1529242287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,12 +1223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce4f97fc0a0e1c469bfba8efa6418d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
-  enemy1: {fileID: 3346324208342829839, guid: 1e4de7d38871b0442972200502cdfc29, type: 3}
-  enemy2: {fileID: 1863983777898063158, guid: 0b6e808b51d655c44a62c63364004be4, type: 3}
-  enemy3: {fileID: 6987264444824711699, guid: ed423a6720c43dc4c91f1045471177e9, type: 3}
-  damage: 0
-  detectionRange: 1
+  maxHealth: 100
+  health: 200
+  healthbar: {fileID: 1498172470}
 --- !u!1 &1715607110
 GameObject:
   m_ObjectHideFlags: 0

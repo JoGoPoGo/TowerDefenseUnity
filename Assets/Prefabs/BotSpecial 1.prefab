@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 6987264444824711699}
   - component: {fileID: 5126401596203668}
   - component: {fileID: 5328999223572631311}
+  - component: {fileID: 2827331575688962407}
   m_Layer: 0
   m_Name: BotSpecial 1
   m_TagString: Untagged
@@ -345,6 +346,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6391351f42fea4d9a0982512bc582d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2827331575688962407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6259370625345561336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83be24f1ce71ff449b619a27c5166c94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 100
+  baseHealth: {fileID: 0}
 --- !u!1 &7164296855224164856
 GameObject:
   m_ObjectHideFlags: 0
