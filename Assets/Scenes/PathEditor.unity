@@ -416,6 +416,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.6
       objectReference: {fileID: 0}
+    - target: {fileID: 734861316244530981, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1919483151434893595, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -496,9 +500,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2447210446760714152, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3283505807299250970, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
       propertyPath: m_Name
       value: Healthbar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283505807299250970, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3669860140256211801, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7343345563390867899, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7394128333867945743, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -662,8 +682,8 @@ MonoBehaviour:
   bot2: {fileID: 1950909171652577041, guid: 0b6e808b51d655c44a62c63364004be4, type: 3}
   bot3: {fileID: 6259370625345561336, guid: ed423a6720c43dc4c91f1045471177e9, type: 3}
   pathCreator: {fileID: 37357054}
-  moveSpeed: 2
-  wait: 10
+  moveSpeed: 5
+  wait: 2
   loopPath: 0
 --- !u!1 &577682133
 GameObject:
@@ -1118,9 +1138,9 @@ GameObject:
   - component: {fileID: 1529242288}
   - component: {fileID: 1529242292}
   - component: {fileID: 1529242293}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Base2
-  m_TagString: Untagged
+  m_TagString: Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
