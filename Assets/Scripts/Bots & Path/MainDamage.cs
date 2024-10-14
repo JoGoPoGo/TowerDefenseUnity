@@ -5,14 +5,17 @@ using UnityEngine;
 public class MainDamage : MonoBehaviour
 {
     public int damage = 10; 
-    private BaseHealth baseHealth; 
+    private BaseHealth baseHealth;
 
-    public string targetObjectName = "Base2"; 
+    private void Start()
+    {
+        baseHealth = GameObject.Find("Base2").GetComponent<BaseHealth>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
         
-        if (collision.gameObject.name == targetObjectName)
+        if (collision.gameObject.name == "Base2")
         {
             
             baseHealth = collision.gameObject.GetComponent<BaseHealth>();
