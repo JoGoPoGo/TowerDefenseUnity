@@ -529,24 +529,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9192309820865128583, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
+      propertyPath: gradient.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 9192309820865128583, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
       propertyPath: gradient.key0.b
-      value: 0.5767989
+      value: 0.19620281
       objectReference: {fileID: 0}
     - target: {fileID: 9192309820865128583, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
       propertyPath: gradient.key0.g
-      value: 0
+      value: 0.17332679
       objectReference: {fileID: 0}
     - target: {fileID: 9192309820865128583, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
       propertyPath: gradient.key0.r
-      value: 1
+      value: 0.8962264
       objectReference: {fileID: 0}
     - target: {fileID: 9192309820865128583, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
       propertyPath: gradient.key1.b
-      value: 0.66737443
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9192309820865128583, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
+      propertyPath: gradient.key1.g
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9192309820865128583, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
       propertyPath: gradient.key1.r
-      value: 0.015686274
+      value: 0.29495454
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -683,7 +691,7 @@ MonoBehaviour:
   bot3: {fileID: 6259370625345561336, guid: ed423a6720c43dc4c91f1045471177e9, type: 3}
   pathCreator: {fileID: 37357054}
   moveSpeed: 5
-  wait: 2
+  wait: 0.1
   loopPath: 0
 --- !u!1 &577682133
 GameObject:

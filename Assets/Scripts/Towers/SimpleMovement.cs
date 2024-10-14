@@ -41,6 +41,18 @@ public class SimpleMovement : MonoBehaviour
                 targetTargeted = true;
             }
         }
+        if (Input.GetKey("r"))
+        {
+            transform.Rotate (Vector3.right);
+        }
+        if (Input.GetKey("t"))
+        {
+            transform.Rotate(Vector3.forward);
+        }
+        if (Input.GetKey("u"))
+        {
+            transform.Rotate(Vector3.up);
+        }
     }
     
 }
