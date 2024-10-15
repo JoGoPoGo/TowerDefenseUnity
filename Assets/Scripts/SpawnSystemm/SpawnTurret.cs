@@ -28,7 +28,7 @@ public class NewBehaviourScript : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit) )
             {
-                Instantiate(basicPrefab, new Vector3(hit.point.x, hit.point.y + basicPrefab.transform.position.y, hit.point.z), Quaternion.identity);
+                Instantiate(basicPrefab, new Vector3(hit.point.x, 0, hit.point.z), Quaternion.identity);
             }
         }
     }

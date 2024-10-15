@@ -840,9 +840,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156e5f43269caa84aa6778c00e47d498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDistance: {x: 0, y: 0, z: 0}
+  moveDistance: {x: 15, y: 0, z: 32}
   speed: 2
-  start: 0.4
+  start: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
