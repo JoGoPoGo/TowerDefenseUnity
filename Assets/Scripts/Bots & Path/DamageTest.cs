@@ -5,32 +5,35 @@ using UnityEngine.UI;
 
 public class DamageTest : MonoBehaviour
 {
-    public int currentHealth; //Aktuelle Leben -- siehe public
-    public int maxHealth = 100; //leben -- siehe public
-    
+    public int currentHealth; // Aktuelle Leben -- siehe public
+    public int maxHealth = 100; // Maximale Leben -- siehe public
 
-    public HealthSlider healthbar;
+    public HealthSlider healthbar; // Referenz zur Lebensanzeige  -- siehe public
 
-    // Start is called before the first frame update
     void Start()
     {
+        // Setze die Lebenspunkte auf das Maximum
         currentHealth = maxHealth;
-        healthbar.SetMaxHealth(maxHealth);
+        healthbar.SetMaxHealth(maxHealth); // Update der Lebensanzeige
     }
 
-    // Update is called once per frame
-    void Update()
+    // Funktion zum Zufügen von Schaden
+    public void TakeDamage(int damage)
     {
-        if (Input.GetKeyDown("e"))
+        currentHealth -= damage; // Schaden anwenden
+
+        healthbar.Sethealth(currentHealth); // Lebensanzeige aktualisieren
+
+        // Wenn das Leben auf 0 oder darunter fällt, zerstöre den Bot
+        if (currentHealth <= 0)
         {
-            TakeDamage(20);
+            Die();
         }
-        
     }
-    void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
 
-        healthbar.Sethealth(currentHealth);
+    // Zerstört den Bot, wenn die Lebenspunkte auf 0 fallen
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }
