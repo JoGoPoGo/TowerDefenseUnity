@@ -184,7 +184,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9ca80467a033e954a8b9ad8601d6f4c7, type: 2}
+  - {fileID: 2100000, guid: 5d8af8f434f69794eabd684fb44b4fbf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -635,15 +635,15 @@ MonoBehaviour:
       points:
       - {x: -62.53444, y: 0, z: -10.636559}
       - {x: -67.50446, y: 0, z: -11.202806}
-      - {x: -64.52034, y: 0, z: 23.19377}
-      - {x: -51.832825, y: 0, z: 20.982983}
-      - {x: -42.036385, y: 0, z: 19.275967}
-      - {x: -52.571613, y: 0, z: 4.23594}
-      - {x: -42.339863, y: 0, z: -5.821434}
-      - {x: -33.41052, y: 0, z: -14.5985985}
-      - {x: -24.291983, y: 0, z: 24.768648}
-      - {x: -12.807125, y: 0, z: 27.870289}
-      - {x: 2.6103077, y: 0, z: 32.033974}
+      - {x: -51.76683, y: 0, z: 17.44371}
+      - {x: -41.13799, y: 0, z: 16.982796}
+      - {x: -17.7684, y: 0, z: 15.969385}
+      - {x: -39.785988, y: 0, z: 0.68605137}
+      - {x: -29.554234, y: 0, z: -9.371323}
+      - {x: -20.62489, y: 0, z: -18.148487}
+      - {x: -24.605942, y: 0, z: 9.967581}
+      - {x: -13.121084, y: 0, z: 13.0692215}
+      - {x: 2.2963486, y: 0, z: 17.232906}
       - {x: 14.251999, y: 0, z: 24.945152}
       - {x: 11.574854, y: 0, z: 12.417377}
       - {x: 9.049985, y: 0, z: 0.60218334}
@@ -679,7 +679,7 @@ MonoBehaviour:
     displayAnchorPoints: 1
     displayControlPoints: 1
     bezierHandleScale: 1
-    globalDisplaySettingsFoldout: 0
+    globalDisplaySettingsFoldout: 1
     keepConstantHandleSize: 1
     showNormalsInVertexMode: 0
     showBezierPathInVertexMode: 0
