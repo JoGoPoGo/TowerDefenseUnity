@@ -76,11 +76,11 @@ public class Tower : MonoBehaviour
     {
         // Erzeugt das Projektil an der Feuerposition und weist ihm die Richtung des Ziels zu
         GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-        //Projectile projectile = projectileGO.GetComponent<Projectile>();
+         // Projectile projectile = projectileGO.GetComponent<Projectile>();
 
-        //if (projectile != null)
+       // if (projectile != null)
         {
-        //    projectile.Seek(target);
+       //     projectile.Seek(target);
         }
     }
 
