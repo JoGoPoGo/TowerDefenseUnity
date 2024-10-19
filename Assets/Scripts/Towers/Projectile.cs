@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public Transform target;
+    
     public float shootSpeed = 5f;
+    
     private Vector3 startPosition;
-
+    private Transform target;
+    private GameObject targetEnemy;
     // Start is called before the first frame update
     void Start()
     {
         startPosition = transform.position;
-
+        targetEnemy = GameObject.FindGameObjectWithTag("Enemy");
+        target = targetEnemy.transform;
     }
 
     // Update is called once per frame
