@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     
     public float shootSpeed = 5f;
+    public int damage = 10;
 
     private GameObject tower;
     private GameObject nearestTower;
@@ -13,6 +14,7 @@ public class Projectile : MonoBehaviour
     private Transform target;
     private GameObject targetEnemy;
     private float range = 0f;
+    private DamageTest damageScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class Projectile : MonoBehaviour
         range = nearestTower.GetComponent<Tower>().range;
 
         UpdateTarget();
+        
     }
 
     // Update is called once per frame
@@ -34,6 +37,7 @@ public class Projectile : MonoBehaviour
         
         if(Vector3.Distance(transform.position, target.position) < 0.1f)
         {   
+            damageScript.TakeDamage(damage);
             Destroy(gameObject);
             return;
         }
@@ -60,6 +64,7 @@ public class Projectile : MonoBehaviour
         if (nearestEnemy != null && shortestDistance <= range)
         {
             target = nearestEnemy.transform;
+            damageScript = nearestEnemy.GetComponent<DamageTest>();
         }
         else
         {

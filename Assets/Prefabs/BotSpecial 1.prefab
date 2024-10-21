@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 9078974518098149388}
   m_Layer: 7
   m_Name: BotSpecial 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -361,7 +361,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  targetObjectName: Base
 --- !u!54 &3701729524717879074
 Rigidbody:
   m_ObjectHideFlags: 0
