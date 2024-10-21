@@ -5,8 +5,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     
-    public float shootSpeed = 5f;
-    public int damage = 10;
+    private float shootSpeed = 5f;
+    private int damage = 10;
 
     private GameObject tower;
     private GameObject nearestTower;
@@ -23,8 +23,10 @@ public class Projectile : MonoBehaviour
         targetEnemy = GameObject.FindGameObjectWithTag("Enemy");
         tower = GameObject.FindGameObjectWithTag("Tower");
         
-        nearestTower = FindNearestTower();
+        nearestTower = FindNearestTower();   //zugehöriger Turm
         range = nearestTower.GetComponent<Tower>().range;
+        shootSpeed = nearestTower.GetComponent<Tower>().bulletSpeed;
+        damage = nearestTower.GetComponent<Tower>().damageAmount;
 
         UpdateTarget();
         

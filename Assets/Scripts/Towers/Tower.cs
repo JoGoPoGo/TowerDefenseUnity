@@ -12,6 +12,8 @@ public class Tower : MonoBehaviour
     public Transform firePoint;        // Ort, von dem aus das Projektil geschossen wird
 
     public float fireRate = 1f;        // Schussfrequenz
+    public float bulletSpeed = 10f;     //Kugelgeschwindigkeit
+    public int damageAmount = 50;       //Schaden
     private float fireCountdown = 0f;
 
     public float turnSpeed = 10f;      // Geschwindigkeit, mit der der Turm sich dreht
