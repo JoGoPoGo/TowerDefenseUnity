@@ -340,8 +340,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6355087181945589555, guid: 4971f33764a3db64aae2f935df8745d0, type: 3}
-        m_TargetAssemblyTypeName: NewBehaviourScript, Assembly-CSharp
-        m_MethodName: activateSpawn
+        m_TargetAssemblyTypeName: SpawnOnMouseClick, Assembly-CSharp
+        m_MethodName: EnableSpawning
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -520,7 +520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913fca8be4ada064eab5cdd708efb1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnActive: 0
+  prefabsToSpawn: []
+  spawnButtons: []
 --- !u!1001 &496019708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2085,8 +2086,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3421122970281246161, guid: 88c504022db50b647a10d5ca594d4654, type: 3}
-        m_TargetAssemblyTypeName: NewBehaviourScript, Assembly-CSharp
-        m_MethodName: activateSpawn
+        m_TargetAssemblyTypeName: SpawnOnMouseClick, Assembly-CSharp
+        m_MethodName: EnableSpawning
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2568,6 +2569,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098900591}
   m_CullTransparentMesh: 1
+--- !u!1 &2139100084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2139100086}
+  - component: {fileID: 2139100085}
+  m_Layer: 0
+  m_Name: SpawnHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2139100085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139100084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913fca8be4ada064eab5cdd708efb1bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabsToSpawn:
+  - {fileID: 3468066839317757868, guid: 88c504022db50b647a10d5ca594d4654, type: 3}
+  - {fileID: 1606355553184426686, guid: 4971f33764a3db64aae2f935df8745d0, type: 3}
+  spawnButtons:
+  - {fileID: 1804990172}
+  - {fileID: 279300457}
+--- !u!4 &2139100086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139100084}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -21.226828, y: 3.012634, z: -7.715512}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2141826454
 GameObject:
   m_ObjectHideFlags: 0
@@ -2619,6 +2670,10 @@ PrefabInstance:
       propertyPath: basicPrefab
       value: 
       objectReference: {fileID: 1606355553184426686, guid: 4971f33764a3db64aae2f935df8745d0, type: 3}
+    - target: {fileID: 6355087181945589555, guid: 4971f33764a3db64aae2f935df8745d0, type: 3}
+      propertyPath: spawnEnabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7311409354887313830, guid: 4971f33764a3db64aae2f935df8745d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.77
@@ -2732,3 +2787,4 @@ SceneRoots:
   - {fileID: 735405267}
   - {fileID: 6740585152015926510}
   - {fileID: 1934307186}
+  - {fileID: 2139100086}

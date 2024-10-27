@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5574970421113551363}
   - component: {fileID: 5886105663664838534}
   - component: {fileID: 8536870590133140028}
-  - component: {fileID: 6355087181945589555}
   m_Layer: 0
   m_Name: TowerAlpha
   m_TagString: Tower
@@ -154,19 +153,6 @@ MonoBehaviour:
   bulletSpeed: 10
   damageAmount: 50
   turnSpeed: 10
---- !u!114 &6355087181945589555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606355553184426686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 913fca8be4ada064eab5cdd708efb1bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SpawnActive: 0
 --- !u!1 &6724422981965347026
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,44 +1,44 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
-namespace LP.SpawnObjectsNewInput
+public class SpawnOnMouseClick : MonoBehaviour
 {
+    public GameObject[] prefabsToSpawn; // Array von GameObjects, die gespawnt werden können
+    public Button[] spawnButtons; // Array von Buttons, die die Auswahl der GameObjects steuern
+    private int selectedPrefabIndex = 0; // Index des aktuell ausgewählten GameObjects
+    private bool spawnEnabled = false; // Flag, ob das Spawning aktiviert ist
 
-}
-public class NewBehaviourScript : MonoBehaviour
-{
-    private Camera cam = null;
-    public bool SpawnActive = false;
-    private void Start()
+    void Start()
     {
-        cam = Camera.main;
-    }
-
-    private void Update()
-    {
-        if (SpawnActive)
-        SpawnAtMousePos();
-    }
-    private void SpawnAtMousePos()
-    {
-        if(Mouse.current.leftButton.wasPressedThisFrame)
+        // Initialisierung der Buttons:
+        for (int i = 0; i < spawnButtons.Length; i++)
         {
-            Ray ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-            RaycastHit hit;
-
-            if(Physics.Raycast(ray, out hit) )
-            {
-                Instantiate(this.gameObject, new Vector3(hit.point.x, 0, hit.point.z), Quaternion.identity);
-            }
-            deactivateSpawn();
+            int buttonIndex = i; // Speichern des Button-Index für den Event-Handler
+            spawnButtons[i].onClick.AddListener(() => {
+                selectedPrefabIndex = buttonIndex; // Setze den ausgewählten Index, wenn der Button gedrückt wird
+                spawnEnabled = true; // Aktiviere das Spawning
+            });
         }
     }
-    public void activateSpawn()
+
+    void Update()
     {
-        SpawnActive = true;
-    }
-    public void deactivateSpawn()
-    {  
-        SpawnActive = false;
+        // Wenn das Spawning aktiviert ist und die linke Maustaste gedrückt wird
+        if (spawnEnabled && Input.GetMouseButtonDown(0))
+        {
+            // Raycast von der Kamera zum Mauszeiger
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            // Wenn der Raycast etwas trifft
+            if (Physics.Raycast(ray, out hit))
+            {
+                // Spawnen des ausgewählten GameObjects an der Hit-Position
+                Instantiate(prefabsToSpawn[selectedPrefabIndex], hit.point, Quaternion.identity);
+            }
+
+            // Deaktiviere das Spawning nach dem Spawnen
+            spawnEnabled = false;
+        }
     }
 }
