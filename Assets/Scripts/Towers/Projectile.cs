@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.GameCenter;
 
 public class Projectile : MonoBehaviour
 {
@@ -65,7 +66,9 @@ public class Projectile : MonoBehaviour
         // Wenn ein Gegner gefunden wurde, setze ihn als Ziel
         if (nearestEnemy != null && shortestDistance <= range)
         {
-            target = nearestEnemy.transform;
+            Transform centerTransform = nearestEnemy.transform.Find("Center");
+
+            target = centerTransform;
             damageScript = nearestEnemy.GetComponent<DamageTest>();
         }
         else
