@@ -34,7 +34,7 @@ public class SpawnOnMouseClick : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 // Spawnen des ausgewählten GameObjects an der Hit-Position
-                Instantiate(prefabsToSpawn[selectedPrefabIndex], hit.point, Quaternion.identity);
+                Instantiate(prefabsToSpawn[selectedPrefabIndex], hit.point + new Vector3(0, 1, 0), Quaternion.identity);
             }
 
             // Deaktiviere das Spawning nach dem Spawnen
