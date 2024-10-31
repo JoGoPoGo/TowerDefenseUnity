@@ -38,6 +38,7 @@ public class Projectile : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, target.position, shootSpeed * Time.deltaTime);
         
+        
         if(Vector3.Distance(transform.position, target.position) < 0.1f)
         {   
             damageScript.TakeDamage(damage);
