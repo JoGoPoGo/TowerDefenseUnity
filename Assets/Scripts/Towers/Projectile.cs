@@ -21,8 +21,8 @@ public class Projectile : MonoBehaviour
     {
         startPosition = transform.position;
 
-        targetEnemy = GameObject.FindGameObjectWithTag("Enemy");
-        tower = GameObject.FindGameObjectWithTag("Tower");
+        targetEnemy = GameObject.FindGameObjectWithTag("Enemy");  //nicht verwendet
+        tower = GameObject.FindGameObjectWithTag("Tower");   //nicht verwendet
         
         nearestTower = FindNearestTower();   //zugehöriger Turm
         range = nearestTower.GetComponent<Tower>().range;
@@ -37,8 +37,16 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, target.position, shootSpeed * Time.deltaTime);
-        
-        
+        if(target == null)
+        {
+            UpdateTarget();
+        }
+       
+        if(target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         if(Vector3.Distance(transform.position, target.position) < 0.1f)
         {   
             damageScript.TakeDamage(damage);
@@ -98,4 +106,4 @@ public class Projectile : MonoBehaviour
     }
 }
 
-// Was ist noch zu machen? : Void Update Target (gleichen Enemy wie Tower anvisieren) 
+

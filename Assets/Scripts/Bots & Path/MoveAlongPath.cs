@@ -28,8 +28,6 @@ public class MoveAlongPath : MonoBehaviour
         distanceTravelled += speed * Time.deltaTime;
 
         // Setze die Position des Objekts entlang des Pfades
-        transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled);
-
-        
+        transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled);    
     }
 }
