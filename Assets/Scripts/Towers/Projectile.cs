@@ -5,15 +5,15 @@ using UnityEngine.SocialPlatforms.GameCenter;
 
 public class Projectile : MonoBehaviour
 {
-    
+    private bool targetLifes = true;
     private float shootSpeed = 5f;
     private int damage = 10;
 
-    private GameObject tower;
+    //private GameObject tower;
     private GameObject nearestTower;
     private Vector3 startPosition;
     private Transform target;
-    private GameObject targetEnemy;
+    //private GameObject targetEnemy;
     private float range = 0f;
     private DamageTest damageScript;
     // Start is called before the first frame update
@@ -21,8 +21,8 @@ public class Projectile : MonoBehaviour
     {
         startPosition = transform.position;
 
-        targetEnemy = GameObject.FindGameObjectWithTag("Enemy");  //nicht verwendet
-        tower = GameObject.FindGameObjectWithTag("Tower");   //nicht verwendet
+        //targetEnemy = GameObject.FindGameObjectWithTag("Enemy");  //nicht verwendet
+        //tower = GameObject.FindGameObjectWithTag("Tower");   //nicht verwendet
         
         nearestTower = FindNearestTower();   //zugehöriger Turm
         range = nearestTower.GetComponent<Tower>().range;
@@ -30,7 +30,7 @@ public class Projectile : MonoBehaviour
         damage = nearestTower.GetComponent<Tower>().damageAmount;
 
         UpdateTarget();
-        
+
     }
 
     // Update is called once per frame
@@ -52,6 +52,11 @@ public class Projectile : MonoBehaviour
             damageScript.TakeDamage(damage);
             Destroy(gameObject);
             return;
+        }
+        if(damageScript.isAlive == false)
+        {
+            Debug.Log("Destroyed");
+            Destroy(gameObject);
         }
     }
     void UpdateTarget()

@@ -1,10 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class DamageTest : MonoBehaviour
 {
+    public bool isAlive = true;
+
     public int currentHealth; // Aktuelle Leben -- siehe public
     public int maxHealth = 100; // Maximale Leben -- siehe public
 
@@ -34,6 +38,7 @@ public class DamageTest : MonoBehaviour
     // Zerstört den Bot, wenn die Lebenspunkte auf 0 fallen
     void Die()
     {
+        isAlive = false;
         Destroy(gameObject);
     }
 }
