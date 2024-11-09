@@ -17,6 +17,7 @@ public class BotsOnPath : MonoBehaviour
     private GameObject currentBot;  // aktuelles Objekt
     private int botIndex = 0;
 
+    private DamageTest damageScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -67,23 +68,27 @@ public class BotsOnPath : MonoBehaviour
     IEnumerator MoveBotAlongPath(GameObject enemy)
     {
         float distanceTravelled = 0f;
-
+        damageScript = enemy.GetComponent<DamageTest>();
         while (true)
         {
-            // Bot bewegt sich entlang des Pfads
-            distanceTravelled += moveSpeed * Time.deltaTime;
-
-            // Setze die neue Position des Bots entlang des Pfads
-            enemy.transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled);
-
-            // Setze die Rotation des Bots entsprechend der Richtung des Pfads
-            enemy.transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled) * Quaternion.Euler(0,0,90);
-
-            // Wenn der Bot am Ende des Pfads angekommen ist, zerstöre ihn oder mache etwas anderes
-            if (!loopPath && distanceTravelled >= pathCreator.path.length)
+            if (damageScript.isAlive == true)
             {
-                Destroy(enemy);
-                yield break; // Beende die Coroutine
+
+                // Bot bewegt sich entlang des Pfads
+                distanceTravelled += moveSpeed * Time.deltaTime;
+
+                // Setze die neue Position des Bots entlang des Pfads
+                enemy.transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled);
+
+                // Setze die Rotation des Bots entsprechend der Richtung des Pfads
+                enemy.transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled) * Quaternion.Euler(0, 0, 90);
+
+                // Wenn der Bot am Ende des Pfads angekommen ist, zerstöre ihn oder mache etwas anderes
+                if (!loopPath && distanceTravelled >= pathCreator.path.length)
+                {
+                    Destroy(enemy);
+                    yield break; // Beende die Coroutine
+                }
             }
 
             yield return null;
