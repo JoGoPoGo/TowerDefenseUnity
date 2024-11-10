@@ -8,6 +8,7 @@ TagManager:
   - Base
   - Enemy
   - Tower
+  - lastSpawned
   layers:
   - Default
   - TransparentFX

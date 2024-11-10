@@ -9,14 +9,15 @@ public class Preview : MonoBehaviour
 
     void start()
     {
-        previewObject = spawnScript.selectedPrefab;
+        //previewObject = spawnScript.selectedPrefab;
     }
     // Update wird einmal pro Frame aufgerufen
     void Update()
     {
+        previewObject = GameObject.FindWithTag("lastSpawned");
 
         // Überprüfe, ob ein Objekt gespawnt werden soll
-        if (spawnScript.spawned && previewObject != null && Input.GetMouseButtonDown(0))
+        if (spawnScript.spawned && previewObject != null && Input.GetMouseButton(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -24,15 +25,15 @@ public class Preview : MonoBehaviour
             // Wenn der Raycast etwas trifft
             if (Physics.Raycast(ray, out hit))
             {
-                // Überprüfe, ob die getroffene Oberfläche sich am Boden (y = 0) befindet
-                if (hit.point.y == 0)
-                {
+                    
+                
                     // Setze die Position des Vorschau-Objekts auf den Trefferpunkt
-                    previewObject.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
+                    previewObject.transform.position = new Vector3(hit.point.x, 3, hit.point.z)+ new Vector3(0, 0, 2);
+                   
 
                     // Optional: Drehung des Vorschau-Objekts anpassen, um mit der Mausbewegung auszurichten
-                    previewObject.transform.rotation = Quaternion.LookRotation(hit.normal);
-                }
+                    // previewObject.transform.rotation = Quaternion.LookRotation(hit.normal);
+                
             }
         }
     }

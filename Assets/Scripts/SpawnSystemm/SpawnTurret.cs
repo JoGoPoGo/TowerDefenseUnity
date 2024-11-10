@@ -9,6 +9,7 @@ public class SpawnOnMouseClick : MonoBehaviour
     private int selectedPrefabIndex = 0; // Index des aktuell ausgewählten GameObjects
     private bool spawnEnabled = false; // Flag, ob das Spawning aktiviert ist
     public GameObject selectedPrefab;
+
     void Start()
     {
         // Initialisierung der Buttons:
@@ -20,13 +21,10 @@ public class SpawnOnMouseClick : MonoBehaviour
                 spawnEnabled = true; // Aktiviere das Spawning
             });
         }
-        Update();
     }
 
     void Update()
     {
-    
-
         // Wenn das Spawning aktiviert ist und die linke Maustaste gedrückt wird
         if (spawnEnabled && Input.GetMouseButtonDown(0))
         {
@@ -37,9 +35,16 @@ public class SpawnOnMouseClick : MonoBehaviour
             // Wenn der Raycast etwas trifft
             if (Physics.Raycast(ray, out hit))
             {
-                selectedPrefab = prefabsToSpawn[selectedPrefabIndex];
+                
+
                 // Spawnen des ausgewählten GameObjects an der Hit-Position
-                Instantiate(selectedPrefab, hit.point + new Vector3(0, 3, 0), Quaternion.identity);
+                GameObject spawnedObject = Instantiate(prefabsToSpawn[selectedPrefabIndex], hit.point + new Vector3(0, 3, 0), Quaternion.identity);
+
+                // Setze den Namen und Tag des neu erstellten Objekts
+                selectedPrefab = spawnedObject;
+                spawnedObject.name = "Tower";
+                spawnedObject.tag = "lastSpawned";
+
                 spawned = true;
             }
 
