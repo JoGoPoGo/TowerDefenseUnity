@@ -1,23 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PathCreation; // Importiere PathCreation für den Pfad
+using PathCreation;
 
 public class BotsOnPath : MonoBehaviour
 {
-    public GameObject bot1;   //was? -- siehe public
-    public GameObject bot2;  // zweites objekt -- siehe public
-    public GameObject bot3;   //drittes objekt -- siehe public
+    public GameObject bot1;
+    public GameObject bot2;
+    public GameObject bot3;
 
-    public PathCreator pathCreator; // Referenz auf den PathCreator
-    public float moveSpeed = 5f;    // Wie schnell? -- siehe public
-    public float wait = 3f;         // wie lange warten bis zum nächsten botspawn? -- siehe public
-    public bool loopPath = false;   // Soll der Bot immer im Kreis laufen?
+    public PathCreator pathCreator;
+    public float moveSpeed = 5f;
+    public float wait = 3f;
+    public bool loopPath = false;
 
-    private GameObject currentBot;  // aktuelles Objekt
     private int botIndex = 0;
 
-    private DamageTest damageScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,38 +27,29 @@ public class BotsOnPath : MonoBehaviour
     {
         while (true)
         {
-            GameObject botToSpawn = GetBotToSpawn(); //welcher bot?
-
-            SpawnNewBot(botToSpawn); //spawnt bot
+            GameObject botToSpawn = GetBotToSpawn();
+            SpawnNewBot(botToSpawn);
 
             botIndex = (botIndex + 1) % 3;
-
-            // Warte für die nächste Runde
             yield return new WaitForSeconds(wait);
         }
     }
+
     GameObject GetBotToSpawn()
     {
         switch (botIndex)
         {
-            case 0:
-                return bot1;
-            case 1:
-                return bot2;
-            case 2:
-                return bot3;
-            default:
-                return bot1;
+            case 0: return bot1;
+            case 1: return bot2;
+            case 2: return bot3;
+            default: return bot1;
         }
     }
 
     // Spawnt einen neuen Bot
     void SpawnNewBot(GameObject botPrefab)
     {
-        // Erstellt eine Kopie des Bots an der Startposition des Pfads (spawner)
-        currentBot = Instantiate(botPrefab, pathCreator.path.GetPoint(0), Quaternion.identity);
-        
-
+        GameObject currentBot = Instantiate(botPrefab, pathCreator.path.GetPoint(0), Quaternion.identity);
         StartCoroutine(MoveBotAlongPath(currentBot));
     }
 
@@ -68,30 +57,31 @@ public class BotsOnPath : MonoBehaviour
     IEnumerator MoveBotAlongPath(GameObject enemy)
     {
         float distanceTravelled = 0f;
-        damageScript = enemy.GetComponent<DamageTest>();
-        while (true)
+        DamageTest damageScript = enemy.GetComponent<DamageTest>();
+
+        while (damageScript.isAlive)
         {
-            if (damageScript.isAlive == true)
+            distanceTravelled += moveSpeed * Time.deltaTime;
+            enemy.transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled);
+            enemy.transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled) * Quaternion.Euler(0, 0, 90);
+
+            if (distanceTravelled >= pathCreator.path.length)
             {
-
-                // Bot bewegt sich entlang des Pfads
-                distanceTravelled += moveSpeed * Time.deltaTime;
-
-                // Setze die neue Position des Bots entlang des Pfads
-                enemy.transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled);
-
-                // Setze die Rotation des Bots entsprechend der Richtung des Pfads
-                enemy.transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled) * Quaternion.Euler(0, 0, 90);
-
-                // Wenn der Bot am Ende des Pfads angekommen ist, zerstöre ihn oder mache etwas anderes
-                if (!loopPath && distanceTravelled >= pathCreator.path.length)
+                if (loopPath)
+                {
+                    distanceTravelled = 0f; // Zurück zum Start für die nächste Runde
+                }
+                else
                 {
                     Destroy(enemy);
-                    yield break; // Beende die Coroutine
+                    yield break;
                 }
             }
 
             yield return null;
         }
+
+        Destroy(enemy); // Zerstört, wenn der Bot nicht mehr "alive" ist
     }
 }
+

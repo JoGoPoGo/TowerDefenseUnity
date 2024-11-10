@@ -6,7 +6,7 @@ public class MainDamage : MonoBehaviour
 {
     public int damage = 10; 
     private BaseHealth baseHealth;
-
+    public DamageTest damageScript;
     private void Start()
     {
         baseHealth = GameObject.Find("Base2").GetComponent<BaseHealth>();
@@ -26,7 +26,7 @@ public class MainDamage : MonoBehaviour
                 baseHealth.TakeDamage(damage);
             }
 
-            
+            damageScript.Die();
             Destroy(gameObject);
         }
     }

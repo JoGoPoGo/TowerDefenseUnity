@@ -365,6 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f7520adacd78342871c5d381b0b564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isAlive: 1
   currentHealth: 0
   maxHealth: 800
   healthbar: {fileID: 2310099508978704867}
@@ -393,6 +394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  damageScript: {fileID: 5126401596203668}
 --- !u!54 &3701729524717879074
 Rigidbody:
   m_ObjectHideFlags: 0

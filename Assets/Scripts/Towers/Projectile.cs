@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.GameCenter;
 
 public class Projectile : MonoBehaviour
 {
@@ -9,64 +8,56 @@ public class Projectile : MonoBehaviour
     private float shootSpeed = 5f;
     private int damage = 10;
 
-    //private GameObject tower;
     private GameObject nearestTower;
     private Vector3 startPosition;
     private Transform target;
-    //private GameObject targetEnemy;
     private float range = 0f;
     private DamageTest damageScript;
-    // Start is called before the first frame update
+
     void Start()
     {
         startPosition = transform.position;
 
-        //targetEnemy = GameObject.FindGameObjectWithTag("Enemy");  //nicht verwendet
-        //tower = GameObject.FindGameObjectWithTag("Tower");   //nicht verwendet
-        
-        nearestTower = FindNearestTower();   //zugehöriger Turm
+        nearestTower = FindNearestTower();
         range = nearestTower.GetComponent<Tower>().range;
         shootSpeed = nearestTower.GetComponent<Tower>().bulletSpeed;
         damage = nearestTower.GetComponent<Tower>().damageAmount;
 
         UpdateTarget();
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target.position, shootSpeed * Time.deltaTime);
-        if(target == null)
+        // Prüfen, ob ein Ziel vorhanden ist
+        if (target == null || damageScript == null || !damageScript.isAlive)
         {
             UpdateTarget();
+
+            if (target == null)
+            {
+                Destroy(gameObject);
+                return;
+            }
         }
-       
-        if(target == null)
+
+        // Bewegung des Projektils in Richtung Ziel
+        transform.position = Vector3.MoveTowards(transform.position, target.position, shootSpeed * Time.deltaTime);
+
+        // Prüfen, ob das Projektil das Ziel erreicht hat
+        if (Vector3.Distance(transform.position, target.position) < 0.1f)
         {
-            Destroy(gameObject);
-            return;
-        }
-        if(Vector3.Distance(transform.position, target.position) < 0.1f)
-        {   
             damageScript.TakeDamage(damage);
             Destroy(gameObject);
             return;
         }
-        if(damageScript.isAlive == false)
-        {
-            Debug.Log("Destroyed");
-            Destroy(gameObject);
-        }
     }
+
     void UpdateTarget()
     {
-        // Sucht nach allen Gegnern mit dem Tag "Enemy"
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
 
-        // Finde den nächsten Gegner innerhalb der Reichweite
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
@@ -77,26 +68,33 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        // Wenn ein Gegner gefunden wurde, setze ihn als Ziel
         if (nearestEnemy != null && shortestDistance <= range)
         {
             Transform centerTransform = nearestEnemy.transform.Find("Center");
 
-            target = centerTransform;
-            damageScript = nearestEnemy.GetComponent<DamageTest>();
+            if (centerTransform != null)
+            {
+                target = centerTransform;
+                damageScript = nearestEnemy.GetComponent<DamageTest>();
+            }
+            else
+            {
+                target = nearestEnemy.transform; // Fallback falls "Center" fehlt
+                damageScript = nearestEnemy.GetComponent<DamageTest>();
+            }
         }
         else
         {
-            target = null; // Kein Gegner in Reichweite
+            target = null;
         }
     }
+
     GameObject FindNearestTower()
     {
-        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower"); // Suche alle Türme
+        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
         float shortestDistance = Mathf.Infinity;
         GameObject nearestTower = null;
 
-        // Finde den nächsten Turm
         foreach (GameObject tower in towers)
         {
             float distanceToTower = Vector3.Distance(transform.position, tower.transform.position);
@@ -107,8 +105,9 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        return nearestTower; // Gebe den nächstgelegenen Turm zurück
+        return nearestTower;
     }
 }
+
 
 

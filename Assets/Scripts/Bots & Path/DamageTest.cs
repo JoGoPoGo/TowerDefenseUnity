@@ -36,7 +36,7 @@ public class DamageTest : MonoBehaviour
     }
 
     // Zerstört den Bot, wenn die Lebenspunkte auf 0 fallen
-    void Die()
+    public void Die()
     {
         isAlive = false;
         Destroy(gameObject);
