@@ -127,16 +127,16 @@ public class vThirdPersonCamera : MonoBehaviour
     public void RotateCamera(float x, float y)
     {
         // Check if the right mouse button is pressed (locking the cursor)
-        if (Input.GetMouseButtonDown(1))
-        {
-            LockCursor(true); // Lock the cursor
-        }
+        //if (Input.GetMouseButtonDown(1))
+      //  {
+       //     LockCursor(true); // Lock the cursor
+       // }
 
         // Check if the right mouse button is released (unlocking the cursor)
-        if (Input.GetMouseButtonUp(1))
-        {
-            LockCursor(false); // Unlock the cursor
-        }
+        //if (Input.GetMouseButtonUp(1))
+       // {
+       //     LockCursor(false); // Unlock the cursor
+        //}
 
         // Rotate camera only when the right mouse button is held down
         if (Input.GetMouseButton(1))

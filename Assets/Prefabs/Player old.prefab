@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 7107415630310297890}
   - component: {fileID: 7997096977160499590}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player old
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -204,6 +204,7 @@ MonoBehaviour:
   controller: {fileID: 1049755853752593055}
   cam: {fileID: 0}
   speed: 6
+  mouseSensitivity: 100
   turnSmoothTime: 0.1
 --- !u!95 &7997096977160499590
 Animator:

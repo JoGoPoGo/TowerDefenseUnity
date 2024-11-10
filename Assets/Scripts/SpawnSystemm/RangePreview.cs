@@ -1,32 +1,53 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RangePreview : MonoBehaviour
 {
-    public SpawnOnMouseClick spawnScript;
+    public SpawnOnMouseClick spawnScript; // Reference to the SpawnOnMouseClick script
     private GameObject previewObject;
     public GameObject partToActivate;
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+        // Initialize partToActivate to null
+        partToActivate = null;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        previewObject = GameObject.FindWithTag("lastSpawned");
-        if (partToActivate != null)
+        // Check if spawnScript is assigned and spawned is true
+        if (spawnScript != null && spawnScript.spawned)
         {
-            partToActivate.SetActive(false); // Deaktiviere es zu Beginn
+            selectPart();
+            if (partToActivate != null)
+            {
+                partToActivate.SetActive(true); // Activate the "Range" part
+            }
+            else
+            {
+                Debug.LogWarning("Kein Teilobjekt zugewiesen!");
+            }
         }
-        else
+        // Check if spawnScript is assigned and spawned is false
+        else if (spawnScript != null && !spawnScript.spawned)
         {
-            Debug.LogWarning("Kein Teilobjekt zugewiesen!");
+            if (partToActivate != null)
+            {
+                partToActivate.SetActive(false); // Deactivate the "Range" part
+            }
         }
-        //partToActivate = previewObject.transform.Find("Range");
-        //partToActivate.SetActive(true);
+    }
 
+    void selectPart()
+    {
+        previewObject = GameObject.FindWithTag("lastSpawned");
+
+        // Find "Range" within the prefab
+        partToActivate = previewObject.transform.Find("Range").gameObject;
+
+        // If "Range" is not found, issue a warning
+        if (partToActivate == null)
+        {
+            Debug.LogWarning("Range Objekt im Prefab nicht gefunden!");
+        }
     }
 }

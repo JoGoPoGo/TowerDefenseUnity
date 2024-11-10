@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 180557816041214271}
   - component: {fileID: 1895714180759703109}
   - component: {fileID: 7643004557607570226}
-  - component: {fileID: 8482469153426249813}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,29 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8482469153426249813
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 757409430250446530}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: -0.00000023841858, z: -0.00000008940697}
 --- !u!1 &1606355553184426686
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +97,7 @@ GameObject:
   - component: {fileID: 5574970421113551363}
   - component: {fileID: 5886105663664838534}
   - component: {fileID: 8536870590133140028}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: TowerAlpha
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -270,7 +246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7924353755555060572}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +280,7 @@ GameObject:
   - component: {fileID: 2043615374496368454}
   - component: {fileID: 4519558677054664676}
   - component: {fileID: 3479411051463123090}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

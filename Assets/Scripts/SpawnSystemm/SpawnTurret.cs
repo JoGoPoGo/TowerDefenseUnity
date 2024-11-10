@@ -46,10 +46,13 @@ public class SpawnOnMouseClick : MonoBehaviour
                 spawnedObject.tag = "lastSpawned";
 
                 spawned = true;
+                    
             }
 
             // Deaktiviere das Spawning nach dem Spawnen
             spawnEnabled = false;
+            
         }
+        
     }
 }

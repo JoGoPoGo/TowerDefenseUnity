@@ -7,7 +7,7 @@ public class Preview : MonoBehaviour
     public SpawnOnMouseClick spawnScript;
     private GameObject previewObject; // Das Objekt, das als Vorschau angezeigt wird
 
-    void start()
+    void Start()
     {
         //previewObject = spawnScript.selectedPrefab;
     }
@@ -28,13 +28,23 @@ public class Preview : MonoBehaviour
                     
                 
                     // Setze die Position des Vorschau-Objekts auf den Trefferpunkt
-                    previewObject.transform.position = new Vector3(hit.point.x, 3, hit.point.z)+ new Vector3(0, 0, 2);
+                    previewObject.transform.position = new Vector3(hit.point.x, 3, hit.point.z);
                    
 
                     // Optional: Drehung des Vorschau-Objekts anpassen, um mit der Mausbewegung auszurichten
                     // previewObject.transform.rotation = Quaternion.LookRotation(hit.normal);
                 
             }
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            spawnScript.spawned = false; // Setze spawned auf false, wenn die linke Maustaste losgelassen wird
+
+            if (previewObject != null)
+            {
+                previewObject.tag = "Untagged";
+            }
+
         }
     }
 }
