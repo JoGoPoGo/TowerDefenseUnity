@@ -20,6 +20,7 @@ public class SpawnOnMouseClick : MonoBehaviour
                 spawnEnabled = true; // Aktiviere das Spawning
             });
         }
+        Update();
     }
 
     void Update()
@@ -38,7 +39,7 @@ public class SpawnOnMouseClick : MonoBehaviour
             {
                 selectedPrefab = prefabsToSpawn[selectedPrefabIndex];
                 // Spawnen des ausgewählten GameObjects an der Hit-Position
-                Instantiate(selectedPrefab, hit.point + new Vector3(0, 1, 0), Quaternion.identity);
+                Instantiate(selectedPrefab, hit.point + new Vector3(0, 3, 0), Quaternion.identity);
                 spawned = true;
             }
 
