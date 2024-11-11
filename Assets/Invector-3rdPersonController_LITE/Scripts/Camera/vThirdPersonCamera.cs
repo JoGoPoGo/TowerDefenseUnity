@@ -22,6 +22,9 @@ public class vThirdPersonCamera : MonoBehaviour
     public float yMinLimit = -40f;
     public float yMaxLimit = 80f;
 
+    public GameObject targetGameObject; // Das GameObject, das du überprüfen möchtest
+    public bool isActive;
+
     #endregion
 
     #region hide properties    
@@ -126,17 +129,22 @@ public class vThirdPersonCamera : MonoBehaviour
     /// <param name="y"></param>
     public void RotateCamera(float x, float y)
     {
-        // Check if the right mouse button is pressed (locking the cursor)
-        //if (Input.GetMouseButtonDown(1))
-      //  {
-       //     LockCursor(true); // Lock the cursor
-       // }
+        if (targetGameObject.activeInHierarchy)
+            isActive = true;
+        if (!targetGameObject.activeInHierarchy)
+            isActive = false;
 
-        // Check if the right mouse button is released (unlocking the cursor)
-        //if (Input.GetMouseButtonUp(1))
-       // {
-       //     LockCursor(false); // Unlock the cursor
-        //}
+        // Check if the right mouse button is pressed (locking the cursor)
+        if (Input.GetMouseButtonDown(1) && isActive == false)
+        {
+            LockCursor(true); // Lock the cursor
+        }
+
+       // Check if the right mouse button is released (unlocking the cursor)
+        if (Input.GetMouseButtonUp(1))
+        {
+            LockCursor(false); // Unlock the cursor
+        }
 
         // Rotate camera only when the right mouse button is held down
         if (Input.GetMouseButton(1))

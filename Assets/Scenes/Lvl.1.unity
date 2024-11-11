@@ -2579,6 +2579,10 @@ PrefabInstance:
       propertyPath: defaultDistance
       value: 9.31
       objectReference: {fileID: 0}
+    - target: {fileID: 9187590919855873765, guid: 97e2fcb4ece22d7418233d8bd573edba, type: 3}
+      propertyPath: targetGameObject
+      value: 
+      objectReference: {fileID: 1210197819}
     - target: {fileID: 9187590919855873767, guid: 97e2fcb4ece22d7418233d8bd573edba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
