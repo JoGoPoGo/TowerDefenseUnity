@@ -47,6 +47,7 @@ MonoBehaviour:
   pathCreator: {fileID: 2752864174964124067}
   prefabToSpawn: {fileID: 3284428136792661317, guid: c37bdea9ae95bc0468f4ad029c753e29, type: 3}
   spawnInterval: 0.2
+  parent: {fileID: 0}
 --- !u!1 &4660127960345586053
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +169,6 @@ GameObject:
   - component: {fileID: 5484678094584749563}
   - component: {fileID: 8369757475043824158}
   - component: {fileID: 288101854695437917}
-  - component: {fileID: 754831482516125896}
   m_Layer: 8
   m_Name: Base2
   m_TagString: Base
@@ -278,27 +278,6 @@ MonoBehaviour:
   maxHealth: 500
   health: 200
   healthbar: {fileID: 619469244692885576}
---- !u!65 &754831482516125896
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6364100127393618495}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8419428654441282388
 GameObject:
   m_ObjectHideFlags: 0
