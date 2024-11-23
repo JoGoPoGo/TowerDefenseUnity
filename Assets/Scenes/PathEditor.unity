@@ -583,15 +583,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9192309820865128583, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
       propertyPath: gradient.key0.b
-      value: 0.19620281
+      value: 0.13732941
       objectReference: {fileID: 0}
     - target: {fileID: 9192309820865128583, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
       propertyPath: gradient.key0.g
-      value: 0.17332679
+      value: 0.012459949
       objectReference: {fileID: 0}
     - target: {fileID: 9192309820865128583, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
       propertyPath: gradient.key0.r
-      value: 0.8962264
+      value: 0.5283019
       objectReference: {fileID: 0}
     - target: {fileID: 9192309820865128583, guid: 7ef3236f0a860a44e85e917d067fc06d, type: 3}
       propertyPath: gradient.key1.b
