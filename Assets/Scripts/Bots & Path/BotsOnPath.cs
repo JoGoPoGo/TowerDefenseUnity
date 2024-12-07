@@ -5,52 +5,75 @@ using PathCreation;
 
 public class BotsOnPath : MonoBehaviour
 {
-    public GameObject bot1;
-    public GameObject bot2;
-    public GameObject bot3;
-
+    public GameObject[] botPrefabs; // Array mit unterschiedlichen Bot-Typen
     public PathCreator pathCreator;
     public float moveSpeed = 5f;
-    public float wait = 3f;
+    public float groupWaitTime = 3f; // Wartezeit zwischen Gruppen
+    public float waveWaitTime = 10f; // Wartezeit zwischen Wellen
+    public float timeInGroup = 1f;  //Wartezeit zwischen einzelnen Bots in der Gruppe
+    public int totalWaves = 5; // Anzahl der Wellen
+    public int botsPerGroup = 3; // Anzahl der Bots pro Gruppe
     public bool loopPath = false;
 
-    private int botIndex = 0;
+    private int currentWave = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnBots());
+        StartCoroutine(SpawnWaves());
     }
 
-    // Coroutine für das Spawnen der Bots in Intervallen
-    IEnumerator SpawnBots()
+    // Spawning der Wellen
+    IEnumerator SpawnWaves()
     {
-        while (true)
+        while (currentWave < totalWaves)
         {
-            GameObject botToSpawn = GetBotToSpawn();
-            SpawnNewBot(botToSpawn);
+            Debug.Log("Welle " + (currentWave + 1) + " startet!");
+            yield return StartCoroutine(SpawnGroupsInWave());
+            currentWave++;
+            Debug.Log("Welle " + currentWave + " beendet!");
+            yield return new WaitForSeconds(waveWaitTime);
+        }
 
-            botIndex = (botIndex + 1) % 3;
-            yield return new WaitForSeconds(wait);
+        Debug.Log("Alle Wellen abgeschlossen!");
+    }
+
+    // Spawning von Gruppen in einer Welle
+    IEnumerator SpawnGroupsInWave()
+    {
+        int totalGroups = currentWave + 1; // Jede Welle hat eine Gruppe mehr als die letzte
+        for (int i = 0; i < totalGroups; i++)
+        {
+            // Startet das Spawnen einer Gruppe
+            yield return StartCoroutine(SpawnGroup());
+
+            // Wartezeit zwischen den Gruppen
+            yield return new WaitForSeconds(groupWaitTime);
         }
     }
 
-    GameObject GetBotToSpawn()
+    // Spawnt eine Gruppe von Bots
+    IEnumerator SpawnGroup()
     {
-        switch (botIndex)
+        for (int i = 0; i < botsPerGroup; i++)
         {
-            case 0: return bot1;
-            case 1: return bot2;
-            case 2: return bot3;
-            default: return bot1;
+            // Wählt einen zufälligen Bot aus der Liste
+            GameObject botPrefab = botPrefabs[Random.Range(0, botPrefabs.Length)];
+
+            // Spawnt den Bot
+            SpawnNewBot(botPrefab);
+
+            // Wartezeit zwischen den einzelnen Bots in der Gruppe
+            yield return new WaitForSeconds(timeInGroup);
         }
     }
+
 
     // Spawnt einen neuen Bot
     void SpawnNewBot(GameObject botPrefab)
     {
-        GameObject currentBot = Instantiate(botPrefab, pathCreator.path.GetPoint(0), Quaternion.identity);
-        StartCoroutine(MoveBotAlongPath(currentBot));
+        Vector3 spawnPosition = pathCreator.path.GetPoint(0);
+        GameObject bot = Instantiate(botPrefab, spawnPosition, Quaternion.identity);
+        StartCoroutine(MoveBotAlongPath(bot));
     }
 
     // Bewegung des Bots entlang des Pfads
@@ -59,7 +82,7 @@ public class BotsOnPath : MonoBehaviour
         float distanceTravelled = 0f;
         DamageTest damageScript = enemy.GetComponent<DamageTest>();
 
-        while (damageScript.isAlive)
+        while (damageScript != null && damageScript.isAlive)
         {
             distanceTravelled += moveSpeed * Time.deltaTime;
             enemy.transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled);
@@ -69,7 +92,7 @@ public class BotsOnPath : MonoBehaviour
             {
                 if (loopPath)
                 {
-                    distanceTravelled = 0f; // Zurück zum Start für die nächste Runde
+                    distanceTravelled = 0f;
                 }
                 else
                 {
@@ -81,7 +104,8 @@ public class BotsOnPath : MonoBehaviour
             yield return null;
         }
 
-        Destroy(enemy); // Zerstört, wenn der Bot nicht mehr "alive" ist
+        Destroy(enemy); // Bot wird zerstört, wenn er nicht mehr "alive" ist
     }
 }
+
 
