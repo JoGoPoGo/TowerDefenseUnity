@@ -2254,6 +2254,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1150632695352808161, guid: 61d1df10dafe1064db0bdf12bdacf6e2, type: 3}
+      propertyPath: botPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150632695352808161, guid: 61d1df10dafe1064db0bdf12bdacf6e2, type: 3}
+      propertyPath: botPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 6259370625345561336, guid: ed423a6720c43dc4c91f1045471177e9, type: 3}
+    - target: {fileID: 1150632695352808161, guid: 61d1df10dafe1064db0bdf12bdacf6e2, type: 3}
+      propertyPath: botPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 6259370625345561336, guid: ed423a6720c43dc4c91f1045471177e9, type: 3}
+    - target: {fileID: 1150632695352808161, guid: 61d1df10dafe1064db0bdf12bdacf6e2, type: 3}
+      propertyPath: botPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 6259370625345561336, guid: ed423a6720c43dc4c91f1045471177e9, type: 3}
     - target: {fileID: 1266732372207556544, guid: 61d1df10dafe1064db0bdf12bdacf6e2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
