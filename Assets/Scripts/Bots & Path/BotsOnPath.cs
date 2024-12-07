@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
 
+[System.Serializable]
+public class WaveConfiguration
+{
+    public int botsPerGroup = 3; // Anzahl der Bots pro Gruppe
+    public float groupWaitTime = 3f; // Wartezeit zwischen Gruppen
+    public float timeInGroup = 1f;  //Wartezeit zwischen einzelnen Bots in der Gruppe
+    public GameObject[] botPrefabs; // Array mit unterschiedlichen Bot-Typen
+    public float waveWaitTime = 10f; // Wartezeit zwischen Wellen
+    public int groupsInWave = 3;
+}
 public class BotsOnPath : MonoBehaviour
 {
-    public GameObject[] botPrefabs; // Array mit unterschiedlichen Bot-Typen
+    public WaveConfiguration[] waves; // wie viele Wellen?
     public PathCreator pathCreator;
     public float moveSpeed = 5f;
-    public float groupWaitTime = 3f; // Wartezeit zwischen Gruppen
-    public float waveWaitTime = 10f; // Wartezeit zwischen Wellen
-    public float timeInGroup = 1f;  //Wartezeit zwischen einzelnen Bots in der Gruppe
-    public int totalWaves = 5; // Anzahl der Wellen
-    public int botsPerGroup = 3; // Anzahl der Bots pro Gruppe
+    
     public bool loopPath = false;
 
     private int currentWave = 0;
@@ -25,45 +31,38 @@ public class BotsOnPath : MonoBehaviour
     // Spawning der Wellen
     IEnumerator SpawnWaves()
     {
-        while (currentWave < totalWaves)
+        for (int i = 0; i < waves.Length; i++) // Schleife durch alle Wellen
         {
-            Debug.Log("Welle " + (currentWave + 1) + " startet!");
-            yield return StartCoroutine(SpawnGroupsInWave());
-            currentWave++;
-            Debug.Log("Welle " + currentWave + " beendet!");
-            yield return new WaitForSeconds(waveWaitTime);
+            WaveConfiguration currentWave = waves[i]; // Aktuelle Welle abrufen
+            Debug.Log("Welle " + (i + 1) + " startet!");
+
+            yield return StartCoroutine(SpawnGroupsInWave(currentWave)); // Spawne Gruppen in der aktuellen Welle
+
+            Debug.Log("Welle " + (i + 1) + " beendet!");
+            yield return new WaitForSeconds(currentWave.waveWaitTime); // Wartezeit vor der nächsten Welle
         }
 
         Debug.Log("Alle Wellen abgeschlossen!");
     }
 
     // Spawning von Gruppen in einer Welle
-    IEnumerator SpawnGroupsInWave()
+    IEnumerator SpawnGroupsInWave(WaveConfiguration waveConfig)
     {
-        int totalGroups = currentWave + 1; // Jede Welle hat eine Gruppe mehr als die letzte
-        for (int i = 0; i < totalGroups; i++)
+        for (int i = 0; i < waveConfig.groupsInWave; i++) // Anzahl der Gruppen in dieser Welle
         {
-            // Startet das Spawnen einer Gruppe
-            yield return StartCoroutine(SpawnGroup());
-
-            // Wartezeit zwischen den Gruppen
-            yield return new WaitForSeconds(groupWaitTime);
+            yield return StartCoroutine(SpawnGroup(waveConfig)); // Spawne eine Gruppe
+            yield return new WaitForSeconds(waveConfig.groupWaitTime); // Wartezeit zwischen Gruppen
         }
     }
 
     // Spawnt eine Gruppe von Bots
-    IEnumerator SpawnGroup()
+    IEnumerator SpawnGroup(WaveConfiguration waveConfig)
     {
-        for (int i = 0; i < botsPerGroup; i++)
+        for (int i = 0; i < waveConfig.botsPerGroup; i++) // Anzahl der Bots pro Gruppe
         {
-            // Wählt einen zufälligen Bot aus der Liste
-            GameObject botPrefab = botPrefabs[Random.Range(0, botPrefabs.Length)];
-
-            // Spawnt den Bot
-            SpawnNewBot(botPrefab);
-
-            // Wartezeit zwischen den einzelnen Bots in der Gruppe
-            yield return new WaitForSeconds(timeInGroup);
+            GameObject botPrefab = waveConfig.botPrefabs[Random.Range(0, waveConfig.botPrefabs.Length)]; // Zufälliger Bot
+            SpawnNewBot(botPrefab); // Bot spawnen
+            yield return new WaitForSeconds(waveConfig.timeInGroup); // Kurze Pause zwischen Bots (optional)
         }
     }
 
