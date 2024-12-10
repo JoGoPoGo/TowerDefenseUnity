@@ -11,6 +11,7 @@ public class DamageTest : MonoBehaviour
 
     public int currentHealth; // Aktuelle Leben -- siehe public
     public int maxHealth = 100; // Maximale Leben -- siehe public
+    public float speed = 1f;
 
     public HealthSlider healthbar; // Referenz zur Lebensanzeige  -- siehe public
 

@@ -2259,6 +2259,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1150632695352808161, guid: 61d1df10dafe1064db0bdf12bdacf6e2, type: 3}
+      propertyPath: speedMultiplier
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150632695352808161, guid: 61d1df10dafe1064db0bdf12bdacf6e2, type: 3}
       propertyPath: waves.Array.size
       value: 2
       objectReference: {fileID: 0}

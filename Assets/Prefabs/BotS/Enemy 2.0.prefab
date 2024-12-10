@@ -514,6 +514,7 @@ MonoBehaviour:
   isAlive: 1
   currentHealth: 0
   maxHealth: 200
+  speed: 3
   healthbar: {fileID: 2017507831991410414}
 --- !u!114 &7017896006237374713
 MonoBehaviour:

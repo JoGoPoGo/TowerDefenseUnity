@@ -17,7 +17,7 @@ public class BotsOnPath : MonoBehaviour
 {
     public WaveConfiguration[] waves; // wie viele Wellen?
     public PathCreator pathCreator;
-    public float moveSpeed = 5f;
+    public float speedMultiplier = 2;
     
     public bool loopPath = false;
 
@@ -83,7 +83,7 @@ public class BotsOnPath : MonoBehaviour
 
         while (damageScript != null && damageScript.isAlive)
         {
-            distanceTravelled += moveSpeed * Time.deltaTime;
+            distanceTravelled += damageScript.speed * speedMultiplier * Time.deltaTime;
             enemy.transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled);
             enemy.transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled) * Quaternion.Euler(0, 0, 90);
 
