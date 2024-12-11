@@ -1,13 +1,16 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BaseHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int health;
     public HealthSlider healthbar;
+    public Boolean destructed = false;
 
     private void Start()
     {
@@ -23,7 +26,7 @@ public class BaseHealth : MonoBehaviour
 
         if (health <= 0 )
         {
-            Destroy(gameObject);
+            BaseDestruction();
         }
     }
 
@@ -31,5 +34,11 @@ public class BaseHealth : MonoBehaviour
     {
         healthbar.Sethealth(health);
         
+    }
+    public void BaseDestruction()
+    {
+        Destroy(gameObject);
+        destructed = true;
+        SceneManager.LoadScene("Main Menu");
     }
 }
