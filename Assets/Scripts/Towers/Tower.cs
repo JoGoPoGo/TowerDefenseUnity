@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    public SpawnOnMouseClick spawnScript; // Reference to the SpawnOnMouseClick script
+
     public Transform target;           // Das aktuelle Ziel des Turms
     public float range = 15f;          // Reichweite des Turms
     public string enemyTag = "Enemy";  // Der Tag der Gegner (z.B. "Enemy")
@@ -20,6 +22,9 @@ public class Tower : MonoBehaviour
 
     void Start()
     {
+        GameObject spawnHandler = GameObject.Find("SpawnHandler");
+        spawnScript = spawnHandler.GetComponent<SpawnOnMouseClick>();
+
         // Sucht alle paar Sekunden nach Gegnern
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
@@ -77,12 +82,9 @@ public class Tower : MonoBehaviour
     void Shoot()
     {
         // Erzeugt das Projektil an der Feuerposition und weist ihm die Richtung des Ziels zu
-        GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-         // Projectile projectile = projectileGO.GetComponent<Projectile>();
-
-       // if (projectile != null)
+        if (!spawnScript.spawned)
         {
-       //     projectile.Seek(target);
+            GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         }
     }
 
