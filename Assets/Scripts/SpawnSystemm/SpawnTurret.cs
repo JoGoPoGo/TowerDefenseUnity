@@ -10,6 +10,10 @@ public class SpawnOnMouseClick : MonoBehaviour
     private bool spawnEnabled = false; // Frag, ob das Spawning aktiviert ist 
     public GameObject selectedPrefab;
 
+    //Tims Änderung
+    public GameManager gameManager;
+    private int cost = 0;       //wie viel Kostet der Turm?
+
     void Start()
     {
         // Initialisierung der Buttons:
@@ -19,6 +23,8 @@ public class SpawnOnMouseClick : MonoBehaviour
             spawnButtons[i].onClick.AddListener(() => {
                 selectedPrefabIndex = buttonIndex; // Setze den ausgewählten Index, wenn der Button gedrückt wird
                 spawnEnabled = true; // Aktiviere das Spawning
+                //Tims Änderung
+                UpdateCost();     
             });
         }
     }
@@ -28,31 +34,39 @@ public class SpawnOnMouseClick : MonoBehaviour
         // Wenn das Spawning aktiviert ist und die linke Maustaste gedrückt wird
         if (spawnEnabled && Input.GetMouseButtonDown(0))
         {
-            // Raycast von der Kamera zum Mauszeiger
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            // Wenn der Raycast etwas trifft
-            if (Physics.Raycast(ray, out hit))
+            if (gameManager.SpendCredits(cost))            // Tims Änderung  -- wenn der Preis bezahlbar ist.
             {
-                
+                // Raycast von der Kamera zum Mauszeiger
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
 
-                // Spawnen des ausgewählten GameObjects an der Hit-Position
-                GameObject spawnedObject = Instantiate(prefabsToSpawn[selectedPrefabIndex], hit.point + new Vector3(0, 3, 0), Quaternion.identity);
+                // Wenn der Raycast etwas trifft
+                if (Physics.Raycast(ray, out hit))
+                {
 
-                // Setze den Namen und Tag des neu erstellten Objekts
-                selectedPrefab = spawnedObject;
-                spawnedObject.name = "Tower";
-                spawnedObject.tag = "lastSpawned";
 
-                spawned = true;
-                    
+                    // Spawnen des ausgewählten GameObjects an der Hit-Position
+                    GameObject spawnedObject = Instantiate(prefabsToSpawn[selectedPrefabIndex], hit.point + new Vector3(0, 3, 0), Quaternion.identity);
+
+                    // Setze den Namen und Tag des neu erstellten Objekts
+                    selectedPrefab = spawnedObject;
+                    spawnedObject.name = "Tower";
+                    spawnedObject.tag = "lastSpawned";
+
+                    spawned = true;
+
+                }
+
+                // Deaktiviere das Spawning nach dem Spawnen
+                spawnEnabled = false;
             }
-
-            // Deaktiviere das Spawning nach dem Spawnen
-            spawnEnabled = false;
             
         }
         
+    }
+    void UpdateCost()                 //Tims Änderung -- gibt den Korekten preis zurück
+    {
+        Tower towerScript = prefabsToSpawn[selectedPrefabIndex].GetComponent<Tower>();
+        cost = towerScript.price;
     }
 }

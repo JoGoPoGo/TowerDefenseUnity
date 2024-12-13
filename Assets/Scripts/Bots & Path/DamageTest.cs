@@ -12,14 +12,18 @@ public class DamageTest : MonoBehaviour
     public int currentHealth; // Aktuelle Leben -- siehe public
     public int maxHealth = 100; // Maximale Leben -- siehe public
     public float speed = 1f;
+    public int reward = 0;
 
     public HealthSlider healthbar; // Referenz zur Lebensanzeige  -- siehe public
+
+    private GameManager gameManager;
 
     void Start()
     {
         // Setze die Lebenspunkte auf das Maximum
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth); // Update der Lebensanzeige
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Funktion zum Zufügen von Schaden
@@ -39,6 +43,7 @@ public class DamageTest : MonoBehaviour
     // Zerstört den Bot, wenn die Lebenspunkte auf 0 fallen
     public void Die()
     {
+        gameManager.AddCredits(reward);
         isAlive = false;
         Destroy(gameObject);
     }
