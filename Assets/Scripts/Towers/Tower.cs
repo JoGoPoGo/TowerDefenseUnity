@@ -5,16 +5,17 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     public SpawnOnMouseClick spawnScript; // Reference to the SpawnOnMouseClick script
-
     public Transform target;           // Das aktuelle Ziel des Turms
-    public float range = 15f;          // Reichweite des Turms
+    
     public string enemyTag = "Enemy";  // Der Tag der Gegner (z.B. "Enemy")
 
     public GameObject projectilePrefab; // Projektil, das der Turm abfeuert
     public Transform firePoint;        // Ort, von dem aus das Projektil geschossen wird
 
+    public int price;
     public float fireRate = 1f;        // Schussfrequenz
     public float bulletSpeed = 10f;     //Kugelgeschwindigkeit
+    public float range = 15f;          // Reichweite des Turms
     public int damageAmount = 50;       //Schaden
     private float fireCountdown = 0f;
 

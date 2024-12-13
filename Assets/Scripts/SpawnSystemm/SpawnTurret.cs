@@ -7,7 +7,7 @@ public class SpawnOnMouseClick : MonoBehaviour
     public GameObject[] prefabsToSpawn; // Array von GameObjects, die gespawnt werden können
     public Button[] spawnButtons; // Array von Buttons, die die Auswahl der GameObjects steuern
     private int selectedPrefabIndex = 0; // Index des aktuell ausgewählten GameObjects
-    private bool spawnEnabled = false; // Flag, ob das Spawning aktiviert ist
+    private bool spawnEnabled = false; // Frag, ob das Spawning aktiviert ist 
     public GameObject selectedPrefab;
 
     void Start()
