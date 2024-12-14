@@ -248,7 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlive: 1
   currentHealth: 0
-  maxHealth: 1200
+  maxHealth: 1600
   speed: 0.5
   reward: 10
   healthbar: {fileID: 5939738080292200230}
