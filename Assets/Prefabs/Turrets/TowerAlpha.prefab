@@ -233,7 +233,7 @@ MonoBehaviour:
   enemyTag: Enemy
   projectilePrefab: {fileID: 8797797870372486961, guid: 8f5d562d516e9014d98510213919f28b, type: 3}
   firePoint: {fileID: 7924353755555060572}
-  price: 22
+  price: 30
   fireRate: 0.9
   bulletSpeed: 40
   range: 12
