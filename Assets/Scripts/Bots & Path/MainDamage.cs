@@ -26,7 +26,7 @@ public class MainDamage : MonoBehaviour
                 baseHealth.TakeDamage(damage);
             }
 
-            damageScript.Die();
+            damageScript.Die(true);
             Destroy(gameObject);
         }
     }

@@ -36,14 +36,17 @@ public class DamageTest : MonoBehaviour
         // Wenn das Leben auf 0 oder darunter fällt, zerstöre den Bot
         if (currentHealth <= 0)
         {
-            Die();
+            Die(false);
         }
     }
 
     // Zerstört den Bot, wenn die Lebenspunkte auf 0 fallen
-    public void Die()
+    public void Die(bool didDamage)
     {
-        gameManager.AddCredits(reward);
+        if (!didDamage)
+        {
+            gameManager.AddCredits(reward);
+        }
         isAlive = false;
         Destroy(gameObject);
     }

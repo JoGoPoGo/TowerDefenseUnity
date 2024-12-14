@@ -104,7 +104,7 @@ public class Projectile : MonoBehaviour
                 nearestTower = tower;
             }
         }
-        Debug.Log("Tower Found");
+        //Debug.Log("Tower Found");
         return nearestTower;
     }
 }
