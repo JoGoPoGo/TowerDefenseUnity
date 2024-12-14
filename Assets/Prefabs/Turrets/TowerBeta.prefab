@@ -150,11 +150,11 @@ MonoBehaviour:
   enemyTag: Enemy
   projectilePrefab: {fileID: 8797797870372486961, guid: 8f5d562d516e9014d98510213919f28b, type: 3}
   firePoint: {fileID: 1123916924426657095}
-  price: 10
+  price: 15
   fireRate: 0.3
   bulletSpeed: 40
   range: 20
-  damageAmount: 100
+  damageAmount: 80
   turnSpeed: 10
 --- !u!1 &3248184164721721685
 GameObject:
