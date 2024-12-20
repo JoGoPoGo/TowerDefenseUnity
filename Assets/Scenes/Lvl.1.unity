@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 279300459}
   - component: {fileID: 279300458}
   - component: {fileID: 279300457}
+  - component: {fileID: 279300460}
   m_Layer: 5
   m_Name: Turret
   m_TagString: Untagged
@@ -456,7 +457,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -525,6 +526,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279300455}
   m_CullTransparentMesh: 1
+--- !u!114 &279300460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279300455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c37db72787c440c40a8c0176552a9641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 512339282}
+  Tower: {fileID: 8536870590133140028, guid: 4971f33764a3db64aae2f935df8745d0, type: 3}
 --- !u!1 &420305375
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,6 +664,7 @@ MonoBehaviour:
   spawnButtons: []
   selectedPrefab: {fileID: 0}
   gameManager: {fileID: 0}
+  cost: 0
 --- !u!1 &512339281
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,7 +737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2391954587411538296, guid: c52c7a912391a874a94eb0a4f8eeddac, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -27.95
+      value: -1.43
       objectReference: {fileID: 0}
     - target: {fileID: 2391954587411538296, guid: c52c7a912391a874a94eb0a4f8eeddac, type: 3}
       propertyPath: m_LocalRotation.w
@@ -750,6 +766,10 @@ PrefabInstance:
     - target: {fileID: 2391954587411538296, guid: c52c7a912391a874a94eb0a4f8eeddac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7604742267784297302, guid: c52c7a912391a874a94eb0a4f8eeddac, type: 3}
+      propertyPath: price
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1966,6 +1986,7 @@ GameObject:
   - component: {fileID: 1804990174}
   - component: {fileID: 1804990173}
   - component: {fileID: 1804990172}
+  - component: {fileID: 1804990175}
   m_Layer: 5
   m_Name: Snnnnippie
   m_TagString: Untagged
@@ -2015,10 +2036,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2044,18 +2065,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2249457114057599706, guid: c52c7a912391a874a94eb0a4f8eeddac, type: 3}
-        m_TargetAssemblyTypeName: SpawnPanelLogic, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2099,6 +2108,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804990170}
   m_CullTransparentMesh: 1
+--- !u!114 &1804990175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804990170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c37db72787c440c40a8c0176552a9641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 512339282}
+  Tower: {fileID: 7604742267784297302, guid: c52c7a912391a874a94eb0a4f8eeddac, type: 3}
 --- !u!1 &2077586678
 GameObject:
   m_ObjectHideFlags: 0
@@ -2420,6 +2443,7 @@ MonoBehaviour:
   - {fileID: 279300457}
   selectedPrefab: {fileID: 0}
   gameManager: {fileID: 512339282}
+  cost: 0
 --- !u!4 &2139100086
 Transform:
   m_ObjectHideFlags: 0

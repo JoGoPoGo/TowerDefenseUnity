@@ -12,7 +12,7 @@ public class SpawnOnMouseClick : MonoBehaviour
 
     //Tims Änderung
     public GameManager gameManager;
-    private int cost = 0;       //wie viel Kostet der Turm?
+    public int cost = 0;       //wie viel Kostet der Turm?
 
     void Start()
     {
