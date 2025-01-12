@@ -73,7 +73,6 @@ public class Preview : MonoBehaviour
                 continue; // Gehe zum nächsten Turm
             }
             float distance = Vector3.Distance(new Vector3(hitpointx, 3, hitpointz), tower.transform.position);
-            Debug.Log(distance);
             if (distance < tower.spawnCancelRadius)
             {
                 return false; // Position ist innerhalb des No-Tower-Bereichs
