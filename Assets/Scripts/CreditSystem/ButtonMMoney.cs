@@ -32,7 +32,7 @@ public class DisableButton : MonoBehaviour
         if (button != null)
         {
             button.interactable = true; // Deaktiviert den Button
-            Debug.Log("Button wurde aktiviert.");
+            //Debug.Log("Button wurde aktiviert.");
         }
     }
     public void DisableThisButton()
@@ -40,7 +40,7 @@ public class DisableButton : MonoBehaviour
         if (button != null)
         {
             button.interactable = false; // Deaktiviert den Button
-            Debug.Log("Button wurde deaktiviert.");
+            //Debug.Log("Button wurde deaktiviert.");
         }
     }
 }

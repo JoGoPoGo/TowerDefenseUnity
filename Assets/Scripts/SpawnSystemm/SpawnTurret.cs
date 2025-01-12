@@ -9,6 +9,7 @@ public class SpawnOnMouseClick : MonoBehaviour
     private int selectedPrefabIndex = 0; // Index des aktuell ausgewählten GameObjects
     private bool spawnEnabled = false; // Frag, ob das Spawning aktiviert ist 
     public GameObject selectedPrefab;
+    public Preview previewScript;
 
     //Tims Änderung
     public GameManager gameManager;
@@ -36,12 +37,13 @@ public class SpawnOnMouseClick : MonoBehaviour
         {
             if (gameManager.SpendCredits(cost))            // Tims Änderung  -- wenn der Preis bezahlbar ist.
             {
+                
                 // Raycast von der Kamera zum Mauszeiger
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
                 // Wenn der Raycast etwas trifft
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit)/*&& previewScript.IsPositionValid(hit.point)*/)
                 {
 
 

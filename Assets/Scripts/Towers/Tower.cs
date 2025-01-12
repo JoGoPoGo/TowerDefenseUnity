@@ -17,7 +17,10 @@ public class Tower : MonoBehaviour
     public float bulletSpeed = 10f;     //Kugelgeschwindigkeit
     public float range = 15f;          // Reichweite des Turms
     public int damageAmount = 50;       //Schaden
-    private float fireCountdown = 0f;
+    public float spawnCancelRadius = 10f;        // Kein Weiterer turm in diesem Bereich
+   
+    private float fireCountdown = 0f; 
+    
 
     public float turnSpeed = 10f;      // Geschwindigkeit, mit der der Turm sich dreht
 

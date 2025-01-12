@@ -238,6 +238,7 @@ MonoBehaviour:
   bulletSpeed: 40
   range: 12
   damageAmount: 30
+  spawnCancelRadius: 10
   turnSpeed: 10
 --- !u!1 &6724422981965347026
 GameObject:
