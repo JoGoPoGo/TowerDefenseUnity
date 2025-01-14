@@ -25,7 +25,7 @@ public class SpawnOnMouseClick : MonoBehaviour
                 selectedPrefabIndex = buttonIndex; // Setze den ausgewählten Index, wenn der Button gedrückt wird
                 spawnEnabled = true; // Aktiviere das Spawning
                 //Tims Änderung
-                UpdateCost();     
+                UpdateCost();
             });
         }
     }
