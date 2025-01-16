@@ -50,6 +50,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4445254868961495306, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
+      propertyPath: credits
+      value: 4000
+      objectReference: {fileID: 0}
     - target: {fileID: 8997481492933369875, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10
@@ -335,7 +339,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9005030654178935146, guid: 9821db909870270469f59aa791d7ba23, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9821db909870270469f59aa791d7ba23, type: 3}
