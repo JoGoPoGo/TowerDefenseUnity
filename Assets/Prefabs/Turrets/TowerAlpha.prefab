@@ -115,7 +115,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 180557816041214271}
-  - {fileID: 2398258332073791688}
+  - {fileID: 9012783293051596801}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &5574970421113551363
@@ -162,7 +162,7 @@ MonoBehaviour:
   fireRate: 0.9
   bulletSpeed: 40
   range: 12
-  damageAmount: 30
+  damageAmount: 120
   spawnCancelRadius: 10
   turnSpeed: 10
 --- !u!1 &6724422981965347026
@@ -190,7 +190,7 @@ Transform:
   m_GameObject: {fileID: 6724422981965347026}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.18500009, y: -24.74, z: -2.11}
+  m_LocalPosition: {x: 0.18499966, y: -24.740005, z: -2.110003}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -223,13 +223,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7381688311975176519}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.014801025, y: 0.21, z: 0.48}
-  m_LocalScale: {x: 0.16000001, y: 0.08, z: 0.15333334}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: 0.008880615, y: 0.622, z: -1.617}
+  m_LocalScale: {x: 0.095999986, y: 0.047999997, z: 0.09200001}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7924353755555060572}
-  m_Father: {fileID: 2398258332073791688}
+  m_Father: {fileID: 9012783293051596801}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &2043615374496368454
 MeshFilter:
@@ -304,7 +304,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!1001 &2793052289795651363
+--- !u!1001 &8834215127320827882
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -366,20 +366,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a841e171ab7186b478cdb1b66b910b3a, type: 3}
       propertyPath: m_Name
-      value: Turm2
+      value: Turm2 (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 65702495048144492, guid: a841e171ab7186b478cdb1b66b910b3a, type: 3}
-    - {fileID: -8700617353114198275, guid: a841e171ab7186b478cdb1b66b910b3a, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a841e171ab7186b478cdb1b66b910b3a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6007071788309183291}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a841e171ab7186b478cdb1b66b910b3a, type: 3}
---- !u!4 &2398258332073791688 stripped
+--- !u!4 &9012783293051596801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a841e171ab7186b478cdb1b66b910b3a, type: 3}
-  m_PrefabInstance: {fileID: 2793052289795651363}
+  m_PrefabInstance: {fileID: 8834215127320827882}
   m_PrefabAsset: {fileID: 0}
