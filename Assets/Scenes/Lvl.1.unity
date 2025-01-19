@@ -130,6 +130,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5037316361552260096, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: Tower
+      value: 
+      objectReference: {fileID: 5368506065878525942, guid: 4971f33764a3db64aae2f935df8745d0, type: 3}
     - target: {fileID: 5804837718299460341, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

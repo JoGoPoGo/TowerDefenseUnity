@@ -48,7 +48,7 @@ public class SpawnOnMouseClick : MonoBehaviour
 
 
                     // Spawnen des ausgewählten GameObjects an der Hit-Position
-                    GameObject spawnedObject = Instantiate(prefabsToSpawn[selectedPrefabIndex], hit.point + new Vector3(0, 3, 0), Quaternion.identity);
+                    GameObject spawnedObject = Instantiate(prefabsToSpawn[selectedPrefabIndex], hit.point , Quaternion.identity);
 
                     // Setze den Namen und Tag des neu erstellten Objekts
                     selectedPrefab = spawnedObject;
