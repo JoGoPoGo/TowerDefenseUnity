@@ -21,7 +21,7 @@ public class BotsOnPath : MonoBehaviour
     
     public bool loopPath = false;
 
-    private int currentWave = 0;
+    //private int currentWave = 0;
 
     void Start()
     {
