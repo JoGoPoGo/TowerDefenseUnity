@@ -122,11 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &560094642 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2936351564971129129, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
-  m_PrefabInstance: {fileID: 759061824}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &759061824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,33 +130,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1341412386164350057, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3
+    - target: {fileID: 2341315347257562749, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 2755585435108092562, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
-      propertyPath: prefabsToSpawn.Array.data[0]
-      value: 
-      objectReference: {fileID: 2249457114057599706, guid: c52c7a912391a874a94eb0a4f8eeddac, type: 3}
-    - target: {fileID: 2755585435108092562, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
-      propertyPath: prefabsToSpawn.Array.data[1]
-      value: 
-      objectReference: {fileID: 1606355553184426686, guid: 4971f33764a3db64aae2f935df8745d0, type: 3}
-    - target: {fileID: 5037316361552260096, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
-      propertyPath: Tower
-      value: 
-      objectReference: {fileID: 5368506065878525942, guid: 4971f33764a3db64aae2f935df8745d0, type: 3}
-    - target: {fileID: 5053010080357576565, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1342893938}
-    - target: {fileID: 5053010080357576565, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
-      propertyPath: targetGameObject
-      value: 
-      objectReference: {fileID: 560094642}
-    - target: {fileID: 5151838764713485002, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 2494839903386439347, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5804837718299460341, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -207,10 +182,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigbabaPrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 7782305773656984345, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 7984082878645004321, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -224,11 +195,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
---- !u!4 &1342893938 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1462942286223125967, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
-  m_PrefabInstance: {fileID: 759061824}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1703048054
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ public class Preview : MonoBehaviour
                 if (IsPositionValid())
                 {
                     SetVisibility(previewObject, true);
-                    previewObject.transform.position = new Vector3(hit.point.x, 3, hit.point.z);
+                    previewObject.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
                 }
                 
 
@@ -72,7 +72,7 @@ public class Preview : MonoBehaviour
             {
                 continue; // Gehe zum nächsten Turm
             }
-            float distance = Vector3.Distance(new Vector3(hitpointx, 3, hitpointz), tower.transform.position);
+            float distance = Vector3.Distance(new Vector3(hitpointx, 0, hitpointz), tower.transform.position);
             if (distance < tower.spawnCancelRadius)
             {
                 return false; // Position ist innerhalb des No-Tower-Bereichs
