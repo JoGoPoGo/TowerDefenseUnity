@@ -6,7 +6,8 @@ public class Tower : MonoBehaviour
 {
     public SpawnOnMouseClick spawnScript; // Reference to the SpawnOnMouseClick script
     public Transform target;           // Das aktuelle Ziel des Turms
-    
+    private DamageTest damageScript;   // DamageTest von Target
+
     public string enemyTag = "Enemy";  // Der Tag der Gegner (z.B. "Enemy")
 
     public GameObject projectilePrefab; // Projektil, das der Turm abfeuert
