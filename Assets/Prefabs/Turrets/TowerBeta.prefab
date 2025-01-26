@@ -54,11 +54,11 @@ MonoBehaviour:
   firePoint: {fileID: 1123916924426657095}
   price: 20
   fireRate: 0.5
-  bulletSpeed: 40
+  bulletSpeed: 2
   range: 20
   damageAmount: 80
   spawnCancelRadius: 5
-  turnSpeed: 10
+  turnSpeed: 30
 --- !u!136 &4895715864988312200
 CapsuleCollider:
   m_ObjectHideFlags: 0

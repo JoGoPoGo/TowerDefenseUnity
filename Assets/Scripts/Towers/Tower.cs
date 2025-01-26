@@ -5,7 +5,7 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     public SpawnOnMouseClick spawnScript; // Reference to the SpawnOnMouseClick script
-    public Transform target;           // Das aktuelle Ziel des Turms
+    public GameObject target;           // Das aktuelle Ziel des Turms
     private DamageTest damageScript;   // DamageTest von Target
 
     public string enemyTag = "Enemy";  // Der Tag der Gegner (z.B. "Enemy")
@@ -31,7 +31,28 @@ public class Tower : MonoBehaviour
         spawnScript = spawnHandler.GetComponent<SpawnOnMouseClick>();
 
         // Sucht alle paar Sekunden nach Gegnern
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        //InvokeRepeating("UpdateTarget", 0f, 0.5f);
+    }
+    void Update()
+    {
+        UpdateTarget();
+        if (target == null)
+            return;
+
+        // Turm dreht sich zum Ziel
+        Vector3 direction = target.transform.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        Quaternion smoothedRotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+        transform.rotation = Quaternion.Euler(0f, smoothedRotation.eulerAngles.y, 0f);
+
+        // Wenn die Zeit zum Schieﬂen gekommen ist, wird geschossen
+        if (fireCountdown <= 0f)
+        {
+            Shoot();
+            fireCountdown = 1f / fireRate; // Setze den Timer f¸r den n‰chsten Schuss
+        }
+
+        fireCountdown -= Time.deltaTime;
     }
 
     void UpdateTarget()
@@ -55,7 +76,7 @@ public class Tower : MonoBehaviour
         // Wenn ein Gegner gefunden wurde, setze ihn als Ziel
         if (nearestEnemy != null && shortestDistance <= range)
         {
-            target = nearestEnemy.transform;
+            target = nearestEnemy;
         }
         else
         {
@@ -63,33 +84,15 @@ public class Tower : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (target == null)
-            return;
-
-        // Turm dreht sich langsam zum Ziel
-        Vector3 direction = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-        Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-
-        // Wenn die Zeit zum Schieﬂen gekommen ist, wird geschossen
-        if (fireCountdown <= 0f)
-        {
-            Shoot();
-            fireCountdown = 1f / fireRate; // Setze den Timer f¸r den n‰chsten Schuss
-        }
-
-        fireCountdown -= Time.deltaTime;
-    }
+    
 
     void Shoot()
     {
         // Erzeugt das Projektil an der Feuerposition und weist ihm die Richtung des Ziels zu
         if (!spawnScript.spawned)
         {
-            GameObject projectileGO = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+            damageScript = target.GetComponent<DamageTest>();
+            damageScript.TakeDamage(damageAmount);
         }
     }
 
