@@ -190,6 +190,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: waves.Array.data[0].timeInGroup
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: waves.Array.data[0].groupWaitTime
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

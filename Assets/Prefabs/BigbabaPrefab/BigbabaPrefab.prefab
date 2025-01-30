@@ -52,7 +52,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4445254868961495306, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
       propertyPath: credits
-      value: 4000
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8997481492933369875, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
       propertyPath: m_LocalPosition.x
@@ -127,6 +127,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Path Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5315788181017680183, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: speedMultiplier
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315788181017680183, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: waves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315788181017680183, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: waves.Array.data[0].timeInGroup
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315788181017680183, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: waves.Array.data[0].botsPerGroup
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315788181017680183, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: waves.Array.data[0].groupsInWave
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315788181017680183, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: waves.Array.data[0].waveWaitTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315788181017680183, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: waves.Array.data[0].groupWaitTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315788181017680183, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: waves.Array.data[0].botPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5315788181017680183, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: waves.Array.data[0].botPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 158790343039298887, guid: 82697cc36646b154fb95abfe8e0986d0, type: 3}
     - target: {fileID: 6316000617803832342, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -394,15 +430,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2391954587411538296, guid: c52c7a912391a874a94eb0a4f8eeddac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47.98
+      value: -41.29
       objectReference: {fileID: 0}
     - target: {fileID: 2391954587411538296, guid: c52c7a912391a874a94eb0a4f8eeddac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -10.2
       objectReference: {fileID: 0}
     - target: {fileID: 2391954587411538296, guid: c52c7a912391a874a94eb0a4f8eeddac, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -34.58
       objectReference: {fileID: 0}
     - target: {fileID: 2391954587411538296, guid: c52c7a912391a874a94eb0a4f8eeddac, type: 3}
       propertyPath: m_LocalRotation.w

@@ -12,6 +12,7 @@ public class WaveConfiguration
     public GameObject[] botPrefabs; // Array mit unterschiedlichen Bot-Typen
     public float waveWaitTime = 10f; // Wartezeit zwischen Wellen
     public int groupsInWave = 3;
+    private bool isLast;  //Für falls mans brauch
 }
 public class BotsOnPath : MonoBehaviour
 {
@@ -34,11 +35,11 @@ public class BotsOnPath : MonoBehaviour
         for (int i = 0; i < waves.Length; i++) // Schleife durch alle Wellen
         {
             WaveConfiguration currentWave = waves[i]; // Aktuelle Welle abrufen
-            Debug.Log("Welle " + (i + 1) + " startet!");
+            //Debug.Log("Welle " + (i + 1) + " startet!");
 
             yield return StartCoroutine(SpawnGroupsInWave(currentWave)); // Spawne Gruppen in der aktuellen Welle
 
-            Debug.Log("Welle " + (i + 1) + " beendet!");
+            //Debug.Log("Welle " + (i + 1) + " beendet!");
             yield return new WaitForSeconds(currentWave.waveWaitTime); // Wartezeit vor der nächsten Welle
         }
 

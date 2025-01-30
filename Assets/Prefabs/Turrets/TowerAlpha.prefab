@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7311409354887313830}
   - component: {fileID: 5368506065878525942}
-  - component: {fileID: 2792514546896883027}
+  - component: {fileID: 3277856399822738086}
   m_Layer: 2
   m_Name: TowerAlpha
   m_TagString: Tower
@@ -139,11 +139,11 @@ MonoBehaviour:
   fireRate: 1
   bulletSpeed: 2
   range: 15
-  damageAmount: 50
+  damageAmount: 70
   spawnCancelRadius: 10
   turnSpeed: 30
---- !u!64 &2792514546896883027
-MeshCollider:
+--- !u!136 &3277856399822738086
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -160,10 +160,11 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  serializedVersion: 2
+  m_Radius: 2
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3243939055859590057
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5420821960223981712}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
