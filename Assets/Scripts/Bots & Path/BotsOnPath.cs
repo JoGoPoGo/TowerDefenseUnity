@@ -36,9 +36,16 @@ public class BotsOnPath : MonoBehaviour
         {
             WaveConfiguration currentWave = waves[i]; // Aktuelle Welle abrufen
             //Debug.Log("Welle " + (i + 1) + " startet!");
-
-            yield return StartCoroutine(SpawnGroupsInWave(currentWave)); // Spawne Gruppen in der aktuellen Welle
-
+            if (i == waves.Length - 1)
+            {
+                yield return StartCoroutine(SpawnGroupsInWave(currentWave, true)); // Spawne Gruppen in der aktuellen letzten Welle
+                Debug.Log("Letzte Welle");
+            }
+            else
+            {
+                yield return StartCoroutine(SpawnGroupsInWave(currentWave, false));
+                
+            }
             //Debug.Log("Welle " + (i + 1) + " beendet!");
             yield return new WaitForSeconds(currentWave.waveWaitTime); // Wartezeit vor der nächsten Welle
         }
@@ -47,32 +54,59 @@ public class BotsOnPath : MonoBehaviour
     }
 
     // Spawning von Gruppen in einer Welle
-    IEnumerator SpawnGroupsInWave(WaveConfiguration waveConfig)
+    IEnumerator SpawnGroupsInWave(WaveConfiguration waveConfig, bool isLast)
     {
         for (int i = 0; i < waveConfig.groupsInWave; i++) // Anzahl der Gruppen in dieser Welle
         {
-            yield return StartCoroutine(SpawnGroup(waveConfig)); // Spawne eine Gruppe
+            if (isLast && i == waveConfig.groupsInWave - 1)
+            {
+                yield return StartCoroutine(SpawnGroup(waveConfig, true)); // Spawne eine Gruppe
+                Debug.Log("Letzte Gruppe");
+            }
+            else
+            {
+                yield return StartCoroutine(SpawnGroup(waveConfig, false));
+            }
             yield return new WaitForSeconds(waveConfig.groupWaitTime); // Wartezeit zwischen Gruppen
         }
     }
 
     // Spawnt eine Gruppe von Bots
-    IEnumerator SpawnGroup(WaveConfiguration waveConfig)
+    IEnumerator SpawnGroup(WaveConfiguration waveConfig, bool isLast)
     {
         for (int i = 0; i < waveConfig.botsPerGroup; i++) // Anzahl der Bots pro Gruppe
         {
             GameObject botPrefab = waveConfig.botPrefabs[Random.Range(0, waveConfig.botPrefabs.Length)]; // Zufälliger Bot
-            SpawnNewBot(botPrefab); // Bot spawnen
+            if(isLast && i == waveConfig.botsPerGroup - 1)
+            {
+                SpawnNewBot(botPrefab, true); // Bot spawnen
+                Debug.Log("Letzter Bot");
+            }
+            else
+            {
+                SpawnNewBot(botPrefab, false);  
+            }
+            
             yield return new WaitForSeconds(waveConfig.timeInGroup); // Kurze Pause zwischen Bots (optional)
         }
     }
 
 
     // Spawnt einen neuen Bot
-    void SpawnNewBot(GameObject botPrefab)
+    void SpawnNewBot(GameObject botPrefab, bool isLast)
     {
         Vector3 spawnPosition = pathCreator.path.GetPoint(0);
         GameObject bot = Instantiate(botPrefab, spawnPosition, Quaternion.identity);
+        DamageTest damageScript = bot.GetComponent<DamageTest>();
+        if (isLast)
+        {
+            damageScript.isLast = true;
+            Debug.Log("letzten Bot gefunden");
+        }
+        else
+        {
+            damageScript.isLast = false;
+        }
         StartCoroutine(MoveBotAlongPath(bot));
     }
 

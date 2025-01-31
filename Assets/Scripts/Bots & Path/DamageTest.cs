@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -15,6 +16,8 @@ public class DamageTest : MonoBehaviour
     public int reward = 0;
 
     public HealthSlider healthbar; // Referenz zur Lebensanzeige  -- siehe public
+
+    public bool isLast;
 
     private GameManager gameManager;
 
@@ -46,6 +49,10 @@ public class DamageTest : MonoBehaviour
         if (!didDamage)
         {
             gameManager.AddCredits(reward);
+        }
+        if (isLast)
+        {
+            SceneManager.LoadScene("LevelAuswahl");   //Auskommentieren, falls es zu unerwünschten Szenenwechsel kommt
         }
         isAlive = false;
         Destroy(gameObject);
