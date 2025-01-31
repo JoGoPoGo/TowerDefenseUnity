@@ -63,7 +63,8 @@ public class Preview : MonoBehaviour
     }
     public bool IsPositionValid()
     {
-
+        Tower towerScript = previewObject.GetComponent<Tower>();
+        float ownCancelRadius = towerScript.spawnCancelRadius;
         // Suche nach Türmen in der Szene
         Tower[] towers = FindObjectsOfType<Tower>();
         foreach (Tower tower in towers)
@@ -73,7 +74,7 @@ public class Preview : MonoBehaviour
                 continue; // Gehe zum nächsten Turm
             }
             float distance = Vector3.Distance(new Vector3(hitpointx, 0, hitpointz), tower.transform.position);
-            if (distance < tower.spawnCancelRadius)
+            if (distance < tower.spawnCancelRadius || distance < ownCancelRadius)
             {
                 return false; // Position ist innerhalb des No-Tower-Bereichs
             }

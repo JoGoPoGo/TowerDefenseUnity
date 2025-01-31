@@ -57,7 +57,7 @@ MonoBehaviour:
   bulletSpeed: 2
   range: 20
   damageAmount: 80
-  spawnCancelRadius: 5
+  spawnCancelRadius: 25
   turnSpeed: 30
 --- !u!136 &4895715864988312200
 CapsuleCollider:
