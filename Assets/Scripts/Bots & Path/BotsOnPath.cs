@@ -6,20 +6,22 @@ using PathCreation;
 [System.Serializable]
 public class WaveConfiguration
 {
-    public int botsPerGroup = 3; // Anzahl der Bots pro Gruppe
-    public float groupWaitTime = 3f; // Wartezeit zwischen Gruppen
-    public float timeInGroup = 1f;  //Wartezeit zwischen einzelnen Bots in der Gruppe
-    public GameObject[] botPrefabs; // Array mit unterschiedlichen Bot-Typen
-    public float waveWaitTime = 10f; // Wartezeit zwischen Wellen
-    public int groupsInWave = 3;
+    public GroupConfiguration[] groups;  //alle Gruppen in dieser Welle
+
 }
+[System.Serializable]
 public class GroupConfiguration
 {
-    public int botsInGroup;
-    public float timeBetweenBots;
-    public GameObject[] botPrefabs;
+    public List<BotConfiguration> botConfigs;
+    public float tillNextGroup;
+    public float tillNextBot;        //Wartezeit zwischen den Bots
 
-    //Hier muss noch weiter gemacht werden
+}
+[System.Serializable]
+public class BotConfiguration
+{
+    public GameObject botPrefab;     //Welcher Bot gespawnt wird
+    public int timesBot;             //Wie oft der Bot gespawnt wird
 }
 public class BotsOnPath : MonoBehaviour
 {
@@ -64,38 +66,44 @@ public class BotsOnPath : MonoBehaviour
     // Spawning von Gruppen in einer Welle
     IEnumerator SpawnGroupsInWave(WaveConfiguration waveConfig, bool isLast)
     {
-        for (int i = 0; i < waveConfig.groupsInWave; i++) // Anzahl der Gruppen in dieser Welle
+        for (int i = 0; i < waveConfig.groups.Length; i++) // Anzahl der Gruppen in dieser Welle
         {
+            GroupConfiguration currentGroup = waveConfig.groups[i];
+
             if (isLast)
             {
-                yield return StartCoroutine(SpawnGroup(waveConfig, true)); // Spawne eine Gruppe
+                yield return StartCoroutine(SpawnGroup(currentGroup, true)); // Spawne eine Gruppe
                 Debug.Log("Letzte Gruppe");
             }
             else
             {
-                yield return StartCoroutine(SpawnGroup(waveConfig, false));
+                yield return StartCoroutine(SpawnGroup(currentGroup, false));
             }
-            yield return new WaitForSeconds(waveConfig.groupWaitTime); // Wartezeit zwischen Gruppen
+
+            // Wartezeit nach der Gruppe, bevor die nächste Gruppe startet
+            yield return new WaitForSeconds(currentGroup.tillNextGroup);
         }
     }
 
     // Spawnt eine Gruppe von Bots
-    IEnumerator SpawnGroup(WaveConfiguration waveConfig, bool isLast)
+    IEnumerator SpawnGroup(GroupConfiguration groupConfig, bool isLast)
     {
-        for (int i = 0; i < waveConfig.botsPerGroup; i++) // Anzahl der Bots pro Gruppe
+        foreach (BotConfiguration botConfig in groupConfig.botConfigs)
         {
-            GameObject botPrefab = waveConfig.botPrefabs[Random.Range(0, waveConfig.botPrefabs.Length)]; // Zufälliger Bot
-            if(isLast)
+            for (int i = 0; i < botConfig.timesBot; i++) // Anzahl der Bots pro Gruppe
             {
-                SpawnNewBot(botPrefab, true); // Bot spawnen
-                Debug.Log("Letzter Bot");
+                if (isLast)
+                {
+                    SpawnNewBot(botConfig.botPrefab, true); // Bot spawnen
+                    Debug.Log("Letzter Bot");
+                }
+                else
+                {
+                    SpawnNewBot(botConfig.botPrefab, false);
+                }
+
+                yield return new WaitForSeconds(groupConfig.tillNextBot); // Kurze Pause zwischen Bots (optional)
             }
-            else
-            {
-                SpawnNewBot(botPrefab, false);  
-            }
-            
-            yield return new WaitForSeconds(waveConfig.timeInGroup); // Kurze Pause zwischen Bots (optional)
         }
     }
 
