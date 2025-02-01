@@ -15,6 +15,10 @@ public class WaveConfiguration
 }
 public class GroupConfiguration
 {
+    public int botsInGroup;
+    public float timeBetweenBots;
+    public GameObject[] botPrefabs;
+
     //Hier muss noch weiter gemacht werden
 }
 public class BotsOnPath : MonoBehaviour
