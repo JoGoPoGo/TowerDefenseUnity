@@ -50,11 +50,15 @@ public class DamageTest : MonoBehaviour
         {
             gameManager.AddCredits(reward);
         }
-        if (isLast)
+        if (IsOnlyEnemy() && isLast)
         {
             SceneManager.LoadScene("LevelAuswahl");   //Auskommentieren, falls es zu unerwünschten Szenenwechsel kommt
         }
         isAlive = false;
         Destroy(gameObject);
+    }
+    public bool IsOnlyEnemy()
+    {
+        return GameObject.FindGameObjectsWithTag("Enemy").Length == 1; //true, wenn es keine weiteren Gegner gibt.
     }
 }

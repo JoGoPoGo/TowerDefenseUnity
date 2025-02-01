@@ -12,7 +12,10 @@ public class WaveConfiguration
     public GameObject[] botPrefabs; // Array mit unterschiedlichen Bot-Typen
     public float waveWaitTime = 10f; // Wartezeit zwischen Wellen
     public int groupsInWave = 3;
-    private bool isLast;  //Für falls mans brauch
+}
+public class GroupConfiguration
+{
+    //Hier muss noch weiter gemacht werden
 }
 public class BotsOnPath : MonoBehaviour
 {
@@ -46,8 +49,9 @@ public class BotsOnPath : MonoBehaviour
                 yield return StartCoroutine(SpawnGroupsInWave(currentWave, false));
                 
             }
-            //Debug.Log("Welle " + (i + 1) + " beendet!");
-            yield return new WaitForSeconds(currentWave.waveWaitTime); // Wartezeit vor der nächsten Welle
+            Debug.Log("Welle " + (i + 1) + " beendet!");
+            yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
+            //yield return new WaitForSeconds(currentWave.waveWaitTime); // Wartezeit vor der nächsten Welle
         }
 
         Debug.Log("Alle Wellen abgeschlossen!");
@@ -58,7 +62,7 @@ public class BotsOnPath : MonoBehaviour
     {
         for (int i = 0; i < waveConfig.groupsInWave; i++) // Anzahl der Gruppen in dieser Welle
         {
-            if (isLast && i == waveConfig.groupsInWave - 1)
+            if (isLast)
             {
                 yield return StartCoroutine(SpawnGroup(waveConfig, true)); // Spawne eine Gruppe
                 Debug.Log("Letzte Gruppe");
@@ -77,7 +81,7 @@ public class BotsOnPath : MonoBehaviour
         for (int i = 0; i < waveConfig.botsPerGroup; i++) // Anzahl der Bots pro Gruppe
         {
             GameObject botPrefab = waveConfig.botPrefabs[Random.Range(0, waveConfig.botPrefabs.Length)]; // Zufälliger Bot
-            if(isLast && i == waveConfig.botsPerGroup - 1)
+            if(isLast)
             {
                 SpawnNewBot(botPrefab, true); // Bot spawnen
                 Debug.Log("Letzter Bot");
@@ -101,7 +105,7 @@ public class BotsOnPath : MonoBehaviour
         if (isLast)
         {
             damageScript.isLast = true;
-            Debug.Log("letzten Bot gefunden");
+            //Debug.Log("letzten Bot gefunden");
         }
         else
         {
@@ -141,5 +145,3 @@ public class BotsOnPath : MonoBehaviour
         Destroy(enemy); // Bot wird zerstört, wenn er nicht mehr "alive" ist
     }
 }
-
-
