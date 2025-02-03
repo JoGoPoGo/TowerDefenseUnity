@@ -92,17 +92,11 @@ public class BotsOnPath : MonoBehaviour
         {
             for (int i = 0; i < botConfig.timesBot; i++) // Anzahl der Bots pro Gruppe
             {
-                if (isLast)
-                {
-                    SpawnNewBot(botConfig.botPrefab, true); // Bot spawnen
-                    Debug.Log("Letzter Bot");
-                }
-                else
-                {
-                    SpawnNewBot(botConfig.botPrefab, false);
-                }
+                
+                SpawnNewBot(botConfig.botPrefab, isLast);
+                
 
-                yield return new WaitForSeconds(groupConfig.tillNextBot); // Kurze Pause zwischen Bots (optional)
+                yield return new WaitForSeconds(groupConfig.tillNextBot); // Kurze Pause zischen Bots (optional)
             }
         }
     }
