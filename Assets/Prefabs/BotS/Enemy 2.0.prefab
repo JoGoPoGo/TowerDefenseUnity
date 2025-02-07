@@ -517,6 +517,7 @@ MonoBehaviour:
   speed: 3
   reward: 2
   healthbar: {fileID: 2017507831991410414}
+  isLast: 0
 --- !u!114 &7017896006237374713
 MonoBehaviour:
   m_ObjectHideFlags: 0

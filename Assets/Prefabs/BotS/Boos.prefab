@@ -248,10 +248,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlive: 1
   currentHealth: 0
-  maxHealth: 1600
+  maxHealth: 1800
   speed: 0.5
-  reward: 10
+  reward: 22
   healthbar: {fileID: 5939738080292200230}
+  isLast: 0
 --- !u!114 &7178349335008811983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83be24f1ce71ff449b619a27c5166c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 200
+  damage: 400
   damageScript: {fileID: 7051659227369767290}
 --- !u!136 &9173537845512482788
 CapsuleCollider:

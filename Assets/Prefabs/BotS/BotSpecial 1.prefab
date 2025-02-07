@@ -368,8 +368,9 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 800
   speed: 0.9
-  reward: 5
+  reward: 9
   healthbar: {fileID: 2310099508978704867}
+  isLast: 0
 --- !u!114 &2827331575688962407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83be24f1ce71ff449b619a27c5166c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  damage: 120
   damageScript: {fileID: 5126401596203668}
 --- !u!54 &3701729524717879074
 Rigidbody:
