@@ -59,6 +59,9 @@ MonoBehaviour:
   damageAmount: 80
   spawnCancelRadius: 25
   turnSpeed: 30
+  canon: {fileID: 3134559678259585238}
+  recoilSpeed: 0.05
+  recoilDistance: -0.02
 --- !u!136 &4895715864988312200
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -256,6 +259,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 432911334852675641, guid: bd701290644a12349bc1fa6209a2d61d, type: 3}
+      propertyPath: m_Name
+      value: Canon
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: bd701290644a12349bc1fa6209a2d61d, type: 3}
       propertyPath: m_Name
       value: Turm1
@@ -273,5 +280,10 @@ PrefabInstance:
 --- !u!4 &3028823060597952260 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bd701290644a12349bc1fa6209a2d61d, type: 3}
+  m_PrefabInstance: {fileID: 3279240635177937135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3134559678259585238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 432911334852675641, guid: bd701290644a12349bc1fa6209a2d61d, type: 3}
   m_PrefabInstance: {fileID: 3279240635177937135}
   m_PrefabAsset: {fileID: 0}

@@ -142,6 +142,9 @@ MonoBehaviour:
   damageAmount: 70
   spawnCancelRadius: 10
   turnSpeed: 30
+  canon: {fileID: 3243939055859590057}
+  recoilSpeed: 0.1
+  recoilDistance: 0.2
 --- !u!136 &3277856399822738086
 CapsuleCollider:
   m_ObjectHideFlags: 0

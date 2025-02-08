@@ -25,6 +25,11 @@ public class Tower : MonoBehaviour
 
     public float turnSpeed = 10f;      // Geschwindigkeit, mit der der Turm sich dreht
 
+    public GameObject canon;
+
+    public float recoilSpeed = 0.1f;
+    public float recoilDistance = 0.2f;
+
     void Start()
     {
         GameObject spawnHandler = GameObject.Find("SpawnHandler");
@@ -93,7 +98,33 @@ public class Tower : MonoBehaviour
         {
             damageScript = target.GetComponent<DamageTest>();
             damageScript.TakeDamage(damageAmount);
+
+            StartCoroutine(Recoil() );  
         }
+    }
+
+    IEnumerator Recoil()
+    {
+        Vector3 originalPosition = canon.transform.localPosition;
+        Vector3 recoilPosition = originalPosition - new Vector3(recoilDistance, 0, 0);
+
+        float elapsedTime = 0;
+        while(elapsedTime < recoilSpeed)
+        {
+            canon.transform.localPosition = Vector3.Lerp(originalPosition, recoilPosition,elapsedTime/recoilSpeed);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        canon.transform.localPosition = recoilPosition;
+
+        elapsedTime = 0;
+        while(elapsedTime < recoilSpeed)
+        {
+            canon.transform.localPosition = Vector3.Lerp(recoilPosition, originalPosition, elapsedTime / recoilSpeed);
+            elapsedTime += Time.deltaTime;  
+            yield return null;
+        }
+        canon.transform.localPosition = originalPosition;
     }
 
     // Zeichne den Turm-Radius im Editor
