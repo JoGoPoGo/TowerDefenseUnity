@@ -34,14 +34,11 @@ public class Tower : MonoBehaviour
     {
         GameObject spawnHandler = GameObject.Find("SpawnHandler");
         spawnScript = spawnHandler.GetComponent<SpawnOnMouseClick>();
-
-        // Sucht alle paar Sekunden nach Gegnern
-        //InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
     void Update()
     {
-        UpdateTarget();
-        if (target == null)
+        UpdateTarget();     //sucht das Ziel
+        if (target == null)   //führt nichts aus, wenn kein Ziel gefunden wurde
             return;
 
         // Turm dreht sich zum Ziel
