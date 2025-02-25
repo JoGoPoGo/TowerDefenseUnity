@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class Tower : MonoBehaviour
 {
@@ -30,10 +31,13 @@ public class Tower : MonoBehaviour
     public float recoilSpeed = 0.1f;
     public float recoilDistance = 0.2f;
 
+    private int level = 1;  // Turm-Level beginnt bei 1
+
     void Start()
     {
         GameObject spawnHandler = GameObject.Find("SpawnHandler");
         spawnScript = spawnHandler.GetComponent<SpawnOnMouseClick>();
+
     }
     void Update()
     {
@@ -123,7 +127,21 @@ public class Tower : MonoBehaviour
         }
         canon.transform.localPosition = originalPosition;
     }
+    // **Upgrade-Funktion**
+    public void UpgradeTower()
+    {
+        level++;
+        damageAmount += 10;  // Erhöhe Schaden pro Level
+        range += 2f;        // Erhöhe Reichweite pro Level
+        fireRate += 0.2f;   // Schnellere Schussrate
 
+        Debug.Log($"{gameObject.name} wurde auf Level {level} geupgradet!");
+    }
+
+    public int GetLevel()
+    {
+        return level;
+    }
     // Zeichne den Turm-Radius im Editor
     void OnDrawGizmosSelected()
     {

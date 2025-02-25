@@ -16,6 +16,7 @@ public class TowerUIManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(UpdateTowerButtons());
+        DeactivateAllLights();
     }
 
     IEnumerator UpdateTowerButtons()
@@ -30,7 +31,7 @@ public class TowerUIManager : MonoBehaviour
     void RefreshButtons()
     {
         GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
-        Debug.Log("Gefundene Türme: " + towers.Length);
+        //Debug.Log("Gefundene Türme: " + towers.Length);
 
         // Neue Türme hinzufügen
         foreach (GameObject tower in towers)
@@ -55,7 +56,7 @@ public class TowerUIManager : MonoBehaviour
                 entryExit.eventID = EventTriggerType.PointerExit;
                 entryExit.callback.AddListener((data) => OnHoverExit(tower));   // Stoppt den Effekt
                 eventTrigger.triggers.Add(entryExit);
-
+                newButton.GetComponent<Button>().onClick.AddListener(() => tower.GetComponent<Tower>().UpgradeTower());
                 towerButtons.Add(tower, newButton);
             }
             else
@@ -82,60 +83,50 @@ public class TowerUIManager : MonoBehaviour
     }
     void OnHoverEnter(GameObject tower)
     {
-        Debug.Log("Upgrade-Effekt für: " + tower.name);
-        StartCoroutine(UpgradeEffect(tower)); // Starte Coroutine für den Upgrade-Effekt
+        Debug.Log("Maus über Button: " + tower.name);
+        StartCoroutine(ChangeLightIntensity(tower, 100f));  // Setzt die Intensität des Lichts auf 1
     }
 
-    // Methode, um den Effekt zu stoppen, wenn die Maus den Button verlässt
     void OnHoverExit(GameObject tower)
     {
-        Debug.Log("Upgrade-Effekt gestoppt für: " + tower.name);
-        // Optional: Hier könntest du den Turm sofort zurückbewegen, wenn du möchtest:
-        StopCoroutine(UpgradeEffect(tower));  // Stoppt den aktuellen Effekt (optional)
-        tower.transform.position = tower.transform.position - Vector3.up * 10;  // Direkt zurücksetzen
+        Debug.Log("Maus hat Button verlassen: " + tower.name);
+        StartCoroutine(ChangeLightIntensity(tower, 0f));  // Setzt die Intensität des Lichts auf 0
     }
-    void UpgradeTower(GameObject tower)
+
+    // Coroutine, um die Lichtintensität zu verändern
+    IEnumerator ChangeLightIntensity(GameObject tower, float targetIntensity)
     {
-        Debug.Log("Upgrade für: " + tower.name);
-        // Hier Upgrade-Logik für den Turm einfügen
-        StartCoroutine(UpgradeEffect(tower));
+        Light towerLight = tower.GetComponentInChildren<Light>(); // Hole das Licht des Turms
+        if (towerLight != null)
+        {
+            float duration = 0f; // Dauer der Veränderung
+            float initialIntensity = towerLight.intensity;
+            float elapsedTime = 0f;
+
+            // Über die Zeit die Intensität ändern
+            while (elapsedTime < duration)
+            {
+                towerLight.intensity = Mathf.Lerp(initialIntensity, targetIntensity, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            // Endgültige Intensität setzen
+            towerLight.intensity = targetIntensity;
+        }
+        yield return null;
     }
-    // Coroutine für den Upgrade-Effekt (Turm wird 10 Einheiten nach oben bewegt)
-    IEnumerator UpgradeEffect(GameObject tower)
+    // Alle Lichter zu Beginn deaktivieren
+    void DeactivateAllLights()
     {
-        float originalY = tower.transform.position.y;  // Speichere den ursprünglichen y-Wert
-
-        Vector3 startPosition = tower.transform.position;
-        Vector3 targetPosition = new Vector3(startPosition.x, originalY + 2, startPosition.z); // 2 Einheiten nach oben
-
-        float duration = 0.2f; // Zeit für den Aufstieg
-        float elapsedTime = 0;
-
-        // Turm nach oben bewegen
-        while (elapsedTime < duration)
+        GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
+        foreach (GameObject tower in towers)
         {
-            tower.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
+            Light towerLight = tower.GetComponentInChildren<Light>();
+            if (towerLight != null)
+            {
+                towerLight.intensity = 0f; // Setze die Intensität zu Beginn auf 0
+            }
         }
-
-        // Kurz oben bleiben
-        yield return new WaitForSeconds(0.2f);
-
-        // Zurückfallen lassen
-        elapsedTime = 0;
-        while (elapsedTime < duration)
-        {
-            tower.transform.position = Vector3.Lerp(targetPosition, startPosition, elapsedTime / duration);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // Setze den Turm zurück zum ursprünglichen y-Wert (falls nötig)
-        tower.transform.position = new Vector3(startPosition.x, originalY, startPosition.z);
-        // Stelle sicher, dass die y-Position auf 0 gesetzt wird, nach der Animation
-        tower.transform.position = new Vector3(tower.transform.position.x, 0f, tower.transform.position.z);
     }
-
-
 }
