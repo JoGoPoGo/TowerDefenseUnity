@@ -11,9 +11,6 @@ public class Tower : MonoBehaviour
 
     public string enemyTag = "Enemy";  // Der Tag der Gegner (z.B. "Enemy")
 
-    public GameObject projectilePrefab; // Projektil, das der Turm abfeuert
-    public Transform firePoint;        // Ort, von dem aus das Projektil geschossen wird
-
     public int price;
     public float fireRate = 1f;        // Schussfrequenz
     public float bulletSpeed = 10f;     //Kugelgeschwindigkeit
@@ -33,11 +30,13 @@ public class Tower : MonoBehaviour
 
     private int level = 1;  // Turm-Level beginnt bei 1
 
+    private Tower[] allTowerComponents;      
+
     void Start()
     {
         GameObject spawnHandler = GameObject.Find("SpawnHandler");
         spawnScript = spawnHandler.GetComponent<SpawnOnMouseClick>();
-
+        Tower[] allTowerComponents = GetComponents<Tower>();      //Liste aller Komponenten der Towerklasse
     }
     void Update()
     {
@@ -61,7 +60,7 @@ public class Tower : MonoBehaviour
         fireCountdown -= Time.deltaTime;
     }
 
-    void UpdateTarget()
+    protected virtual void UpdateTarget()   // protected für Schussfunktionen und Animationen
     {
         // Sucht nach allen Gegnern mit dem Tag "Enemy"
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
@@ -92,7 +91,7 @@ public class Tower : MonoBehaviour
 
     
 
-    void Shoot()
+    protected virtual void Shoot()         // protected für Schussanimationen und Funktionen
     {
         // Erzeugt das Projektil an der Feuerposition und weist ihm die Richtung des Ziels zu
         if (!spawnScript.spawned)
@@ -100,7 +99,11 @@ public class Tower : MonoBehaviour
             damageScript = target.GetComponent<DamageTest>();
             damageScript.TakeDamage(damageAmount);
 
-            StartCoroutine(Recoil() );  
+            if (allTowerComponents.Length <= 1)
+            {
+
+                StartCoroutine(Recoil());
+            }
         }
     }
 
