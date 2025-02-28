@@ -36,7 +36,7 @@ public class Tower : MonoBehaviour
     {
         GameObject spawnHandler = GameObject.Find("SpawnHandler");
         spawnScript = spawnHandler.GetComponent<SpawnOnMouseClick>();
-        Tower[] allTowerComponents = GetComponents<Tower>();      //Liste aller Komponenten der Towerklasse
+        allTowerComponents = GetComponents<Tower>();      //Liste aller Komponenten der Towerklasse
     }
     void Update()
     {
@@ -101,7 +101,6 @@ public class Tower : MonoBehaviour
 
             if (allTowerComponents.Length <= 1)
             {
-
                 StartCoroutine(Recoil());
             }
         }
