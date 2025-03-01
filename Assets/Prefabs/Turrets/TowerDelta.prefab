@@ -51,8 +51,6 @@ MonoBehaviour:
   spawnScript: {fileID: 0}
   target: {fileID: 0}
   enemyTag: Enemy
-  projectilePrefab: {fileID: 8797797870372486961, guid: 8f5d562d516e9014d98510213919f28b, type: 3}
-  firePoint: {fileID: 0}
   price: 20
   fireRate: 0.5
   bulletSpeed: 2
