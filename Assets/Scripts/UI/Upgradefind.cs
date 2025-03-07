@@ -40,7 +40,7 @@ public class TowerUIManager : MonoBehaviour
             {
                 Debug.Log("Neuer Turm gefunden: " + tower.name);
                 GameObject newButton = Instantiate(buttonPrefab, panel);
-                newButton.GetComponentInChildren<TMP_Text>().text = "Upgrade";
+                newButton.GetComponentInChildren<TMP_Text>().text = tower.GetComponent<Tower>().getName();
                 // Hole den EventTrigger des Buttons
                 EventTrigger eventTrigger = newButton.GetComponent<EventTrigger>();
                 if (eventTrigger == null) eventTrigger = newButton.AddComponent<EventTrigger>();

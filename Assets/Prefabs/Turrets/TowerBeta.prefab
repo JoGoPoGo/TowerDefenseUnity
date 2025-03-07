@@ -145,8 +145,6 @@ MonoBehaviour:
   spawnScript: {fileID: 0}
   target: {fileID: 0}
   enemyTag: Enemy
-  projectilePrefab: {fileID: 8797797870372486961, guid: 8f5d562d516e9014d98510213919f28b, type: 3}
-  firePoint: {fileID: 1123916924426657095}
   price: 20
   fireRate: 0.5
   bulletSpeed: 2
@@ -157,6 +155,7 @@ MonoBehaviour:
   canon: {fileID: 3134559678259585238}
   recoilSpeed: 0.05
   recoilDistance: -0.5
+  name: Snippipie
 --- !u!136 &4895715864988312200
 CapsuleCollider:
   m_ObjectHideFlags: 0

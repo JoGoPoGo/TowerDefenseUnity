@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Cinemachine.DocumentationSortingAttribute;
 
@@ -20,7 +21,7 @@ public class Tower : MonoBehaviour
    
     private float fireCountdown = 0f; 
     
-
+   
     public float turnSpeed = 10f;      // Geschwindigkeit, mit der der Turm sich dreht
 
     public GameObject canon;
@@ -30,7 +31,9 @@ public class Tower : MonoBehaviour
 
     private int level = 1;  // Turm-Level beginnt bei 1
 
-    private Tower[] allTowerComponents;      
+    private Tower[] allTowerComponents;
+
+    public string name;
 
     void Start()
     {
@@ -59,7 +62,10 @@ public class Tower : MonoBehaviour
 
         fireCountdown -= Time.deltaTime;
     }
-
+    public string getName()
+    {
+        return(name);
+    }
     protected virtual void UpdateTarget()   // protected für Schussfunktionen und Animationen
     {
         // Sucht nach allen Gegnern mit dem Tag "Enemy"
@@ -98,8 +104,11 @@ public class Tower : MonoBehaviour
         {
             damageScript = target.GetComponent<DamageTest>();
             damageScript.TakeDamage(damageAmount);
-
-            if (allTowerComponents.Length <= 1)
+            if (canon != null)
+            {
+                Debug.Log("bola");
+            }
+            if (allTowerComponents.Length <= 1 && canon != null)
             {
                 StartCoroutine(Recoil());
             }
@@ -108,6 +117,7 @@ public class Tower : MonoBehaviour
 
     IEnumerator Recoil()
     {
+        Debug.Log("Recoil wird ausgeführt");
         Vector3 originalPosition = canon.transform.localPosition;
         Vector3 recoilPosition = originalPosition - new Vector3(recoilDistance, 0, 0);
 
