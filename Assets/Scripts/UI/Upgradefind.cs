@@ -27,7 +27,24 @@ public class TowerUIManager : MonoBehaviour
             yield return new WaitForSeconds(1f); // Aktualisiert alle 1 Sekunde
         }
     }
+    void Update()
+    {
+        foreach (var pair in towerButtons)
+        {
+            GameObject tower = pair.Key;
+            GameObject button = pair.Value;
 
+            if (tower != null && button != null)
+            {
+                TMP_Text buttonText = button.GetComponentInChildren<TMP_Text>();
+                if (buttonText != null)
+                {
+                    Tower towerComponent = tower.GetComponent<Tower>();
+                    buttonText.text = $"{towerComponent.getName()} \n Cost: {towerComponent.level * towerComponent.level}";
+                }
+            }
+        }
+    }
     void RefreshButtons()
     {
         GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
@@ -38,9 +55,9 @@ public class TowerUIManager : MonoBehaviour
         {
             if (!towerButtons.ContainsKey(tower))
             {
-                Debug.Log("Neuer Turm gefunden: " + tower.name);
                 GameObject newButton = Instantiate(buttonPrefab, panel);
-                newButton.GetComponentInChildren<TMP_Text>().text = tower.GetComponent<Tower>().getName();
+                newButton.GetComponentInChildren<TMP_Text>().text = $"{tower.GetComponent<Tower>().getName()} \n Cost: {tower.GetComponent<Tower>().level * tower.GetComponent<Tower>().level}";
+
                 // Hole den EventTrigger des Buttons
                 EventTrigger eventTrigger = newButton.GetComponent<EventTrigger>();
                 if (eventTrigger == null) eventTrigger = newButton.AddComponent<EventTrigger>();

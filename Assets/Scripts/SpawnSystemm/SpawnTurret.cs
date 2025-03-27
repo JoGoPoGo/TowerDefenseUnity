@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,19 @@ public class SpawnOnMouseClick : MonoBehaviour
         for (int i = 0; i < spawnButtons.Length; i++)
         {
             int buttonIndex = i; // Speichern des Button-Index für den Event-Handler
+
+            Tower towerScript = prefabsToSpawn[i].GetComponent<Tower>();
+            string towerName = towerScript != null ? towerScript.name : "Unbekannt";
+            int towerPrice = towerScript != null ? towerScript.price : 0;
+
+            // TextMeshPro-Textfeld finden und aktualisieren
+            TextMeshProUGUI buttonText = spawnButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+            if (buttonText != null)
+            {
+                buttonText.text = $"{towerName}\n cost: {towerPrice}";
+            }
+
+
             spawnButtons[i].onClick.AddListener(() => {
                 selectedPrefabIndex = buttonIndex; // Setze den ausgewählten Index, wenn der Button gedrückt wird
                 spawnEnabled = true; // Aktiviere das Spawning

@@ -24,4 +24,8 @@ public class GameManager : MonoBehaviour
         credits += amount;
     }
 
+    public void RemoveCredits(int amount)
+    {
+        credits -= amount;
+    }
 }

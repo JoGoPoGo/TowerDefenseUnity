@@ -56,7 +56,7 @@ MonoBehaviour:
   bulletSpeed: 2
   range: 20
   damageAmount: 80
-  spawnCancelRadius: 25
+  spawnCancelRadius: 5
   turnSpeed: 30
   canon: {fileID: 6532076095836487706}
   recoilSpeed: 0.05

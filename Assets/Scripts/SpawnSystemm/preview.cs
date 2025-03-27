@@ -9,6 +9,7 @@ public class Preview : MonoBehaviour
     private GameObject previewObject; // Das Objekt, das als Vorschau angezeigt wird
     private float hitpointx;
     private float hitpointz;
+    public GameObject text;
 
     void Start()
     {
@@ -76,9 +77,11 @@ public class Preview : MonoBehaviour
             float distance = Vector3.Distance(new Vector3(hitpointx, 0, hitpointz), tower.transform.position);
             if (distance < tower.spawnCancelRadius || distance < ownCancelRadius)
             {
+                text.SetActive(true);
                 return false; // Position ist innerhalb des No-Tower-Bereichs
             }
         }
+        text.SetActive(false);
         return true; // Position ist gültig
     }
     void SetVisibility(GameObject obj, bool visible)

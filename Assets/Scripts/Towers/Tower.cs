@@ -9,6 +9,7 @@ public class Tower : MonoBehaviour
     public SpawnOnMouseClick spawnScript; // Reference to the SpawnOnMouseClick script
     public GameObject target;           // Das aktuelle Ziel des Turms
     private DamageTest damageScript;   // DamageTest von Target
+    private GameManager gameManager;
 
     public string enemyTag = "Enemy";  // Der Tag der Gegner (z.B. "Enemy")
 
@@ -29,7 +30,7 @@ public class Tower : MonoBehaviour
     public float recoilSpeed = 0.1f;
     public float recoilDistance = 0.2f;
 
-    private int level = 1;  // Turm-Level beginnt bei 1
+    public int level = 1;  // Turm-Level beginnt bei 1
 
     private Tower[] allTowerComponents;
 
@@ -40,6 +41,7 @@ public class Tower : MonoBehaviour
         GameObject spawnHandler = GameObject.Find("SpawnHandler");
         spawnScript = spawnHandler.GetComponent<SpawnOnMouseClick>();
         allTowerComponents = GetComponents<Tower>();      //Liste aller Komponenten der Towerklasse
+        gameManager = FindObjectOfType<GameManager>();
     }
     void Update()
     {
@@ -142,12 +144,15 @@ public class Tower : MonoBehaviour
     // **Upgrade-Funktion**
     public void UpgradeTower()
     {
-        level++;
-        damageAmount += 10;  // Erhöhe Schaden pro Level
-        range += 2f;        // Erhöhe Reichweite pro Level
-        fireRate += 0.2f;   // Schnellere Schussrate
+        if (gameManager.SpendCredits(level * level))
+        {
+            level++;
+            damageAmount += 10;  // Erhöhe Schaden pro Level
+            range += 2f;        // Erhöhe Reichweite pro Level
+            fireRate += 0.2f;   // Schnellere Schussrate
 
-        Debug.Log($"{gameObject.name} wurde auf Level {level} geupgradet!");
+            Debug.Log($"{gameObject.name} wurde auf Level {level} geupgradet!");
+        }
     }
 
     public int GetLevel()
