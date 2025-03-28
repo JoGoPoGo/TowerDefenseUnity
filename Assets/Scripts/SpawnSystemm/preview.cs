@@ -33,6 +33,7 @@ public class Preview : MonoBehaviour
                 hitpointz = hit.point.z;
                 if (IsPositionValid())
                 {
+                    text.SetActive(false);
                     SetVisibility(previewObject, true);
                     previewObject.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
                 }
@@ -42,6 +43,7 @@ public class Preview : MonoBehaviour
                 // Setze die Position des Vorschau-Objekts auf den Trefferpunkt
                 else
                 {
+                    text.SetActive(true);
                     Debug.Log("Sperrbereich");
                     SetVisibility(previewObject, false);
                 }
@@ -77,11 +79,9 @@ public class Preview : MonoBehaviour
             float distance = Vector3.Distance(new Vector3(hitpointx, 0, hitpointz), tower.transform.position);
             if (distance < tower.spawnCancelRadius || distance < ownCancelRadius)
             {
-                text.SetActive(true);
                 return false; // Position ist innerhalb des No-Tower-Bereichs
             }
         }
-        text.SetActive(false);
         return true; // Position ist gültig
     }
     void SetVisibility(GameObject obj, bool visible)

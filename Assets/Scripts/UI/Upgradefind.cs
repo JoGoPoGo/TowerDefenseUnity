@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class TowerUIManager : MonoBehaviour
 {
@@ -56,7 +57,7 @@ public class TowerUIManager : MonoBehaviour
             if (!towerButtons.ContainsKey(tower))
             {
                 GameObject newButton = Instantiate(buttonPrefab, panel);
-                newButton.GetComponentInChildren<TMP_Text>().text = $"{tower.GetComponent<Tower>().getName()} \n Cost: {tower.GetComponent<Tower>().level * tower.GetComponent<Tower>().level}";
+                newButton.GetComponentInChildren<TMP_Text>().text = $"{tower.GetComponent<Tower>().getName()} \n Cost: {(tower.GetComponent<Tower>().level * tower.GetComponent<Tower>().level)}";
 
                 // Hole den EventTrigger des Buttons
                 EventTrigger eventTrigger = newButton.GetComponent<EventTrigger>();
@@ -146,4 +147,21 @@ public class TowerUIManager : MonoBehaviour
             }
         }
     }
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+    public void ReloadCurrentScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void vorspulen()
+    {
+        Time.timeScale = 2f;
+    }
+    public void resetTime()
+    {
+        Time.timeScale = 1f;
+    }
+
 }

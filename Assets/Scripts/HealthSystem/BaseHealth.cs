@@ -11,6 +11,7 @@ public class BaseHealth : MonoBehaviour
     public int health;
     public HealthSlider healthbar;
     public Boolean destructed = false;
+    public GameObject gameOver;
 
     private void Start()
     {
@@ -39,6 +40,8 @@ public class BaseHealth : MonoBehaviour
     {
         Destroy(gameObject);
         destructed = true;
-        SceneManager.LoadScene("Main Menu");
+        gameOver.SetActive(true);
+        Time.timeScale = 0f;
     }
+
 }
