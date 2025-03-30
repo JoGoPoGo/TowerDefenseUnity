@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Tower
   - lastSpawned
+  - Win
   layers:
   - Default
   - TransparentFX

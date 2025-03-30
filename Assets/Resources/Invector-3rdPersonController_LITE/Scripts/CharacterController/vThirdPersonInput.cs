@@ -107,7 +107,7 @@ namespace Invector.vCharacterController
             if (tpCamera == null)
                 return;
 
-            var Y = Input.GetAxis(rotateCameraYInput);
+            var Y = Input.GetAxis(rotateCameraYInput); //Hier Multiplier ansetzen
             var X = Input.GetAxis(rotateCameraXInput);
 
             tpCamera.RotateCamera(X, Y);

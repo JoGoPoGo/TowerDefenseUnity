@@ -52,7 +52,16 @@ public class DamageTest : MonoBehaviour
         }
         if (IsOnlyEnemy() && isLast)
         {
-            SceneManager.LoadScene("LevelAuswahl");   //Auskommentieren, falls es zu unerwünschten Szenenwechsel kommt
+            //SceneManager.LoadScene("LevelAuswahl");   //Auskommentieren, falls es zu unerwünschten Szenenwechsel kommt
+            GameObject parent = GameObject.Find("Canvas");
+            if (parent != null)
+            {
+                Transform winTransform = parent.transform.Find("WinScreen");
+                if (winTransform != null)
+                {
+                    winTransform.gameObject.SetActive(true);
+                }
+            }
         }
         isAlive = false;
         Destroy(gameObject);
