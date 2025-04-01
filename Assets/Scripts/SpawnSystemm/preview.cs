@@ -9,7 +9,9 @@ public class Preview : MonoBehaviour
     private GameObject previewObject; // Das Objekt, das als Vorschau angezeigt wird
     private float hitpointx;
     private float hitpointz;
-    public GameObject text;
+
+    public Material normalMaterial;    // Material für gültige Position
+    public Material sperrbereichMaterial; // Material für ungültige Position
 
     void Start()
     {
@@ -33,9 +35,9 @@ public class Preview : MonoBehaviour
                 hitpointz = hit.point.z;
                 if (IsPositionValid())
                 {
-                    text.SetActive(false);
-                    SetVisibility(previewObject, true);
+                    //SetVisibility(previewObject, true);
                     previewObject.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
+                    ChangeRangeMaterial(normalMaterial);
                 }
                 
 
@@ -43,9 +45,9 @@ public class Preview : MonoBehaviour
                 // Setze die Position des Vorschau-Objekts auf den Trefferpunkt
                 else
                 {
-                    text.SetActive(true);
                     Debug.Log("Sperrbereich");
-                    SetVisibility(previewObject, false);
+                    //SetVisibility(previewObject, false);
+                    ChangeRangeMaterial(sperrbereichMaterial);
                 }
 
                     
@@ -94,6 +96,20 @@ public class Preview : MonoBehaviour
         foreach (Renderer renderer in renderers)
         {
             renderer.enabled = visible;
+        }
+    }
+    void ChangeRangeMaterial(Material material)
+    {
+        if (previewObject == null) return;
+
+        Transform rangeChild = previewObject.transform.Find("Range"); // Suche nach dem Child-Objekt "Range"
+        if (rangeChild != null)
+        {
+            Renderer rangeRenderer = rangeChild.GetComponent<Renderer>();
+            if (rangeRenderer != null)
+            {
+                rangeRenderer.material = material; // Material ändern
+            }
         }
     }
 }
