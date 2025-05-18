@@ -5,7 +5,11 @@ using UnityEngine;
 public class LaserTower : Tower
 {
     public Animator animator;
-    
+
+    protected override void Update()
+    {
+        base.Update();
+    }
     protected override void Shoot()
     {
         if (animator != null)
@@ -17,6 +21,6 @@ public class LaserTower : Tower
         {
             Debug.LogError("Animator not assigned!");
         }
-        base.Shoot();  
+        // base.Shoot();  
     }
 }

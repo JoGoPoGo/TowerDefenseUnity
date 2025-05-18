@@ -43,7 +43,7 @@ public class Tower : MonoBehaviour
         allTowerComponents = GetComponents<Tower>();      //Liste aller Komponenten der Towerklasse
         gameManager = FindObjectOfType<GameManager>();
     }
-    void Update()
+    protected virtual void Update()  
     {
         UpdateTarget();     //sucht das Ziel
         if (target == null)   //führt nichts aus, wenn kein Ziel gefunden wurde
