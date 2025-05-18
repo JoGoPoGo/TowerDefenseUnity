@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2391954587411538296}
   - component: {fileID: 4895715864988312200}
-  - component: {fileID: -3955915428215640191}
+  - component: {fileID: 6544993130713830023}
   m_Layer: 2
   m_Name: TowerDelta
   m_TagString: Tower
@@ -59,7 +59,7 @@ CapsuleCollider:
   m_Height: 10
   m_Direction: 1
   m_Center: {x: 0, y: -0.27, z: 0}
---- !u!114 &-3955915428215640191
+--- !u!114 &6544993130713830023
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2249457114057599706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c7be45d8ade85419ed9dcc99ce3fea, type: 3}
+  m_Script: {fileID: 11500000, guid: 099389389fac8d9408fd8f2d8e86766c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnScript: {fileID: 0}
@@ -84,7 +84,9 @@ MonoBehaviour:
   canon: {fileID: 0}
   recoilSpeed: 0.1
   recoilDistance: 0.2
+  level: 1
   name: Hochmut
+  rangeMinimum: 5
 --- !u!1 &4589983124509738908
 GameObject:
   m_ObjectHideFlags: 0
