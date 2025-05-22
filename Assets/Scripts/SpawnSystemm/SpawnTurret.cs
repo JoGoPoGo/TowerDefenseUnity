@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -70,6 +71,10 @@ public class SpawnOnMouseClick : MonoBehaviour
                     spawnedObject.tag = "lastSpawned";
 
                     spawned = true;
+
+                    Tower tower = spawnedObject.GetComponent<Tower>();            //Tim
+                    Boolean spawnForInd = tower.spawnOnMousecklickspawned;        //Tim
+                    spawnForInd = true;                                           //Tim
 
                 }
 

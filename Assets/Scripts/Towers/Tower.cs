@@ -36,6 +36,8 @@ public class Tower : MonoBehaviour
 
     public string name;
 
+    public bool spawnOnMousecklickspawned = false;
+
     void Start()
     {
         GameObject spawnHandler = GameObject.Find("SpawnHandler");

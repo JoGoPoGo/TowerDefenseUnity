@@ -358,6 +358,7 @@ MonoBehaviour:
   recoilDistance: 0.2
   level: 1
   name: 
+  spawnOnMousecklickspawned: 0
   animator: {fileID: 219026410}
 --- !u!1001 &224872708
 PrefabInstance:
@@ -375,6 +376,18 @@ PrefabInstance:
       propertyPath: sperrbereichMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 991d710d177da704e85cf92262d7004e, type: 2}
+    - target: {fileID: 1015899722689403438, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_text
+      value: Canon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1015899722689403438, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1015899722689403438, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_isRightToLeft
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1180669120466091306, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
@@ -455,9 +468,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5965127278816742517, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_Name
+      value: Canon
+      objectReference: {fileID: 0}
     - target: {fileID: 6746071145817165708, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_Name
       value: BigbabaPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909414451989706495, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_Name
+      value: Text (TMP)
       objectReference: {fileID: 0}
     - target: {fileID: 6937604433951483808, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_Materials.Array.data[0]

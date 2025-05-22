@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7604742267784297302}
   - component: {fileID: 4895715864988312200}
   m_Layer: 2
-  m_Name: TowerGamma
+  m_Name: Canon
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
