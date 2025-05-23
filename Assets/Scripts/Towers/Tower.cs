@@ -44,6 +44,7 @@ public class Tower : MonoBehaviour
         spawnScript = spawnHandler.GetComponent<SpawnOnMouseClick>();
         allTowerComponents = GetComponents<Tower>();      //Liste aller Komponenten der Towerklasse
         gameManager = FindObjectOfType<GameManager>();
+        Debug.Log(spawnOnMousecklickspawned);
     }
     protected virtual void Update()  
     {
@@ -63,7 +64,7 @@ public class Tower : MonoBehaviour
             Shoot();
             fireCountdown = 1f / fireRate; // Setze den Timer für den nächsten Schuss
         }
-
+        
         fireCountdown -= Time.deltaTime;
     }
     public string getName()
@@ -97,6 +98,7 @@ public class Tower : MonoBehaviour
         {
             target = null; // Kein Gegner in Reichweite
         }
+        Debug.Log(spawnOnMousecklickspawned);
     }
 
     

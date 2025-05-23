@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6544993130713830023}
   m_Layer: 2
   m_Name: TowerDelta
-  m_TagString: Tower
+  m_TagString: lastSpawned
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,6 +86,7 @@ MonoBehaviour:
   recoilDistance: 0.2
   level: 1
   name: Hochmut
+  spawnOnMousecklickspawned: 0
   rangeMinimum: 5
 --- !u!1 &4589983124509738908
 GameObject:
