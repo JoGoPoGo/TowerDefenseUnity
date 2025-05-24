@@ -20,7 +20,7 @@ public class Tower : MonoBehaviour
     public int damageAmount = 50;       //Schaden
     public float spawnCancelRadius = 10f;        // Kein Weiterer turm in diesem Bereich
    
-    private float fireCountdown = 0f; 
+    protected float fireCountdown = 0f; 
     
    
     public float turnSpeed = 10f;      // Geschwindigkeit, mit der der Turm sich dreht
@@ -36,15 +36,12 @@ public class Tower : MonoBehaviour
 
     public string name;
 
-    public bool spawnOnMousecklickspawned = false;
-
     void Start()
     {
         GameObject spawnHandler = GameObject.Find("SpawnHandler");
         spawnScript = spawnHandler.GetComponent<SpawnOnMouseClick>();
         allTowerComponents = GetComponents<Tower>();      //Liste aller Komponenten der Towerklasse
         gameManager = FindObjectOfType<GameManager>();
-        Debug.Log(spawnOnMousecklickspawned);
     }
     protected virtual void Update()  
     {
@@ -98,7 +95,6 @@ public class Tower : MonoBehaviour
         {
             target = null; // Kein Gegner in Reichweite
         }
-        Debug.Log(spawnOnMousecklickspawned);
     }
 
     

@@ -1,16 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Canon : Tower
 {
     public int rangeDegrees;
 
-    private int startDirection;
+    private Quaternion startDirection;
     // Start is called before the first frame update
-    void Start()
+
+    protected override void Update()
     {
-        
+        if (spawnScript.spawned && Input.GetKey(KeyCode.R))
+        {
+            Debug.Log("spawned");
+            transform.Rotate(0f,1, 0f);
+            startDirection = transform.rotation;    //gleicht startDirection der, vom Spieler bestimmten, Richtung an 
+        }
+        if (!spawnScript.spawned)
+        {
+            UpdateTarget();     //sucht das Ziel
+            if (target == null)   //führt nichts aus, wenn kein Ziel gefunden wurde
+                return;
+
+            // Turm dreht sich zum Ziel
+            Vector3 direction = target.transform.position - transform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            Quaternion smoothedRotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+            transform.rotation = Quaternion.Euler(0f, smoothedRotation.eulerAngles.y, 0f);
+
+            // Wenn die Zeit zum Schießen gekommen ist, wird geschossen
+            if (fireCountdown <= 0f)
+            {
+                Shoot();
+                fireCountdown = 1f / fireRate; // Setze den Timer für den nächsten Schuss
+            }
+
+            fireCountdown -= Time.deltaTime;
+        }
     }
 
     // Update is called once per frame
@@ -35,7 +63,18 @@ public class Canon : Tower
         // Wenn ein Gegner gefunden wurde, setze ihn als Ziel
         if (nearestEnemy != null && shortestDistance <= range)
         {
-            target = nearestEnemy;
+            Vector3 toTarget = (nearestEnemy.transform.position - transform.position).normalized;
+            Vector3 forward = startDirection * Vector3.forward;
+
+            float angle = Vector3.Angle(forward, toTarget);
+            if(angle <= rangeDegrees / 2f)
+            {
+                target = nearestEnemy;
+            }
+            else
+            {
+                target = null;
+            }
         }
         else
         {

@@ -73,8 +73,6 @@ public class SpawnOnMouseClick : MonoBehaviour
 
                     spawned = true;
 
-                    Tower tower = spawnedObject.GetComponent<Tower>();
-                    tower.spawnOnMousecklickspawned = true; //Tim
                 }
 
                 // Deaktiviere das Spawning nach dem Spawnen

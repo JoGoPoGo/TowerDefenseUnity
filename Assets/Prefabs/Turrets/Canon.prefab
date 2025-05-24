@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2391954587411538296}
-  - component: {fileID: 7604742267784297302}
   - component: {fileID: 4895715864988312200}
+  - component: {fileID: 5267380721214097343}
   m_Layer: 2
   m_Name: Canon
   m_TagString: Tower
@@ -36,32 +36,6 @@ Transform:
   - {fileID: 3564004725015264625}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7604742267784297302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2249457114057599706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57c7be45d8ade85419ed9dcc99ce3fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnScript: {fileID: 0}
-  target: {fileID: 0}
-  enemyTag: Enemy
-  price: 20
-  fireRate: 0.5
-  bulletSpeed: 2
-  range: 20
-  damageAmount: 80
-  spawnCancelRadius: 5
-  turnSpeed: 30
-  canon: {fileID: 6532076095836487706}
-  recoilSpeed: 0.05
-  recoilDistance: -0.5
-  name: Turret
 --- !u!136 &4895715864988312200
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -85,6 +59,34 @@ CapsuleCollider:
   m_Height: 15
   m_Direction: 1
   m_Center: {x: 0, y: -0.27, z: 0}
+--- !u!114 &5267380721214097343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2249457114057599706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809d3b25eaaa62f44baa269cdbee8260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnScript: {fileID: 0}
+  target: {fileID: 0}
+  enemyTag: Enemy
+  price: 10
+  fireRate: 1
+  bulletSpeed: 10
+  range: 15
+  damageAmount: 50
+  spawnCancelRadius: 10
+  turnSpeed: 10
+  canon: {fileID: 0}
+  recoilSpeed: 0.1
+  recoilDistance: 0.2
+  level: 1
+  name: Canon
+  rangeDegrees: 90
 --- !u!1 &5552538769737515549
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,11 +347,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18bcb9d9129985443becf729e1e14f23, type: 3}
---- !u!1 &6532076095836487706 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -6487994197024019727, guid: 18bcb9d9129985443becf729e1e14f23, type: 3}
-  m_PrefabInstance: {fileID: 9174003135296957163}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8708310503334382848 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 18bcb9d9129985443becf729e1e14f23, type: 3}
