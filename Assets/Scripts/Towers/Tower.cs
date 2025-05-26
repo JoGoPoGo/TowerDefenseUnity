@@ -36,8 +36,11 @@ public class Tower : MonoBehaviour
 
     public string name;
 
+    private LayerMask obstacleMask;
+
     void Start()
     {
+        obstacleMask = LayerMask.GetMask("Obstacle");
         GameObject spawnHandler = GameObject.Find("SpawnHandler");
         spawnScript = spawnHandler.GetComponent<SpawnOnMouseClick>();
         allTowerComponents = GetComponents<Tower>();      //Liste aller Komponenten der Towerklasse
@@ -81,8 +84,14 @@ public class Tower : MonoBehaviour
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy < shortestDistance)
             {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
+                Vector3 dirToEnemy = (enemy.transform.position - transform.position).normalized;
+                RaycastHit hit;
+
+                if(!Physics.Raycast(transform.position, dirToEnemy, out hit, range, obstacleMask))
+                {
+                    shortestDistance = distanceToEnemy;
+                    nearestEnemy = enemy;
+                }
             }
         }
 

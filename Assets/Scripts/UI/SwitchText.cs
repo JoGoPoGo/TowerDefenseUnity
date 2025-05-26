@@ -14,9 +14,12 @@ public class SwitchText : MonoBehaviour
 
     private TMP_Text startText;
     private int currentIndex;
+    private int nextText;
+    private TMP_Text Story;
 
     void Start()
     {
+        Story = 
         startText = textA[textnumber];
         if (next != null)
         {
@@ -28,22 +31,18 @@ public class SwitchText : MonoBehaviour
         }
         startText.gameObject.SetActive(true);
     }
-    void OnNextClick() // Blättert zur nächsten Seite
+    void OnNextClick() 
     {
-        int nextIndex = textnumber + skip; // berechnet den index des nächsten Textes
-        Debug.Log(nextIndex);
-        if (nextIndex >= 0 && nextIndex <= textA.Length)
+        if (textnumber > 0)
         {
-            TMP_Text nextText = textA[textnumber + skip];
-            startText.gameObject.SetActive(false);
-            if (startText.isActiveAndEnabled)
-            {
-                Debug.Log("currentText ist aktiv");
-            }
-            nextText.gameObject.SetActive(true);
-            textnumber = nextIndex;
+            nextText = textnumber + skip;
         }
-        Debug.Log(nextIndex);
+        else
+        {
+            nextText = 0;
+        }
+
+        loadtext(nextText);
     }
     public void loadtext (int number)
     {
