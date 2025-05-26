@@ -36,7 +36,7 @@ public class Tower : MonoBehaviour
 
     public string name;
 
-    private LayerMask obstacleMask;
+    protected LayerMask obstacleMask;
 
     void Start()
     {
