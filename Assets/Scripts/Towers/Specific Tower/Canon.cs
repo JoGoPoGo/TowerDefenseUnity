@@ -6,13 +6,14 @@ using UnityEngine.UIElements;
 public class Canon : Tower
 {
     public int rangeDegrees;
-
+    
+    private int rotateCounter = 0;
     private Quaternion startDirection;
     // Start is called before the first frame update
 
     protected override void Update()
     {
-        if (spawnScript.spawned && Input.GetKey(KeyCode.R))
+        if (spawnScript.spawned && Input.GetKey(KeyCode.R) && rotateCounter == 0)
         {
             Debug.Log("spawned");
             transform.Rotate(0f,1, 0f);
@@ -20,6 +21,8 @@ public class Canon : Tower
         }
         if (!spawnScript.spawned)
         {
+            if(rotateCounter == 0) 
+                rotateCounter = 1;
             UpdateTarget();     //sucht das Ziel
             if (target == null)   //führt nichts aus, wenn kein Ziel gefunden wurde
                 return;
