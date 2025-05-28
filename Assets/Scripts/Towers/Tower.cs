@@ -34,7 +34,7 @@ public class Tower : MonoBehaviour
 
     private Tower[] allTowerComponents;
 
-    public string name;
+    //public string name;
 
     protected LayerMask obstacleMask;
 
