@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1483237333408018537, guid: 6fb9b94f00774c342a55f60ed069139a, type: 3}
+      propertyPath: m_text
+      value: Canon
+      objectReference: {fileID: 0}
     - target: {fileID: 4886216621723968131, guid: 6fb9b94f00774c342a55f60ed069139a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -47,6 +51,14 @@ PrefabInstance:
     - target: {fileID: 4886216621723968131, guid: 6fb9b94f00774c342a55f60ed069139a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5003390074343906488, guid: 6fb9b94f00774c342a55f60ed069139a, type: 3}
+      propertyPath: m_Name
+      value: Canon
+      objectReference: {fileID: 0}
+    - target: {fileID: 5207520932682098226, guid: 6fb9b94f00774c342a55f60ed069139a, type: 3}
+      propertyPath: m_Name
+      value: Canon
       objectReference: {fileID: 0}
     - target: {fileID: 5336326345252581215, guid: 6fb9b94f00774c342a55f60ed069139a, type: 3}
       propertyPath: m_Name

@@ -77,7 +77,7 @@ MonoBehaviour:
   price: 10
   fireRate: 1
   bulletSpeed: 10
-  range: 15
+  range: 30
   damageAmount: 50
   spawnCancelRadius: 10
   turnSpeed: 10
@@ -85,7 +85,7 @@ MonoBehaviour:
   recoilSpeed: 0.1
   recoilDistance: 0.2
   level: 1
-  rangeDegrees: 90
+  rangeDegrees: 180
 --- !u!1 &5552538769737515549
 GameObject:
   m_ObjectHideFlags: 0

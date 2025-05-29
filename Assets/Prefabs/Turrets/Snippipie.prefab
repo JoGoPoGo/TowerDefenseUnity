@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 7604742267784297302}
   - component: {fileID: 4895715864988312200}
   m_Layer: 2
-  m_Name: TowerBeta
+  m_Name: Snippipie
   m_TagString: lastSpawned
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   price: 20
   fireRate: 0.5
   bulletSpeed: 2
-  range: 20
+  range: 100
   damageAmount: 80
   spawnCancelRadius: 7
   turnSpeed: 30
@@ -156,8 +156,6 @@ MonoBehaviour:
   recoilSpeed: 0.05
   recoilDistance: -0.5
   level: 1
-  name: Snippipie
-  spawnOnMousecklickspawned: 0
 --- !u!136 &4895715864988312200
 CapsuleCollider:
   m_ObjectHideFlags: 0

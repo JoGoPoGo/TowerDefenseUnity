@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4895715864988312200}
   - component: {fileID: 6544993130713830023}
   m_Layer: 2
-  m_Name: TowerDelta
+  m_Name: Hochmut
   m_TagString: lastSpawned
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
