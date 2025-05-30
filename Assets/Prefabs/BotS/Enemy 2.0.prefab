@@ -515,7 +515,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 200
   speed: 3
-  reward: 2
+  reward: 1
   healthbar: {fileID: 2017507831991410414}
   isLast: 0
 --- !u!114 &7017896006237374713

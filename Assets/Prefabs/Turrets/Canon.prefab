@@ -55,7 +55,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.8
+  m_Radius: 1.8
   m_Height: 15
   m_Direction: 1
   m_Center: {x: 0, y: -0.27, z: 0}
@@ -74,18 +74,18 @@ MonoBehaviour:
   spawnScript: {fileID: 0}
   target: {fileID: 0}
   enemyTag: Enemy
-  price: 10
-  fireRate: 1
+  price: 18
+  fireRate: 0.3
   bulletSpeed: 10
   range: 30
-  damageAmount: 50
+  damageAmount: 150
   spawnCancelRadius: 10
   turnSpeed: 10
   canon: {fileID: 0}
   recoilSpeed: 0.1
   recoilDistance: 0.2
   level: 1
-  rangeDegrees: 180
+  rangeDegrees: 90
 --- !u!1 &5552538769737515549
 GameObject:
   m_ObjectHideFlags: 0

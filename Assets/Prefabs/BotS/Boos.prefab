@@ -249,7 +249,7 @@ MonoBehaviour:
   isAlive: 1
   currentHealth: 0
   maxHealth: 1800
-  speed: 0.5
+  speed: 0.7
   reward: 22
   healthbar: {fileID: 5939738080292200230}
   isLast: 0

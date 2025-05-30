@@ -148,7 +148,7 @@ MonoBehaviour:
   price: 20
   fireRate: 0.5
   bulletSpeed: 2
-  range: 100
+  range: 20
   damageAmount: 80
   spawnCancelRadius: 7
   turnSpeed: 30

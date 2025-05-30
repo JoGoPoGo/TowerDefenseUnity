@@ -74,10 +74,10 @@ MonoBehaviour:
   spawnScript: {fileID: 0}
   target: {fileID: 0}
   enemyTag: Enemy
-  price: 5
+  price: 15
   fireRate: 1
   bulletSpeed: 10
-  range: 15
+  range: 20
   damageAmount: 50
   spawnCancelRadius: 10
   turnSpeed: 10
