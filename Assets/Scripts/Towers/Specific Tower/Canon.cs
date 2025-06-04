@@ -59,7 +59,7 @@ public class Canon : Tower
             if (distanceToEnemy < shortestDistance)
             {
                 Vector3 dirToEnemy = (enemy.transform.position - transform.position).normalized;
-                RaycastHit hit;
+                RaycastHit hit;  // Prüft, ob zwischen dem Turm und dem Ziel ein Hinderniss ist
 
                 if (!Physics.Raycast(transform.position, dirToEnemy, out hit, range, obstacleMask))
                 {
