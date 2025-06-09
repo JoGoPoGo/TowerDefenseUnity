@@ -153,7 +153,7 @@ public class Tower : MonoBehaviour
     // **Upgrade-Funktion**
     public void UpgradeTower()
     {
-        if (gameManager.SpendCredits((level * level)))
+        if (gameManager.SpendCredits((level * level + 2)))
         {
             level++;
             damageAmount += 10;  // Erhöhe Schaden pro Level

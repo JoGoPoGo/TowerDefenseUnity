@@ -249,8 +249,8 @@ MonoBehaviour:
   isAlive: 1
   currentHealth: 0
   maxHealth: 1800
-  speed: 0.7
-  reward: 22
+  speed: 1
+  reward: 10
   healthbar: {fileID: 5939738080292200230}
   isLast: 0
 --- !u!114 &7178349335008811983
