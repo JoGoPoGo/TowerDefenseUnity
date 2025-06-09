@@ -19,14 +19,16 @@ public class Hochmut : Tower
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy < shortestDistance && distanceToEnemy > rangeMinimum)
             {
-                Vector3 dirToEnemy = (enemy.transform.position - transform.position).normalized;
+                shortestDistance = distanceToEnemy;
+                nearestEnemy = enemy;
+                /*Vector3 dirToEnemy = (enemy.transform.position - transform.position).normalized;
                 RaycastHit hit;
 
                 if (!Physics.Raycast(transform.position, dirToEnemy, out hit, range, obstacleMask))
                 {
                     shortestDistance = distanceToEnemy;
                     nearestEnemy = enemy;
-                }
+                } */// Hochmut betrifft diese Einschränkung zunächst nicht
             }
         }
 
