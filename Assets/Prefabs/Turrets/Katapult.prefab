@@ -179,6 +179,7 @@ MonoBehaviour:
   recoilSpeed: 0.1
   recoilDistance: 0.2
   level: 1
+  wurfArm: {fileID: 6902575331417674356}
 --- !u!1 &8418155128694038491
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,6 +311,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4488518856936006448, guid: 9ee4100c382991a429af4cc28ea39c7a, type: 3}
+      propertyPath: m_Name
+      value: wurfArm
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9ee4100c382991a429af4cc28ea39c7a, type: 3}
       propertyPath: m_Name
       value: catapult
@@ -324,5 +329,10 @@ PrefabInstance:
 --- !u!4 &1870670795115915599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9ee4100c382991a429af4cc28ea39c7a, type: 3}
+  m_PrefabInstance: {fileID: 2197559050536324772}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6902575331417674356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4488518856936006448, guid: 9ee4100c382991a429af4cc28ea39c7a, type: 3}
   m_PrefabInstance: {fileID: 2197559050536324772}
   m_PrefabAsset: {fileID: 0}

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Catapult : Tower
 {
+    public GameObject wurfArm;
     
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class Catapult : Tower
 
     void ShootAnimation()
     {
-        
+        wurfArm.transform.Rotate(Vector2.right * Time.deltaTime * 45f);
+
     }
 }
