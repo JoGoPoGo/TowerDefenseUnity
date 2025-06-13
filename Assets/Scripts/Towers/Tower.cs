@@ -110,7 +110,7 @@ public class Tower : MonoBehaviour
 
     protected virtual void Shoot()         // protected für Schussanimationen und Funktionen
     {
-        // Erzeugt das Projektil an der Feuerposition und weist ihm die Richtung des Ziels zu
+        // Erzeugt das Projektil an der Feuerposition und weist ihm die Richtung des Ziels zu#
         if (!spawnScript.spawned)
         {
             damageScript = target.GetComponent<DamageTest>();
