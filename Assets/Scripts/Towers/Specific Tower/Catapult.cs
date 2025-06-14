@@ -29,6 +29,35 @@ public class Catapult : Tower
 
     }
 
+    protected override void UpdateTarget()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        float shortestDistance = range; // Nur Gegner **innerhalb der Reichweite** sind relevant
+        GameObject nearestEnemy = null;
+
+        foreach (GameObject enemy in enemies)
+        {
+            Vector3 direction = enemy.transform.position - transform.position;
+            float distance = direction.magnitude;
+
+            if (distance <= shortestDistance)
+            {
+                // Sichtprüfung mit Raycast (verhindert Schüsse durch Mauern o.ä.)
+                if (!Physics.Raycast(transform.position + new Vector3(0f ,0.5f * wurfHöhe, 0), direction.normalized, distance, obstacleMask))
+                {
+                    shortestDistance = distance;
+                    nearestEnemy = enemy;
+                }
+                else
+                {
+                    Debug.Log("Attack Blocked");
+                }
+            }
+        }
+
+        target = nearestEnemy;
+    }
+
     IEnumerator ShootAnimation()
     {
         float elapsed = 0f;
