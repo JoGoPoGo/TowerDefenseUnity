@@ -8,7 +8,7 @@ public class Tower : MonoBehaviour
 {
     public SpawnOnMouseClick spawnScript; // Reference to the SpawnOnMouseClick script
     public GameObject target;           // Das aktuelle Ziel des Turms
-    private DamageTest damageScript;   // DamageTest von Target
+    protected DamageTest damageScript;   // DamageTest von Target
     private GameManager gameManager;
 
     public string enemyTag = "Enemy";  // Der Tag der Gegner (z.B. "Enemy")
@@ -73,37 +73,27 @@ public class Tower : MonoBehaviour
     }
     protected virtual void UpdateTarget()   // protected für Schussfunktionen und Animationen
     {
-        // Sucht nach allen Gegnern mit dem Tag "Enemy"
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        float shortestDistance = Mathf.Infinity;
+        float shortestDistance = range; // Nur Gegner **innerhalb der Reichweite** sind relevant
         GameObject nearestEnemy = null;
 
-        // Finde den nächsten Gegner innerhalb der Reichweite
         foreach (GameObject enemy in enemies)
         {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance)
-            {
-                Vector3 dirToEnemy = (enemy.transform.position - transform.position).normalized;
-                RaycastHit hit;
+            Vector3 direction = enemy.transform.position - transform.position;
+            float distance = direction.magnitude;
 
-                if(!Physics.Raycast(transform.position, dirToEnemy, out hit, range, obstacleMask))
+            if (distance <= shortestDistance)
+            {
+                // Sichtprüfung mit Raycast (verhindert Schüsse durch Mauern o.ä.)
+                if (!Physics.Raycast(transform.position, direction.normalized, distance, obstacleMask))
                 {
-                    shortestDistance = distanceToEnemy;
+                    shortestDistance = distance;
                     nearestEnemy = enemy;
                 }
             }
         }
 
-        // Wenn ein Gegner gefunden wurde, setze ihn als Ziel
-        if (nearestEnemy != null && shortestDistance <= range)
-        {
-            target = nearestEnemy;
-        }
-        else
-        {
-            target = null; // Kein Gegner in Reichweite
-        }
+        target = nearestEnemy;
     }
 
     
