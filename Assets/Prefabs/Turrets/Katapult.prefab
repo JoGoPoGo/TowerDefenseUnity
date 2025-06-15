@@ -353,7 +353,7 @@ MonoBehaviour:
   fireRate: 0.3
   bulletSpeed: 10
   range: 15
-  damageAmount: 80
+  damageAmount: 1000
   spawnCancelRadius: 10
   turnSpeed: 10
   canon: {fileID: 0}
