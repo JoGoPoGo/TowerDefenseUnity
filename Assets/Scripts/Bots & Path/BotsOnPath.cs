@@ -125,11 +125,17 @@ public class BotsOnPath : MonoBehaviour
     {
         float distanceTravelled = 0f;
         DamageTest damageScript = enemy.GetComponent<DamageTest>();
+        yield return null;   // randomized wird erst genommen, wenn DamageTest einen Wert != 0 dafür hat
+        Vector3 randomized = damageScript.positionRandomizer;
 
         while (damageScript != null && damageScript.isAlive)
         {
             distanceTravelled += damageScript.speed * speedMultiplier * Time.deltaTime;
-            enemy.transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled);
+            enemy.transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled) + randomized;
+            if (enemy.transform.position != pathCreator.path.GetPointAtDistance(distanceTravelled))
+            {
+                Debug.Log("Ess wirrd Randomized");
+            }
             enemy.transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled) * Quaternion.Euler(0, 0, 90);
 
             if (distanceTravelled >= pathCreator.path.length)
