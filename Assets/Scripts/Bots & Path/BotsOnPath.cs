@@ -134,7 +134,7 @@ public class BotsOnPath : MonoBehaviour
             enemy.transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled) + randomized;
             enemy.transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled) * Quaternion.Euler(0, 0, 90);
 
-            if (distanceTravelled >= pathCreator.path.length)
+            if (distanceTravelled >= pathCreator.path.length)    // Zerstört den Gegner, wenn er das Ende des Pfades erreicht
             {
                 if (loopPath)
                 {

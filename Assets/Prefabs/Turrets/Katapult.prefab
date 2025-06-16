@@ -350,7 +350,7 @@ MonoBehaviour:
   target: {fileID: 0}
   enemyTag: Enemy
   price: 24
-  fireRate: 3
+  fireRate: 0.45
   bulletSpeed: 10
   range: 15
   damageAmount: 90
