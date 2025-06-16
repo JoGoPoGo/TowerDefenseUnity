@@ -21,6 +21,7 @@ public class DamageTest : MonoBehaviour
 
     private GameManager gameManager;
 
+    public float randomization;
     public Vector3 positionRandomizer;
 
     void Start()
@@ -29,7 +30,7 @@ public class DamageTest : MonoBehaviour
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth); // Update der Lebensanzeige
         gameManager = FindObjectOfType<GameManager>();
-        positionRandomizer = new Vector3 (UnityEngine.Random.Range(-3f,3f), 0, UnityEngine.Random.Range(-3f,3f));
+        positionRandomizer = new Vector3 (UnityEngine.Random.Range(-randomization,randomization), 0, UnityEngine.Random.Range(-randomization,randomization));
     }
 
     // Funktion zum Zufügen von Schaden

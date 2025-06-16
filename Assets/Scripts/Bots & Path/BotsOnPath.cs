@@ -132,10 +132,6 @@ public class BotsOnPath : MonoBehaviour
         {
             distanceTravelled += damageScript.speed * speedMultiplier * Time.deltaTime;
             enemy.transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled) + randomized;
-            if (enemy.transform.position != pathCreator.path.GetPointAtDistance(distanceTravelled))
-            {
-                Debug.Log("Ess wirrd Randomized");
-            }
             enemy.transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled) * Quaternion.Euler(0, 0, 90);
 
             if (distanceTravelled >= pathCreator.path.length)

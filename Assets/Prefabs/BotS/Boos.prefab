@@ -253,6 +253,8 @@ MonoBehaviour:
   reward: 10
   healthbar: {fileID: 5939738080292200230}
   isLast: 0
+  randomization: 1
+  positionRandomizer: {x: 0, y: 0, z: 0}
 --- !u!114 &7178349335008811983
 MonoBehaviour:
   m_ObjectHideFlags: 0
