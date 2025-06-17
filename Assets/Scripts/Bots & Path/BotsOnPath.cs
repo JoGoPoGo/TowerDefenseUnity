@@ -117,6 +117,10 @@ public class BotsOnPath : MonoBehaviour
         {
             damageScript.isLast = false;
         }
+
+        // Überträgt variablen
+        damageScript.pathCreator = pathCreator;
+        damageScript.speedMultiplier = speedMultiplier;
         StartCoroutine(MoveBotAlongPath(bot));
     }
 
