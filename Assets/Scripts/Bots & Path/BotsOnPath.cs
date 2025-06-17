@@ -121,7 +121,7 @@ public class BotsOnPath : MonoBehaviour
         // Überträgt variablen
         damageScript.pathCreator = pathCreator;
         damageScript.speedMultiplier = speedMultiplier;
-        StartCoroutine(MoveBotAlongPath(bot));
+        //StartCoroutine(MoveBotAlongPath(bot));
     }
 
     // Bewegung des Bots entlang des Pfads

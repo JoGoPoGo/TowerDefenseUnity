@@ -21,7 +21,7 @@ public class DamageTest : MonoBehaviour
 
     public bool isLast;
 
-    private GameManager gameManager;
+    protected GameManager gameManager;
 
     public float randomization;
     public Vector3 positionRandomizer;
@@ -30,7 +30,7 @@ public class DamageTest : MonoBehaviour
     public PathCreator pathCreator;
     public float speedMultiplier;
 
-    float distanceTravelled = 0f;
+    protected float distanceTravelled = 0f;
 
     void Start()
     {
@@ -40,13 +40,13 @@ public class DamageTest : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         positionRandomizer = new Vector3 (UnityEngine.Random.Range(-randomization,randomization), 0, UnityEngine.Random.Range(-randomization,randomization));
     }
-    private void Update()
+    protected void Update()
     {
         if (pathCreator != null)
         {
             MoveAlongPath(pathCreator, distanceTravelled);
         }
-        distanceTravelled = speed * speedMultiplier * Time.deltaTime;
+        distanceTravelled += speed * speedMultiplier * Time.deltaTime;
     }
 
     // Funktion zum Zufügen von Schaden
@@ -64,7 +64,7 @@ public class DamageTest : MonoBehaviour
     }
 
     // Zerstört den Bot, wenn die Lebenspunkte auf 0 fallen
-    public void Die(bool didDamage)
+    public virtual void Die(bool didDamage)
     {
         if (!didDamage)
         {
@@ -88,11 +88,11 @@ public class DamageTest : MonoBehaviour
     }
     public void MoveAlongPath(PathCreator path, float pathPoint)    // soll als ersatz für IEnumarator bei BotsOnPath dienen, welche die Bots bewegt
     {
-        transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled) + positionRandomizer;
-        transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled) * Quaternion.Euler(0, 0, 90);
-        if(distanceTravelled >= pathCreator.path.length)
+        transform.position = path.path.GetPointAtDistance(pathPoint) + positionRandomizer;
+        transform.rotation = path.path.GetRotationAtDistance(pathPoint) * Quaternion.Euler(0, 0, 90);
+        if(distanceTravelled >= path.path.length)
         {
-            Destroy(gameObject);
+            Die(true);
         }
     }
     public bool IsOnlyEnemy()

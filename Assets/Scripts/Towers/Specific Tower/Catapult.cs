@@ -97,7 +97,7 @@ public class Catapult : Tower
         Vector3 peak = (startPosition + enemyPosition) / 2 + Vector3.up * wurfHöhe;
 
 
-        float duration = 1.3f;
+        float duration = 1.1f;
         float elapsed = 0f;
 
         while (elapsed < duration)
