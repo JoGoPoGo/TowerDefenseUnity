@@ -54,5 +54,6 @@ public class BotSpecial : DamageTest
         // Überträgt variablen
         damageScript.pathCreator = pathCreator;
         damageScript.speedMultiplier = speedMultiplier;
+        damageScript.distanceTravelled = distanceTravelled;
     }
 }

@@ -30,7 +30,7 @@ public class DamageTest : MonoBehaviour
     public PathCreator pathCreator;
     public float speedMultiplier;
 
-    protected float distanceTravelled = 0f;
+    public float distanceTravelled = 0f;
 
     protected virtual void Start()
     {
