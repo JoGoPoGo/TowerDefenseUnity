@@ -32,7 +32,7 @@ public class DamageTest : MonoBehaviour
 
     protected float distanceTravelled = 0f;
 
-    void Start()
+    protected virtual void Start()
     {
         // Setze die Lebenspunkte auf das Maximum
         currentHealth = maxHealth;

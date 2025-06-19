@@ -323,10 +323,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6987264444824711699}
-  - component: {fileID: 5126401596203668}
   - component: {fileID: 2827331575688962407}
   - component: {fileID: 3701729524717879074}
   - component: {fileID: 9078974518098149388}
+  - component: {fileID: 9179106656131298727}
   m_Layer: 7
   m_Name: BotSpecial 1
   m_TagString: Enemy
@@ -352,25 +352,6 @@ Transform:
   - {fileID: 6333881421956569302}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5126401596203668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6259370625345561336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86f7520adacd78342871c5d381b0b564, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isAlive: 1
-  currentHealth: 0
-  maxHealth: 800
-  speed: 0.9
-  reward: 9
-  healthbar: {fileID: 2310099508978704867}
-  isLast: 0
 --- !u!114 &2827331575688962407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,7 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 120
-  damageScript: {fileID: 5126401596203668}
+  damageScript: {fileID: 0}
 --- !u!54 &3701729524717879074
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -435,6 +416,32 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: -0.2, y: 1.8, z: -0.2}
+--- !u!114 &9179106656131298727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6259370625345561336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 833b66f5b90804f4d878655e2a910942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAlive: 1
+  currentHealth: 0
+  maxHealth: 800
+  speed: 1
+  reward: 4
+  healthbar: {fileID: 2310099508978704867}
+  isLast: 0
+  randomization: 0
+  positionRandomizer: {x: 0, y: 0, z: 0}
+  pathCreator: {fileID: 0}
+  speedMultiplier: 0
+  splittingPrefab: {fileID: 5074364399676035807, guid: 8e7c47fdeab2ca741b41798cd3796f2e, type: 3}
+  splittCount: 3
+  pathSkript: {fileID: 0}
 --- !u!1 &7164296855224164856
 GameObject:
   m_ObjectHideFlags: 0
