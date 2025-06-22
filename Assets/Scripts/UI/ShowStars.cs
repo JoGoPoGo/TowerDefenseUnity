@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class ShowStars : MonoBehaviour
 {
+
     public GameObject Base;
     public TMP_Text display;
+    public GameObject WinScreen;
 
     public int levelNumber;
 
@@ -24,10 +26,10 @@ public class ShowStars : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.activeSelf && !savedStars)
+        if (WinScreen.activeSelf && !savedStars)
         {
             ProgressManager.Instance.SaveStarsForLevel(levelNumber, baseSkript.receivedStars);
-            display.text = "Stars: " + baseSkript.receivedStars + "Total Stars:" + ProgressManager.Instance.GetTotalStars(10);
+            display.text = "Stars: " + baseSkript.receivedStars + "\nTotal Stars:" + ProgressManager.Instance.GetTotalStars(10);
 
             collectedStars += baseSkript.receivedStars;
 

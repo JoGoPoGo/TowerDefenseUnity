@@ -4,19 +4,39 @@ using UnityEngine;
 
 public class ProgressManager : MonoBehaviour
 {
-    public static ProgressManager Instance;
-
-    private void Awake()
+    private static ProgressManager _instance;
+    public static ProgressManager Instance
     {
-        if (Instance == null)
+        get
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            if (_instance == null) 
+            {
+                _instance = FindObjectOfType<ProgressManager>();
+                if(_instance == null)
+                {
+                    GameObject go = new GameObject("ProgressManager");
+                    _instance = go.AddComponent<ProgressManager>();
+                }
+            }
+            return _instance;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+    }
+
+    public void UnlockLevel(int level)
+    {
+        PlayerPrefs.SetInt("LevelUnlocked_" + level, 1);
+        PlayerPrefs.Save();
+    }
+
+    public void LockLevel(int level)
+    {
+        PlayerPrefs.SetInt("LevelUnlocked_" + level, 0);
+        PlayerPrefs.Save();
+    }
+
+    public bool IsLocked(int level)
+    {
+        return PlayerPrefs.GetInt("LevelUnlocked_" + level, 0) == 1;
     }
     public void SaveUnlockedLevel(int level)
     {
