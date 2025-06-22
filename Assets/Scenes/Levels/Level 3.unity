@@ -3735,6 +3735,10 @@ PrefabInstance:
       propertyPath: prefabToSpawn
       value: 
       objectReference: {fileID: 6434800970909886752, guid: bae413f4ef598b44fbd9a16e3921cf4e, type: 3}
+    - target: {fileID: 2247048869054583048, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: levelNumber
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5037316361552260096, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: Tower
       value: 

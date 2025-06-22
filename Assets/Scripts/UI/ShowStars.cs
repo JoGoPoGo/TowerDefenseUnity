@@ -8,7 +8,11 @@ public class ShowStars : MonoBehaviour
     public GameObject Base;
     public TMP_Text display;
 
+    public int levelNumber;
+
     public static int collectedStars;
+
+    bool savedStars = false;
 
     private BaseHealth baseSkript;
     // Start is called before the first frame update
@@ -20,10 +24,14 @@ public class ShowStars : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.activeSelf)
+        if (gameObject.activeSelf && !savedStars)
         {
-            display.text = "Stars:" + baseSkript.receivedStars;
-            collectedStars = collectedStars + baseSkript.receivedStars;
+            ProgressManager.Instance.SaveStarsForLevel(levelNumber, baseSkript.receivedStars);
+            display.text = "Stars: " + baseSkript.receivedStars + "Total Stars:" + ProgressManager.Instance.GetTotalStars(10);
+
+            collectedStars += baseSkript.receivedStars;
+
+            savedStars = true;  // Prevent this from running again every frame
         }
     }
 }

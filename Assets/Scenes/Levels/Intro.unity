@@ -994,6 +994,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 1.8
       objectReference: {fileID: 0}
+    - target: {fileID: 2247048869054583048, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: levelNumber
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2755585435108092562, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: spawnButtons.Array.size
       value: 4

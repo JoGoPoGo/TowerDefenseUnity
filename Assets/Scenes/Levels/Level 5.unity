@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.8
       objectReference: {fileID: 0}
+    - target: {fileID: 2247048869054583048, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: levelNumber
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5037316361552260096, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: Tower
       value: 
