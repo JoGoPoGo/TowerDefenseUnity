@@ -25,6 +25,7 @@ public class Catapult : Tower
         {
             damageScript = target.GetComponent<DamageTest>();
             StartCoroutine(ShootAnimation());  //fügt schaden in stoneAnimation zu
+
         }
 
     }
@@ -92,7 +93,13 @@ public class Catapult : Tower
     }
     IEnumerator StoneAnimation()
     {
+        UpdateTarget();
         Vector3 startPosition = stone.transform.position;
+        if (target == null)
+        {
+            Debug.Log("KEIN TARGET!! at Tower.Catapult");
+            yield break;
+        }
         Vector3 enemyPosition = target.transform.position;
         Vector3 peak = (startPosition + enemyPosition) / 2 + Vector3.up * wurfHöhe;
 

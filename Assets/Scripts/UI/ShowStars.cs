@@ -29,7 +29,7 @@ public class ShowStars : MonoBehaviour
         if (WinScreen.activeSelf && !savedStars)
         {
             ProgressManager.Instance.SaveStarsForLevel(levelNumber, baseSkript.receivedStars);
-            display.text = "Stars: " + baseSkript.receivedStars + "\nTotal Stars:" + ProgressManager.Instance.GetTotalStars(10);
+            display.text = "Stars: " + baseSkript.receivedStars + "\nTotal Stars:" + ProgressManager.Instance.GetTotalStars(levelNumber);
 
             collectedStars += baseSkript.receivedStars;
 
