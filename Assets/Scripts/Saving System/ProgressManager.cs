@@ -43,7 +43,7 @@ public class ProgressManager : MonoBehaviour
         int current = PlayerPrefs.GetInt("unlockedLevel", 1);
         if (level > current)
         {
-            PlayerPrefs.SetInt("unlockedLevel", 1);
+            PlayerPrefs.SetInt("unlockedLevel", level);
             PlayerPrefs.Save();
         }
     }
@@ -54,7 +54,7 @@ public class ProgressManager : MonoBehaviour
 
     public void SaveStarsForLevel(int levelIndex, int stars)
     {
-        string key = $"level(levelIndex)Stars";
+        string key = $"level{levelIndex}_Stars";
         int current = PlayerPrefs.GetInt(key, 0);
         if (stars > current)
         {
@@ -65,7 +65,7 @@ public class ProgressManager : MonoBehaviour
 
     public int GetStarsForLevel(int levelIndex)
     {
-        return PlayerPrefs.GetInt($"level(levelIndex)Stars", 0);
+        return PlayerPrefs.GetInt($"level{levelIndex}_Stars", 0);
     }
     public int GetTotalStars(int numberOfLevels)
     {
