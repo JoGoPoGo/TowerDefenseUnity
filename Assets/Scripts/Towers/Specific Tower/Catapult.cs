@@ -81,7 +81,7 @@ public class Catapult : Tower
         yield return StartCoroutine(StoneAnimation());
 
         elapsed = 0f;
-        while (elapsed < duration)
+        while (elapsed < duration)  //Rückrotation
         {
             float t = elapsed / duration;
             wurfArm.transform.localRotation = Quaternion.Slerp(forwardRotation, startRotation, t);
@@ -93,14 +93,14 @@ public class Catapult : Tower
     }
     IEnumerator StoneAnimation()
     {
-        UpdateTarget();
+        GameObject myTarget = target;
         Vector3 startPosition = stone.transform.position;
-        if (target == null)
+        if (myTarget == null)
         {
             Debug.Log("KEIN TARGET!! at Tower.Catapult");
             yield break;
         }
-        Vector3 enemyPosition = target.transform.position;
+        Vector3 enemyPosition = myTarget.transform.position;
         Vector3 peak = (startPosition + enemyPosition) / 2 + Vector3.up * wurfHöhe;
 
 

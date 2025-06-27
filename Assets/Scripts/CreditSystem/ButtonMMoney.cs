@@ -14,7 +14,7 @@ public class DisableButton : MonoBehaviour
 
         if (button == null)
         {
-            Debug.LogError("Es wurde keine Button-Komponente gefunden. Bitte stelle sicher, dass dieses Skript auf einem Button liegt.");
+            Debug.LogError("Es wurde keine Button-Komponente gefunden. Bitte stelle sicher, dass dieses Skript auf einem Button liegt. at DisableButton, 17");
         }
         
     }

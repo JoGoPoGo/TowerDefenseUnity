@@ -79,7 +79,7 @@ public class TowerUIManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Bereits ein Button für diesen Turm vorhanden: " + tower.name);
+                //Debug.Log("Bereits ein Button für diesen Turm vorhanden: " + tower.name);
             }
         }
 
