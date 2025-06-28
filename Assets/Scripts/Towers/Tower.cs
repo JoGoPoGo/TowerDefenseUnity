@@ -141,14 +141,14 @@ public class Tower : MonoBehaviour
         canon.transform.localPosition = originalPosition;
     }
     // **Upgrade-Funktion**
-    public void UpgradeTower()
+    virtual public void UpgradeTower()
     {
         if (gameManager.SpendCredits((level * level + 2)))
         {
             level++;
             damageAmount += 10;  // Erhöhe Schaden pro Level
             range += 2f;        // Erhöhe Reichweite pro Level
-            fireRate += 0.2f;   // Schnellere Schussrate
+            //fireRate += 0.2f;   // Schnellere Schussrate
 
             Debug.Log($"{gameObject.name} wurde auf Level {level} geupgradet!");
         }

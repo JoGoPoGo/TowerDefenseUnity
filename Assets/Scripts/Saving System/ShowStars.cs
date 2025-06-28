@@ -11,8 +11,8 @@ public class ShowStars : MonoBehaviour
     public GameObject WinScreen;
 
     public int levelNumber;
-
-    public static int collectedStars;
+    public int totalStars;
+    public int displayStars;
 
     bool savedStars = false;
 
@@ -21,6 +21,7 @@ public class ShowStars : MonoBehaviour
     void Start()
     {
         baseSkript = Base.GetComponent<BaseHealth>();
+        displayStars = ProgressManager.Instance.GetCollectedStars();
     }
 
     // Update is called once per frame
@@ -29,9 +30,10 @@ public class ShowStars : MonoBehaviour
         if (WinScreen.activeSelf && !savedStars)
         {
             ProgressManager.Instance.SaveStarsForLevel(levelNumber, baseSkript.receivedStars);
-            display.text = "Stars: " + baseSkript.receivedStars + "\nTotal Stars:" + ProgressManager.Instance.GetTotalStars(levelNumber);
+            displayStars = ProgressManager.Instance.GetCollectedStars();
 
-            collectedStars += baseSkript.receivedStars;
+            display.text = "Stars: " + baseSkript.receivedStars + "\nTotal Stars:" + displayStars;
+
 
             savedStars = true;  // Prevent this from running again every frame
         }

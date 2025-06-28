@@ -63,7 +63,7 @@ public class Catapult : Tower
     {
         float elapsed = 0f;
         float duration = 0.3f;
-
+        GameObject myTarget = target;
         Quaternion startRotation = wurfArm.transform.localRotation;
         Quaternion forwardRotation = startRotation * Quaternion.Euler(wurfWinkel, 0f, 0f);
         // stoneEndPosition = stone.transform.localPosition;
@@ -78,7 +78,7 @@ public class Catapult : Tower
         wurfArm.transform.localRotation = forwardRotation;
 
         // yield return new WaitForSeconds(0.2f);
-        yield return StartCoroutine(StoneAnimation());
+        yield return StartCoroutine(StoneAnimation(myTarget));
 
         elapsed = 0f;
         while (elapsed < duration)  //Rückrotation
@@ -91,9 +91,8 @@ public class Catapult : Tower
 
         wurfArm.transform.localRotation = startRotation;
     }
-    IEnumerator StoneAnimation()
+    IEnumerator StoneAnimation(GameObject myTarget)
     {
-        GameObject myTarget = target;
         Vector3 startPosition = stone.transform.position;
         if (myTarget == null)
         {

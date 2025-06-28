@@ -21,7 +21,17 @@ public class ProgressManager : MonoBehaviour
             return _instance;
         }
     }
-
+    public void Reset()
+    {
+        PlayerPrefs.SetInt("collectedStars", 0);
+        for (int f = 10; f > 0; f--)
+        {
+            int levelIndex = f;
+            string key = $"level{levelIndex}_Stars";
+            PlayerPrefs.SetInt(key, 0);
+        }
+        PlayerPrefs.Save();
+    }
     public void UnlockLevel(int level)
     {
         PlayerPrefs.SetInt("LevelUnlocked_" + level, 1);
@@ -55,10 +65,14 @@ public class ProgressManager : MonoBehaviour
     public void SaveStarsForLevel(int levelIndex, int stars)
     {
         string key = $"level{levelIndex}_Stars";
+        Debug.Log(key + "at Progress Manager_61");
         int current = PlayerPrefs.GetInt(key, 0);
+
         if (stars > current)
         {
+            SaveCollectedStars(-current);
             PlayerPrefs.SetInt(key, stars);
+            SaveCollectedStars(stars);
             PlayerPrefs.Save();
         }
     }
@@ -66,6 +80,18 @@ public class ProgressManager : MonoBehaviour
     public int GetStarsForLevel(int levelIndex)
     {
         return PlayerPrefs.GetInt($"level{levelIndex}_Stars", 0);
+    }
+
+    public void SaveCollectedStars(int plus)
+    {
+        int current = PlayerPrefs.GetInt("collectedStars", 0);
+        int updated = current + plus;
+        PlayerPrefs.SetInt("collectedStars", updated);
+        PlayerPrefs.Save();
+    }
+    public int GetCollectedStars()
+    {
+        return PlayerPrefs.GetInt("collectedStars", 0);
     }
     public int GetTotalStars(int numberOfLevels)
     {
