@@ -6,8 +6,11 @@ public class PreNext : MonoBehaviour
     public List<GameObject> levelSections; // z.B. Section1, Section2, Section3
     private int currentIndex = 0;
 
+    private LevelLock lockScript;
+
     void Start()
     {
+        lockScript = GetComponent<LevelLock>();
         ShowSection(currentIndex); // Zeige den ersten Abschnitt
     }
 
@@ -17,6 +20,8 @@ public class PreNext : MonoBehaviour
         {
             currentIndex++;
             ShowSection(currentIndex);
+            lockScript.LevelsToLock();
+            Debug.Log("LevelsToLock wurde ausgeführt at 24");
         }
     }
 
@@ -26,6 +31,8 @@ public class PreNext : MonoBehaviour
         {
             currentIndex--;
             ShowSection(currentIndex);
+            lockScript.LevelsToLock();
+            Debug.Log("LevelsToLock wurde ausgeführt at 35");
         }
     }
 
