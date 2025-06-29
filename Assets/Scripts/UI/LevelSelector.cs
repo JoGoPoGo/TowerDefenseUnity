@@ -11,12 +11,13 @@ public class LevelSelector : MonoBehaviour
     public int LevelNumber;
 
     private Button button;
+    private Image image;
 
     // Start is called before the first frame update
     void Start()
     {
         button = GetComponent<Button>();
-        Image image = GetComponent<Image>();
+        image = GetComponent<Image>();
         //LevelLocked = ProgressManager.Instance.IsLocked(LevelNumber);
         
         if (LevelLocked)
@@ -26,7 +27,7 @@ public class LevelSelector : MonoBehaviour
 
         button.onClick.AddListener(LoadLevel);
     }
-
+    
     public void LoadLevel()
     {
         
@@ -36,7 +37,7 @@ public class LevelSelector : MonoBehaviour
         }
         else
         {
-            UnityEngine.Debug.Log("LevelIsLocked at LevelSelector" + levelName);
+            UnityEngine.Debug.Log("Level is Locked at LevelSelector" + levelName);
         }
             
     }

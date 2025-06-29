@@ -14,8 +14,6 @@ public class LevelLock : MonoBehaviour
         stars = ProgressManager.Instance.GetCollectedStars();
         Debug.Log(stars);
 
-        allDisplays = FindObjectsOfType<LevelSelector>();
-
         LevelsToLock();
     }
 
@@ -55,11 +53,13 @@ public class LevelLock : MonoBehaviour
     }
     void lockLevel(int level)
     {
+        allDisplays = FindObjectsOfType<LevelSelector>();
         ProgressManager.Instance.LockLevel(level);
         foreach(LevelSelector s in allDisplays)
         {
             if(s.LevelNumber == level)
             {
+                Debug.Log("LevelLocked" + level + " at 63");
                 s.LevelLocked = true;
             }
         } 

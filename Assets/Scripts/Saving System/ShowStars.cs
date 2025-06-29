@@ -34,7 +34,6 @@ public class ShowStars : MonoBehaviour
 
             display.text = "Stars: " + baseSkript.receivedStars + "\nTotal Stars:" + displayStars;
 
-
             savedStars = true;  // Prevent this from running again every frame
         }
     }

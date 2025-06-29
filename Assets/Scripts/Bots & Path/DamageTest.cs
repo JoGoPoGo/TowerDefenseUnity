@@ -72,16 +72,27 @@ public class DamageTest : MonoBehaviour
         }
         if (IsOnlyEnemy() && isLast)
         {
-            //SceneManager.LoadScene("LevelAuswahl");   //Auskommentieren, falls es zu unerwünschten Szenenwechsel kommt
-            GameObject parent = GameObject.Find("Canvas");
-            if (parent != null)
+            BotsOnPath[] botsOnPaths = FindObjectsOfType<BotsOnPath>();
+
+            if(botsOnPaths.Length == 1)
             {
-                Transform winTransform = parent.transform.Find("WinScreen");
-                if (winTransform != null)
+                Debug.Log("Is only enemy and the last one at DamageTest.79");
+                //SceneManager.LoadScene("LevelAuswahl");   //Auskommentieren, falls es zu unerwünschten Szenenwechsel kommt
+                GameObject parent = GameObject.Find("Canvas");
+                if (parent != null)
                 {
+                    Transform winTransform = parent.transform.Find("WinScreen");
+                    if (winTransform != null)
+                    {
                     winTransform.gameObject.SetActive(true);
+                    }
                 }
             }
+            else
+            {
+
+            }
+            
         }
         isAlive = false;
         Destroy(gameObject);
