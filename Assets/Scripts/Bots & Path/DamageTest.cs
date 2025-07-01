@@ -90,7 +90,18 @@ public class DamageTest : MonoBehaviour
             }
             else
             {
+                int maxWaveCount = 0;
 
+                BotsOnPath targetScript = null;
+
+                foreach (BotsOnPath Script in botsOnPaths)
+                {
+                    if(Script.waves.Length > maxWaveCount)
+                    {
+                        maxWaveCount = Script.waves.Length;
+                        targetScript = Script;
+                    }
+                }
             }
             
         }
