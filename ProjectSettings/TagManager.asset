@@ -10,6 +10,7 @@ TagManager:
   - Tower
   - lastSpawned
   - Win
+  - Lose
   layers:
   - Default
   - TransparentFX

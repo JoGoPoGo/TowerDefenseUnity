@@ -33,8 +33,11 @@ public class DamageTest : MonoBehaviour
 
     public float distanceTravelled = 0f;
 
+    private BaseHealth baseScript;
+
     protected virtual void Start()
     {
+        baseScript = FindObjectOfType<BaseHealth>();
         // Setze die Lebenspunkte auf das Maximum
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth); // Update der Lebensanzeige
@@ -89,7 +92,7 @@ public class DamageTest : MonoBehaviour
                     }
                 }
             }
-            if (botsOnPaths.Length == 1 || targetScript == thisBotScript) //wenn dieses der letzte von dem Skript mit den meisten Wellen ist, gewinnt der Spieler
+            if ((botsOnPaths.Length == 1 || targetScript == thisBotScript) && baseScript.health > 0) //wenn dieses der letzte von dem Skript mit den meisten Wellen ist, gewinnt der Spieler
             {
                 Debug.Log("Is only enemy and the last one at DamageTest.79");
                 GameObject parent = GameObject.Find("Canvas");

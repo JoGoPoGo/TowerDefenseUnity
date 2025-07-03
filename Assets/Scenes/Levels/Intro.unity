@@ -816,6 +816,10 @@ PrefabInstance:
       propertyPath: Tower
       value: 
       objectReference: {fileID: 5267380721214097343, guid: 6e3b87fb0375ed54a9ca480a5213e44a, type: 3}
+    - target: {fileID: 5370465674432243689, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_TagString
+      value: Lose
+      objectReference: {fileID: 0}
     - target: {fileID: 5804837718299460341, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -886,7 +890,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: waves.Array.data[0].groups.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: waves.Array.data[0].groups.Array.data[0].tillNextBot
@@ -930,7 +934,7 @@ PrefabInstance:
       objectReference: {fileID: 5074364399676035807, guid: 0ea02ea1822926a48bf1e1f8f3a1fd97, type: 3}
     - target: {fileID: 8982135261534226876, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: maxHealth
-      value: 20000
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
