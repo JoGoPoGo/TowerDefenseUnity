@@ -26,6 +26,7 @@ public class DamageTest : MonoBehaviour
     public float randomization;
     public Vector3 positionRandomizer;
 
+    public BotsOnPath thisBotScript;
     //von BotsOnPath
     public PathCreator pathCreator;
     public float speedMultiplier;
@@ -74,10 +75,23 @@ public class DamageTest : MonoBehaviour
         {
             BotsOnPath[] botsOnPaths = FindObjectsOfType<BotsOnPath>();
 
-            if(botsOnPaths.Length == 1)
+            int maxWaveCount = 0;
+
+            BotsOnPath targetScript = null;
+            if (botsOnPaths.Length > 1)  //ist nur nötig, wenn es mehr als ein BotsOnPath Skript in der Szene gibt
+            {
+                foreach (BotsOnPath Script in botsOnPaths)    //findet aus allen BotsOnPath Skripten der Szene das mit den meisten Wellen
+                {
+                    if (Script.waves.Length > maxWaveCount)
+                    {
+                        maxWaveCount = Script.waves.Length;
+                        targetScript = Script;
+                    }
+                }
+            }
+            if (botsOnPaths.Length == 1 || targetScript == thisBotScript) //wenn dieses der letzte von dem Skript mit den meisten Wellen ist, gewinnt der Spieler
             {
                 Debug.Log("Is only enemy and the last one at DamageTest.79");
-                //SceneManager.LoadScene("LevelAuswahl");   //Auskommentieren, falls es zu unerwünschten Szenenwechsel kommt
                 GameObject parent = GameObject.Find("Canvas");
                 if (parent != null)
                 {
@@ -88,27 +102,11 @@ public class DamageTest : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-                int maxWaveCount = 0;
-
-                BotsOnPath targetScript = null;
-
-                foreach (BotsOnPath Script in botsOnPaths)
-                {
-                    if(Script.waves.Length > maxWaveCount)
-                    {
-                        maxWaveCount = Script.waves.Length;
-                        targetScript = Script;
-                    }
-                }
-            }
-            
         }
         isAlive = false;
         Destroy(gameObject);
     }
-    public void MoveAlongPath(PathCreator path, float pathPoint)    // soll als ersatz für IEnumarator bei BotsOnPath dienen, welche die Bots bewegt
+    public void MoveAlongPath(PathCreator path, float pathPoint)    // soll als Ersatz für IEnumarator bei BotsOnPath dienen, welche die Bots bewegt
     {
         transform.position = path.path.GetPointAtDistance(pathPoint) + positionRandomizer;
         transform.rotation = path.path.GetRotationAtDistance(pathPoint) * Quaternion.Euler(0, 0, 90);

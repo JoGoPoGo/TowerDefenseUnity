@@ -7,7 +7,7 @@ using PathCreation;
 public class WaveConfiguration
 {
     public GroupConfiguration[] groups;  //alle Gruppen in dieser Welle
-
+    public int waitAfterWaveEnd = 0;
 }
 [System.Serializable]
 public class GroupConfiguration
@@ -45,6 +45,7 @@ public class BotsOnPath : MonoBehaviour
         {
             WaveConfiguration currentWave = waves[i]; // Aktuelle Welle abrufen
             //Debug.Log("Welle " + (i + 1) + " startet!");
+            yield return new WaitForSeconds(0.1f);   //damit jede Aktuelle welle gespawned wird
             if (i == waves.Length - 1)
             {
                 yield return StartCoroutine(SpawnGroupsInWave(currentWave, true)); // Spawne Gruppen in der aktuellen letzten Welle
@@ -57,6 +58,7 @@ public class BotsOnPath : MonoBehaviour
             }
             Debug.Log("Welle " + (i + 1) + " beendet!");
             yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
+            yield return new WaitForSeconds(currentWave.waitAfterWaveEnd);
             //yield return new WaitForSeconds(currentWave.waveWaitTime); // Wartezeit vor der nächsten Welle
         }
 
@@ -121,6 +123,7 @@ public class BotsOnPath : MonoBehaviour
         // Überträgt variablen
         damageScript.pathCreator = pathCreator;
         damageScript.speedMultiplier = speedMultiplier;
+        damageScript.thisBotScript = this;
         //StartCoroutine(MoveBotAlongPath(bot));
     }
 
