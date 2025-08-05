@@ -11,6 +11,9 @@ public class Canon : Tower
     private Quaternion startDirection;
     // Start is called before the first frame update
 
+
+    public AudioSource shootSound;
+
     protected override void Update()
     {
         if (spawnScript.spawned && Input.GetKey(KeyCode.R) && rotateCounter == 0)
@@ -36,6 +39,7 @@ public class Canon : Tower
             // Wenn die Zeit zum Schieﬂen gekommen ist, wird geschossen
             if (fireCountdown <= 0f)
             {
+                shootSound.Play();
                 Shoot();
                 fireCountdown = 1f / fireRate; // Setze den Timer f¸r den n‰chsten Schuss
             }
