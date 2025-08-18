@@ -57,6 +57,7 @@ public class Hochmut : Tower
     protected override void Shoot()
     {
         updatingTarget = false;
+        shootSound.Play();
         StartCoroutine(ShootAnimation(target));
         base.Shoot();
         updatingTarget = true;

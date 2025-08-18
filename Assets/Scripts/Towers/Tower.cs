@@ -32,6 +32,8 @@ public class Tower : MonoBehaviour
 
     public int level = 1;  // Turm-Level beginnt bei 1
 
+    public AudioSource shootSound;
+
     private Tower[] allTowerComponents;
 
     //public string name;
@@ -61,6 +63,7 @@ public class Tower : MonoBehaviour
         // Wenn die Zeit zum Schieﬂen gekommen ist, wird geschossen
         if (fireCountdown <= 0f)
         {
+            shootSound.Play();
             Shoot();
             fireCountdown = 1f / fireRate; // Setze den Timer f¸r den n‰chsten Schuss
         }

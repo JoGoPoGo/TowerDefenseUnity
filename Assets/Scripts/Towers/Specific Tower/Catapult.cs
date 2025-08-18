@@ -16,6 +16,7 @@ public class Catapult : Tower
     //public int betroffenenAnzahl = 1;
 
     List<GameObject> betroffenList = new List<GameObject>();
+
     // private Vector3 stoneEndPosition;
 
     // Update is called once per frame
@@ -23,6 +24,7 @@ public class Catapult : Tower
     {
         if (!spawnScript.spawned)
         {
+            shootSound.Play();
             damageScript = target.GetComponent<DamageTest>();
             StartCoroutine(ShootAnimation());  //fügt schaden in stoneAnimation zu
 
@@ -121,6 +123,7 @@ public class Catapult : Tower
         //yield return new WaitForSeconds(0.1f);
         Vector3 schalePosition = Schale.transform.position;
         searchForInRange(stone.transform.position);   //fügt allen Gegnern innerhalb des Einschlagradiuses schaden zu
+        shootSound.Play();
         stone.transform.position = schalePosition;
     }
     void searchForInRange(Vector3 einschlag)
