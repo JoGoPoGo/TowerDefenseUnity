@@ -36,8 +36,18 @@ public class LevelLock : MonoBehaviour
             smallestLockedLevel = 8;
         if (stars >= 9) 
             smallestLockedLevel = 9;
-        if (stars >= 27)
+        if (stars >= 20)
             smallestLockedLevel = 10;
+        if (stars >= 22)
+            smallestLockedLevel = 11;
+        if (stars >= 23)
+            smallestLockedLevel = 12;
+        if (stars >= 24)
+            smallestLockedLevel = 13;
+        if (stars >= 25)
+            smallestLockedLevel = 14;
+        if (stars >= 26)
+            smallestLockedLevel = 15;
 
         if(currentMaxLevel < smallestLockedLevel)
         {

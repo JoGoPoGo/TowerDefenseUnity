@@ -2771,6 +2771,10 @@ PrefabInstance:
       propertyPath: waves.Array.data[2].groups.Array.data[0].botConfigs.Array.data[1].botPrefab
       value: 
       objectReference: {fileID: 5074364399676035807, guid: 0ea02ea1822926a48bf1e1f8f3a1fd97, type: 3}
+    - target: {fileID: 8886702639069442743, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8428887046983470758, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
     - {fileID: 516424686804196495, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}

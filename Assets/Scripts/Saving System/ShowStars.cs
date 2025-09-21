@@ -7,7 +7,6 @@ public class ShowStars : MonoBehaviour
 {
 
     public GameObject Base;
-    public TMP_Text display;
     public GameObject WinScreen;
 
     public int levelNumber;
@@ -32,7 +31,7 @@ public class ShowStars : MonoBehaviour
             ProgressManager.Instance.SaveStarsForLevel(levelNumber, baseSkript.receivedStars);
             displayStars = ProgressManager.Instance.GetCollectedStars();
 
-            display.text = "Stars: " + baseSkript.receivedStars + "\nTotal Stars:" + displayStars;
+            totalStars = baseSkript.receivedStars;
 
             savedStars = true;  // Prevent this from running again every frame
         }
