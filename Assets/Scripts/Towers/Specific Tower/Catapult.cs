@@ -24,7 +24,6 @@ public class Catapult : Tower
     {
         if (!spawnScript.spawned)
         {
-            shootSound.Play();
             damageScript = target.GetComponent<DamageTest>();
             StartCoroutine(ShootAnimation());  //fügt schaden in stoneAnimation zu
 
