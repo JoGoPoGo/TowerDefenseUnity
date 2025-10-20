@@ -8,7 +8,7 @@ public class SpawnOnMouseClick : MonoBehaviour
     public bool spawned = false;
     public GameObject[] prefabsToSpawn; // Array von GameObjects, die gespawnt werden können
     public Button[] spawnButtons; // Array von Buttons, die die Auswahl der GameObjects steuern
-    private int selectedPrefabIndex = 0; // Index des aktuell ausgewählten GameObjects
+    public int selectedPrefabIndex = 0; // Index des aktuell ausgewählten GameObjects
     private bool spawnEnabled = false; // Frag, ob das Spawning aktiviert ist 
     public GameObject selectedPrefab;
     public Preview previewScript;
@@ -61,15 +61,24 @@ public class SpawnOnMouseClick : MonoBehaviour
                 // Wenn der Raycast etwas trifft
                 if (Physics.Raycast(ray, out hit)/*&& previewScript.IsPositionValid()*/)
                 {
-                    // Spawnen des ausgewählten GameObjects an der Hit-Position
-                    GameObject spawnedObject = Instantiate(prefabsToSpawn[selectedPrefabIndex], hit.point , Quaternion.identity);
 
-                    // Setze den Namen und Tag des neu erstellten Objekts
-                    selectedPrefab = spawnedObject;
-                    spawnedObject.name = "Tower";
-                    spawnedObject.tag = "lastSpawned";
+                    if (previewScript.IsPositionValidAt(hit.point))
+                    {
 
-                    spawned = true;
+                        // Spawnen des ausgewählten GameObjects an der Hit-Position
+                        GameObject spawnedObject = Instantiate(prefabsToSpawn[selectedPrefabIndex], hit.point, Quaternion.identity);
+
+                        // Setze den Namen und Tag des neu erstellten Objekts
+                        selectedPrefab = spawnedObject;
+                        spawnedObject.name = "Tower";
+                        spawnedObject.tag = "lastSpawned";
+
+                        spawned = true;
+                    }
+                    else
+                    {
+                        gameManager.AddCredits(cost);
+                    }
 
                 }
 

@@ -33,7 +33,7 @@ public class Preview : MonoBehaviour
             {
                 hitpointx = hit.point.x;
                 hitpointz = hit.point.z;
-                if (IsPositionValid())
+                if (IsPositionValidAt(new Vector3(hitpointx, 0, hitpointz)))
                 {
                     //SetVisibility(previewObject, true);
                     previewObject.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
@@ -66,10 +66,10 @@ public class Preview : MonoBehaviour
         }
         
     }
-    public bool IsPositionValid()
+    public bool IsPositionValidAt(Vector3 position)
     {
-        Tower towerScript = previewObject.GetComponent<Tower>();
-        float ownCancelRadius = towerScript.spawnCancelRadius;
+        Tower towerPrefab = spawnScript.prefabsToSpawn[spawnScript.selectedPrefabIndex].GetComponent<Tower>();
+        float ownCancelRadius = towerPrefab.spawnCancelRadius;
         // Suche nach Türmen in der Szene
         Tower[] towers = FindObjectsOfType<Tower>();
         foreach (Tower tower in towers)
@@ -78,7 +78,7 @@ public class Preview : MonoBehaviour
             {
                 continue; // Gehe zum nächsten Turm
             }
-            float distance = Vector3.Distance(new Vector3(hitpointx, 0, hitpointz), tower.transform.position);
+            float distance = Vector3.Distance(new Vector3(position.x, 0, position.z), tower.transform.position);
             if (distance < tower.spawnCancelRadius || distance < ownCancelRadius)
             {
                 return false; // Position ist innerhalb des No-Tower-Bereichs

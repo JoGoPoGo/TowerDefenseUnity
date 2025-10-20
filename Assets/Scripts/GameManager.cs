@@ -9,11 +9,14 @@ public class GameManager : MonoBehaviour
 
     public int credits = 0;
     
-    public bool SpendCredits(int amount)
+    public bool SpendCredits(int amount, bool spend = true)
     {
         if(credits >= amount)
         {
-            credits -= amount; //zieht amount von credits ab
+            if (spend)
+            {
+                credits -= amount; //zieht amount von credits ab
+            }
             return true;
         }
         return false;
