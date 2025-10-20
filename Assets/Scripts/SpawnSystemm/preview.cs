@@ -36,7 +36,7 @@ public class Preview : MonoBehaviour
                 if (IsPositionValidAt(new Vector3(hitpointx, 0, hitpointz)))
                 {
                     //SetVisibility(previewObject, true);
-                    previewObject.transform.position = new Vector3(hit.point.x, 0, hit.point.z);
+                    previewObject.transform.position = new Vector3(Mathf.Round(hit.point.x), 0, Mathf.Round(hit.point.z));
                     ChangeRangeMaterial(normalMaterial);
                 }
                 

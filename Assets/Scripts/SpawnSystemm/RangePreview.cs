@@ -11,8 +11,9 @@ public class RangePreview : MonoBehaviour
         // Initialize partToActivate to null
         partToActivate = null;
     }
+}
 
-    void Update()
+    /*void Update()
     {
         // Check if spawnScript is assigned and spawned is true
         if (spawnScript != null && spawnScript.spawned)
@@ -50,4 +51,4 @@ public class RangePreview : MonoBehaviour
             Debug.LogWarning("Range Objekt im Prefab nicht gefunden!");
         }
     }
-}
+}*/

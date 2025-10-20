@@ -36,6 +36,8 @@ public class Tower : MonoBehaviour
 
     private Tower[] allTowerComponents;
 
+    private int UpdateCounter = 0;
+
     //public string name;
 
     protected LayerMask obstacleMask;
@@ -50,7 +52,18 @@ public class Tower : MonoBehaviour
     }
     protected virtual void Update()  
     {
-        UpdateTarget();     //sucht das Ziel
+        if(UpdateCounter == 10)
+        {
+            UpdateCounter = 0;
+        }
+
+        if(UpdateCounter == 0)
+        {
+            UpdateTarget();  
+        }
+
+        UpdateCounter ++;
+
         if (target == null)   //führt nichts aus, wenn kein Ziel gefunden wurde
             return;
 

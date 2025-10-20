@@ -61,12 +61,13 @@ public class SpawnOnMouseClick : MonoBehaviour
                 // Wenn der Raycast etwas trifft
                 if (Physics.Raycast(ray, out hit)/*&& previewScript.IsPositionValid()*/)
                 {
+                    Vector3 placePosition = new Vector3(Mathf.Round(hit.point.x), 0, Mathf.Round(hit.point.z));
 
                     if (previewScript.IsPositionValidAt(hit.point))
                     {
 
                         // Spawnen des ausgewählten GameObjects an der Hit-Position
-                        GameObject spawnedObject = Instantiate(prefabsToSpawn[selectedPrefabIndex], hit.point, Quaternion.identity);
+                        GameObject spawnedObject = Instantiate(prefabsToSpawn[selectedPrefabIndex], placePosition /*hit.point*/, Quaternion.identity);
 
                         // Setze den Namen und Tag des neu erstellten Objekts
                         selectedPrefab = spawnedObject;
