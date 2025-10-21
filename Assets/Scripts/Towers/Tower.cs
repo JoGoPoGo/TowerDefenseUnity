@@ -42,7 +42,7 @@ public class Tower : MonoBehaviour
 
     protected LayerMask obstacleMask;
 
-    void Start()
+    protected virtual void Start()
     {
         obstacleMask = LayerMask.GetMask("Obstacle");
         GameObject spawnHandler = GameObject.Find("SpawnHandler");

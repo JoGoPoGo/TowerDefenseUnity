@@ -75,12 +75,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31217277b9a84e6468e716f216d61fa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayCount: 180
+  rayCount: 60
+  accuracy: 1
   towerScript: {fileID: 5267380721214097343}
   obstacleMask:
     serializedVersion: 2
     m_Bits: 2048
   rangeMaterial: {fileID: 2100000, guid: f3faef7309b4e0441beb0bbac78a7347, type: 2}
+  previewAngle: 360
 --- !u!114 &5267380721214097343
 MonoBehaviour:
   m_ObjectHideFlags: 0

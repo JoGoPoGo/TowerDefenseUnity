@@ -6,13 +6,16 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter))]
 
 
-public class DynamicRangeVisualizer : MonoBehaviour
+public class DynamicRangePreview : MonoBehaviour
 {
     public int rayCount = 180; // Auflösung (mehr = glatterer Kreis)
+    public int accuracy = 1;
+
     public Tower towerScript;
     public LayerMask obstacleMask; // Hindernisse
     public Material rangeMaterial;
 
+    public int previewAngle = 360;
 
     private MeshRenderer meshRenderer;
     private MeshFilter meshFilter;
@@ -66,16 +69,19 @@ public class DynamicRangeVisualizer : MonoBehaviour
     void GenerateRangeMesh()
     {
         Vector3 origin = transform.position + Vector3.up * 0.3f; // leicht über Boden
-        float angleStep = 360f / rayCount;
+
+        float angleStep = previewAngle / rayCount;
 
         Vector3[] vertices = new Vector3[rayCount + 2];
         int[] triangles = new int[rayCount * 3];
 
         vertices[0] = new Vector3(0,0.1f,0); // Mittelpunkt (lokal)
 
+        float startAngle = -previewAngle / 2f;
+
         for (int i = 0; i <= rayCount; i++)
         {
-            float angle = i * angleStep;
+            float angle = startAngle + i * angleStep;
             Vector3 dir = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0, Mathf.Sin(angle * Mathf.Deg2Rad));
 
             // Raycast prüft Hindernisse

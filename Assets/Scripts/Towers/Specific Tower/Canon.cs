@@ -9,7 +9,16 @@ public class Canon : Tower
     
     private int rotateCounter = 0;
     private Quaternion startDirection;
+
+    private DynamicRangePreview rangePreviewScript;
     // Start is called before the first frame update
+
+    protected override void Start()
+    {
+        base.Start();
+        rangePreviewScript = GetComponent<DynamicRangePreview>();
+        rangePreviewScript.previewAngle = rangeDegrees;
+    }
 
     protected override void Update()
     {
