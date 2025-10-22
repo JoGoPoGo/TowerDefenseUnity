@@ -9,6 +9,7 @@ public class Preview : MonoBehaviour
     private GameObject previewObject; // Das Objekt, das als Vorschau angezeigt wird
     private float hitpointx;
     private float hitpointz;
+    private float hitpointy;
 
     public Material normalMaterial;    // Material für gültige Position
     public Material sperrbereichMaterial; // Material für ungültige Position
@@ -33,15 +34,19 @@ public class Preview : MonoBehaviour
             {
                 hitpointx = hit.point.x;
                 hitpointz = hit.point.z;
-                if (IsPositionValidAt(new Vector3(hitpointx, 0, hitpointz)))
+
+                if(hit.point.y % 1 < 0.5)
+                {
+                    hitpointy = Mathf.Round(hit.point.y);
+                }
+
+                if (IsPositionValidAt(new Vector3(hitpointx, hitpointy, hitpointz)))
                 {
                     //SetVisibility(previewObject, true);
-                    previewObject.transform.position = new Vector3(Mathf.Round(hit.point.x), 0, Mathf.Round(hit.point.z));
+                    previewObject.transform.position = new Vector3(Mathf.Round(hit.point.x), hitpointy, Mathf.Round(hit.point.z));
                     ChangeRangeMaterial(normalMaterial);
                 }
-                
 
-                
                 // Setze die Position des Vorschau-Objekts auf den Trefferpunkt
                 else
                 {

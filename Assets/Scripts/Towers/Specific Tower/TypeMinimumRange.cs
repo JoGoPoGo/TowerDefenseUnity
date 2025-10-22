@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hochmut : Tower
+public class TypeMinimumRange : Tower
 {
     public float rangeMinimum;
     public GameObject projectile;

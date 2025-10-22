@@ -25,6 +25,7 @@ public class DynamicRangePreview : MonoBehaviour
     private SpawnOnMouseClick spawnOnMouseClick;
 
     private Vector3 lastPosition;
+    private Quaternion lastRotation; 
 
 
     void Awake()
@@ -53,9 +54,11 @@ public class DynamicRangePreview : MonoBehaviour
         if (gameObject.CompareTag("Tower") == false)
         {
             meshRenderer.enabled = true;
-            if (IsMoved())
+            if (IsMoved() || WasRotated())
             {
+
                 GenerateRangeMesh();
+                lastRotation = transform.rotation;
                 lastPosition = transform.position;
             }
 
@@ -68,30 +71,39 @@ public class DynamicRangePreview : MonoBehaviour
 
     void GenerateRangeMesh()
     {
+        if (rayCount <= 0) return;
+
         Vector3 origin = transform.position + Vector3.up * 0.3f; // leicht über Boden
 
-        float angleStep = previewAngle / rayCount;
+        float angleStep = (float)previewAngle / (float)rayCount;
+        float startAngle = -previewAngle * 0.5f;
 
         Vector3[] vertices = new Vector3[rayCount + 2];
         int[] triangles = new int[rayCount * 3];
 
-        vertices[0] = new Vector3(0,0.1f,0); // Mittelpunkt (lokal)
+        vertices[0] = new Vector3(0f, 0.1f, 0f); // Mittelpunkt (lokal)
 
-        float startAngle = -previewAngle / 2f;
+        // Rotation, s.t. der Sektor zentriert zur forward-Richtung ist
+        Quaternion baseRotation = transform.rotation * Quaternion.Euler(0f, startAngle, 0f);
 
         for (int i = 0; i <= rayCount; i++)
         {
-            float angle = startAngle + i * angleStep;
-            Vector3 dir = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), 0, Mathf.Sin(angle * Mathf.Deg2Rad));
+            float angle = i * angleStep; // 0..previewAngle
+            Vector3 worldDir = baseRotation * Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
 
-            // Raycast prüft Hindernisse
-            if (Physics.Raycast(origin, dir, out RaycastHit hit, range, obstacleMask))
+            // Debug (sichtbar im Scene-View, nur beim Entwickeln)
+            Debug.DrawRay(origin, worldDir * Mathf.Min(range, 10f), Color.yellow, 0.1f);
+
+            if (Physics.Raycast(origin, worldDir, out RaycastHit hit, range, obstacleMask))
             {
                 vertices[i + 1] = transform.InverseTransformPoint(hit.point);
+                // Debug: roter Trefferpunkt
+                Debug.DrawLine(origin, hit.point, Color.red, 0.1f);
             }
             else
             {
-                vertices[i + 1] = dir * range;
+                Vector3 worldPoint = origin + worldDir * range;
+                vertices[i + 1] = transform.InverseTransformPoint(worldPoint);
             }
         }
 
@@ -107,9 +119,17 @@ public class DynamicRangePreview : MonoBehaviour
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
+
+        // optional: bounds einstellen, falls Mesh außerhalb liegt
+        mesh.RecalculateBounds();
     }
+
     private bool IsMoved()
     {
         return transform.position != lastPosition;
+    }
+    private bool WasRotated()
+    {
+        return transform.rotation != lastRotation;
     }
 }

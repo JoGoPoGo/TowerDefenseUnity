@@ -4,7 +4,7 @@ using System.Timers;
 using TMPro;
 using UnityEngine;
 
-public class Catapult : Tower
+public class TypeCatapult : Tower
 {
     public GameObject wurfArm;
     public GameObject stone;

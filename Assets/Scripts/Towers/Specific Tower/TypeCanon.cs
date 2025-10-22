@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Canon : Tower
+public class TypeCanon : Tower
 {
     public int rangeDegrees;
     

@@ -57,7 +57,7 @@ public class Tower : MonoBehaviour
             UpdateCounter = 0;
         }
 
-        if(UpdateCounter == 0)
+        if(UpdateCounter == 0 && gameObject.CompareTag("Tower"))
         {
             UpdateTarget();  
         }
@@ -76,8 +76,12 @@ public class Tower : MonoBehaviour
         // Wenn die Zeit zum Schieﬂen gekommen ist, wird geschossen
         if (fireCountdown <= 0f)
         {
-            shootSound.Play();
-            Shoot();
+            if (gameObject.CompareTag("Tower"))
+            {
+                shootSound.Play();
+                Shoot();
+            }
+
             fireCountdown = 1f / fireRate; // Setze den Timer f¸r den n‰chsten Schuss
         }
         

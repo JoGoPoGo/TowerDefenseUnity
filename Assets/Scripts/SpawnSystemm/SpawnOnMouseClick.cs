@@ -61,7 +61,7 @@ public class SpawnOnMouseClick : MonoBehaviour
                 // Wenn der Raycast etwas trifft
                 if (Physics.Raycast(ray, out hit)/*&& previewScript.IsPositionValid()*/)
                 {
-                    Vector3 placePosition = new Vector3(Mathf.Round(hit.point.x), 0, Mathf.Round(hit.point.z));
+                    Vector3 placePosition = new Vector3(Mathf.Round(hit.point.x), Mathf.Round(hit.point.y), Mathf.Round(hit.point.z));
 
                     if (previewScript.IsPositionValidAt(hit.point))
                     {
