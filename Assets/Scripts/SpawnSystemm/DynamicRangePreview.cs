@@ -22,7 +22,9 @@ public class DynamicRangePreview : MonoBehaviour
 
     private Mesh mesh;
     private float range;
+
     private SpawnOnMouseClick spawnOnMouseClick;
+    private CancelDictionary dictionary;
 
     private Vector3 lastPosition;
     private Quaternion lastRotation; 

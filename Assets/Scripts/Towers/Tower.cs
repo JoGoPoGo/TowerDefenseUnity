@@ -18,7 +18,7 @@ public class Tower : MonoBehaviour
     public float bulletSpeed = 10f;     //Kugelgeschwindigkeit
     public float range = 15f;          // Reichweite des Turms
     public int damageAmount = 50;       //Schaden
-    public float spawnCancelRadius = 10f;        // Kein Weiterer turm in diesem Bereich
+    public int spawnCancelRadius = 10;        // Kein Weiterer turm in diesem Bereich
    
     protected float fireCountdown = 0f; 
     
@@ -37,10 +37,13 @@ public class Tower : MonoBehaviour
     private Tower[] allTowerComponents;
 
     private int UpdateCounter = 0;
+    private bool dictionaryActivater = true;
 
     //public string name;
 
     protected LayerMask obstacleMask;
+
+    protected CancelDictionary dictionary; 
 
     protected virtual void Start()
     {
@@ -49,9 +52,22 @@ public class Tower : MonoBehaviour
         spawnScript = spawnHandler.GetComponent<SpawnOnMouseClick>();
         allTowerComponents = GetComponents<Tower>();      //Liste aller Komponenten der Towerklasse
         gameManager = FindObjectOfType<GameManager>();
+
+        dictionary = gameManager.GetComponent<CancelDictionary>();
+
+
+
     }
     protected virtual void Update()  
     {
+        if (gameObject.CompareTag("Tower") && dictionaryActivater)
+        {
+            Vector2Int posi = new Vector2Int((int)Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.z));
+
+            OccupyPositionsInCircle(posi, spawnCancelRadius);
+            dictionaryActivater = false;
+        }
+
         if(UpdateCounter == 10)
         {
             UpdateCounter = 0;
@@ -183,6 +199,26 @@ public class Tower : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
+    }
+    public void OccupyPositionsInCircle(Vector2Int center, int range)
+    {
+        int rangeSqr = range * range;
+
+        for(int x = center.x -range; x <= center.x + range; x++)
+        {
+            for (int y = center.y - range; y <= center.y + range; y++)
+            {
+                int dx = x - center.x;
+                int dy = y - center.y;
+
+                if (dx * dx + dy * dy <= rangeSqr)
+                {
+                    dictionary.OccupyPosition(new Vector2Int(x,y));
+
+                }
+
+            }
+        }
     }
 }
 

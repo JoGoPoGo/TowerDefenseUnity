@@ -357,7 +357,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   rangeMaterial: {fileID: 2100000, guid: f3faef7309b4e0441beb0bbac78a7347, type: 2}
-  previewAngle: 0
+  previewAngle: 360
 --- !u!114 &1011844215647602231
 MonoBehaviour:
   m_ObjectHideFlags: 0

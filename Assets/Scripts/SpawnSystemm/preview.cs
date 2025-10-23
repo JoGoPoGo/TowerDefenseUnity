@@ -17,8 +17,13 @@ public class Preview : MonoBehaviour
     private bool terrainInScene;
     private Terrain terrainObject;
 
+    private CancelDictionary dictionary;
+
     void Start()
     {
+        GameManager gameManager = FindObjectOfType<GameManager>();
+        dictionary = gameManager.GetComponent<CancelDictionary>();
+
         //previewObject = spawnScript.selectedPrefab;
         terrainObject = FindObjectOfType<Terrain>();
         terrainInScene = (terrainObject != null);          //prüft, ob ein Terrain in der Szene ist
