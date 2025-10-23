@@ -56,7 +56,6 @@ public class DynamicRangePreview : MonoBehaviour
             meshRenderer.enabled = true;
             if (IsMoved() || WasRotated())
             {
-
                 GenerateRangeMesh();
                 lastRotation = transform.rotation;
                 lastPosition = transform.position;
@@ -71,25 +70,26 @@ public class DynamicRangePreview : MonoBehaviour
 
     void GenerateRangeMesh()
     {
-        if (rayCount <= 0) return;
+        //if (rayCount <= 0) return;
 
         Vector3 origin = transform.position + Vector3.up * 0.3f; // leicht über Boden
 
         float angleStep = (float)previewAngle / (float)rayCount;
-        float startAngle = -previewAngle * 0.5f;
+
+        float startAngle =  -previewAngle * 0.5f;
 
         Vector3[] vertices = new Vector3[rayCount + 2];
         int[] triangles = new int[rayCount * 3];
 
         vertices[0] = new Vector3(0f, 0.1f, 0f); // Mittelpunkt (lokal)
 
-        // Rotation, s.t. der Sektor zentriert zur forward-Richtung ist
-        Quaternion baseRotation = transform.rotation * Quaternion.Euler(0f, startAngle, 0f);
-
         for (int i = 0; i <= rayCount; i++)
         {
-            float angle = i * angleStep; // 0..previewAngle
-            Vector3 worldDir = baseRotation * Quaternion.Euler(0f, angle, 0f) * Vector3.forward;
+            float angle = startAngle + i * angleStep; // 0..previewAngle
+            Vector3 localDir = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0 , Mathf.Cos(angle * Mathf.Deg2Rad));
+
+
+            Vector3 worldDir = transform.rotation * localDir;
 
             // Debug (sichtbar im Scene-View, nur beim Entwickeln)
             Debug.DrawRay(origin, worldDir * Mathf.Min(range, 10f), Color.yellow, 0.1f);
@@ -102,8 +102,7 @@ public class DynamicRangePreview : MonoBehaviour
             }
             else
             {
-                Vector3 worldPoint = origin + worldDir * range;
-                vertices[i + 1] = transform.InverseTransformPoint(worldPoint);
+                vertices[i + 1] = localDir * range;
             }
         }
 
@@ -111,8 +110,8 @@ public class DynamicRangePreview : MonoBehaviour
         {
             int vIndex = i + 1;
             triangles[i * 3] = 0;
-            triangles[i * 3 + 1] = vIndex + 1;
-            triangles[i * 3 + 2] = vIndex;
+            triangles[i * 3 + 1] = vIndex;
+            triangles[i * 3 + 2] = vIndex + 1;
         }
 
         mesh.Clear();
