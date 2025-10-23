@@ -19,6 +19,8 @@ public class SpawnOnMouseClick : MonoBehaviour
 
     void Start()
     {
+        
+
         // Initialisierung der Buttons:
         for (int i = 0; i < spawnButtons.Length; i++)
         {
@@ -61,9 +63,18 @@ public class SpawnOnMouseClick : MonoBehaviour
                 // Wenn der Raycast etwas trifft
                 if (Physics.Raycast(ray, out hit)/*&& previewScript.IsPositionValid()*/)
                 {
-                    Vector3 placePosition = new Vector3(Mathf.Round(hit.point.x), Mathf.Round(hit.point.y), Mathf.Round(hit.point.z));
+                    int hitPointx = (int)Mathf.Round(hit.point.x);
+                    int hitPointz = (int)Mathf.Round(hit.point.z);
 
-                    if (previewScript.IsPositionValidAt(hit.point))
+                    Vector3 placePosition = new Vector3(hitPointx, 0, hitPointz);          //erstellt die Position aus den ganzen Werten der Hitpoints (x und z)
+
+                    if (terrainInScene())                 //wenn ein Terrain in der Szene ist, wird die Höhe dessen beachtet
+                    {
+                        float terrainHeight = Terrain.activeTerrain.SampleHeight(new Vector3(hitPointx, 0, hitPointz));
+                        placePosition += new Vector3(0, terrainHeight, 0);
+                    }
+
+                    if (previewScript.IsPositionValidAt(new Vector3(hitPointx, 0, hitPointz)))              //überprüft die Position auf Y = 0 (besser fürs Grid System und einheitlicher)
                     {
 
                         // Spawnen des ausgewählten GameObjects an der Hit-Position
@@ -94,5 +105,11 @@ public class SpawnOnMouseClick : MonoBehaviour
     {
         Tower towerScript = prefabsToSpawn[selectedPrefabIndex].GetComponent<Tower>();
         cost = towerScript.price;
+    }
+
+    public bool terrainInScene()
+    {
+        Terrain terrainObject = FindObjectOfType<Terrain>();
+        return terrainObject != null;
     }
 }

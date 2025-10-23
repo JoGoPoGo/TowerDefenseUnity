@@ -7,16 +7,22 @@ public class Preview : MonoBehaviour
 {
     public SpawnOnMouseClick spawnScript;
     private GameObject previewObject; // Das Objekt, das als Vorschau angezeigt wird
-    private float hitpointx;
-    private float hitpointz;
-    private float hitpointy;
+    private float hitPointx;
+    private float hitPointz;
+    private float hitPointy;
 
     public Material normalMaterial;    // Material für gültige Position
     public Material sperrbereichMaterial; // Material für ungültige Position
 
+    private bool terrainInScene;
+    private Terrain terrainObject;
+
     void Start()
     {
         //previewObject = spawnScript.selectedPrefab;
+        terrainObject = FindObjectOfType<Terrain>();
+        terrainInScene = (terrainObject != null);          //prüft, ob ein Terrain in der Szene ist
+
     }
     // Update wird einmal pro Frame aufgerufen
     void Update()
@@ -32,18 +38,21 @@ public class Preview : MonoBehaviour
             // Wenn der Raycast etwas trifft
             if (Physics.Raycast(ray, out hit))
             {
-                hitpointx = hit.point.x;
-                hitpointz = hit.point.z;
+                hitPointx = Mathf.Round(hit.point.x);    
+                hitPointz = Mathf.Round(hit.point.z);
 
-                if(hit.point.y % 1 < 0.5)
+                Vector3 placePosition = new Vector3(hitPointx, 0, hitPointz); //erstellt die Position aus den ganzen Werten der HitPoints
+
+                if (terrainInScene)                //wenn ein Terrain in der Szene ist, wird die Höhe an dem Punkt des Terrain der placePositon hinzugefügt
                 {
-                    hitpointy = Mathf.Round(hit.point.y);
+                    float terrainHeight = Terrain.activeTerrain.SampleHeight(new Vector3(hitPointx, 0, hitPointz));
+                    placePosition += new Vector3(0, terrainHeight, 0);
                 }
 
-                if (IsPositionValidAt(new Vector3(hitpointx, hitpointy, hitpointz)))
+                if (IsPositionValidAt(new Vector3(hitPointx, 0, hitPointz)))
                 {
                     //SetVisibility(previewObject, true);
-                    previewObject.transform.position = new Vector3(Mathf.Round(hit.point.x), hitpointy, Mathf.Round(hit.point.z));
+                    previewObject.transform.position = placePosition;
                     ChangeRangeMaterial(normalMaterial);
                 }
 
