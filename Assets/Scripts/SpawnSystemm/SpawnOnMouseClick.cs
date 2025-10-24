@@ -16,6 +16,8 @@ public class SpawnOnMouseClick : MonoBehaviour
     //Tims Änderung
     public GameManager gameManager;
     public int cost = 0;       //wie viel Kostet der Turm?
+    public int tiling = 1;
+
 
     void Start()
     {
@@ -63,8 +65,8 @@ public class SpawnOnMouseClick : MonoBehaviour
                 // Wenn der Raycast etwas trifft
                 if (Physics.Raycast(ray, out hit)/*&& previewScript.IsPositionValid()*/)
                 {
-                    int hitPointx = (int)Mathf.Round(hit.point.x);
-                    int hitPointz = (int)Mathf.Round(hit.point.z);
+                    int hitPointx = (int)(tiling * Mathf.Round(hit.point.x / tiling));
+                    int hitPointz = (int)(tiling * Mathf.Round(hit.point.z / tiling));
 
                     Vector3 placePosition = new Vector3(hitPointx, 0, hitPointz);          //erstellt die Position aus den ganzen Werten der Hitpoints (x und z)
 

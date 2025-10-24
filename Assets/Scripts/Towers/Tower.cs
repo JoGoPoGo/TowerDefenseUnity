@@ -43,13 +43,18 @@ public class Tower : MonoBehaviour
 
     protected LayerMask obstacleMask;
 
-    protected CancelDictionary dictionary; 
+    protected CancelDictionary dictionary;
+
+    protected int tiling = 1;
 
     protected virtual void Start()
     {
         obstacleMask = LayerMask.GetMask("Obstacle");
         GameObject spawnHandler = GameObject.Find("SpawnHandler");
+
         spawnScript = spawnHandler.GetComponent<SpawnOnMouseClick>();
+        tiling = spawnScript.tiling;
+
         allTowerComponents = GetComponents<Tower>();      //Liste aller Komponenten der Towerklasse
         gameManager = FindObjectOfType<GameManager>();
 
@@ -204,9 +209,9 @@ public class Tower : MonoBehaviour
     {
         int rangeSqr = range * range;
 
-        for(int x = center.x -range; x <= center.x + range; x++)
+        for(int x = center.x -range; x <= center.x + range; x += tiling)
         {
-            for (int y = center.y - range; y <= center.y + range; y++)
+            for (int y = center.y - range; y <= center.y + range; y += tiling)
             {
                 int dx = x - center.x;
                 int dy = y - center.y;

@@ -4547,6 +4547,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 5804837718299460341}
     m_Modifications:
     - target: {fileID: 2098664592588450185, guid: 9031138a415095c4599610268e5ba477, type: 3}
+      propertyPath: tiling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2098664592588450185, guid: 9031138a415095c4599610268e5ba477, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 2454070309858566500}

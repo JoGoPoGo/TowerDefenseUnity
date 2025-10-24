@@ -19,10 +19,14 @@ public class Preview : MonoBehaviour
 
     private CancelDictionary dictionary;
 
+    private int tiling = 1;
+
     void Start()
     {
         GameManager gameManager = FindObjectOfType<GameManager>();
         dictionary = gameManager.GetComponent<CancelDictionary>();
+
+        tiling = spawnScript.tiling;
 
         //previewObject = spawnScript.selectedPrefab;
         terrainObject = FindObjectOfType<Terrain>();
@@ -43,8 +47,8 @@ public class Preview : MonoBehaviour
             // Wenn der Raycast etwas trifft
             if (Physics.Raycast(ray, out hit))
             {
-                hitPointx = Mathf.Round(hit.point.x);    
-                hitPointz = Mathf.Round(hit.point.z);
+                hitPointx = (tiling * Mathf.Round(hit.point.x / tiling));    
+                hitPointz = (tiling * Mathf.Round(hit.point.z / tiling));
 
                 Vector3 placePosition = new Vector3(hitPointx, 0, hitPointz); //erstellt die Position aus den ganzen Werten der HitPoints
 

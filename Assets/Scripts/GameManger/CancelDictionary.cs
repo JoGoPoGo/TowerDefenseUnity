@@ -20,37 +20,54 @@ public class CancelDictionary : MonoBehaviour
     private Terrain terrain;
     private bool IsTerrainInScene;
 
+    private int tiling;
+    private SpawnOnMouseClick spawnScript;
+
 
     void Start()
     {
+        spawnScript = FindObjectOfType <SpawnOnMouseClick>();
+        tiling = spawnScript.tiling;
+
         terrain = FindObjectOfType<Terrain>();
         IsTerrainInScene = (terrain != null);
     }
 
     public void showCancelArea()
     {
-        foreach (KeyValuePair<Vector2Int, int> cell in spawnGrid)
+        
+
+        /*foreach (KeyValuePair<Vector2Int, int> cell in spawnGrid)
         {
             Vector2Int pos = cell.Key;
             int value = cell.Value;
 
             if (IsTerrainInScene && value == 1)
             {
+                Terrain terrain = Terrain.activeTerrain;
+                Vector3 terrainPos = terrain.transform.position;
+                Vector3 relativePos = new Vector3(pos.x - terrainPos.x, pos.y - terrainPos.z);
+
+                float normalizedX = relativePos.x / terrain.terrainData.size.x;
+                float normalizedZ = relativePos.z / terrain.terrainData.size.z;
+
                 float terrainHeight = Terrain.activeTerrain.SampleHeight(new Vector3(pos.x, 0, pos.y));
-                Vector3 normal = Terrain.activeTerrain.terrainData.GetInterpolatedNormal(pos.x, pos.y);
+                Vector3 normal = terrain.terrainData.GetInterpolatedNormal(normalizedX, normalizedZ);
                 Instantiate(plate, new Vector3(pos.x, terrainHeight + yOffset, pos.y), Quaternion.FromToRotation(Vector3.up, normal));
             }
             else
             {
                 if(value == 1)
                 {
-                    Instantiate(plate, new Vector3(pos.x, yOffset, pos.y), Quaternion.identity) ;
+                    GameObject plate1 = Instantiate(plate, new Vector3(pos.x, yOffset, pos.y), Quaternion.identity);
+                    PlateScale(4, plate1);
+
                 }
             }
 
 
         }
-        /*foreach (KeyValuePair<Vector2Int, int> cell in spawnGrid)
+        foreach (KeyValuePair<Vector2Int, int> cell in spawnGrid)
         {
             Vector3 pos = new Vector3(cell.Key.x * cellSize, yOffset, cell.Key.y * cellSize);
             GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
@@ -87,5 +104,10 @@ public class CancelDictionary : MonoBehaviour
     public void FreePosition(Vector2Int pos)
     {
         spawnGrid[pos] = 0;
+    }
+
+    private void PlateScale(int scale, GameObject plate1)
+    {
+        plate1.transform.localScale = new Vector3(scale, 1, scale);
     }
 }
