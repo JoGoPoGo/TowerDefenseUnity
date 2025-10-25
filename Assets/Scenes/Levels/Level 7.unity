@@ -469,6 +469,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1858078993183592465, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: freeMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 0bdbff8c4bbd5854e8603e84e44527e9, type: 2}
+    - target: {fileID: 1858078993183592465, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: yOffset
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1858078993183592465, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: showDuration
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 2755585435108092562, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: tiling
       value: 1

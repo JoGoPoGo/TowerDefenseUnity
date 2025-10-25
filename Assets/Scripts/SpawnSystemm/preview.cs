@@ -91,7 +91,14 @@ public class Preview : MonoBehaviour
     }
     public bool IsPositionValidAt(Vector3 position)
     {
-        Tower towerPrefab = spawnScript.prefabsToSpawn[spawnScript.selectedPrefabIndex].GetComponent<Tower>();
+        int x = (int)Mathf.Round(position.x);
+        int y = (int)Mathf.Round(position.z);
+
+        Vector2Int pos = new Vector2Int(x, y);
+
+        return dictionary.CanSpawnAt(pos);
+
+        /*Tower towerPrefab = spawnScript.prefabsToSpawn[spawnScript.selectedPrefabIndex].GetComponent<Tower>();
         float ownCancelRadius = towerPrefab.spawnCancelRadius;
         // Suche nach Türmen in der Szene
         Tower[] towers = FindObjectsOfType<Tower>();
@@ -108,6 +115,7 @@ public class Preview : MonoBehaviour
             }
         }
         return true; // Position ist gültig
+        */
     }
     void SetVisibility(GameObject obj, bool visible)
     {

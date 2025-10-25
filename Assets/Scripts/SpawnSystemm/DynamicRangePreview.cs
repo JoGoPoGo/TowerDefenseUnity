@@ -93,14 +93,9 @@ public class DynamicRangePreview : MonoBehaviour
 
             Vector3 worldDir = transform.rotation * localDir;
 
-            // Debug (sichtbar im Scene-View, nur beim Entwickeln)
-            Debug.DrawRay(origin, worldDir * Mathf.Min(range, 10f), Color.yellow, 0.1f);
-
             if (Physics.Raycast(origin, worldDir, out RaycastHit hit, range, obstacleMask))
             {
                 vertices[i + 1] = transform.InverseTransformPoint(hit.point);
-                // Debug: roter Trefferpunkt
-                Debug.DrawLine(origin, hit.point, Color.red, 0.1f);
             }
             else
             {
