@@ -49,7 +49,7 @@ public class CancelDictionary : MonoBehaviour
         // Schritt 1: Punkte erfassen
         List<Vector2> points = new List<Vector2>();
 
-        foreach (var cell in spawnGrid)
+        /*foreach (var cell in spawnGrid)
         {
             if (cell.Value == 1)
             {
@@ -59,13 +59,28 @@ public class CancelDictionary : MonoBehaviour
         }
 
         // Schritt 2: Cluster bilden
-        List<List<Vector2>> clusters = ClusterPoints(points, maxDistance);
+        List<List<Vector2>> clusters = ClusterPoints(points, maxDistance); */
+
+        List<List<Vector2>> clusters = BuildTightClusters(spawnGrid);
 
         // Schritt 3: Für jeden Cluster eine konvexe Hülle
         foreach (var cluster in clusters)
         {
             List<Vector2> hull = ComputeConvexHull(cluster);
             CreateCancelMesh(hull);
+
+            // Dictionary für diesen Cluster aufbauen
+            /*Dictionary<Vector2Int, int> clusterGrid = new Dictionary<Vector2Int, int>();          //von hier
+            foreach (var p in cluster)
+            {
+                Vector2Int pi = new Vector2Int((int)p.x, (int)p.y);
+                if (spawnGrid.ContainsKey(pi))
+                    clusterGrid[pi] = spawnGrid[pi];
+            }                                                                                           //bis hier
+
+            // Mesh nur für die gültigen Rasterzellen erzeugen
+            CreateCancelMeshFromGrid(clusterGrid);  */
+
 
             // Schritt 4: Debug: Linien zeichnen
             for (int i = 0; i < hull.Count; i++)
@@ -92,6 +107,55 @@ public class CancelDictionary : MonoBehaviour
         }
 
     }
+
+    List<List<Vector2>> BuildTightClusters(Dictionary<Vector2Int, int> grid)
+    {
+        List<List<Vector2>> clusters = new List<List<Vector2>>();
+        HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
+
+        // Alle belegten Punkte durchlaufen
+        foreach (var kvp in grid)
+        {
+            Vector2Int start = kvp.Key;
+            if (kvp.Value != 1 || visited.Contains(start))
+                continue;
+
+            List<Vector2> cluster = new List<Vector2>();
+            Queue<Vector2Int> queue = new Queue<Vector2Int>();
+            queue.Enqueue(start);
+            visited.Add(start);
+
+            while (queue.Count > 0)
+            {
+                Vector2Int current = queue.Dequeue();
+                cluster.Add(new Vector2(current.x, current.y));
+
+                // Nur orthogonale Nachbarn (oben, unten, links, rechts)
+                Vector2Int[] neighbors = new Vector2Int[]
+                {
+                new Vector2Int(current.x + 1, current.y),
+                new Vector2Int(current.x - 1, current.y),
+                new Vector2Int(current.x, current.y + 1),
+                new Vector2Int(current.x, current.y - 1)
+                };
+
+                foreach (var n in neighbors)
+                {
+                    if (visited.Contains(n)) continue;
+                    if (grid.ContainsKey(n) && grid[n] == 1)
+                    {
+                        visited.Add(n);
+                        queue.Enqueue(n);
+                    }
+                }
+            }
+
+            clusters.Add(cluster);
+        }
+
+        return clusters;
+    }
+
 
     void CreateCancelMesh(List<Vector2> hull)
     {
@@ -135,6 +199,77 @@ public class CancelDictionary : MonoBehaviour
         area.transform.position += Vector3.up * 0.01f;
 
         // Optional: Hierarchie aufräumen
+        area.transform.parent = transform;
+    }
+    void CreateCancelMeshFromGrid(Dictionary<Vector2Int, int> grid)
+    {
+        List<Vector3> vertices = new List<Vector3>();
+        List<int> triangles = new List<int>();
+
+        foreach (var kvp in grid)
+        {
+            Vector2Int p = kvp.Key;
+            if (kvp.Value != 1) continue;
+
+            // Nachbarn prüfen (für ein Quad)
+            Vector2Int right = new Vector2Int(p.x + maxDistance, p.y);
+            Vector2Int up = new Vector2Int(p.x, p.y + maxDistance);
+            Vector2Int upRight = new Vector2Int(p.x + maxDistance, p.y + maxDistance);
+
+            if (grid.ContainsKey(right) && grid.ContainsKey(up) && grid.ContainsKey(upRight) &&
+                grid[right] == 1 && grid[up] == 1 && grid[upRight] == 1)
+            {
+                // Terrainhöhe pro Eckpunkt abfragen
+                float h1 = IsTerrainInScene ? terrain.SampleHeight(new Vector3(p.x, 0, p.y)) : 0f;
+                float h2 = IsTerrainInScene ? terrain.SampleHeight(new Vector3(right.x, 0, right.y)) : 0f;
+                float h3 = IsTerrainInScene ? terrain.SampleHeight(new Vector3(upRight.x, 0, upRight.y)) : 0f;
+                float h4 = IsTerrainInScene ? terrain.SampleHeight(new Vector3(up.x, 0, up.y)) : 0f;
+
+                int baseIndex = vertices.Count;
+
+                vertices.Add(new Vector3(p.x, h1 + yOffset, p.y));
+                vertices.Add(new Vector3(right.x, h2 + yOffset, right.y));
+                vertices.Add(new Vector3(upRight.x, h3 + yOffset, upRight.y));
+                vertices.Add(new Vector3(up.x, h4 + yOffset, up.y));
+
+                // Zwei Dreiecke pro Quad
+                // Zwei Dreiecke pro Quad (gegen den Uhrzeigersinn)
+                triangles.Add(baseIndex);      // unten links
+                triangles.Add(baseIndex + 2);  // oben rechts
+                triangles.Add(baseIndex + 1);  // unten rechts
+
+                triangles.Add(baseIndex);      // unten links
+                triangles.Add(baseIndex + 3);  // oben links
+                triangles.Add(baseIndex + 2);  // oben rechts
+
+            }
+        }
+
+        if (vertices.Count < 3)
+            return;
+
+        // Mesh erstellen
+        Mesh mesh = new Mesh();
+        mesh.vertices = vertices.ToArray();
+        mesh.triangles = triangles.ToArray();
+        mesh.RecalculateNormals();
+        mesh.RecalculateBounds();
+
+        // GameObject mit MeshFilter & Renderer
+        GameObject area = new GameObject("CancelAreaMesh", typeof(MeshFilter), typeof(MeshRenderer));
+        area.GetComponent<MeshFilter>().mesh = mesh;
+
+        var renderer = area.GetComponent<MeshRenderer>();
+        Material mat = new Material(Shader.Find("Standard"));
+        mat.color = new Color(1f, 0f, 0f, 0.35f);
+        mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        mat.SetInt("_ZWrite", 0);
+        mat.DisableKeyword("_ALPHATEST_ON");
+        mat.EnableKeyword("_ALPHABLEND_ON");
+        mat.renderQueue = 3000;
+        renderer.material = mat;
+
         area.transform.parent = transform;
     }
 
