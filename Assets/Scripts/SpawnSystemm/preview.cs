@@ -17,14 +17,14 @@ public class Preview : MonoBehaviour
     private bool terrainInScene;
     private Terrain terrainObject;
 
-    private CancelDictionary dictionary;
+    private CancelDictionaryProtoType dictionary;
 
     private int tiling = 1;
 
     void Start()
     {
         GameManager gameManager = FindObjectOfType<GameManager>();
-        dictionary = gameManager.GetComponent<CancelDictionary>();
+        dictionary = gameManager.GetComponent<CancelDictionaryProtoType>();
 
         tiling = spawnScript.tiling;
 

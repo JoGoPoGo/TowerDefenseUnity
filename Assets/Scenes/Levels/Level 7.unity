@@ -437,6 +437,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1231323922 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3298786586999825128, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+  m_PrefabInstance: {fileID: 1989051669}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1989051669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -484,6 +489,42 @@ PrefabInstance:
     - target: {fileID: 2755585435108092562, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: tiling
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3687969513447231535, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3687969513447231535, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3687969513447231535, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3687969513447231535, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1231323922}
+    - target: {fileID: 3687969513447231535, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3687969513447231535, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: showCancelArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 3687969513447231535, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CancelDictionary, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3687969513447231535, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154261959105710814, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_Name
+      value: ShowCancel
       objectReference: {fileID: 0}
     - target: {fileID: 5804837718299460341, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_LocalPosition.x

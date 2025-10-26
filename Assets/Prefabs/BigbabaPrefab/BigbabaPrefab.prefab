@@ -2001,7 +2001,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1858078993183592465}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CancelDictionary, Assembly-CSharp
         m_MethodName: showCancelArea
         m_Mode: 1
@@ -3911,13 +3911,13 @@ PrefabInstance:
       addedObject: {fileID: 4791198320209632719}
     - targetCorrespondingSourceObject: {fileID: 3637088660530645638, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1858078993183592465}
-    - targetCorrespondingSourceObject: {fileID: 3637088660530645638, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 2738453090163177609}
     - targetCorrespondingSourceObject: {fileID: 3637088660530645638, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3722065815883048436}
+    - targetCorrespondingSourceObject: {fileID: 3637088660530645638, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 183030366657863108}
   m_SourcePrefab: {fileID: 100100000, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
 --- !u!114 &2454070309858566500 stripped
 MonoBehaviour:
@@ -3961,23 +3961,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cd602a9f0a8d7040b05392ee05319e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1858078993183592465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3298786586999825128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83cf5995d0d5b9a4f98d9cf7532efda3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  freeMat: {fileID: 0}
-  occupiedMat: {fileID: 2100000, guid: 991d710d177da704e85cf92262d7004e, type: 2}
-  cellSize: 1
-  yOffset: 0.05
-  plate: {fileID: 1922445711460146120, guid: 856da8afad1593148b2dec3d98dc033b, type: 3}
 --- !u!33 &2738453090163177609
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4028,6 +4011,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &183030366657863108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3298786586999825128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4462cc471d54b6b468d2e8dee5c4e51b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freeMat: {fileID: 0}
+  occupiedMat: {fileID: 2100000, guid: 991d710d177da704e85cf92262d7004e, type: 2}
+  yOffset: 0.05
+  plate: {fileID: 1922445711460146120, guid: 856da8afad1593148b2dec3d98dc033b, type: 3}
+  showDuration: 1000
 --- !u!4 &7161661904229009533 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8997481492933369875, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}

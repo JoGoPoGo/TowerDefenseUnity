@@ -43,7 +43,7 @@ public class Tower : MonoBehaviour
 
     protected LayerMask obstacleMask;
 
-    protected CancelDictionary dictionary;
+    protected CancelDictionaryProtoType dictionary;
 
     protected int tiling = 1;
 
@@ -58,7 +58,7 @@ public class Tower : MonoBehaviour
         allTowerComponents = GetComponents<Tower>();      //Liste aller Komponenten der Towerklasse
         gameManager = FindObjectOfType<GameManager>();
 
-        dictionary = gameManager.GetComponent<CancelDictionary>();
+        dictionary = gameManager.GetComponent<CancelDictionaryProtoType>();
 
 
 

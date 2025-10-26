@@ -1,5 +1,6 @@
-Ôªøusing System.Collections;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -14,7 +15,6 @@ public class CancelDictionary : MonoBehaviour
 
     public Material freeMat;
     public Material occupiedMat;
-    public float cellSize = 1f;
     public float yOffset = 0.05f;
     public GameObject plate;
 
@@ -30,14 +30,14 @@ public class CancelDictionary : MonoBehaviour
 
     void Start()
     {
-        spawnScript = FindObjectOfType <SpawnOnMouseClick>();
+        spawnScript = FindObjectOfType<SpawnOnMouseClick>();
         tiling = spawnScript.tiling;
         maxDistance = tiling;
 
         terrain = FindObjectOfType<Terrain>();
         IsTerrainInScene = (terrain != null);
 
-        
+
     }
 
     // --- Clusterbildung per Flood Fill ---
@@ -63,13 +63,13 @@ public class CancelDictionary : MonoBehaviour
 
         List<List<Vector2>> clusters = BuildTightClusters(spawnGrid);
 
-        // Schritt 3: F√ºr jeden Cluster eine konvexe H√ºlle
+        // Schritt 3: F¸r jeden Cluster eine konvexe H¸lle
         foreach (var cluster in clusters)
         {
             List<Vector2> hull = ComputeConvexHull(cluster);
             CreateCancelMesh(hull);
 
-            // Dictionary f√ºr diesen Cluster aufbauen
+            // Dictionary f¸r diesen Cluster aufbauen
             /*Dictionary<Vector2Int, int> clusterGrid = new Dictionary<Vector2Int, int>();          //von hier
             foreach (var p in cluster)
             {
@@ -78,7 +78,7 @@ public class CancelDictionary : MonoBehaviour
                     clusterGrid[pi] = spawnGrid[pi];
             }                                                                                           //bis hier
 
-            // Mesh nur f√ºr die g√ºltigen Rasterzellen erzeugen
+            // Mesh nur f¸r die g¸ltigen Rasterzellen erzeugen
             CreateCancelMeshFromGrid(clusterGrid);  */
 
 
@@ -108,19 +108,126 @@ public class CancelDictionary : MonoBehaviour
 
     }
 
-    List<List<Vector2>> BuildTightClusters(Dictionary<Vector2Int, int> grid)
+    List<List<Vector2Int>> Outline(Dictionary<Vector2Int, int> dic)
     {
-        List<List<Vector2>> clusters = new List<List<Vector2>>();
-        HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
+        List<Vector2Int> unsorted = new List<Vector2Int>();
 
-        // Alle belegten Punkte durchlaufen
+        foreach (KeyValuePair<Vector2Int, int> pair in dic)
+        {
+            Vector2Int point = pair.Key;
+            if (pair.Value == 1)
+            {
+                List<Vector2Int> proofList = new List<Vector2Int>();
+
+                Vector2Int yPlus = new Vector2Int(point.x, point.y + maxDistance);
+                if (dic.ContainsKey(yPlus))
+                    proofList.Add(yPlus);
+                Vector2Int yMinus = new Vector2Int(point.x, point.y - maxDistance);
+                if (dic.ContainsKey(yMinus))
+                    proofList.Add(yMinus);
+                Vector2Int xPlus = new Vector2Int(point.x + maxDistance, point.y);
+                if (dic.ContainsKey(xPlus))
+                    proofList.Add(xPlus);
+                Vector2Int xMinus = new Vector2Int(point.x - maxDistance, point.y);
+                if (dic.ContainsKey(xMinus))
+                    proofList.Add(xMinus);
+
+                if (proofList.Count < 4)
+                {
+                    unsorted.Add(point);
+                }
+            }
+        }
+
+        List<List<Vector2Int>> clusters = new List<List<Vector2Int>>();
+
+        foreach (var point in unsorted)
+        {
+            List<Vector2Int> cluster = new List<Vector2Int>();
+
+            Vector2Int transferPoint = point;
+
+            while (unsorted.Contains(transferPoint))
+            {
+                Vector2Int yPlus = new Vector2Int(transferPoint.x, transferPoint.y + maxDistance);
+                Vector2Int yMinus = new Vector2Int(transferPoint.x, transferPoint.y - maxDistance);
+                Vector2Int xPlus = new Vector2Int(transferPoint.x + maxDistance, transferPoint.y);
+                Vector2Int xMinus = new Vector2Int(transferPoint.x - maxDistance, transferPoint.y);
+
+                Vector2Int next = transferPoint;
+
+                if (unsorted.Contains(yPlus))
+                {
+                    next = yPlus;
+                    cluster.Add(transferPoint);
+                }
+                else if (unsorted.Contains(xPlus))
+                {
+                    next = xPlus;
+                    cluster.Add(transferPoint);
+                }
+                else if (unsorted.Contains(yMinus))
+                {
+                    next = yMinus;
+                    cluster.Add(transferPoint);
+                }
+                else if (unsorted.Contains(xMinus))
+                {
+                    next = xMinus;
+                    cluster.Add(transferPoint);
+                }
+
+                unsorted.Remove(transferPoint);
+
+                transferPoint = next;
+            }
+            sort(cluster);
+            clusters.Add(cluster);
+        }
+        return clusters;
+    }
+
+    List<Vector2Int> sort(List<Vector2Int> list)
+    {
+        return list;
+    }
+
+    List<List<Vector2Int>> BuildTightClustersPro(Dictionary<Vector2Int, int> grid)
+    {
+        List<Vector2Int> edgePoints = new List<Vector2Int>();
         foreach (var kvp in grid)
         {
-            Vector2Int start = kvp.Key;
-            if (kvp.Value != 1 || visited.Contains(start))
-                continue;
+            Vector2Int p = kvp.Key;
+            if (kvp.Value != 1) continue;
 
-            List<Vector2> cluster = new List<Vector2>();
+            int neighborCount = 0;
+            Vector2Int[] dirs = {
+            new Vector2Int(maxDistance, 0),
+            new Vector2Int(-maxDistance, 0),
+            new Vector2Int(0, maxDistance),
+            new Vector2Int(0, -maxDistance)
+        };
+
+            foreach (var d in dirs)
+            {
+                Vector2Int n = p + d;
+                if (grid.ContainsKey(n) && grid[n] == 1)
+                    neighborCount++;
+            }
+
+            if (neighborCount < 4)
+                edgePoints.Add(p);
+        }
+
+        // Schritt 2: Cluster bilden
+        List<List<Vector2Int>> clusters = new List<List<Vector2Int>>();
+        HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
+
+        foreach (var start in edgePoints)
+        {
+            if (visited.Contains(start)) continue;
+
+            List<Vector2Int> cluster = new List<Vector2Int>();
             Queue<Vector2Int> queue = new Queue<Vector2Int>();
             queue.Enqueue(start);
             visited.Add(start);
@@ -128,24 +235,182 @@ public class CancelDictionary : MonoBehaviour
             while (queue.Count > 0)
             {
                 Vector2Int current = queue.Dequeue();
+                cluster.Add(current);
+
+                Vector2Int[] dirs = {
+                new Vector2Int(maxDistance, 0),
+                new Vector2Int(-maxDistance, 0),
+                new Vector2Int(0, maxDistance),
+                new Vector2Int(0, -maxDistance)
+            };
+
+                foreach (var d in dirs)
+                {
+                    Vector2Int next = current + d;
+                    if (!visited.Contains(next) && edgePoints.Contains(next))
+                    {
+                        visited.Add(next);
+                        queue.Enqueue(next);
+                    }
+                }
+            }
+
+            // Optional: sortiere Punkte im Uhrzeigersinn f¸r saubere Mesh-Erstellung
+            cluster.Sort((a, b) => Mathf.Atan2(a.y, a.x).CompareTo(Mathf.Atan2(b.y, b.x)));
+
+            clusters.Add(cluster);
+        }
+
+        return clusters;
+    }
+
+    List<List<Vector2>> BuildTightClusters(Dictionary<Vector2Int, int> grid)
+    {
+        List<List<Vector2>> clusters = new List<List<Vector2>>();
+        HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
+
+        foreach (var kvp in grid)
+        {
+            Vector2Int start = kvp.Key;
+            if (kvp.Value != 1 || visited.Contains(start))
+                continue;
+
+            List<Vector2> cluster = new List<Vector2>();
+            Queue<Vector2Int> toCheck = new Queue<Vector2Int>();
+            toCheck.Enqueue(start);
+            visited.Add(start);
+
+            while (toCheck.Count > 0)
+            {
+                Vector2Int current = toCheck.Dequeue();
+                cluster.Add(current);
+
+                // Schritt 1: nach links gehen, um Startpunkt der Reihe zu finden
+                Vector2Int left = current;
+                while (grid.ContainsKey(new Vector2Int(left.x - maxDistance, left.y)) &&
+                       grid[new Vector2Int(left.x - maxDistance, left.y)] == 1 &&
+                       !visited.Contains(new Vector2Int(left.x - maxDistance, left.y)))
+                {
+                    left = new Vector2Int(left.x - maxDistance, left.y);
+                }
+
+                // Schritt 2: von dort nach rechts laufen
+                Vector2Int xPoint = left;
+                while (grid.ContainsKey(xPoint) && grid[xPoint] == 1)
+                {
+                    if (!visited.Contains(xPoint))
+                    {
+                        cluster.Add(xPoint);
+                        visited.Add(xPoint);
+
+                        // Schritt 3: nach oben (Y+) pr¸fen
+                        Vector2Int up = new Vector2Int(xPoint.x, xPoint.y + maxDistance);
+                        while (grid.ContainsKey(up) && grid[up] == 1 && !visited.Contains(up))
+                        {
+                            cluster.Add(up);
+                            visited.Add(up);
+                            toCheck.Enqueue(up);
+                            up = new Vector2Int(up.x, up.y + maxDistance);
+                        }
+
+                        // Schritt 4: nach unten (Y-) pr¸fen
+                        Vector2Int down = new Vector2Int(xPoint.x, xPoint.y - maxDistance);
+                        while (grid.ContainsKey(down) && grid[down] == 1 && !visited.Contains(down))
+                        {
+                            cluster.Add(down);
+                            visited.Add(down);
+                            toCheck.Enqueue(down);
+                            down = new Vector2Int(down.x, down.y - maxDistance);
+                        }
+                    }
+
+                    // nach rechts gehen
+                    xPoint = new Vector2Int(xPoint.x + maxDistance, xPoint.y);
+                }
+            }
+
+            // Cluster speichern
+            clusters.Add(cluster.Select(v => new Vector2(v.x, v.y)).ToList());
+        }
+
+        return clusters;
+    }
+
+
+    /*List<List<Vector2>> BuildTightClusters(Dictionary<Vector2Int, int> grid)
+    {
+        List<List<Vector2>> clusters = new List<List<Vector2>>();
+        HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
+
+        foreach (var kvp in grid)
+        {
+            Vector2Int start = kvp.Key;
+            if (kvp.Value != 1 || visited.Contains(start))
+                continue;
+
+            List<Vector2> cluster = new List<Vector2>();
+            Queue<Vector2Int> toCheck = new Queue<Vector2Int>();
+            toCheck.Enqueue(start);
+            visited.Add(start);
+
+            while (toCheck.Count > 0)
+            {         
+                Vector2Int nextx = kvp.Key;
+
+                Vector2Int current = toCheck.Dequeue();   
                 cluster.Add(new Vector2(current.x, current.y));
 
-                // Nur orthogonale Nachbarn (oben, unten, links, rechts)
-                Vector2Int[] neighbors = new Vector2Int[]
+                // Gehe entlang X-Achse in beide Richtungen
+                while (toCheck.Contains(nextx))
                 {
-                new Vector2Int(current.x + 1, current.y),
-                new Vector2Int(current.x - 1, current.y),
-                new Vector2Int(current.x, current.y + 1),
-                new Vector2Int(current.x, current.y - 1)
-                };
-
-                foreach (var n in neighbors)
-                {
-                    if (visited.Contains(n)) continue;
-                    if (grid.ContainsKey(n) && grid[n] == 1)
+                    Vector2Int nextStart = new Vector2Int(nextx.x - maxDistance, nextx.y);
+                    while (toCheck.Contains(nextStart))
                     {
-                        visited.Add(n);
-                        queue.Enqueue(n);
+                        nextx = nextStart;
+                        nextStart += new Vector2Int(-maxDistance, 0);
+                    }
+
+                    Vector2Int nexty = new Vector2Int(kvp.Key.x, kvp.Key.y + maxDistance);
+                    while (toCheck.Contains(nexty))
+                    {
+                        nexty = new Vector2Int(nexty.x, nexty.y + maxDistance);
+                        cluster.Add((Vector2)nexty);
+                        visited.Add(nexty);
+                        toCheck.Enqueue(nextx);
+                    }
+                    nexty = new Vector2Int(nextx.x, nextx.y -  maxDistance);
+                    while (toCheck.Contains(nexty))
+                    {
+                        nexty = new Vector2Int(nexty.x, nexty.y - maxDistance);
+                        cluster.Add((Vector2)nexty);
+                        visited.Add(nexty);
+                        toCheck.Enqueue(nextx);
+                    }
+                    cluster.Add((Vector2)nextx);
+                    visited.Add(nextx);
+                    toCheck.Enqueue(nextx);
+                    nextx = new Vector2Int(nextx.x + maxDistance, nextx.y);
+                }
+                for (int dirX = -1; dirX <= 1; dirX += 2)
+                {
+                    nextx = new Vector2Int(current.x + dirX * maxDistance, current.y);
+                    while (grid.ContainsKey(nextx) && grid[nextx] == 1 && !visited.Contains(nextx))
+                    {
+                        visited.Add(nextx);
+                        toCheck.Enqueue(nextx);
+                        nextx = new Vector2Int(nextx.x + dirX * maxDistance, nextx.y);
+                    }
+                }
+
+                // Gehe entlang Z-Achse (bzw. Y in 2D-Grid) in beide Richtungen
+                for (int dirY = -1; dirY <= 1; dirY += 2)
+                {
+                    nextx = new Vector2Int(current.x, current.y + dirY * maxDistance);
+                    while (grid.ContainsKey(nextx) && grid[nextx] == 1 && !visited.Contains(nextx))
+                    {
+                        visited.Add(nextx);
+                        toCheck.Enqueue(nextx);
+                        nextx = new Vector2Int(nextx.x, nextx.y + dirY * maxDistance);
                     }
                 }
             }
@@ -154,16 +419,16 @@ public class CancelDictionary : MonoBehaviour
         }
 
         return clusters;
-    }
+    }*/
 
 
     void CreateCancelMesh(List<Vector2> hull)
     {
         if (hull.Count < 3) return;
 
-        hull.Reverse(); 
+        hull.Reverse();
 
-        // 1Ô∏è‚É£ Vertices erzeugen
+        // 1?? Vertices erzeugen
         Vector3[] vertices = new Vector3[hull.Count];
         for (int i = 0; i < hull.Count; i++)
         {
@@ -171,7 +436,7 @@ public class CancelDictionary : MonoBehaviour
             vertices[i] = new Vector3(hull[i].x, h + yOffset, hull[i].y);
         }
 
-        // 2Ô∏è‚É£ Triangulation (f√ºr konvexe Polygone einfaches Fan-Muster)
+        // 2?? Triangulation (f¸r konvexe Polygone einfaches Fan-Muster)
         List<int> triangles = new List<int>();
         for (int i = 1; i < hull.Count - 1; i++)
         {
@@ -180,25 +445,25 @@ public class CancelDictionary : MonoBehaviour
             triangles.Add(i + 1);
         }
 
-        // 3Ô∏è‚É£ Mesh erstellen
+        // 3?? Mesh erstellen
         Mesh mesh = new Mesh();
         mesh.vertices = vertices;
         mesh.triangles = triangles.ToArray();
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
 
-        // 4Ô∏è‚É£ GameObject mit MeshRenderer erzeugen
+        // 4?? GameObject mit MeshRenderer erzeugen
         GameObject area = new GameObject("CancelAreaMesh", typeof(MeshFilter), typeof(MeshRenderer));
         area.GetComponent<MeshFilter>().mesh = mesh;
 
-        // 5Ô∏è‚É£ Material setzen
+        // 5?? Material setzen
         var renderer = area.GetComponent<MeshRenderer>();
         renderer.material = occupiedMat;
 
         // Optional: leichtes Offset, damit sie nicht flackert mit Terrain
         area.transform.position += Vector3.up * 0.01f;
 
-        // Optional: Hierarchie aufr√§umen
+        // Optional: Hierarchie aufr‰umen
         area.transform.parent = transform;
     }
     void CreateCancelMeshFromGrid(Dictionary<Vector2Int, int> grid)
@@ -211,7 +476,7 @@ public class CancelDictionary : MonoBehaviour
             Vector2Int p = kvp.Key;
             if (kvp.Value != 1) continue;
 
-            // Nachbarn pr√ºfen (f√ºr ein Quad)
+            // Nachbarn pr¸fen (f¸r ein Quad)
             Vector2Int right = new Vector2Int(p.x + maxDistance, p.y);
             Vector2Int up = new Vector2Int(p.x, p.y + maxDistance);
             Vector2Int upRight = new Vector2Int(p.x + maxDistance, p.y + maxDistance);
@@ -219,7 +484,7 @@ public class CancelDictionary : MonoBehaviour
             if (grid.ContainsKey(right) && grid.ContainsKey(up) && grid.ContainsKey(upRight) &&
                 grid[right] == 1 && grid[up] == 1 && grid[upRight] == 1)
             {
-                // Terrainh√∂he pro Eckpunkt abfragen
+                // Terrainhˆhe pro Eckpunkt abfragen
                 float h1 = IsTerrainInScene ? terrain.SampleHeight(new Vector3(p.x, 0, p.y)) : 0f;
                 float h2 = IsTerrainInScene ? terrain.SampleHeight(new Vector3(right.x, 0, right.y)) : 0f;
                 float h3 = IsTerrainInScene ? terrain.SampleHeight(new Vector3(upRight.x, 0, upRight.y)) : 0f;
@@ -315,13 +580,13 @@ public class CancelDictionary : MonoBehaviour
 
     void checkDictionary()
     {
-        foreach(KeyValuePair<Vector2Int,int> pair in spawnGrid)
+        foreach (KeyValuePair<Vector2Int, int> pair in spawnGrid)
         {
             Debug.Log(pair.Key);
         }
     }
 
-    // --- Konvexe H√ºlle (wie zuvor) ---
+    // --- Konvexe H¸lle (wie zuvor) ---
     List<Vector2> ComputeConvexHull(List<Vector2> points)
     {
         if (points.Count <= 3)
@@ -357,7 +622,7 @@ public class CancelDictionary : MonoBehaviour
     }
 
 
-    // Pr√ºfen, ob an einer Position gespawnt werden darf
+    // Pr¸fen, ob an einer Position gespawnt werden darf
     public bool CanSpawnAt(Vector2Int pos)
     {
         return !spawnGrid.ContainsKey(pos) || spawnGrid[pos] == 0;

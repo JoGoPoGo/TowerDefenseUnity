@@ -24,7 +24,7 @@ public class DynamicRangePreview : MonoBehaviour
     private float range;
 
     private SpawnOnMouseClick spawnOnMouseClick;
-    private CancelDictionary dictionary;
+    private CancelDictionaryProtoType dictionary;
 
     private Vector3 lastPosition;
     private Quaternion lastRotation; 
