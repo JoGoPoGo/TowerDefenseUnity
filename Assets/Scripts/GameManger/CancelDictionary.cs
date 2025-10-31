@@ -646,4 +646,87 @@ public class CancelDictionary : MonoBehaviour
     {
         plate1.transform.localScale = new Vector3(scale, 1, scale);
     }
+    
+        /// <summary>
+        /// Findet Edge-Points (value==1) und gruppiert sie in zusammenhängende Cluster.
+        /// - cellStep: Abstand zwischen Zellen (dein "cellSize" / "maxDistance").
+        /// - allowDiagonal: true = 8-neighborhood, false = 4-neighborhood.
+        /// </summary>
+        public static List<List<Vector2Int>> Outline(Dictionary<Vector2Int, int> dic, int cellStep = 1, bool allowDiagonal = true)
+        {
+            // 1) Nachbarschafts-Offsets (konsistent verwenden)
+            List<Vector2Int> neighOffsets4 = new List<Vector2Int> {
+            new Vector2Int(cellStep, 0),
+            new Vector2Int(-cellStep, 0),
+            new Vector2Int(0, cellStep),
+            new Vector2Int(0, -cellStep)
+        };
+
+            List<Vector2Int> neighOffsets8 = new List<Vector2Int>(neighOffsets4) {
+            new Vector2Int(cellStep, cellStep),
+            new Vector2Int(cellStep, -cellStep),
+            new Vector2Int(-cellStep, cellStep),
+            new Vector2Int(-cellStep, -cellStep)
+        };
+
+            var neighOffsets = allowDiagonal ? neighOffsets8 : neighOffsets4;
+
+            // 2) Edge-Punkte finden (HashSet für schnellen Lookup)
+            HashSet<Vector2Int> edgePoints = new HashSet<Vector2Int>();
+            foreach (var kvp in dic)
+            {
+                if (kvp.Value != 1) continue;
+                Vector2Int p = kvp.Key;
+
+                int neighborCount = 0;
+                foreach (var d in neighOffsets4) // Nur 4-Nachbarn für "Rand"-Definition (klassisch)
+                {
+                    Vector2Int n = p + d;
+                    if (dic.ContainsKey(n) && dic[n] == 1) neighborCount++;
+                }
+
+                if (neighborCount < 4)
+                    edgePoints.Add(p);
+            }
+
+            // 3) Connected components (BFS) über die gleiche Nachbarschaftsdefinition (wichtig!)
+            List<List<Vector2Int>> clusters = new List<List<Vector2Int>>();
+            HashSet<Vector2Int> unvisited = new HashSet<Vector2Int>(edgePoints);
+
+            while (unvisited.Count > 0)
+            {
+                // nimm irgendeinen Startpunkt aus unvisited
+                Vector2Int start = default;
+                foreach (var v in unvisited) { start = v; break; }
+
+                Queue<Vector2Int> q = new Queue<Vector2Int>();
+                List<Vector2Int> cluster = new List<Vector2Int>();
+
+                q.Enqueue(start);
+                unvisited.Remove(start);
+
+                while (q.Count > 0)
+                {
+                    Vector2Int cur = q.Dequeue();
+                    cluster.Add(cur);
+
+                    // Verwende dieselben Offsets wie beim edge-Finden (oder allowDiagonal für robustere Verbindung)
+                    foreach (var d in neighOffsets)
+                    {
+                        Vector2Int nxt = cur + d;
+                        if (unvisited.Contains(nxt))
+                        {
+                            unvisited.Remove(nxt);
+                            q.Enqueue(nxt);
+                        }
+                    }
+                }
+
+                clusters.Add(cluster);
+            }
+
+            // Optional: falls du eine geordnete Kontur brauchst, kannst du cluster weiter bearbeiten.
+            // Hier geben wir komplette, zusammenhängende Edge-Point-Sets zurück (un-ordered lists).
+            return clusters;
+        }
 }

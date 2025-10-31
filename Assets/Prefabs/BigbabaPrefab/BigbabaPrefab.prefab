@@ -1893,7 +1893,7 @@ GameObject:
   - component: {fileID: 6039553076314344623}
   - component: {fileID: 3687969513447231535}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ShowCancel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2001,8 +2001,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CancelDictionary, Assembly-CSharp
+      - m_Target: {fileID: 183030366657863108}
+        m_TargetAssemblyTypeName: CancelDictionaryProtoType, Assembly-CSharp
         m_MethodName: showCancelArea
         m_Mode: 1
         m_Arguments:
@@ -3743,7 +3743,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -849, y: 397}
+  m_AnchoredPosition: {x: -851, y: 326}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &236849066877692818
@@ -4028,6 +4028,8 @@ MonoBehaviour:
   yOffset: 0.05
   plate: {fileID: 1922445711460146120, guid: 856da8afad1593148b2dec3d98dc033b, type: 3}
   showDuration: 1000
+  lineMaterial: {fileID: 0}
+  lineWidth: 0.1
 --- !u!4 &7161661904229009533 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8997481492933369875, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
@@ -5095,11 +5097,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7400022855953799154, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 835
+      value: 834
       objectReference: {fileID: 0}
     - target: {fileID: 7400022855953799154, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 400
+      value: 292
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

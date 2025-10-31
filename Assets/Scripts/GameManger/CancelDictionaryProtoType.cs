@@ -48,6 +48,15 @@ public class CancelDictionaryProtoType : MonoBehaviour
 
     public void ShowOutlines(List<List<Vector2Int>> clusters)
     {
+        foreach (var cluster in clusters)
+        {
+            Debug.Log("Cluster" + cluster);
+            foreach(Vector2Int c in cluster)
+            {
+                Debug.Log(c);
+            }
+        }
+
         foreach (Transform child in transform)
         {
             Destroy(child.gameObject);
@@ -77,81 +86,155 @@ public class CancelDictionaryProtoType : MonoBehaviour
             lr.positionCount = positions.Length;
             lr.SetPositions(positions);
         }
+
     }
 
-    List<List<Vector2Int>> Outline(Dictionary<Vector2Int, int> grid, int cellSize)
+    
+
+    public static List<List<Vector2Int>> Outline(Dictionary<Vector2Int, int> dic, int cellStep = 1, bool allowDiagonal = true)
     {
-        // Schritt 1: Randpunkte finden
-        List<Vector2Int> edgePoints = new List<Vector2Int>();
-        foreach (var kvp in grid)
+        // 1) Nachbarschafts-Offsets (konsistent verwenden)
+        List<Vector2Int> neighOffsets4 = new List<Vector2Int> {
+            new Vector2Int(cellStep, 0),
+            new Vector2Int(-cellStep, 0),
+            new Vector2Int(0, cellStep),
+            new Vector2Int(0, -cellStep)
+        };
+
+        List<Vector2Int> neighOffsets8 = new List<Vector2Int>(neighOffsets4) {
+            new Vector2Int(cellStep, cellStep),
+            new Vector2Int(cellStep, -cellStep),
+            new Vector2Int(-cellStep, cellStep),
+            new Vector2Int(-cellStep, -cellStep)
+        };
+
+        var neighOffsets = allowDiagonal ? neighOffsets8 : neighOffsets4;
+
+        // 2) Edge-Punkte finden (HashSet für schnellen Lookup)
+        HashSet<Vector2Int> edgePoints = new HashSet<Vector2Int>();
+        foreach (var kvp in dic)
         {
-            Vector2Int p = kvp.Key;
             if (kvp.Value != 1) continue;
+            Vector2Int p = kvp.Key;
 
             int neighborCount = 0;
-            Vector2Int[] dirs = {
-        new Vector2Int(cellSize, 0),
-        new Vector2Int(-cellSize, 0),
-        new Vector2Int(0, cellSize),
-        new Vector2Int(0, -cellSize)
-    };
-
-            foreach (var d in dirs)
+            foreach (var d in neighOffsets4) // Nur 4-Nachbarn für "Rand"-Definition (klassisch)
             {
                 Vector2Int n = p + d;
-                if (grid.ContainsKey(n) && grid[n] == 1)
-                    neighborCount++;
+                if (dic.ContainsKey(n) && dic[n] == 1) neighborCount++;
             }
 
             if (neighborCount < 4)
                 edgePoints.Add(p);
         }
 
-        // Schritt 2: Cluster bilden
+        // 3) Connected components (BFS) über die gleiche Nachbarschaftsdefinition (wichtig!)
         List<List<Vector2Int>> clusters = new List<List<Vector2Int>>();
-        HashSet<Vector2Int> visited = new HashSet<Vector2Int>();
+        HashSet<Vector2Int> unvisited = new HashSet<Vector2Int>(edgePoints);
 
-        foreach (var start in edgePoints)
+        while (unvisited.Count > 0)
         {
-            if (visited.Contains(start)) continue;
+            // nimm irgendeinen Startpunkt aus unvisited
+            Vector2Int start = default;
+            foreach (var v in unvisited) { start = v; break; }
 
+            Queue<Vector2Int> q = new Queue<Vector2Int>();
             List<Vector2Int> cluster = new List<Vector2Int>();
-            Queue<Vector2Int> queue = new Queue<Vector2Int>();
-            queue.Enqueue(start);
-            visited.Add(start);
 
-            while (queue.Count > 0)
+            q.Enqueue(start);
+            unvisited.Remove(start);
+
+            while (q.Count > 0)
             {
-                Vector2Int current = queue.Dequeue();
-                cluster.Add(current);
+                Vector2Int cur = q.Dequeue();
+                cluster.Add(cur);
 
-                Vector2Int[] dirs = {
-            new Vector2Int(cellSize, 0),
-            new Vector2Int(-cellSize, 0),
-            new Vector2Int(0, cellSize),
-            new Vector2Int(0, -cellSize)
-        };
-
-                foreach (var d in dirs)
+                // Verwende dieselben Offsets wie beim edge-Finden (oder allowDiagonal für robustere Verbindung)
+                foreach (var d in neighOffsets)
                 {
-                    Vector2Int next = current + d;
-                    if (!visited.Contains(next) && edgePoints.Contains(next))
+                    Vector2Int nxt = cur + d;
+                    if (unvisited.Contains(nxt))
                     {
-                        visited.Add(next);
-                        queue.Enqueue(next);
+                        unvisited.Remove(nxt);
+                        q.Enqueue(nxt);
                     }
                 }
             }
 
-            // Optional: sortiere Punkte im Uhrzeigersinn für saubere Mesh-Erstellung
-            cluster.Sort((a, b) => Mathf.Atan2(a.y, a.x).CompareTo(Mathf.Atan2(b.y, b.x)));
-
             clusters.Add(cluster);
         }
 
+        for (int i = 0; i < clusters.Count; i++)
+        {
+            clusters[i] = SortCluster(clusters[i], cellStep, allowDiagonal);
+        }
+        // Optional: falls du eine geordnete Kontur brauchst, kannst du cluster weiter bearbeiten.
+        // Hier geben wir komplette, zusammenhängende Edge-Point-Sets zurück (un-ordered lists).
         return clusters;
     }
+    public static List<Vector2Int> SortCluster(List<Vector2Int> cluster, int step = 1, bool allowDiagonal = true)
+    {
+        if (cluster.Count <= 2) return cluster; // nichts zu sortieren
 
+        // Set für schnellen Lookup
+        HashSet<Vector2Int> points = new HashSet<Vector2Int>(cluster);
+        List<Vector2Int> sorted = new List<Vector2Int>();
+
+        // Startpunkt: der linkeste, dann niedrigste y (heuristik)
+        Vector2Int current = cluster.OrderBy(p => p.x).ThenBy(p => p.y).First();
+        sorted.Add(current);
+        points.Remove(current);
+
+        // Nachbarschaft definieren (im Uhrzeigersinn)
+        List<Vector2Int> dirs = allowDiagonal
+            ? new List<Vector2Int> {
+            new Vector2Int(step, 0),
+            new Vector2Int(step, step),
+            new Vector2Int(0, step),
+            new Vector2Int(-step, step),
+            new Vector2Int(-step, 0),
+            new Vector2Int(-step, -step),
+            new Vector2Int(0, -step),
+            new Vector2Int(step, -step)
+            }
+            : new List<Vector2Int> {
+            new Vector2Int(step, 0),
+            new Vector2Int(0, step),
+            new Vector2Int(-step, 0),
+            new Vector2Int(0, -step)
+            };
+
+        // Punkte sortieren, indem wir immer den nächsten Nachbarn entlang der Outline suchen
+        while (points.Count > 0)
+        {
+            Vector2Int next = current;
+            int minDist = int.MaxValue;
+
+            // finde den nächsten Nachbarn (möglichst nah)
+            foreach (var dir in dirs)
+            {
+                Vector2Int cand = current + dir;
+                if (points.Contains(cand))
+                {
+                    next = cand;
+                    minDist = 0;
+                    break;
+                }
+            }
+
+            // Falls kein direkter Nachbar (z. B. Lücke) → nächstgelegenen Punkt suchen
+            if (minDist > 0)
+            {
+                next = points.OrderBy(p => (p - current).sqrMagnitude).First();
+            }
+
+            sorted.Add(next);
+            points.Remove(next);
+            current = next;
+        }
+
+        return sorted;
+    }
 
     float Cross(Vector2 o, Vector2 a, Vector2 b)
     {
