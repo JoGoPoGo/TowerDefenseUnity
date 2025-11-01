@@ -22,6 +22,13 @@ public class TypeCanon : Tower
 
     protected override void Update()
     {
+        if (gameObject.CompareTag("Tower") && dictionaryActivater)
+        {
+            Vector2Int posi = new Vector2Int((int)Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.z));
+
+            OccupyPositionsInCircle(posi, spawnCancelRadius);
+            dictionaryActivater = false;
+        }
         if (spawnScript.spawned && Input.GetKey(KeyCode.R) && rotateCounter == 0)
         {
             Debug.Log("spawned");

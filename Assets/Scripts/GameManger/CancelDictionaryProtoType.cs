@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 
 public class CancelDictionaryProtoType : MonoBehaviour
 {
     private Dictionary<Vector2Int, int> spawnGrid = new Dictionary<Vector2Int, int>();
-    private Dictionary<Vector2Int, GameObject> gridVisuals = new Dictionary<Vector2Int, GameObject>();
-    private List<Vector3> points3D = new List<Vector3>();
 
     public Material freeMat;
     public Material occupiedMat;
@@ -43,7 +42,9 @@ public class CancelDictionaryProtoType : MonoBehaviour
 
     public void showCancelArea()
     {
+
         ShowOutlines(Outline(spawnGrid, maxDistance));
+        
     }
 
     public void ShowOutlines(List<List<Vector2Int>> clusters)
@@ -80,7 +81,13 @@ public class CancelDictionaryProtoType : MonoBehaviour
             for (int i = 0; i < cluster.Count; i++)
             {
                 Vector2Int p = cluster[i];
-                positions[i] = new Vector3(p.x, 0f, p.y); // Z = y für 2D-Grid im 3D-Raum
+                float height = 0 + yOffset;
+                if (IsTerrainInScene)
+                {
+                    height += Terrain.activeTerrain.SampleHeight(new Vector3(p.x, 0, p.y));
+                }
+
+                positions[i] = new Vector3(p.x, height, p.y); // Z = y für 2D-Grid im 3D-Raum
             }
 
             lr.positionCount = positions.Length;
@@ -168,8 +175,7 @@ public class CancelDictionaryProtoType : MonoBehaviour
         {
             clusters[i] = SortCluster(clusters[i], cellStep, allowDiagonal);
         }
-        // Optional: falls du eine geordnete Kontur brauchst, kannst du cluster weiter bearbeiten.
-        // Hier geben wir komplette, zusammenhängende Edge-Point-Sets zurück (un-ordered lists).
+
         return clusters;
     }
     public static List<Vector2Int> SortCluster(List<Vector2Int> cluster, int step = 1, bool allowDiagonal = true)
@@ -236,6 +242,62 @@ public class CancelDictionaryProtoType : MonoBehaviour
         return sorted;
     }
 
+    public void ShowArea(List<List<Vector2Int>> clusters)
+    {
+        foreach (Transform child in transform)
+            Destroy(child.gameObject);
+
+        foreach (var cluster in clusters)
+        {
+            GameObject areaObj = new GameObject("Area_Fill");
+            areaObj.transform.SetParent(transform);
+
+            MeshFilter mf = areaObj.AddComponent<MeshFilter>();
+            MeshRenderer mr = areaObj.AddComponent<MeshRenderer>();
+
+            mr.material = new Material(Shader.Find("Standard"));
+            mr.material.color = new Color(0f, 1f, 0f, 0.3f);
+
+
+            Mesh mesh = CreateMeshFromPoints(cluster);
+            mf.mesh = mesh;
+        }
+    }
+
+    // ---- Hilfsfunktion: Punktwolke in Mesh umwandeln ----
+    private Mesh CreateMeshFromPoints(List<Vector2Int> points)
+    {
+        // Sortiere Punkte im Uhrzeigersinn
+        var ordered = points.OrderBy(p => Mathf.Atan2(p.y - points[0].y, p.x - points[0].x)).ToList();
+
+        // 2D-Vektoren in 3D umwandeln
+        Vector3[] verts = ordered.Select(p =>
+        {
+            float height = yOffset;
+            if (IsTerrainInScene)
+                height += Terrain.activeTerrain.SampleHeight(new Vector3(p.x, 0, p.y));
+
+            return new Vector3(p.x, height, p.y);
+        }).ToArray();
+
+
+        // Triangulation (Unity hat keine eingebaute einfache Methode -> einfache Lib oder Fan-Triangulation)
+        List<int> tris = new List<int>();
+        for (int i = 1; i < verts.Length - 1; i++)
+        {
+            tris.Add(0);
+            tris.Add(i);
+            tris.Add(i + 1);
+        }
+
+        Mesh mesh = new Mesh();
+        mesh.vertices = verts;
+        mesh.triangles = tris.ToArray();
+        mesh.RecalculateNormals();
+        mesh.RecalculateBounds();
+        return mesh;
+    }
+
     float Cross(Vector2 o, Vector2 a, Vector2 b)
     {
         return (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x);
@@ -252,8 +314,7 @@ public class CancelDictionaryProtoType : MonoBehaviour
     public void OccupyPosition(Vector2Int pos)
     {
         spawnGrid[pos] = 1;
-        float terrainHeight = Terrain.activeTerrain.SampleHeight(new Vector3(pos.x, 0, pos.y));
-        points3D.Add(new Vector3(pos.x, terrainHeight, pos.y));
+
     }
 
     // Platz wieder freigeben
