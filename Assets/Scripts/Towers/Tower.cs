@@ -37,7 +37,8 @@ public class Tower : MonoBehaviour
     private Tower[] allTowerComponents;
 
     private int UpdateCounter = 0;
-    protected bool dictionaryActivater = true;
+    protected
+    bool dictionaryActivater = true;
 
     //public string name;
 
