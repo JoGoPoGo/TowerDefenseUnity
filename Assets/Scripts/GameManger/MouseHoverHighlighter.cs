@@ -1,79 +1,103 @@
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 public class MouseHoverHighlighter : MonoBehaviour
 {
-    [SerializeField] private LayerMask interactableLayer; // optional
     private GameObject lastHitObject;
-    private Material originalMat;
-    private Renderer lastRenderer;
+    private List<Renderer> lastRenderers = new List<Renderer>();
 
-    [SerializeField] private Color highlightColor = Color.yellow;
-    [SerializeField] private float emissionIntensity = 1.5f;
+    private List<Color> originalColors = new List<Color>();
+    private List<Color> originalEmissions = new List<Color>();
+
+
 
     void Update()
     {
-        // Ray von der Maus in die Szene (Kamera ? Mausposition)
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        // optional: begrenzen auf bestimmte Layer
         if (Physics.Raycast(ray, out hit, 1000f))
         {
             GameObject hitObject = hit.collider.gameObject;
+
             if (hitObject.CompareTag("Tower"))
             {
                 if (hitObject != lastHitObject)
                 {
-                    ClearHighlight();
-
+                    MouseExits();      // alten Hover entfernen
+                    MouseEnters(hitObject); // neuen Hover aktivieren
                     lastHitObject = hitObject;
-                    lastRenderer = hitObject.GetComponent<Renderer>();
-
-                    if (lastRenderer != null)
-                    {
-                        originalMat = lastRenderer.material;
-                        Highlight(lastRenderer);
-                    }
                 }
+                return; // wichtig
             }
-            
         }
-        else
+
+        // nur wenn wir vorher auf einem Tower waren → Hover beenden
+        if (lastHitObject != null)
         {
-            ClearHighlight();
+            MouseExits();
+            lastHitObject = null;
         }
     }
 
-    void Highlight(Renderer rend)
+
+    private void MouseEnters(GameObject obj)
     {
-        Debug.Log("HoverIn");
-        if (rend.material.HasProperty("_EmissionColor"))
+        lastRenderers = new List<Renderer>(obj.GetComponentsInChildren<Renderer>());
+        originalColors.Clear();
+        originalEmissions.Clear();
+
+        foreach (var rend in lastRenderers)
         {
-            rend.material.EnableKeyword("_EMISSION");
-            rend.material.SetColor("_EmissionColor", highlightColor * emissionIntensity);
-        }
-        else
-        {
-            rend.material.color = highlightColor;
+            Material mat = rend.material;
+
+            if (mat.HasProperty("_Color"))
+                originalColors.Add(mat.color);
+            else
+                originalColors.Add(Color.white);
+
+            if (mat.HasProperty("_EmissionColor"))
+            {
+                originalEmissions.Add(mat.GetColor("_EmissionColor"));
+                mat.EnableKeyword("_EMISSION");
+                mat.SetColor("_EmissionColor", mat.color * 1.5f); // 50% heller
+            }
+            else
+            {
+                // kein Emission-Support → fallback
+                mat.color = Brighten(mat.color, 1.2f);
+            }
+
         }
     }
-
-    void ClearHighlight()
+    Color Brighten(Color c, float factor)
     {
-        if (lastRenderer != null)
+        return new Color(
+            Mathf.Clamp01(c.r * factor),
+            Mathf.Clamp01(c.g * factor),
+            Mathf.Clamp01(c.b * factor),
+            c.a
+        );
+    }
+
+
+    private void MouseExits()
+    {
+        if (lastRenderers.Count == 0) return;
+
+        for (int i = 0; i < lastRenderers.Count; i++)
         {
-            if (originalMat != null && originalMat.HasProperty("_EmissionColor"))
-            {
-                lastRenderer.material.DisableKeyword("_EMISSION");
-                lastRenderer.material.SetColor("_EmissionColor", Color.black);
-            }
-            else if (originalMat != null)
-            {
-                lastRenderer.material.color = originalMat.color;
-            }
+            Material mat = lastRenderers[i].material;
+
+            if (mat.HasProperty("_EmissionColor"))
+                mat.SetColor("_EmissionColor", originalEmissions[i]);
+
+            if (mat.HasProperty("_Color"))
+                mat.color = originalColors[i];
         }
 
-        lastHitObject = null;
-        lastRenderer = null;
+        lastRenderers.Clear();
     }
 }
+

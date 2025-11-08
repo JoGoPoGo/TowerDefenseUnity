@@ -80,9 +80,11 @@ public class Preview : MonoBehaviour
         {
             SetVisibility(previewObject, true);
             spawnScript.spawned = false; // Setze spawned auf false, wenn die linke Maustaste losgelassen wird
+            
 
             if (previewObject != null)
             {
+                previewObject.layer = LayerMask.NameToLayer("Default");
                 previewObject.tag = "Tower";
             }
 
