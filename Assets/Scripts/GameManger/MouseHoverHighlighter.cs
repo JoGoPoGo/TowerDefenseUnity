@@ -63,12 +63,6 @@ public class MouseHoverHighlighter : MonoBehaviour
                 mat.EnableKeyword("_EMISSION");
                 mat.SetColor("_EmissionColor", mat.color * 1.5f); // 50% heller
             }
-            else
-            {
-                // kein Emission-Support → fallback
-                mat.color = Brighten(mat.color, 1.2f);
-            }
-
         }
     }
     Color Brighten(Color c, float factor)
