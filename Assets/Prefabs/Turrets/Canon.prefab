@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2391954587411538296}
-  - component: {fileID: 4895715864988312200}
   - component: {fileID: 3394963199565361699}
   - component: {fileID: 5267380721214097343}
+  - component: {fileID: 3732909599706604613}
+  - component: {fileID: 4895715864988312200}
   - component: {fileID: 8519835088504916463}
   - component: {fileID: 5446249472491924041}
   - component: {fileID: -442575730066064474}
@@ -40,29 +41,6 @@ Transform:
   - {fileID: 3564004725015264625}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &4895715864988312200
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2249457114057599706}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.8
-  m_Height: 4
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.27, z: 0}
 --- !u!114 &3394963199565361699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,22 +73,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809d3b25eaaa62f44baa269cdbee8260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnScript: {fileID: 0}
-  target: {fileID: 0}
-  enemyTag: Enemy
-  price: 18
-  fireRate: 0.3
-  bulletSpeed: 10
   range: 30
   damageAmount: 150
+  level: 1
+  fireRate: 0.3
+  price: 18
   spawnCancelRadius: 20
   turnSpeed: 10
-  canon: {fileID: 0}
   recoilSpeed: 0.1
   recoilDistance: 0.2
-  level: 1
+  canon: {fileID: 0}
   shootSound: {fileID: 8519835088504916463}
+  enemyTag: Enemy
+  spawnScript: {fileID: 0}
+  target: {fileID: 0}
   rangeDegrees: 90
+--- !u!114 &3732909599706604613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2249457114057599706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22a493880b25c248b63a428d1912cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &4895715864988312200
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2249457114057599706}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.8
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.27, z: 0}
 --- !u!82 &8519835088504916463
 AudioSource:
   m_ObjectHideFlags: 0

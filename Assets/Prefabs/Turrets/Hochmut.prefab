@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2391954587411538296}
-  - component: {fileID: 4895715864988312200}
   - component: {fileID: 6824241024347974374}
   - component: {fileID: 6544993130713830023}
+  - component: {fileID: 5097669362535838907}
+  - component: {fileID: 4895715864988312200}
   - component: {fileID: 5157744507443437211}
   - component: {fileID: 8929538880573963776}
   - component: {fileID: -5180163779726738749}
@@ -41,6 +42,67 @@ Transform:
   - {fileID: 2717450070368953234}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &6824241024347974374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2249457114057599706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31217277b9a84e6468e716f216d61fa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayCount: 360
+  accuracy: 1
+  towerScript: {fileID: 6544993130713830023}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  rangeMaterial: {fileID: 2100000, guid: f3faef7309b4e0441beb0bbac78a7347, type: 2}
+  previewAngle: 360
+--- !u!114 &6544993130713830023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2249457114057599706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099389389fac8d9408fd8f2d8e86766c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 10
+  damageAmount: 30
+  level: 1
+  fireRate: 1
+  price: 16
+  spawnCancelRadius: 10
+  turnSpeed: 10
+  recoilSpeed: 0.1
+  recoilDistance: 0.2
+  canon: {fileID: 0}
+  shootSound: {fileID: 5157744507443437211}
+  enemyTag: Enemy
+  spawnScript: {fileID: 0}
+  target: {fileID: 0}
+  rangeMinimum: 3
+  projectile: {fileID: 4018051486126316340}
+  Lauf: {fileID: 6806481778302655824}
+--- !u!114 &5097669362535838907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2249457114057599706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22a493880b25c248b63a428d1912cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &4895715864988312200
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -64,54 +126,6 @@ CapsuleCollider:
   m_Height: 10
   m_Direction: 1
   m_Center: {x: 0, y: -0.27, z: 0}
---- !u!114 &6824241024347974374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2249457114057599706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31217277b9a84e6468e716f216d61fa2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rayCount: 360
-  towerScript: {fileID: 6544993130713830023}
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  rangeMaterial: {fileID: 2100000, guid: f3faef7309b4e0441beb0bbac78a7347, type: 2}
---- !u!114 &6544993130713830023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2249457114057599706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 099389389fac8d9408fd8f2d8e86766c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnScript: {fileID: 0}
-  target: {fileID: 0}
-  enemyTag: Enemy
-  price: 16
-  fireRate: 1
-  bulletSpeed: 10
-  range: 10
-  damageAmount: 30
-  spawnCancelRadius: 10
-  turnSpeed: 10
-  canon: {fileID: 0}
-  recoilSpeed: 0.1
-  recoilDistance: 0.2
-  level: 1
-  shootSound: {fileID: 5157744507443437211}
-  rangeMinimum: 3
-  projectile: {fileID: 4018051486126316340}
-  Lauf: {fileID: 6806481778302655824}
 --- !u!82 &5157744507443437211
 AudioSource:
   m_ObjectHideFlags: 0

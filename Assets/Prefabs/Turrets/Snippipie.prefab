@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 2391954587411538296}
   - component: {fileID: 4237236579645574079}
   - component: {fileID: 7604742267784297302}
+  - component: {fileID: 3690439561062189208}
   - component: {fileID: 4895715864988312200}
   - component: {fileID: 9136133704475680421}
   - component: {fileID: 1393821732009389154}
@@ -166,21 +167,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c7be45d8ade85419ed9dcc99ce3fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnScript: {fileID: 0}
-  target: {fileID: 0}
-  enemyTag: Enemy
-  price: 20
-  fireRate: 0.5
-  bulletSpeed: 2
   range: 20
   damageAmount: 80
+  level: 1
+  fireRate: 0.5
+  price: 20
   spawnCancelRadius: 7
   turnSpeed: 30
-  canon: {fileID: 3134559678259585238}
   recoilSpeed: 0.05
   recoilDistance: -0.5
-  level: 1
+  canon: {fileID: 3134559678259585238}
   shootSound: {fileID: 9136133704475680421}
+  enemyTag: Enemy
+  spawnScript: {fileID: 0}
+  target: {fileID: 0}
+--- !u!114 &3690439561062189208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2249457114057599706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22a493880b25c248b63a428d1912cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &4895715864988312200
 CapsuleCollider:
   m_ObjectHideFlags: 0

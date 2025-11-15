@@ -10,9 +10,12 @@ public class TypeCatapult : Tower
     public GameObject stone;
     public GameObject Schale;
 
+    [Header("Changebles")]
     public float wurfHöhe;
     public float wurfWinkel;
     public float Einschlagradius;
+    
+    
     //public int betroffenenAnzahl = 1;
 
     List<GameObject> betroffenList = new List<GameObject>();

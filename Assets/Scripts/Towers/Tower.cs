@@ -6,47 +6,47 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 public class Tower : MonoBehaviour
 {
+    [Header("Stats")]
+    public float range = 15f;          // Reichweite des Turms
+    public int damageAmount = 50;       //Schaden
+    public float fireRate = 1f;        // Schussfrequenz
+
+    public int level = 1;  // Turm-Level beginnt bei 1
+    public int maxLvl = 10;
+    public int upgradeCost = 1;
+
+    [Header("UpgradeVariables")]
+    public int upgradePercentage = 50;
+    public bool rangeBool = false;
+    public bool damageBool = false;
+    public bool fireRateBool = false;
+    public bool cancelBool = false;
+
+    [Header("Changebles")]
+    public int price;
+    public int spawnCancelRadius = 10;         // Kein Weiterer turm in diesem Bereich
+    public float turnSpeed = 10f;      // Geschwindigkeit, mit der der Turm sich dreht
+    public float recoilSpeed = 0.1f;
+    public float recoilDistance = 0.2f;
+    public GameObject canon;
+    public AudioSource shootSound;
+    public string enemyTag = "Enemy";  // Der Tag der Gegner (z.B. "Enemy")
+
+    [Header("Scripts")]
     public SpawnOnMouseClick spawnScript; // Reference to the SpawnOnMouseClick script
-    public GameObject target;           // Das aktuelle Ziel des Turms
+    protected CancelDictionaryProtoType dictionary;
     protected DamageTest damageScript;   // DamageTest von Target
     private GameManager gameManager;
 
-    public string enemyTag = "Enemy";  // Der Tag der Gegner (z.B. "Enemy")
-
-    public int price;
-    public float fireRate = 1f;        // Schussfrequenz
-    public float bulletSpeed = 10f;     //Kugelgeschwindigkeit
-    public float range = 15f;          // Reichweite des Turms
-    public int damageAmount = 50;       //Schaden
-    public int spawnCancelRadius = 10;        // Kein Weiterer turm in diesem Bereich
-   
+    [Header("Funktion")]
+    public GameObject target;           // Das aktuelle Ziel des Turms
     protected float fireCountdown = 0f; 
-    
-   
-    public float turnSpeed = 10f;      // Geschwindigkeit, mit der der Turm sich dreht
-
-    public GameObject canon;
-
-    public float recoilSpeed = 0.1f;
-    public float recoilDistance = 0.2f;
-
-    public int level = 1;  // Turm-Level beginnt bei 1
-
-    public AudioSource shootSound;
-
-    private Tower[] allTowerComponents;
-
+    private Tower[] allTowerComponents;   
     private int UpdateCounter = 0;
-    protected
-    bool dictionaryActivater = true;
-
-    //public string name;
-
+    protected bool dictionaryActivater = true;
     protected LayerMask obstacleMask;
-
-    protected CancelDictionaryProtoType dictionary;
-
     protected int tiling = 1;
+ 
 
     protected virtual void Start()
     {
@@ -138,8 +138,6 @@ public class Tower : MonoBehaviour
         target = nearestEnemy;
     }
 
-    
-
     protected virtual void Shoot()         // protected für Schussanimationen und Funktionen
     {
         // Erzeugt das Projektil an der Feuerposition und weist ihm die Richtung des Ziels zu#
@@ -185,15 +183,32 @@ public class Tower : MonoBehaviour
     // **Upgrade-Funktion**
     virtual public void UpgradeTower()
     {
-        if (gameManager.SpendCredits((level * level + 2)))
+        if(level < maxLvl)
         {
-            level++;
-            damageAmount += 10;  // Erhöhe Schaden pro Level
-            range += 2f;        // Erhöhe Reichweite pro Level
-            //fireRate += 0.2f;   // Schnellere Schussrate
+            if (gameManager.SpendCredits((upgradeCost)))
+            {
+                level++;
+                if (rangeBool) 
+                    range *= (1 + upgradePercentage/100);
+                if (damageBool)
+                {
+                    float save = damageAmount * (1  + upgradePercentage/100);
+                    damageAmount = (int)Mathf.Round(save);
+                }
+                if (fireRateBool)
+                    fireRate *= (1 + upgradePercentage/100);
+                if (cancelBool)
+                {
+                    float save = spawnCancelRadius * (1 + upgradePercentage / 100);
+                    spawnCancelRadius = (int)Mathf.Round(save);
+                }
 
-            Debug.Log($"{gameObject.name} wurde auf Level {level} geupgradet!");
+                upgradeCost += 5;
+
+                Debug.Log($"{gameObject.name} wurde auf Level {level} geupgradet!");
+            }
         }
+        
     }
 
     public int GetLevel()

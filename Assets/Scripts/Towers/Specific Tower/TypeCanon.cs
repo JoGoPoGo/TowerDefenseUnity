@@ -5,8 +5,10 @@ using UnityEngine.UIElements;
 
 public class TypeCanon : Tower
 {
+    [Header("Changebles")]
     public int rangeDegrees;
-    
+
+    [Header("Funktion")]
     private int rotateCounter = 0;
     private Quaternion startDirection;
 
