@@ -17,6 +17,8 @@ public class DynamicRangePreview : MonoBehaviour
 
     public int previewAngle = 360;
 
+    public bool showActivated = false;
+
     private MeshRenderer meshRenderer;
     private MeshFilter meshFilter;
 
@@ -27,7 +29,7 @@ public class DynamicRangePreview : MonoBehaviour
     private CancelDictionaryProtoType dictionary;
 
     private Vector3 lastPosition;
-    private Quaternion lastRotation; 
+    private Quaternion lastRotation;
 
 
     void Awake()
@@ -44,7 +46,7 @@ public class DynamicRangePreview : MonoBehaviour
     void Start()
     {
         lastPosition = transform.position;
-        range = towerScript.range;
+        UpdateStats();
         spawnOnMouseClick = towerScript.spawnScript;
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
@@ -53,16 +55,21 @@ public class DynamicRangePreview : MonoBehaviour
 
     void LateUpdate()
     {
-        if (gameObject.CompareTag("Tower") == false)
+        bool isTower = gameObject.CompareTag("Tower");
+
+        // --- Mesh anzeigen? ---
+        bool shouldShowMesh = (!isTower) || (isTower && showActivated);
+
+        if (shouldShowMesh)
         {
             meshRenderer.enabled = true;
-            if (IsMoved() || WasRotated())
+
+            if (IsMoved() || WasRotated() || showActivated)
             {
                 GenerateRangeMesh();
                 lastRotation = transform.rotation;
                 lastPosition = transform.position;
             }
-
         }
         else
         {
@@ -70,8 +77,15 @@ public class DynamicRangePreview : MonoBehaviour
         }
     }
 
+    public void UpdateStats()
+    {
+        range = towerScript.range;
+    }
+
+
     void GenerateRangeMesh()
     {
+        UpdateStats();
         //if (rayCount <= 0) return;
 
         Vector3 origin = transform.position + Vector3.up * 0.3f; // leicht über Boden

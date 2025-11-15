@@ -29,6 +29,7 @@ public class CancelDictionaryProtoType : MonoBehaviour
     public float lineWidth = 0.1f;
 
 
+
     void Start()
     {
         spawnScript = FindObjectOfType<SpawnOnMouseClick>();

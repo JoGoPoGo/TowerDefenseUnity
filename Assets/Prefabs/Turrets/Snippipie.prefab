@@ -155,6 +155,7 @@ MonoBehaviour:
     m_Bits: 2048
   rangeMaterial: {fileID: 2100000, guid: f3faef7309b4e0441beb0bbac78a7347, type: 2}
   previewAngle: 360
+  showActivated: 0
 --- !u!114 &7604742267784297302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,9 +169,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 20
-  damageAmount: 80
-  level: 1
+  damageAmount: 30
   fireRate: 0.5
+  level: 1
+  maxLvl: 10
+  upgradeCost: 1
+  upgradePercentage: 50
+  rangeBool: 1
+  damageBool: 1
+  fireRateBool: 0
+  cancelBool: 0
   price: 20
   spawnCancelRadius: 7
   turnSpeed: 30

@@ -15,8 +15,8 @@ public class Tower : MonoBehaviour
     public int maxLvl = 10;
     public int upgradeCost = 1;
 
-    [Header("UpgradeVariables")]
-    public int upgradePercentage = 50;
+    [Header("Upgrade Variables")]
+    public float upgradePercentage = 50;
     public bool rangeBool = false;
     public bool damageBool = false;
     public bool fireRateBool = false;
@@ -74,7 +74,7 @@ public class Tower : MonoBehaviour
             dictionaryActivater = false;
         }
 
-        if(UpdateCounter == 10)
+        if(UpdateCounter == 30)
         {
             UpdateCounter = 0;
         }
@@ -188,15 +188,22 @@ public class Tower : MonoBehaviour
             if (gameManager.SpendCredits((upgradeCost)))
             {
                 level++;
-                if (rangeBool) 
+                if (rangeBool)
+                {
                     range *= (1 + upgradePercentage/100);
+                    Debug.Log("Range Upgradet auf: " + range);
+                }
+
                 if (damageBool)
                 {
                     float save = damageAmount * (1  + upgradePercentage/100);
                     damageAmount = (int)Mathf.Round(save);
                 }
                 if (fireRateBool)
+                {
                     fireRate *= (1 + upgradePercentage/100);
+                }
+
                 if (cancelBool)
                 {
                     float save = spawnCancelRadius * (1 + upgradePercentage / 100);

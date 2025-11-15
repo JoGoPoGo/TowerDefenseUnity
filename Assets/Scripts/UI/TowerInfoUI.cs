@@ -17,7 +17,10 @@ public class TowerInfoUI : MonoBehaviour
     public void Show(Tower tower)
     {
         currentTower = tower;
-        
+        GameObject towerObj = tower.gameObject;
+        DynamicRangePreview rangeSkript = towerObj.GetComponent<DynamicRangePreview>();
+        rangeSkript.showActivated = true;
+
         panel.SetActive(true);
 
         damageText.text = "Damage: " + tower.damageAmount.ToString();
@@ -31,6 +34,11 @@ public class TowerInfoUI : MonoBehaviour
     public void Hide()
     {
         panel.SetActive(false);
+
+        GameObject towerObj = currentTower.gameObject;
+        DynamicRangePreview rangeSkript = towerObj.GetComponent<DynamicRangePreview>();
+        rangeSkript.showActivated = false;
+
     }
 
     public void OnUpgradeButtonPressed()

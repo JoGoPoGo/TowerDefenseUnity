@@ -10,30 +10,27 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class DamageTest : MonoBehaviour
 {
-    public bool isAlive = true;
-
+    [Header("Stats")]
     public int currentHealth; // Aktuelle Leben -- siehe public
     public int maxHealth = 100; // Maximale Leben -- siehe public
     public float speed = 1f;
     public int reward = 0;
+    public float randomization;
 
+    [Header("Referenz")]
     public HealthSlider healthbar; // Referenz zur Lebensanzeige  -- siehe public
+    protected GameManager gameManager;
+    public BotsOnPath thisBotScript; //von BotsOnPath
+    public PathCreator pathCreator;
+    private BaseHealth baseScript;
+    public float speedMultiplier;
+    public bool isAlive = true;
 
+    [Header("Funktion")]
     public bool isLast;
 
-    protected GameManager gameManager;
-
-    public float randomization;
     public Vector3 positionRandomizer;
-
-    public BotsOnPath thisBotScript;
-    //von BotsOnPath
-    public PathCreator pathCreator;
-    public float speedMultiplier;
-
     public float distanceTravelled = 0f;
-
-    private BaseHealth baseScript;
 
     protected virtual void Start()
     {
@@ -44,7 +41,7 @@ public class DamageTest : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         positionRandomizer = new Vector3 (UnityEngine.Random.Range(-randomization,randomization), 0, UnityEngine.Random.Range(-randomization,randomization));
     }
-    protected void Update()
+    protected virtual void Update()
     {
         if (pathCreator != null)
         {
