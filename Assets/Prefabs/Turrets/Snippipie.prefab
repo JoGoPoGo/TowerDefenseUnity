@@ -174,8 +174,8 @@ MonoBehaviour:
   level: 1
   maxLvl: 10
   upgradeCost: 1
-  upgradePercentage: 50
-  rangeBool: 1
+  upgradePercentage: 200
+  rangeBool: 0
   damageBool: 1
   fireRateBool: 0
   cancelBool: 0

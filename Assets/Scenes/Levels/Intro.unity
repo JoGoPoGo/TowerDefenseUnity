@@ -150,14 +150,14 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.984024, b: 0.9103774, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -459,7 +459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: waves.Array.data[0].groups.Array.data[0].tillNextBot
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: waves.Array.data[0].groups.Array.data[1].tillNextBot
@@ -475,7 +475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: waves.Array.data[0].groups.Array.data[0].botConfigs.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: waves.Array.data[0].groups.Array.data[1].botConfigs.Array.size
@@ -483,7 +483,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: waves.Array.data[0].groups.Array.data[0].botConfigs.Array.data[0].timesBot
-      value: 4
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: waves.Array.data[0].groups.Array.data[0].botConfigs.Array.data[2].timesBot
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: waves.Array.data[0].groups.Array.data[1].botConfigs.Array.data[0].timesBot
@@ -492,18 +496,22 @@ PrefabInstance:
     - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: waves.Array.data[0].groups.Array.data[0].botConfigs.Array.data[0].botPrefab
       value: 
-      objectReference: {fileID: 3923748371457467074, guid: 721ea9e3ada7dd3439ab3df6905a97e7, type: 3}
+      objectReference: {fileID: 6259370625345561336, guid: ed423a6720c43dc4c91f1045471177e9, type: 3}
     - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: waves.Array.data[0].groups.Array.data[0].botConfigs.Array.data[1].botPrefab
       value: 
-      objectReference: {fileID: 3923748371457467074, guid: c6aa8ee2930781f478664ea49815f235, type: 3}
+      objectReference: {fileID: 3923748371457467074, guid: 721ea9e3ada7dd3439ab3df6905a97e7, type: 3}
+    - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: waves.Array.data[0].groups.Array.data[0].botConfigs.Array.data[2].botPrefab
+      value: 
+      objectReference: {fileID: 5074364399676035807, guid: 0ea02ea1822926a48bf1e1f8f3a1fd97, type: 3}
     - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: waves.Array.data[0].groups.Array.data[1].botConfigs.Array.data[0].botPrefab
       value: 
       objectReference: {fileID: 5074364399676035807, guid: 0ea02ea1822926a48bf1e1f8f3a1fd97, type: 3}
     - target: {fileID: 8982135261534226876, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: maxHealth
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

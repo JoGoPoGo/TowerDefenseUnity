@@ -234,8 +234,8 @@ MonoBehaviour:
   positionRandomizer: {x: 0, y: 0, z: 0}
   distanceTravelled: 0
   healRange: 20
-  healAmount: 50
-  healIntervall: 6
+  healAmount: 200
+  healIntervall: 5
   particlePrefab: {fileID: 1324670471591712024}
 --- !u!114 &2671866503035872246
 MonoBehaviour:
