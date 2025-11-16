@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HealBot : DamageTest
 {
-    public int healRange ;
+    public int healRange;
     public int healAmount = 10;
     public float healIntervall = 2;
 
@@ -60,22 +60,21 @@ public class HealBot : DamageTest
     }
     IEnumerator ParticlePlay()
     {
-        // Neues Partikelobjekt erzeugen
-        GameObject part = Instantiate(particlePrefab, transform.position, Quaternion.identity);
+        ParticleSystem ps = particlePrefab.GetComponent<ParticleSystem>();
 
-        // Um 90° um X-Achse drehen
-        part.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+        if (ps != null) 
+        {
+            var main = ps.main;
+            main.startLifetime = (float)healRange / 10f;
 
-        // Dauer des Partikelsystems auslesen
-        ParticleSystem ps = part.GetComponent<ParticleSystem>();
-        float lifetime = ps != null ? ps.main.duration : 2f;
-
-        // Warten bis die Partikel verschwunden sind
-        yield return new WaitForSeconds(lifetime);
-
-        // Danach löschen
-        Destroy(part);
+        }
+        ps.Play();
+        yield return new WaitForSeconds(3);
+        ps.Stop();
     }
-
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, healRange);
+    }
 }
