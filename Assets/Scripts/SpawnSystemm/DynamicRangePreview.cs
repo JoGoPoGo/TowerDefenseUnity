@@ -85,6 +85,8 @@ public class DynamicRangePreview : MonoBehaviour
 
     void GenerateRangeMesh()
     {
+        Debug.Log(gameObject.name + " RANGE = " + range);
+
         UpdateStats();
         //if (rayCount <= 0) return;
 

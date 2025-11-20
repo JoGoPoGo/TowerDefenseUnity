@@ -42,7 +42,7 @@ public class Tower : MonoBehaviour
     public GameObject target;           // Das aktuelle Ziel des Turms
     protected float fireCountdown = 0f; 
     private Tower[] allTowerComponents;   
-    private int UpdateCounter = 0;
+    protected int UpdateCounter = 0;
     protected bool dictionaryActivater = true;
     protected LayerMask obstacleMask;
     protected int tiling = 1;
