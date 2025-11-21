@@ -21,6 +21,12 @@ public class DoubleShoot : Tower
 
     protected override void Update()
     {
+        if(target == null)  //Wenn das Target verloren geht, z.B. stirbt, wird resetet.
+        {
+            shouldUpdateTarget = true;
+            fireCountdown = 1f / fireRate;
+            firerateCounter = shootNumber;
+        }
         if (gameObject.CompareTag("Tower") && dictionaryActivater)
         {
             Vector2Int posi = new Vector2Int((int)Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.z));

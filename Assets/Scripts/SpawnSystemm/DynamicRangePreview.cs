@@ -18,6 +18,7 @@ public class DynamicRangePreview : MonoBehaviour
     public int previewAngle = 360;
 
     public bool showActivated = false;
+    public GameObject sphere;
 
     private MeshRenderer meshRenderer;
     private MeshFilter meshFilter;
@@ -30,6 +31,7 @@ public class DynamicRangePreview : MonoBehaviour
 
     private Vector3 lastPosition;
     private Quaternion lastRotation;
+    private TypeCanon canon;
 
 
     void Awake()
@@ -41,6 +43,8 @@ public class DynamicRangePreview : MonoBehaviour
         // Eigenes Mesh anlegen, falls noch keins existiert
         mesh = new Mesh();
         meshFilter.mesh = mesh;
+        canon = GetComponent<TypeCanon>();
+
     }
 
     void Start()
@@ -85,56 +89,85 @@ public class DynamicRangePreview : MonoBehaviour
 
     void GenerateRangeMesh()
     {
-        Debug.Log(gameObject.name + " RANGE = " + range);
-
+        
         UpdateStats();
-        //if (rayCount <= 0) return;
 
-        Vector3 origin = transform.position + Vector3.up * 0.3f; // leicht über Boden
+        Vector3 origin = transform.position + Vector3.up * 0.3f;
 
-        float angleStep = (float)previewAngle / (float)rayCount;
+        float angleStep = previewAngle / (float)rayCount;
+        float startAngle = -previewAngle * 0.5f;
 
-        float startAngle =  -previewAngle * 0.5f;
-
+        // Mesh-Daten vorbereiten
         Vector3[] vertices = new Vector3[rayCount + 2];
         int[] triangles = new int[rayCount * 3];
 
-        vertices[0] = new Vector3(0f, 0.1f, 0f); // Mittelpunkt (lokal)
+        // Mittelpunkt (lokale Koordinaten)
+        vertices[0] = new Vector3(0f, 0.1f, 0f);
 
+        // --- RAYCAST LOOP --------------------------------------------------------
         for (int i = 0; i <= rayCount; i++)
         {
-            float angle = startAngle + i * angleStep; // 0..previewAngle
-            Vector3 localDir = new Vector3(Mathf.Sin(angle * Mathf.Deg2Rad), 0 , Mathf.Cos(angle * Mathf.Deg2Rad));
+            float angle = startAngle + i * angleStep;
 
+            // Richtung im lokalen Raum
+            Vector3 localDir = AngleToDirection(angle);
 
-            Vector3 worldDir = transform.rotation * localDir;
+            // Richtung in Weltkoordinaten
+            Quaternion testRotation = Quaternion.Euler(0, -45, 0);
+            Vector3 worldDir = testRotation * localDir;
 
-            if (Physics.Raycast(origin, worldDir, out RaycastHit hit, range, obstacleMask))
-            {
-                vertices[i + 1] = transform.InverseTransformPoint(hit.point);
-            }
-            else
-            {
-                vertices[i + 1] = localDir * range;
-            }
+            // Raycast
+            vertices[i + 1] = GetVertexPosition(origin, worldDir, localDir);
         }
+        sphere.transform.position = origin;
 
-        for (int i = 0; i < rayCount; i++)
-        {
-            int vIndex = i + 1;
-            triangles[i * 3] = 0;
-            triangles[i * 3 + 1] = vIndex;
-            triangles[i * 3 + 2] = vIndex + 1;
-        }
+        // --- TRIANGLE SETUP ------------------------------------------------------
+        BuildTriangles(triangles);
 
+        // --- APPLY TO MESH -------------------------------------------------------
         mesh.Clear();
         mesh.vertices = vertices;
         mesh.triangles = triangles;
-        mesh.RecalculateNormals();
 
-        // optional: bounds einstellen, falls Mesh außerhalb liegt
+        mesh.RecalculateNormals();
         mesh.RecalculateBounds();
     }
+
+    // Wandelt einen Winkel (in Grad) in eine lokale Richtung um
+    Vector3 AngleToDirection(float angle)
+    {
+        float rad = angle * Mathf.Deg2Rad;
+        return new Vector3(Mathf.Sin(rad), 0f, Mathf.Cos(rad));
+    }
+
+    // Gibt die richtige Vertex-Position zurück (Raycast oder max. Range)
+    Vector3 GetVertexPosition(Vector3 origin, Vector3 worldDir, Vector3 localDir)
+    {
+        if (Physics.Raycast(origin, worldDir, out RaycastHit hit, range, obstacleMask))
+        {
+            return transform.InverseTransformPoint(hit.point);
+        }
+        else
+        {
+            return localDir * range;
+        }
+    }
+
+    // Füllt das Triangle-Array für ein Fan-Mesh
+    void BuildTriangles(int[] triangles)
+    {
+        for (int i = 0; i < rayCount; i++)
+        {
+            int baseIndex = i * 3;
+            int v = i + 1;
+
+            triangles[baseIndex]     = 0;
+            triangles[baseIndex + 1] = v;
+            triangles[baseIndex + 2] = v + 1;
+        }
+    }
+
+
 
     private bool IsMoved()
     {

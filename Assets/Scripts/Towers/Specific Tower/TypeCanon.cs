@@ -10,10 +10,12 @@ public class TypeCanon : Tower
 
     [Header("Funktion")]
     private int rotateCounter = 0;
-    private Quaternion startDirection;
+    public Quaternion startDirection;
 
     private DynamicRangePreview rangePreviewScript;
     // Start is called before the first frame update
+
+
 
     protected override void Start()
     {
