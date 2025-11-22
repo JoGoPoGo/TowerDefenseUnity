@@ -124,11 +124,11 @@ public class TypeCatapult : Tower
         stone.transform.position = enemyPosition;
         //yield return new WaitForSeconds(0.1f);
         Vector3 schalePosition = Schale.transform.position;
-        searchForInRange(stone.transform.position);   //fügt allen Gegnern innerhalb des Einschlagradiuses schaden zu
+        SearchForInRange(stone.transform.position);   //fügt allen Gegnern innerhalb des Einschlagradiuses schaden zu
         shootSound.Play();
         stone.transform.position = schalePosition;
     }
-    void searchForInRange(Vector3 einschlag)
+    void SearchForInRange(Vector3 einschlag)
     {
        // betroffenList.Clear(); //setzt Liste Zurück
 

@@ -18,7 +18,6 @@ public class DynamicRangePreview : MonoBehaviour
     public int previewAngle = 360;
 
     public bool showActivated = false;
-    public GameObject sphere;
 
     private MeshRenderer meshRenderer;
     private MeshFilter meshFilter;
@@ -119,7 +118,6 @@ public class DynamicRangePreview : MonoBehaviour
             // Raycast
             vertices[i + 1] = GetVertexPosition(origin, worldDir, localDir);
         }
-        sphere.transform.position = origin;
 
         // --- TRIANGLE SETUP ------------------------------------------------------
         BuildTriangles(triangles);
