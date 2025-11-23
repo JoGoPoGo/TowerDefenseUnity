@@ -113,7 +113,7 @@ public class DynamicRangePreview : MonoBehaviour
 
             // Richtung in Weltkoordinaten
             Quaternion testRotation = Quaternion.Euler(0, -45, 0);
-            Vector3 worldDir = testRotation * localDir;
+            Vector3 worldDir = transform.rotation * localDir;
 
             // Raycast
             vertices[i + 1] = GetVertexPosition(origin, worldDir, localDir);

@@ -176,7 +176,7 @@ MonoBehaviour:
   upgradeCost: 1
   upgradePercentage: 200
   rangeBool: 1
-  damageBool: 0
+  damageBool: 1
   fireRateBool: 0
   cancelBool: 0
   price: 20
