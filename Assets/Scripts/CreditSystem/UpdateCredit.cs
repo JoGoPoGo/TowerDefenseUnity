@@ -15,7 +15,7 @@ public class UpdateCredit : MonoBehaviour
             Debug.Log("GameManager");
             return;
         }
-        coinText.text = "Credits: " + gameManager.credits;
+        coinText.text = " " + gameManager.credits;
     }
 }
 
