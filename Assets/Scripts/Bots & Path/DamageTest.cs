@@ -71,7 +71,7 @@ public class DamageTest : MonoBehaviour
         {
             gameManager.AddCredits(reward);
         }
-        if (IsOnlyEnemy() && isLast)
+        if (IsOnlyEnemy()) //&& isLast
         {
             BotsOnPath[] botsOnPaths = FindObjectsOfType<BotsOnPath>();
 
