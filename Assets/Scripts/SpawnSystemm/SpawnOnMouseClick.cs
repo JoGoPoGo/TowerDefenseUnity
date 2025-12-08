@@ -12,7 +12,6 @@ public class SpawnOnMouseClick : MonoBehaviour
     private bool spawnEnabled = false; // Frag, ob das Spawning aktiviert ist 
     public GameObject selectedPrefab;
     public Preview previewScript;
-    public CancelDictionaryProtoType cancelScript;
 
     //Tims Änderung
     public GameManager gameManager;
@@ -46,7 +45,6 @@ public class SpawnOnMouseClick : MonoBehaviour
                 spawnEnabled = true; // Aktiviere das Spawning
                 //Tims Änderung
                 UpdateCost();
-                cancelScript.showCancelArea();
 
             });
         }
@@ -103,13 +101,8 @@ public class SpawnOnMouseClick : MonoBehaviour
             }
 
         }
-        if (Input.GetMouseButtonUp(0))
-        {
-            Debug.Log("Deaktiviert");
-            //cancelScript.hideCancelArea();
-        }
     }
-    void UpdateCost()                 //Tims Änderung -- gibt den Korekten preis zurück
+    void UpdateCost()                 //Tims Änderung -- gibt den Korrekten preis zurück
     {
         Tower towerScript = prefabsToSpawn[selectedPrefabIndex].GetComponent<Tower>();
         cost = towerScript.price;

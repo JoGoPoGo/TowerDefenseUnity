@@ -4893,7 +4893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8997481492933369875, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8997481492933369875, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5064,13 +5064,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4462cc471d54b6b468d2e8dee5c4e51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freeMat: {fileID: 0}
-  occupiedMat: {fileID: 2100000, guid: 991d710d177da704e85cf92262d7004e, type: 2}
   yOffset: 0.05
-  plate: {fileID: 1922445711460146120, guid: 856da8afad1593148b2dec3d98dc033b, type: 3}
-  showDuration: 1000
-  lineMaterial: {fileID: 0}
-  lineWidth: 0.1
+  cancelAreaMaterial: {fileID: 2100000, guid: 991d710d177da704e85cf92262d7004e, type: 2}
 --- !u!114 &5551678596280533265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5844,6 +5839,10 @@ PrefabInstance:
       propertyPath: prefabsToSpawn.Array.data[4]
       value: 
       objectReference: {fileID: 2249457114057599706, guid: 0e252be0fa615e5459344d698d9b3e81, type: 3}
+    - target: {fileID: 3477797525609576267, guid: 9031138a415095c4599610268e5ba477, type: 3}
+      propertyPath: cancelScript
+      value: 
+      objectReference: {fileID: 183030366657863108}
     - target: {fileID: 3477797525609576267, guid: 9031138a415095c4599610268e5ba477, type: 3}
       propertyPath: normalMaterial
       value: 

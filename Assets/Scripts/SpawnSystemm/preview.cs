@@ -10,6 +10,7 @@ public class Preview : MonoBehaviour
     private float hitPointx;
     private float hitPointz;
     private float hitPointy;
+    public CancelDictionaryProtoType cancelScript;
 
     public Material normalMaterial;    // Material für gültige Position
     public Material sperrbereichMaterial; // Material für ungültige Position
@@ -43,7 +44,10 @@ public class Preview : MonoBehaviour
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-
+            if (cancelScript != null)
+            {
+                cancelScript.showCancelArea();
+            }
             // Wenn der Raycast etwas trifft
             if (Physics.Raycast(ray, out hit))
             {
@@ -76,16 +80,19 @@ public class Preview : MonoBehaviour
                     
             }
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && spawnScript.spawned)
         {
             SetVisibility(previewObject, true);
             spawnScript.spawned = false; // Setze spawned auf false, wenn die linke Maustaste losgelassen wird
-            
 
             if (previewObject != null)
             {
                 previewObject.layer = LayerMask.NameToLayer("Default");
                 previewObject.tag = "Tower";
+            }
+            if (cancelScript != null)
+            {
+                cancelScript.hideCancelArea();
             }
 
         }
