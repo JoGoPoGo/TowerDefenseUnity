@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -340, y: -210}
+  m_AnchoredPosition: {x: -550, y: -330}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &621291281
@@ -297,7 +297,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 880, y: 500}
+  m_SizeDelta: {x: 1300, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &641922365
 MonoBehaviour:
@@ -374,7 +374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 340, y: -210}
+  m_AnchoredPosition: {x: 550, y: -330}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &662875124
@@ -760,19 +760,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Formidable, formidable\r\nTu \xE9tais formidable, j'\xE9tais fort minable\r\nNous
-    \xE9tions formidables\r\nFormidable\r\nTu \xE9tais formidable, j'\xE9tais fort
-    minable\r\nNous \xE9tions formidables\r\nOh, b\xE9b\xE9, oups, mademoiselle\r\nJ'vais
-    pas vous draguer, promis jur\xE9\r\nJ'suis c\xE9libataire, depuis hier, putain\r\nJ'peux
-    pas faire d'enfant et bon, c'est pas\r\nH\xE9, reviens, cinq minutes quoi, j't'ai
-    pas insult\xE9e\r\nJ'suis poli, courtois, et un peu fort bourr\xE9\r\nMais pour
-    les mecs comme moi\r\nVous avez autre chose \xE0 faire, hein\r\nM'auriez vu hier,
-    j'\xE9tais\r\nFormidable, formidable\r\nTu \xE9tais formidable, j'\xE9tais fort
-    minable\r\nNous \xE9tions formidables\r\nFormidable\r\nTu \xE9tais formidable,
-    j'\xE9tais fort minable\r\nNous \xE9tions formidables"
+  m_text: 'Herzlich Willkommen bei Clash Defense !!!
+
+
+
+    Dies ist die Geschichte
+    eines einsamen Zeitreisenden, der in die Vergangenheit reist und in einzelnen
+    Zeitetappen seine Gegner besiegen muss, um seinen Frieden wieder herzustellen.
+    Hilf im bei seiner Mission und gib dein Bestes !!!!'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
+  m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -796,8 +794,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19
-  m_fontSizeBase: 19
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
