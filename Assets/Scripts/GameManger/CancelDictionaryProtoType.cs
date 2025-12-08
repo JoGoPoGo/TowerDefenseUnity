@@ -40,7 +40,14 @@ public class CancelDictionaryProtoType : MonoBehaviour
         IsTerrainInScene = (terrain != null);
     }
 
-
+    public void hideCancelArea()
+    {
+        // Alle Child-GameObjects (Outline-Lines) entfernen
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
     public void showCancelArea()
     {
 

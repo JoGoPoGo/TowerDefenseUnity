@@ -2722,7 +2722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -2870,7 +2870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -3492,7 +3492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -6058,6 +6058,10 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 2562722681120848578, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2580682561339190837, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -6248,7 +6252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5559176206382978461, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_Navigation.m_Mode
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5559176206382978461, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_Colors.m_SelectedColor.b
@@ -6264,7 +6268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5748667927023209811, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_Navigation.m_Mode
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5748667927023209811, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_Colors.m_SelectedColor.b
