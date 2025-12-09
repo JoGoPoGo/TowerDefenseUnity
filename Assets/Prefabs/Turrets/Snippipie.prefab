@@ -169,8 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 20
-  damageAmount: 30
-  fireRate: 0.5
+  damageAmount: 1000
+  fireRate: 5
   level: 1
   maxLvl: 10
   upgradeCost: 1

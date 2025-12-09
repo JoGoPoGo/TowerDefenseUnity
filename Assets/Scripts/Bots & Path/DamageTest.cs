@@ -27,7 +27,7 @@ public class DamageTest : MonoBehaviour
     public bool isAlive = true;
 
     [Header("Funktion")]
-    public bool isLast;
+    public bool isLast = false;
 
     public Vector3 positionRandomizer;
     public float distanceTravelled = 0f;
@@ -48,6 +48,8 @@ public class DamageTest : MonoBehaviour
             MoveAlongPath(pathCreator, distanceTravelled);
         }
         distanceTravelled += speed * speedMultiplier * Time.deltaTime;
+        if (isLast)
+            Debug.Log("True");
     }
 
     // Funktion zum Zufügen von Schaden
@@ -67,11 +69,12 @@ public class DamageTest : MonoBehaviour
     // Zerstört den Bot, wenn die Lebenspunkte auf 0 fallen
     public virtual void Die(bool didDamage)
     {
+        Debug.Log(isLast);
         if (!didDamage)
         {
             gameManager.AddCredits(reward);
         }
-        if (IsOnlyEnemy()) //&& isLast
+        if (IsOnlyEnemy() && isLast)
         {
             BotsOnPath[] botsOnPaths = FindObjectsOfType<BotsOnPath>();
 
