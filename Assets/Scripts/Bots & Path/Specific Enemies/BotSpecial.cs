@@ -23,7 +23,6 @@ public class BotSpecial : DamageTest
             {
                 gameManager.AddCredits(reward);
             }
-            
             bool splitLast = false;
             for (int i = 0; i < splittCount; i++)
             {
@@ -32,6 +31,18 @@ public class BotSpecial : DamageTest
                 SpawnBot(splittingPrefab, splitLast);
             }
 
+            if (isLast)
+            {
+                thisBotScript.deadBotsInLastWave++;
+
+                // Prüfen, ob ALLE Bots gespawnt wurden + ALLE tot sind
+                if (thisBotScript.lastWaveFullySpawned &&
+                    thisBotScript.deadBotsInLastWave >= thisBotScript.totalBotsInLastWave)
+                {
+                    TriggerWin();
+                }
+            }
+            
             isAlive = false;
             Destroy(gameObject);
         }

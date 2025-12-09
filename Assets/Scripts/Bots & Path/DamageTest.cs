@@ -48,8 +48,6 @@ public class DamageTest : MonoBehaviour
             MoveAlongPath(pathCreator, distanceTravelled);
         }
         distanceTravelled += speed * speedMultiplier * Time.deltaTime;
-        if (isLast)
-            Debug.Log("True");
     }
 
     // Funktion zum Zufügen von Schaden
@@ -69,12 +67,22 @@ public class DamageTest : MonoBehaviour
     // Zerstört den Bot, wenn die Lebenspunkte auf 0 fallen
     public virtual void Die(bool didDamage)
     {
-        Debug.Log(isLast);
+        if (isLast)
+        {
+            thisBotScript.deadBotsInLastWave++;
+
+            // Prüfen, ob ALLE Bots gespawnt und ALLE tot sind
+            if (thisBotScript.lastWaveFullySpawned &&
+                thisBotScript.deadBotsInLastWave >= thisBotScript.totalBotsInLastWave)
+            {
+                TriggerWin();
+            }
+        }
         if (!didDamage)
         {
             gameManager.AddCredits(reward);
         }
-        if (IsOnlyEnemy() && isLast)
+        /*if (IsOnlyEnemy() && isLast)
         {
             BotsOnPath[] botsOnPaths = FindObjectsOfType<BotsOnPath>();
 
@@ -106,7 +114,7 @@ public class DamageTest : MonoBehaviour
                 }
             }
         }
-        isAlive = false;
+        isAlive = false;*/
         Destroy(gameObject);
     }
     public void MoveAlongPath(PathCreator path, float pathPoint)    // soll als Ersatz für IEnumarator bei BotsOnPath dienen, welche die Bots bewegt
@@ -121,5 +129,17 @@ public class DamageTest : MonoBehaviour
     public bool IsOnlyEnemy()
     {
         return GameObject.FindGameObjectsWithTag("Enemy").Length == 1; //true, wenn es keine weiteren Gegner gibt.
+    }
+    public virtual void TriggerWin()
+    {
+        GameObject parent = GameObject.Find("Canvas");
+        if (parent != null)
+        {
+            Transform winTransform = parent.transform.Find("WinScreen");
+            if (winTransform != null)
+            {
+                winTransform.gameObject.SetActive(true);
+            }
+        }
     }
 }

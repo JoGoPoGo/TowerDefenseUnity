@@ -31,39 +31,59 @@ public class BotsOnPath : MonoBehaviour
     
     public bool loopPath = false;
 
+    public int totalBotsInLastWave = 0;
+    public int deadBotsInLastWave = 0;
+    public bool lastWaveFullySpawned = false;
     //private int currentWave = 0;
 
     void Start()
     {
+        CountBotsInLastWave();
         StartCoroutine(SpawnWaves());
+    }
+
+    void CountBotsInLastWave()
+    {
+        WaveConfiguration lastWave = waves[waves.Length - 1];
+
+        foreach (var group in lastWave.groups)
+        {
+            foreach (var bot in group.botConfigs)
+            {
+                totalBotsInLastWave += bot.timesBot;
+            }
+        }
     }
 
     // Spawning der Wellen
     IEnumerator SpawnWaves()
     {
-        for (int i = 0; i < waves.Length; i++) // Schleife durch alle Wellen
+        for (int i = 0; i < waves.Length; i++)
         {
-            WaveConfiguration currentWave = waves[i]; // Aktuelle Welle abrufen
-            //Debug.Log("Welle " + (i + 1) + " startet!");
-            yield return new WaitForSeconds(0.1f);   //damit jede Aktuelle welle gespawned wird
-            if (i == waves.Length - 1)
+            WaveConfiguration currentWave = waves[i];
+            yield return new WaitForSeconds(0.1f);
+
+            bool isLastWave = (i == waves.Length - 1);
+
+            yield return StartCoroutine(SpawnGroupsInWave(currentWave, isLastWave));
+
+            if (isLastWave)
             {
-                yield return StartCoroutine(SpawnGroupsInWave(currentWave, true)); // Spawne Gruppen in der aktuellen letzten Welle
-                Debug.Log("Letzte Welle");
+                // Letzte Welle wurde vollständig gespawnt
+                lastWaveFullySpawned = true;
             }
-            else
-            {
-                yield return StartCoroutine(SpawnGroupsInWave(currentWave, false));
-                
-            }
+
             Debug.Log("Welle " + (i + 1) + " beendet!");
+
+            // Warte bis alle Gegner dieser Welle TOT sind
             yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
+
             yield return new WaitForSeconds(currentWave.waitAfterWaveEnd);
-            //yield return new WaitForSeconds(currentWave.waveWaitTime); // Wartezeit vor der nächsten Welle
         }
 
         Debug.Log("Alle Wellen abgeschlossen!");
     }
+
 
     // Spawning von Gruppen in einer Welle
     IEnumerator SpawnGroupsInWave(WaveConfiguration waveConfig, bool isLast)
