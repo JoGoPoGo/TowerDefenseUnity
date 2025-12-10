@@ -72,8 +72,7 @@ public class DamageTest : MonoBehaviour
             thisBotScript.deadBotsInLastWave++;
 
             // Prüfen, ob ALLE Bots gespawnt und ALLE tot sind
-            if (thisBotScript.lastWaveFullySpawned &&
-                thisBotScript.deadBotsInLastWave >= thisBotScript.totalBotsInLastWave)
+            if (thisBotScript.deadBotsInLastWave >= thisBotScript.totalBotsInLastWave)
             {
                 TriggerWin();
             }
