@@ -33,13 +33,23 @@ public class BotsOnPath : MonoBehaviour
 
     public int totalBotsInLastWave = 0;
     public int deadBotsInLastWave = 0;
-    public bool lastWaveFullySpawned = false;
+
+    private int totalBots = 0;
     //private int currentWave = 0;
 
     void Start()
     {
         CountBotsInLastWave();
         StartCoroutine(SpawnWaves());
+    }
+
+    private void Update()
+    {
+        if(deadBotsInLastWave > totalBots)
+        {
+            Debug.Log("Es wurden bereits " + deadBotsInLastWave + " von " + totalBotsInLastWave + " getötet");
+            totalBots = deadBotsInLastWave;
+        }
     }
 
     void CountBotsInLastWave()
@@ -66,12 +76,6 @@ public class BotsOnPath : MonoBehaviour
             bool isLastWave = (i == waves.Length - 1);
 
             yield return StartCoroutine(SpawnGroupsInWave(currentWave, isLastWave));
-
-            if (isLastWave)
-            {
-                // Letzte Welle wurde vollständig gespawnt
-                lastWaveFullySpawned = true;
-            }
 
             Debug.Log("Welle " + (i + 1) + " beendet!");
 
