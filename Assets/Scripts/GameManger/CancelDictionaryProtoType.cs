@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/*
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -184,11 +185,11 @@ public class CancelDictionaryProtoType : MonoBehaviour
         spawnGrid[pos] = 0;
     }
 }
+*/
 
-
-/* Hier kommt Tims gesamtes altes Skript
- * 
- * using System.Collections;
+/* Hier kommt Tims gesamtes altes Skript 
+ */
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -236,6 +237,14 @@ public class CancelDictionaryProtoType : MonoBehaviour
 
         ShowOutlines(Outline(spawnGrid, maxDistance));
         
+    }
+    public void hideCancelArea()
+    {
+        // Alle Child-GameObjects (Outline-Lines) entfernen
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     public void ShowOutlines(List<List<Vector2Int>> clusters)
@@ -519,5 +528,3 @@ public class CancelDictionaryProtoType : MonoBehaviour
         plate1.transform.localScale = new Vector3(scale, 1, scale);
     }
 }
-
-*/
