@@ -5015,8 +5015,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4462cc471d54b6b468d2e8dee5c4e51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freeMat: {fileID: 0}
+  occupiedMat: {fileID: 0}
   yOffset: 0.05
-  cancelAreaMaterial: {fileID: 2100000, guid: 991d710d177da704e85cf92262d7004e, type: 2}
+  plate: {fileID: 0}
+  showDuration: 1000
+  lineMaterial: {fileID: 0}
+  lineWidth: 0.1
 --- !u!114 &5551678596280533265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5089,6 +5094,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: -8663500062741114326, guid: 589efb82e39695d4c8c9d3069a07fb5c, type: 3}
+    - target: {fileID: 2589470469533995245, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: dictionary
+      value: 
+      objectReference: {fileID: 183030366657863108}
+    - target: {fileID: 2589470469533995245, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: cancelRange
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3141426026322467330, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 5.87

@@ -897,6 +897,10 @@ PrefabInstance:
       propertyPath: m_Navigation.m_Mode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1910790296300528858, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: cancelRange
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2341315347257562749, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_Navigation.m_Mode
       value: 0
