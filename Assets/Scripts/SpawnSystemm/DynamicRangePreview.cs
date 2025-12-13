@@ -32,6 +32,9 @@ public class DynamicRangePreview : MonoBehaviour
     private Quaternion lastRotation;
     private TypeCanon canon;
 
+    private bool showController = true;
+    private Quaternion orientedRotation;
+
 
     void Awake()
     {
@@ -42,8 +45,6 @@ public class DynamicRangePreview : MonoBehaviour
         // Eigenes Mesh anlegen, falls noch keins existiert
         mesh = new Mesh();
         meshFilter.mesh = mesh;
-        canon = GetComponent<TypeCanon>();
-
     }
 
     void Start()
@@ -59,24 +60,39 @@ public class DynamicRangePreview : MonoBehaviour
     void LateUpdate()
     {
         bool isTower = gameObject.CompareTag("Tower");
+        if (isTower)
+        {
+            orientedRotation = transform.rotation;
+        }
 
         // --- Mesh anzeigen? ---
-        bool shouldShowMesh = (!isTower) || (isTower && showActivated);
+        bool shouldShowMesh = (!isTower) || (isTower && showActivated); //der Turm ist im Platzierungsprozess oder auf ihn wurde raufgeclickt
 
         if (shouldShowMesh)
         {
             meshRenderer.enabled = true;
 
-            if (IsMoved() || WasRotated() || showActivated)
+            if ((IsMoved() || WasRotated()) && !showActivated)
             {
-                GenerateRangeMesh();
+                GenerateRangeMesh(transform.rotation);
                 lastRotation = transform.rotation;
                 lastPosition = transform.position;
+            }
+            if (showActivated && showController)
+            {
+                GenerateRangeMesh(orientedRotation);
+                lastRotation = transform.rotation;
+                lastPosition = transform.position;
+                showController = false;
             }
         }
         else
         {
             meshRenderer.enabled = false;
+        }
+        if (!showActivated)
+        {
+            showController = true;
         }
     }
 
@@ -86,9 +102,8 @@ public class DynamicRangePreview : MonoBehaviour
     }
 
 
-    void GenerateRangeMesh()
+    void GenerateRangeMesh(Quaternion baseRotation)
     {
-        
         UpdateStats();
 
         Vector3 origin = transform.position + Vector3.up * 0.3f;
@@ -112,8 +127,7 @@ public class DynamicRangePreview : MonoBehaviour
             Vector3 localDir = AngleToDirection(angle);
 
             // Richtung in Weltkoordinaten
-            Quaternion testRotation = Quaternion.Euler(0, -45, 0);
-            Vector3 worldDir = transform.rotation * localDir;
+            Vector3 worldDir = baseRotation * localDir;
 
             // Raycast
             vertices[i + 1] = GetVertexPosition(origin, worldDir, localDir);
