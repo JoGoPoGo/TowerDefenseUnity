@@ -249,14 +249,14 @@ public class CancelDictionaryProtoType : MonoBehaviour
 
     public void ShowOutlines(List<List<Vector2Int>> clusters)
     {
-        foreach (var cluster in clusters)
+        /*foreach (var cluster in clusters)        //Debug
         {
             Debug.Log("Cluster" + cluster);
             foreach(Vector2Int c in cluster)
             {
                 Debug.Log(c);
             }
-        }
+        }*/
 
         foreach (Transform child in transform)
         {

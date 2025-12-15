@@ -246,15 +246,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f7520adacd78342871c5d381b0b564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAlive: 1
   currentHealth: 0
-  maxHealth: 1800
+  maxHealth: 10000
   speed: 1
   reward: 10
-  healthbar: {fileID: 5939738080292200230}
-  isLast: 0
   randomization: 1
+  healthbar: {fileID: 5939738080292200230}
+  thisBotScript: {fileID: 0}
+  pathCreator: {fileID: 0}
+  speedMultiplier: 0
+  isAlive: 1
+  isLast: 0
   positionRandomizer: {x: 0, y: 0, z: 0}
+  distanceTravelled: 0
 --- !u!114 &7178349335008811983
 MonoBehaviour:
   m_ObjectHideFlags: 0

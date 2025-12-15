@@ -5,6 +5,131 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
 
+public class DynamicRangePreview : MonoBehaviour
+{
+    public int rayCount = 180; // Auflösung (mehr = glatterer Kreis)
+    public int accuracy = 1;
+
+    public Tower towerScript;
+    public LayerMask obstacleMask; // Hindernisse
+    public Material rangeMaterial;
+
+    public int previewAngle = 360;
+
+    public bool showActivated = false;
+
+    private MeshRenderer meshRenderer;
+    private MeshFilter meshFilter;
+
+    private Mesh mesh;
+    private float range;
+    private float minRange = 0;
+
+    private SpawnOnMouseClick spawnOnMouseClick;
+    private CancelDictionaryProtoType dictionary;
+
+    private Vector3 lastPosition;
+    private Quaternion lastRotation;
+
+    private bool showController = true;
+    private bool orientationSet = false;
+    private Quaternion orientedRotation;
+
+    private WorldPreview previewScript;
+
+    void Awake()
+    {
+        // Mesh-Komponenten holen
+        meshRenderer = GetComponent<MeshRenderer>();
+        meshFilter = GetComponent<MeshFilter>();
+
+        // Eigenes Mesh anlegen, falls noch keins existiert
+        mesh = new Mesh();
+        meshFilter.mesh = mesh;
+    }
+
+    void Start()
+    {
+        lastPosition = transform.position;
+        spawnOnMouseClick = towerScript.spawnScript;
+        TypeMinimumRange minRangeTower = towerScript.GetComponent<TypeMinimumRange>();
+        if (minRangeTower != null)
+            minRange = minRangeTower.rangeMinimum;
+        UpdateStats();
+
+        mesh = new Mesh();
+        GetComponent<MeshFilter>().mesh = mesh;
+        GetComponent<MeshRenderer>().material = rangeMaterial;
+        previewScript = FindObjectOfType<WorldPreview>();
+    }
+
+    void LateUpdate()
+    {
+        bool isTower = gameObject.CompareTag("Tower");
+        if (isTower && !orientationSet)
+        {
+            orientedRotation = transform.rotation;
+            orientationSet = true;
+        }
+
+        // --- Mesh anzeigen? ---
+        bool shouldShowMesh = (!isTower) || (isTower && showActivated); //der Turm ist im Platzierungsprozess oder auf ihn wurde raufgeclickt
+
+        if (shouldShowMesh)
+        {
+            previewScript = FindObjectOfType<WorldPreview>();
+
+            if ((IsMoved() || WasRotated()) && !showActivated)
+            {
+                previewScript.ShowRange(transform.position, transform.rotation, range, minRange, previewAngle );
+                Debug.Log("Ausgeführt 1");
+                lastRotation = transform.rotation;
+                lastPosition = transform.position;
+            }
+            if (showActivated && showController)
+            {
+                previewScript.ShowRange(transform.position, orientedRotation, range, minRange, previewAngle);
+                Debug.Log("Ausgeführt 2");
+                lastRotation = transform.rotation;
+                lastPosition = transform.position;
+                showController = false;
+            }
+        }
+        else
+        {
+            if(previewScript != null)
+            {
+                previewScript.Hide();
+            }
+
+            previewScript = null;
+        }
+        if (!showActivated)
+        {
+            showController = true;
+        }
+    }
+    private bool IsMoved()
+    {
+        return transform.position != lastPosition;
+    }
+    private bool WasRotated()
+    {
+        return transform.rotation != lastRotation;
+    }
+    public void UpdateStats()
+    {
+        range = towerScript.range;
+    }
+}
+
+/*using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
+[RequireComponent(typeof(MeshFilter))]
+
 
 public class DynamicRangePreview : MonoBehaviour
 {
@@ -189,4 +314,4 @@ public class DynamicRangePreview : MonoBehaviour
     {
         return transform.rotation != lastRotation;
     }
-}
+}*/

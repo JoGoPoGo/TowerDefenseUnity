@@ -14,21 +14,33 @@ public class WorldPreview : MonoBehaviour
 
     private Vector3 originPosition;
     private Quaternion baseRotation;
+    private float minRange;
+
+    private MeshRenderer meshRenderer;
 
     void Awake()
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         GetComponent<MeshRenderer>().material = rangeMaterial;
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
     // === EXTERNER AUFRUF ===
     // Wird vom Tower oder Controller aufgerufen
-    public void ShowRange(Vector3 worldPosition, Quaternion rotation, float towerRange)
+    public void ShowRange(
+    Vector3 worldPosition,
+    Quaternion rotation,
+    float towerRange,
+    float towerMinRange,
+    int towerPreviewAngle)
     {
+        meshRenderer.enabled = true;
         originPosition = worldPosition;
         baseRotation = rotation;
         range = towerRange;
+        minRange = Mathf.Max(0f, towerMinRange); // Sicherheit
+        previewAngle = towerPreviewAngle;
 
         GenerateMesh();
         gameObject.SetActive(true);
@@ -36,7 +48,7 @@ public class WorldPreview : MonoBehaviour
 
     public void Hide()
     {
-        gameObject.SetActive(false);
+        meshRenderer.enabled = false;
     }
 
     void GenerateMesh()
@@ -46,10 +58,9 @@ public class WorldPreview : MonoBehaviour
         float angleStep = previewAngle / (float)rayCount;
         float startAngle = -previewAngle * 0.5f;
 
-        Vector3[] vertices = new Vector3[rayCount + 2];
-        int[] triangles = new int[rayCount * 3];
-
-        vertices[0] = transform.InverseTransformPoint(origin);
+        // Pro Ray: inner + outer
+        Vector3[] vertices = new Vector3[(rayCount + 1) * 2];
+        int[] triangles = new int[rayCount * 6];
 
         for (int i = 0; i <= rayCount; i++)
         {
@@ -57,21 +68,33 @@ public class WorldPreview : MonoBehaviour
             Vector3 localDir = AngleToDirection(angle);
             Vector3 worldDir = baseRotation * localDir;
 
-            Vector3 point;
-            if (Physics.Raycast(origin, worldDir, out RaycastHit hit, range, obstacleMask))
-                point = hit.point;
-            else
-                point = origin + worldDir * range;
+            // --- INNER POINT ---
+            Vector3 innerPoint = origin + worldDir * minRange;
+            vertices[i * 2] = transform.InverseTransformPoint(innerPoint);
 
-            vertices[i + 1] = transform.InverseTransformPoint(point);
+            // --- OUTER POINT ---
+            Vector3 outerPoint;
+            if (Physics.Raycast(origin, worldDir, out RaycastHit hit, range, obstacleMask))
+                outerPoint = hit.point;
+            else
+                outerPoint = origin + worldDir * range;
+
+            vertices[i * 2 + 1] = transform.InverseTransformPoint(outerPoint);
         }
 
+        // --- TRIANGLES ---
+        int triIndex = 0;
         for (int i = 0; i < rayCount; i++)
         {
-            int idx = i * 3;
-            triangles[idx] = 0;
-            triangles[idx + 1] = i + 1;
-            triangles[idx + 2] = i + 2;
+            int v = i * 2;
+
+            triangles[triIndex++] = v;
+            triangles[triIndex++] = v + 1;
+            triangles[triIndex++] = v + 2;
+
+            triangles[triIndex++] = v + 1;
+            triangles[triIndex++] = v + 3;
+            triangles[triIndex++] = v + 2;
         }
 
         mesh.Clear();
