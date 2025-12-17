@@ -238,7 +238,7 @@ public class CancelDictionaryProtoType : MonoBehaviour
         ShowOutlines(Outline(spawnGrid, maxDistance));
         
     }
-    public void hideCancelArea()
+    public void HideCancelArea()
     {
         // Alle Child-GameObjects (Outline-Lines) entfernen
         foreach (Transform child in transform)
@@ -498,11 +498,6 @@ public class CancelDictionaryProtoType : MonoBehaviour
         return mesh;
     }
 
-    float Cross(Vector2 o, Vector2 a, Vector2 b)
-    {
-        return (a.x - o.x) * (b.y - o.y) - (a.y - o.y) * (b.x - o.x);
-    }
-
     // Prüfen, ob an einer Position gespawnt werden darf
     public bool CanSpawnAt(Vector2Int pos)
     {
@@ -521,10 +516,5 @@ public class CancelDictionaryProtoType : MonoBehaviour
     public void FreePosition(Vector2Int pos)
     {
         spawnGrid[pos] = 0;
-    }
-
-    private void PlateScale(int scale, GameObject plate1)
-    {
-        plate1.transform.localScale = new Vector3(scale, 1, scale);
     }
 }

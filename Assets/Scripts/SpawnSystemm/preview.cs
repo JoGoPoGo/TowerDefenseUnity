@@ -92,7 +92,7 @@ public class Preview : MonoBehaviour
             }
             if (cancelScript != null)
             {
-                cancelScript.hideCancelArea();
+                cancelScript.HideCancelArea();
             }
 
         }
