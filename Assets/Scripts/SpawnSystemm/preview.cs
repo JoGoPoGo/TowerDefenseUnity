@@ -46,7 +46,7 @@ public class Preview : MonoBehaviour
             RaycastHit hit;
             if (cancelScript != null)
             {
-                cancelScript.showCancelArea();
+                cancelScript.ShowCancelArea();
             }
             // Wenn der Raycast etwas trifft
             if (Physics.Raycast(ray, out hit))

@@ -231,7 +231,7 @@ public class CancelDictionaryProtoType : MonoBehaviour
     }
 
 
-    public void showCancelArea()
+    public void ShowCancelArea()
     {
 
         ShowOutlines(Outline(spawnGrid, maxDistance));
