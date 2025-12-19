@@ -218,8 +218,7 @@ public class CancelDictionaryProtoType : MonoBehaviour
 
     public Material lineMaterial;     // Weisen wir im Inspector zu
     public float lineWidth = 0.1f;
-
-
+    public int smootheness;
 
     void Start()
     {
@@ -276,27 +275,33 @@ public class CancelDictionaryProtoType : MonoBehaviour
             lr.loop = true; // schließt die Linie, damit sie einen Rand bildet
             lr.useWorldSpace = true;
 
-            // Punkte umwandeln (Vector2Int → Vector3)
-            Vector3[] positions = new Vector3[cluster.Count];
-            for (int i = 0; i < cluster.Count; i++)
-            {
-                Vector2Int p = cluster[i];
-                float height = 0 + yOffset;
-                if (IsTerrainInScene)
-                {
-                    height += Terrain.activeTerrain.SampleHeight(new Vector3(p.x, 0, p.y));
-                }
+            var simplified = RemoveCollinear(cluster);
+            simplified = ReduceEveryNth(simplified, 3);
 
-                positions[i] = new Vector3(p.x, height, p.y); // Z = y für 2D-Grid im 3D-Raum
+            // Punkte umwandeln (Vector2Int → Vector3)
+            List<Vector3> basePoints = new List<Vector3>();
+
+            foreach (var p in simplified)
+            {
+                float height = yOffset;
+                if (IsTerrainInScene)
+                    height += Terrain.activeTerrain.SampleHeight(new Vector3(p.x, 0, p.y));
+
+                basePoints.Add(new Vector3(p.x, height, p.y));
             }
 
-            lr.positionCount = positions.Length;
-            lr.SetPositions(positions);
+            List<Vector3> bezierPoints = CreateBezierPath(
+                basePoints,
+                samplesPerSegment: 10,
+                smoothness: 0.15f
+            );
+
+            lr.positionCount = bezierPoints.Count;
+            lr.SetPositions(bezierPoints.ToArray());
+
         }
 
     }
-
-    
 
     public static List<List<Vector2Int>> Outline(Dictionary<Vector2Int, int> dic, int cellStep = 1, bool allowDiagonal = true)
     {
@@ -517,4 +522,78 @@ public class CancelDictionaryProtoType : MonoBehaviour
     {
         spawnGrid[pos] = 0;
     }
+
+    // Kubische Bezier-Interpolation (Für Bezier-Path)
+    static Vector3 Bezier(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float t)
+    {
+        float u = 1f - t;
+        return
+            u * u * u * p0 +
+            3f * u * u * t * p1 +
+            3f * u * t * t * p2 +
+            t * t * t * p3;
+    }
+    
+    //Bezier-Pfad aus Outline-Punkten erzeugen
+    static List<Vector3> CreateBezierPath(List<Vector3> points,int samplesPerSegment = 8,float smoothness = 0.25f)
+    {
+        List<Vector3> result = new List<Vector3>();
+        int count = points.Count;
+
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 p0 = points[i];
+            Vector3 pPrev = points[(i - 1 + count) % count];
+            Vector3 pNext = points[(i + 1) % count];
+
+            // Tangente bestimmen
+            Vector3 dir = (pNext - pPrev) * smoothness;
+
+            Vector3 c1 = p0 + dir;
+            Vector3 c2 = pNext - dir;
+
+            for (int s = 0; s < samplesPerSegment; s++)
+            {
+                float t = s / (float)samplesPerSegment;
+                result.Add(Bezier(p0, c1, c2, pNext, t));
+            }
+        }
+
+        return result;
+    }
+
+    //Jeden n-ten Punkt behalten
+    static List<Vector2Int> ReduceEveryNth(List<Vector2Int> points, int step = 2)
+    {
+        List<Vector2Int> result = new List<Vector2Int>();
+
+        for (int i = 0; i < points.Count; i += step)
+            result.Add(points[i]);
+
+        return result;
+    }
+
+    //nur Richtungswechsel behalten
+    static List<Vector2Int> RemoveCollinear(List<Vector2Int> points)
+    {
+        if (points.Count < 3) return points;
+
+        List<Vector2Int> result = new List<Vector2Int>();
+
+        for (int i = 0; i < points.Count; i++)
+        {
+            Vector2Int prev = points[(i - 1 + points.Count) % points.Count];
+            Vector2Int curr = points[i];
+            Vector2Int next = points[(i + 1) % points.Count];
+
+            Vector2Int d1 = curr - prev;
+            Vector2Int d2 = next - curr;
+
+            if (d1.x * d2.y - d1.y * d2.x != 0)
+                result.Add(curr); // Richtungswechsel
+        }
+
+        return result;
+    }
+
 }
