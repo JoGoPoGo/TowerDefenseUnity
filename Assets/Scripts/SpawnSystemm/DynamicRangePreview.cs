@@ -35,7 +35,7 @@ public class DynamicRangePreview : MonoBehaviour
     private bool orientationSet = false;
     private Quaternion orientedRotation;
 
-    private WorldPreview previewScript;
+    public WorldPreview previewScript;
 
     void Awake()
     {

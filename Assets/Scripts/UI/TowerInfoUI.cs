@@ -31,7 +31,7 @@ public class TowerInfoUI : MonoBehaviour
 
     }
 
-    public void Hide()
+    public void Hide()            //Versteckt die Rangepreview über das Deaktivieren von showActivated in DynamicRangePreview des Turms
     {
         panel.SetActive(false);
 
@@ -49,6 +49,15 @@ public class TowerInfoUI : MonoBehaviour
             Show(currentTower);
         }
 
+    }
+
+    public void OnSellButtonPressed()
+    {
+        if(currentTower != null)
+        {
+            Tower towerScript = currentTower.GetComponent<Tower>();
+            towerScript.Sell();
+        }
     }
 }
 

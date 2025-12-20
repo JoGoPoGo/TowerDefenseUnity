@@ -24,6 +24,7 @@ public class Tower : MonoBehaviour
 
     [Header("Changebles")]
     public int price;
+    public int sellReturn;
     public int spawnCancelRadius = 10;         // Kein Weiterer turm in diesem Bereich
     public float turnSpeed = 10f;      // Geschwindigkeit, mit der der Turm sich dreht
     public float recoilSpeed = 0.1f;
@@ -247,6 +248,22 @@ public class Tower : MonoBehaviour
 
             }
         }
+    }
+
+    //Sell wird beim Verkaufen ausgeführt
+    virtual public void Sell()
+    {
+        gameManager.AddCredits(sellReturn);  //"Zurückzahlen"
+
+        TowerInfoUI infoUIScript = gameManager.GetComponent<TowerInfoUI>();             //Verstecken der RangePreview & des TowerInfo - Panels
+
+        DynamicRangePreview rangeScript = gameObject.GetComponent<DynamicRangePreview>();       
+        WorldPreview worldPreviewScript = rangeScript.previewScript;
+
+        infoUIScript.Hide();
+        worldPreviewScript.Hide();
+
+        Destroy(gameObject);
     }
 }
 

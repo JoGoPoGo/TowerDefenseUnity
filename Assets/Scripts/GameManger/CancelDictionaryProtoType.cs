@@ -242,7 +242,7 @@ public class CancelDictionaryProtoType : MonoBehaviour
         // Alle Child-GameObjects (Outline-Lines) entfernen
         foreach (Transform child in transform)
         {
-            Destroy(child.gameObject);
+            child.gameObject.SetActive(false);
         }
     }
 
@@ -269,7 +269,7 @@ public class CancelDictionaryProtoType : MonoBehaviour
             lineObj.transform.SetParent(transform);
 
             LineRenderer lr = lineObj.AddComponent<LineRenderer>();
-            lr.material = lineMaterial != null ? lineMaterial : new Material(Shader.Find("Sprites/Default"));
+            lr.sharedMaterial = lineMaterial != null ? lineMaterial : new Material(Shader.Find("Sprites/Default"));
             lr.startWidth = lineWidth;
             lr.endWidth = lineWidth;
             lr.loop = true; // schließt die Linie, damit sie einen Rand bildet
@@ -281,11 +281,14 @@ public class CancelDictionaryProtoType : MonoBehaviour
             // Punkte umwandeln (Vector2Int → Vector3)
             List<Vector3> basePoints = new List<Vector3>();
 
+            Terrain terrain = IsTerrainInScene ? Terrain.activeTerrain : null;
+
             foreach (var p in simplified)
             {
                 float height = yOffset;
-                if (IsTerrainInScene)
-                    height += Terrain.activeTerrain.SampleHeight(new Vector3(p.x, 0, p.y));
+
+                if (terrain != null)
+                    height += terrain.SampleHeight(new Vector3(p.x, 0, p.y));
 
                 basePoints.Add(new Vector3(p.x, height, p.y));
             }
@@ -392,7 +395,13 @@ public class CancelDictionaryProtoType : MonoBehaviour
         List<Vector2Int> sorted = new List<Vector2Int>();
 
         // Startpunkt: der linkeste, dann niedrigste y (heuristik)
-        Vector2Int current = cluster.OrderBy(p => p.x).ThenBy(p => p.y).First();
+        Vector2Int current = cluster[0];
+        for (int i = 1; i < cluster.Count; i++)
+        {
+            var p = cluster[i];
+            if (p.x < current.x || (p.x == current.x && p.y < current.y))
+                current = p;
+        }
         sorted.Add(current);
         points.Remove(current);
 
