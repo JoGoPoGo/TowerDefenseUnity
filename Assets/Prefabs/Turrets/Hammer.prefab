@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 6797471268200005565}
   m_Layer: 2
   m_Name: Hammer
-  m_TagString: lastSpawned
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayCount: 60
   accuracy: 1
-  towerScript: {fileID: 0}
+  towerScript: {fileID: 6425468960604224223}
   obstacleMask:
     serializedVersion: 2
     m_Bits: 2048
@@ -180,7 +180,7 @@ MonoBehaviour:
   damageBool: 0
   fireRateBool: 0
   cancelBool: 0
-  price: 0
+  price: 10
   sellReturn: 0
   spawnCancelRadius: 10
   turnSpeed: 10

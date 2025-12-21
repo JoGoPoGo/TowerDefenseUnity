@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
+using TMPro;
 
 [System.Serializable]
 public class WaveConfiguration
@@ -35,10 +36,15 @@ public class BotsOnPath : MonoBehaviour
     public int deadBotsInLastWave = 0;
 
     private int totalBots = 0;
+
+    public GameObject CountdownObject;
+    private TextMeshProUGUI countdownText;
     //private int currentWave = 0;
 
     void Start()
     {
+        countdownText = CountdownObject.GetComponent<TextMeshProUGUI>();
+        CountdownObject.SetActive(false);
         CountBotsInLastWave();
         StartCoroutine(SpawnWaves());
     }
@@ -82,7 +88,21 @@ public class BotsOnPath : MonoBehaviour
             // Warte bis alle Gegner dieser Welle TOT sind
             yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
 
-            yield return new WaitForSeconds(currentWave.waitAfterWaveEnd);
+            //CountDown bis zur nächsten Welle
+            CountdownObject.SetActive(true);
+            for(int k = currentWave.waitAfterWaveEnd; k > 0; k--)
+            {
+                if (countdownText != null)
+                {
+                    if(i != waves.Length - 2) //wenn es nicht die vorletzte Welle ist
+                        countdownText.text = "Welle " + (i + 2) + " beginnt in " + k + " Sekunden";
+                    if (i == waves.Length - 2) // wenn es die vorletzte Welle ist
+                        countdownText.text = "Letzte Welle beginnt in " + k + " Sekunden";
+                    //Debug.Log("Welle " + (i + 1) + " in " + k + " Sekunden");
+                }
+                yield return new WaitForSeconds(1);
+            }
+            CountdownObject.SetActive(false);
         }
 
         Debug.Log("Alle Wellen abgeschlossen!");
