@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,21 @@ public class CirclePreview : MonoBehaviour
 {
     public int segments = 64;
     public float yOffset = 0.05f;
+    public AbilityScript abilityScript;
+
+    private bool draw = true;
 
     private LineRenderer lr;
+
+    private void Update()
+    {
+        if (gameObject.activeSelf && draw)
+        {
+            Draw(abilityScript.PoisonRange, Color.green);
+            Draw(abilityScript.FreezeRange, Color.cyan);
+            draw = false;
+        }
+    }
 
     void Awake()
     {
