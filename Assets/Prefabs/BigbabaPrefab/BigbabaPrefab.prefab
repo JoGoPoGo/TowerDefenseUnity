@@ -5043,7 +5043,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1195048275131006278}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7791960466707399285}
+        m_TargetAssemblyTypeName: AbilityScript, Assembly-CSharp
+        m_MethodName: Freeze
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8156684145197392692
 GameObject:
   m_ObjectHideFlags: 0
@@ -5130,6 +5142,7 @@ GameObject:
   - component: {fileID: 3202501563123559516}
   - component: {fileID: 3121080631115940469}
   - component: {fileID: 2144935889588168251}
+  - component: {fileID: 7791960466707399285}
   m_Layer: 5
   m_Name: AbilityPanel
   m_TagString: Untagged
@@ -5157,7 +5170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -679, y: -373}
+  m_AnchoredPosition: {x: -693, y: -281}
   m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3121080631115940469
@@ -5198,6 +5211,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7791960466707399285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213585780386057176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02008187e588ae142abe25db1c75e0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerVariant: {fileID: 1462942286223125961}
+  FreezeButton: {fileID: 8889816055072268475}
+  FreezeRange: 10
+  speedPercentage: 0
+  FreezeDuration: 10
 --- !u!1 &8301243203381048965
 GameObject:
   m_ObjectHideFlags: 0
@@ -5211,7 +5241,7 @@ GameObject:
   - component: {fileID: 1907994498166487393}
   - component: {fileID: 2422147206048315587}
   m_Layer: 5
-  m_Name: Abilitied
+  m_Name: Abilities
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5938,6 +5968,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5315788181017680183, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: CountdownObjet
+      value: 
+      objectReference: {fileID: 96375635600033539}
+    - target: {fileID: 5315788181017680183, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: CountdownObject
       value: 
       objectReference: {fileID: 96375635600033539}
     - target: {fileID: 5315788181017680183, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
@@ -6765,6 +6799,11 @@ PrefabInstance:
 --- !u!4 &1332324591122903605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8867647082853872922, guid: 3fa1197f9a5ea2c4885cde4c7cd5cef1, type: 3}
+  m_PrefabInstance: {fileID: 7596842641219471151}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1462942286223125961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9016209081531591398, guid: 3fa1197f9a5ea2c4885cde4c7cd5cef1, type: 3}
   m_PrefabInstance: {fileID: 7596842641219471151}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1462942286223125967 stripped

@@ -877,6 +877,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6198457455791614312, guid: 493f9803ba150194c9fb6c0d09c9fd02, type: 3}
   m_PrefabInstance: {fileID: 1747525719}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &658587598 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1462942286223125961, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+  m_PrefabInstance: {fileID: 715014169}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &715014169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1025,6 +1030,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigbabaPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 7791960466707399285, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: PlayerVariant
+      value: 
+      objectReference: {fileID: 658587598}
     - target: {fileID: 7984082878645004321, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1033,6 +1042,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: CountdownObject
+      value: 
+      objectReference: {fileID: 1529520137}
     - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: waves.Array.data[0].groups.Array.size
       value: 1
@@ -1620,6 +1633,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16fb34314974e0f4c9e7e5a3bd93d6fb, type: 3}
+--- !u!1 &1529520137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 96375635600033539, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+  m_PrefabInstance: {fileID: 715014169}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1568682622 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3705313449500253301, guid: 6a6b9026ef3dc8740b5e3e38f62c3cee, type: 3}
