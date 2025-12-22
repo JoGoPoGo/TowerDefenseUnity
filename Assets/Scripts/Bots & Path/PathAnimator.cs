@@ -14,6 +14,8 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
 
     public int cancelRange = 2;
 
+    public bool RandomBool = false;
+
     private int tiling = 1;
     private CancelDictionaryProtoType dictionary;
     private GameObject gameManager;
@@ -49,8 +51,15 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
         {
             // Bestimme Position und Rotation entlang des Pfads
             Vector3 spawnPosition = pathCreator.path.GetPointAtDistance(distanceTravelled);
-            
             Quaternion spawnRotation = pathCreator.path.GetRotationAtDistance(distanceTravelled) * Quaternion.Euler(0, 0, 90);
+
+            if (RandomBool)
+            {
+                spawnPosition += new Vector3(Random.Range(-1, 1), 0, Random.Range(-1, 1));
+                Vector3 euler = spawnRotation.eulerAngles;
+                euler += new Vector3(0, Random.Range(-90, 90), 0);
+                spawnRotation = Quaternion.Euler(euler);
+            }
 
             // Instanziere das Prefab
             Instantiate(prefabToSpawn, spawnPosition, spawnRotation, parent.transform);
