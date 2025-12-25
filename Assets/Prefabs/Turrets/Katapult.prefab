@@ -351,17 +351,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 15
-  damageAmount: 90
+  damageAmount: 50
   fireRate: 0.3
   level: 1
   maxLvl: 10
   upgradeCost: 1
-  upgradePercentage: 50
+  upgradePercentage: 20
   rangeBool: 0
-  damageBool: 0
+  damageBool: 1
   fireRateBool: 0
   cancelBool: 0
-  price: 24
+  price: 28
   sellReturn: 0
   spawnCancelRadius: 10
   turnSpeed: 10

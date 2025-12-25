@@ -347,6 +347,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 512815568905714143, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 512815568905714143, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 512815568905714143, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.21960786
+      objectReference: {fileID: 0}
     - target: {fileID: 622058658305372019, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 65.4
@@ -358,6 +370,14 @@ PrefabInstance:
     - target: {fileID: 622058658305372019, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_LocalPosition.z
       value: 10.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332324591122903605, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -43.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1332324591122903605, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 25.9
       objectReference: {fileID: 0}
     - target: {fileID: 1365521256261070389, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -530,6 +550,10 @@ PrefabInstance:
     - target: {fileID: 7984082878645004321, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: speedMultiplier
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8119604358506016000, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: waves.Array.size

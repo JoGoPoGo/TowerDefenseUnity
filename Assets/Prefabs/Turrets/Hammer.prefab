@@ -170,13 +170,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 15
-  damageAmount: 50
-  fireRate: 0.4
+  damageAmount: 60
+  fireRate: 0.3
   level: 1
-  maxLvl: 10
-  upgradeCost: 1
-  upgradePercentage: 50
-  rangeBool: 0
+  maxLvl: 5
+  upgradeCost: 2
+  upgradePercentage: 25
+  rangeBool: 1
   damageBool: 0
   fireRateBool: 0
   cancelBool: 0
