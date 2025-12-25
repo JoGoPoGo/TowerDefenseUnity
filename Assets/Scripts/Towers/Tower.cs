@@ -22,7 +22,7 @@ public class Tower : MonoBehaviour
     public bool fireRateBool = false;
     public bool cancelBool = false;
 
-    [Header("Changebles")]
+    [Header("Changeables")]
     public int price;
     public int sellReturn;
     public int spawnCancelRadius = 10;         // Kein Weiterer turm in diesem Bereich

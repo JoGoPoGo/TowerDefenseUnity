@@ -63,6 +63,7 @@ MonoBehaviour:
   rangeMaterial: {fileID: 2100000, guid: f3faef7309b4e0441beb0bbac78a7347, type: 2}
   previewAngle: 360
   showActivated: 0
+  previewScript: {fileID: 0}
 --- !u!114 &4426299518247897825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,7 +87,8 @@ MonoBehaviour:
   damageBool: 0
   fireRateBool: 0
   cancelBool: 0
-  price: 0
+  price: 23
+  sellReturn: 0
   spawnCancelRadius: 10
   turnSpeed: 10
   recoilSpeed: 0.1
