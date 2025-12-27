@@ -14,8 +14,7 @@ public class MainDamage : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        
-        if (collision.gameObject.name == "Base2")
+        if (collision.gameObject.tag == "Base")
         {
             
             baseHealth = collision.gameObject.GetComponent<BaseHealth>();
@@ -26,7 +25,7 @@ public class MainDamage : MonoBehaviour
                 baseHealth.TakeDamage(damage);
             }
 
-            damageScript.Die(true);
+                damageScript.Die(true);
             Destroy(gameObject);
         }
     }

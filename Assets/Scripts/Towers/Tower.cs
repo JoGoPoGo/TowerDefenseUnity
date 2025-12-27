@@ -145,10 +145,10 @@ public class Tower : MonoBehaviour
         {
             damageScript = target.GetComponent<DamageTest>();
             damageScript.TakeDamage(damageAmount);
-            if (canon != null)
+            /*if (canon != null)
             {
                 Debug.Log("bola");
-            }
+            }*/
             if (allTowerComponents.Length <= 1 && canon != null)
             {
                 StartCoroutine(Recoil());
