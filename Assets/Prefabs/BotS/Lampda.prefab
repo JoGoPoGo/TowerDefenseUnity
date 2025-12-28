@@ -51,15 +51,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f7520adacd78342871c5d381b0b564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAlive: 1
   currentHealth: 0
-  maxHealth: 480
-  speed: 1.2
-  reward: 3
-  healthbar: {fileID: 4657579345608142651}
-  isLast: 0
+  maxHealth: 700
+  speed: 1
+  reward: 2
   randomization: 1.2
+  healthbar: {fileID: 4657579345608142651}
+  thisBotScript: {fileID: 0}
+  pathCreator: {fileID: 0}
+  speedMultiplier: 0
+  isAlive: 1
+  isLast: 0
   positionRandomizer: {x: 0, y: 0, z: 0}
+  distanceTravelled: 0
 --- !u!114 &8665655983987140526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83be24f1ce71ff449b619a27c5166c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 80
+  damage: 85
   damageScript: {fileID: 190851141823720348}
 --- !u!54 &6741473608335964961
 Rigidbody:

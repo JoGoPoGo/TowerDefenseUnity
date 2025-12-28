@@ -8,7 +8,7 @@ using TMPro;
 public class WaveConfiguration
 {
     public GroupConfiguration[] groups;  //alle Gruppen in dieser Welle
-    public int waitAfterWaveEnd = 0;
+    public int waitBevorWaveStart = 0;
 }
 [System.Serializable]
 public class GroupConfiguration
@@ -81,6 +81,22 @@ public class BotsOnPath : MonoBehaviour
 
             bool isLastWave = (i == waves.Length - 1);
 
+            //CountDown bis zum Start der Welle
+            CountdownObject.SetActive(true);
+            for (int k = currentWave.waitBevorWaveStart; k > 0; k--)
+            {
+                if (countdownText != null)
+                {
+                    if (i != waves.Length - 1) //wenn es nicht die letzte Welle ist
+                        countdownText.text = "Welle " + (i + 1) + " beginnt in " + k + " Sekunden";
+                    if (i == waves.Length - 1) // wenn es die letzte Welle ist
+                        countdownText.text = "Letzte Welle beginnt in " + k + " Sekunden";
+                    //Debug.Log("Welle " + (i + 1) + " in " + k + " Sekunden");
+                }
+                yield return new WaitForSeconds(1);
+            }
+            CountdownObject.SetActive(false);
+
             yield return StartCoroutine(SpawnGroupsInWave(currentWave, isLastWave));
 
             Debug.Log("Welle " + (i + 1) + " beendet!");
@@ -88,21 +104,7 @@ public class BotsOnPath : MonoBehaviour
             // Warte bis alle Gegner dieser Welle TOT sind
             yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
 
-            //CountDown bis zur nächsten Welle
-            CountdownObject.SetActive(true);
-            for(int k = currentWave.waitAfterWaveEnd; k > 0; k--)
-            {
-                if (countdownText != null)
-                {
-                    if(i != waves.Length - 2) //wenn es nicht die vorletzte Welle ist
-                        countdownText.text = "Welle " + (i + 2) + " beginnt in " + k + " Sekunden";
-                    if (i == waves.Length - 2) // wenn es die vorletzte Welle ist
-                        countdownText.text = "Letzte Welle beginnt in " + k + " Sekunden";
-                    //Debug.Log("Welle " + (i + 1) + " in " + k + " Sekunden");
-                }
-                yield return new WaitForSeconds(1);
-            }
-            CountdownObject.SetActive(false);
+            
         }
 
         Debug.Log("Alle Wellen abgeschlossen!");
