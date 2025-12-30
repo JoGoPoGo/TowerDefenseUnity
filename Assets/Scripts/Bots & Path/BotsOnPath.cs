@@ -43,7 +43,7 @@ public class BotsOnPath : MonoBehaviour
 
     private Button ButtonSkip;
     public GameObject Skip;
-    public bool SkipCountdown = false;
+    private bool SkipCountdown = false;
 
     //private int currentWave = 0;
 
@@ -53,6 +53,9 @@ public class BotsOnPath : MonoBehaviour
         CountdownObject.SetActive(false);
         CountBotsInLastWave();
         StartCoroutine(SpawnWaves());
+
+        ButtonSkip = Skip.GetComponent<Button>();
+        ButtonSkip.onClick.AddListener(OnSkip);
     }
 
     private void Update()
@@ -90,23 +93,21 @@ public class BotsOnPath : MonoBehaviour
             //CountDown bis zum Start der Welle
             Skip.SetActive(true);
             CountdownObject.SetActive(true);
-            ButtonSkip = Skip.GetComponent<Button>();
-            ButtonSkip.onClick.AddListener(OnSkip);
+
 
             for (int k = currentWave.waitBevorWaveStart; k > 0; k--)
             {
-                if (!SkipCountdown)
+                if (SkipCountdown)
+                    break;
+                if (countdownText != null)
                 {
-                    if (countdownText != null)
-                    {
-                        if (i != waves.Length - 1) //wenn es nicht die letzte Welle ist
-                            countdownText.text = "Welle " + (i + 1) + " beginnt in " + k + " Sekunden";
-                        if (i == waves.Length - 1) // wenn es die letzte Welle ist
-                            countdownText.text = "Letzte Welle beginnt in " + k + " Sekunden";
-                        //Debug.Log("Welle " + (i + 1) + " in " + k + " Sekunden");
-                    }
-                    yield return new WaitForSeconds(1);
-                }                
+                    if (i != waves.Length - 1) //wenn es nicht die letzte Welle ist
+                        countdownText.text = "Welle " + (i + 1) + " beginnt in " + k + " Sekunden";
+                    if (i == waves.Length - 1) // wenn es die letzte Welle ist
+                        countdownText.text = "Letzte Welle beginnt in " + k + " Sekunden";
+                    //Debug.Log("Welle " + (i + 1) + " in " + k + " Sekunden");
+                }
+                yield return new WaitForSeconds(1);               
             }
             SkipCountdown = false;
             CountdownObject.SetActive(false);
@@ -224,6 +225,6 @@ public class BotsOnPath : MonoBehaviour
     void OnSkip()
     {
         SkipCountdown = true;
-        ButtonSkip.onClick.RemoveListener(OnSkip);
+        Skip.SetActive(false);
     }
 }
