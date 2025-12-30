@@ -41,7 +41,10 @@ public class BotsOnPath : MonoBehaviour
     public GameObject CountdownObject;
     private TextMeshProUGUI countdownText;
 
-    public Button Ueberspringen;
+    private Button ButtonSkip;
+    public GameObject Skip;
+    public bool SkipCountdown = false;
+
     //private int currentWave = 0;
 
     void Start()
@@ -85,22 +88,29 @@ public class BotsOnPath : MonoBehaviour
             bool isLastWave = (i == waves.Length - 1);
 
             //CountDown bis zum Start der Welle
-
+            Skip.SetActive(true);
             CountdownObject.SetActive(true);
+            ButtonSkip = Skip.GetComponent<Button>();
+            ButtonSkip.onClick.AddListener(OnSkip);
 
             for (int k = currentWave.waitBevorWaveStart; k > 0; k--)
             {
-                if (countdownText != null)
+                if (!SkipCountdown)
                 {
-                    if (i != waves.Length - 1) //wenn es nicht die letzte Welle ist
-                        countdownText.text = "Welle " + (i + 1) + " beginnt in " + k + " Sekunden";
-                    if (i == waves.Length - 1) // wenn es die letzte Welle ist
-                        countdownText.text = "Letzte Welle beginnt in " + k + " Sekunden";
-                    //Debug.Log("Welle " + (i + 1) + " in " + k + " Sekunden");
-                }
-                yield return new WaitForSeconds(1);
+                    if (countdownText != null)
+                    {
+                        if (i != waves.Length - 1) //wenn es nicht die letzte Welle ist
+                            countdownText.text = "Welle " + (i + 1) + " beginnt in " + k + " Sekunden";
+                        if (i == waves.Length - 1) // wenn es die letzte Welle ist
+                            countdownText.text = "Letzte Welle beginnt in " + k + " Sekunden";
+                        //Debug.Log("Welle " + (i + 1) + " in " + k + " Sekunden");
+                    }
+                    yield return new WaitForSeconds(1);
+                }                
             }
+            SkipCountdown = false;
             CountdownObject.SetActive(false);
+            Skip.SetActive(false);
             // Ende des Countdowns
 
             yield return StartCoroutine(SpawnGroupsInWave(currentWave, isLastWave));
@@ -210,5 +220,10 @@ public class BotsOnPath : MonoBehaviour
         }
 
         Destroy(enemy); // Bot wird zerstört, wenn er nicht mehr "alive" ist
+    }
+    void OnSkip()
+    {
+        SkipCountdown = true;
+        ButtonSkip.onClick.RemoveListener(OnSkip);
     }
 }
