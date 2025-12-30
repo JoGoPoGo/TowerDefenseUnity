@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
 using TMPro;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class WaveConfiguration
@@ -39,6 +40,8 @@ public class BotsOnPath : MonoBehaviour
 
     public GameObject CountdownObject;
     private TextMeshProUGUI countdownText;
+
+    public Button Ueberspringen;
     //private int currentWave = 0;
 
     void Start()
@@ -82,7 +85,9 @@ public class BotsOnPath : MonoBehaviour
             bool isLastWave = (i == waves.Length - 1);
 
             //CountDown bis zum Start der Welle
+
             CountdownObject.SetActive(true);
+
             for (int k = currentWave.waitBevorWaveStart; k > 0; k--)
             {
                 if (countdownText != null)
@@ -96,6 +101,7 @@ public class BotsOnPath : MonoBehaviour
                 yield return new WaitForSeconds(1);
             }
             CountdownObject.SetActive(false);
+            // Ende des Countdowns
 
             yield return StartCoroutine(SpawnGroupsInWave(currentWave, isLastWave));
 
