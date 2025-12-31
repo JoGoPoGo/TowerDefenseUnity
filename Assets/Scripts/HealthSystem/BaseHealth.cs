@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,8 @@ public class BaseHealth : MonoBehaviour
     public HealthSlider healthbar;
     public Boolean destructed = false;
     public GameObject gameOver;
+
+    public TMP_Text UIhealth;
 
     private void Start()
     {
@@ -52,7 +55,7 @@ public class BaseHealth : MonoBehaviour
     void Update()
     {
         healthbar.Sethealth(health);
-        
+        UIhealth.text = "Lebenspunkte: " + health.ToString() + ("/") + maxHealth.ToString();
     }
     public void BaseDestruction()
     {

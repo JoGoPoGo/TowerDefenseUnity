@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 20
-  damageAmount: 90
+  damageAmount: 60
   fireRate: 1.5
   level: 1
   maxLvl: 5
