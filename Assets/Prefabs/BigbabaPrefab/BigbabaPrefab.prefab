@@ -8665,6 +8665,22 @@ PrefabInstance:
       propertyPath: m_Navigation.m_Mode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2562722681120848578, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562722681120848578, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4084211071312255876}
+    - target: {fileID: 2562722681120848578, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Close
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562722681120848578, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UIPanelController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2580682561339190837, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -8950,16 +8966,32 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6244046351415740444, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6244046351415740444, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6244046351415740444, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4084211071312255876}
     - target: {fileID: 6244046351415740444, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6244046351415740444, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 6244046351415740444, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 6244046351415740444, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIPanelController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6244046351415740444, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -9079,7 +9111,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5411456218894674478, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       insertIndex: 6
       addedObject: {fileID: 2959187938526034881}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5150251905050960391, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4084211071312255876}
   m_SourcePrefab: {fileID: 100100000, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
 --- !u!224 &1659990430359292211 stripped
 RectTransform:
@@ -9118,6 +9153,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5150251905050960391, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
   m_PrefabInstance: {fileID: 8050565739193785134}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4084211071312255876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2936351564971129129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d1ef79e0f148946915aac3a4400dcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.4
+  openEase: 27
+  closeEase: 26
 --- !u!114 &4712492960256473411 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3377551853176676973, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
