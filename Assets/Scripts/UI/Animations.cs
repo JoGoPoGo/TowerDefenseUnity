@@ -8,6 +8,28 @@ public class UIPanelController : MonoBehaviour
     public Ease openEase = Ease.OutBack; // Schöner "Plopp"-Effekt
     public Ease closeEase = Ease.InBack; // Zieht sich kurz zurück und verschwindet
 
+    // 1. Die Variable hier oben definieren
+    private RectTransform rectTransform;
+
+    void Awake()
+    {
+        // 2. Die Komponente beim Start des Objekts finden
+        rectTransform = GetComponent<RectTransform>();
+    }
+
+    public void goright()
+    {
+        // Jetzt kennt Visual Studio "rectTransform"
+        rectTransform.DOKill();
+        rectTransform.DOAnchorPos(new Vector2(700, 0), 0.5f).SetEase(Ease.OutCubic);
+    }
+
+    public void goleft()
+    {
+        rectTransform.DOKill();
+        rectTransform.DOAnchorPos(new Vector2(0, 0), 0.5f).SetEase(Ease.OutCubic);
+    }
+
     public void Open()
     {
         // 1. Panel aktivieren

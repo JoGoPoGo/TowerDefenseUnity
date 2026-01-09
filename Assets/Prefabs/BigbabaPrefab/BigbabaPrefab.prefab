@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 427932533605198101}
+  - component: {fileID: 1424489391625334789}
   m_Layer: 0
   m_Name: TowerInfoPanel
   m_TagString: Untagged
@@ -40,6 +41,21 @@ Transform:
   - {fileID: 9066629814933266540}
   m_Father: {fileID: 1659990430359292211}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1424489391625334789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37088113448964776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d1ef79e0f148946915aac3a4400dcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.4
+  openEase: 27
+  closeEase: 26
 --- !u!1 &96375635600033539
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,10 +310,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8213585780386057176}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 3409638136922284702}
+        m_TargetAssemblyTypeName: UIPanelController, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1877,8 +1893,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4712492960256473411}
-        m_TargetAssemblyTypeName: SpawnPanelLogic, Assembly-CSharp
+      - m_Target: {fileID: 4084211071312255876}
+        m_TargetAssemblyTypeName: UIPanelController, Assembly-CSharp
         m_MethodName: goright
         m_Mode: 1
         m_Arguments:
@@ -4103,8 +4119,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4712492960256473411}
-        m_TargetAssemblyTypeName: SpawnPanelLogic, Assembly-CSharp
+      - m_Target: {fileID: 4084211071312255876}
+        m_TargetAssemblyTypeName: UIPanelController, Assembly-CSharp
         m_MethodName: goright
         m_Mode: 1
         m_Arguments:
@@ -4251,8 +4267,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4712492960256473411}
-        m_TargetAssemblyTypeName: SpawnPanelLogic, Assembly-CSharp
+      - m_Target: {fileID: 4084211071312255876}
+        m_TargetAssemblyTypeName: UIPanelController, Assembly-CSharp
         m_MethodName: goright
         m_Mode: 1
         m_Arguments:
@@ -4873,8 +4889,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4712492960256473411}
-        m_TargetAssemblyTypeName: SpawnPanelLogic, Assembly-CSharp
+      - m_Target: {fileID: 4084211071312255876}
+        m_TargetAssemblyTypeName: UIPanelController, Assembly-CSharp
         m_MethodName: goright
         m_Mode: 1
         m_Arguments:
@@ -5973,6 +5989,7 @@ GameObject:
   - component: {fileID: 3121080631115940469}
   - component: {fileID: 2144935889588168251}
   - component: {fileID: 7791960466707399285}
+  - component: {fileID: 3409638136922284702}
   m_Layer: 5
   m_Name: AbilityPanel
   m_TagString: Untagged
@@ -6066,6 +6083,21 @@ MonoBehaviour:
   ticks: 10
   tickRate: 0.2
   PoisonAbklingzeit: 5
+--- !u!114 &3409638136922284702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213585780386057176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95d1ef79e0f148946915aac3a4400dcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.4
+  openEase: 27
+  closeEase: 26
 --- !u!1 &8264923786142036234
 GameObject:
   m_ObjectHideFlags: 0
@@ -6588,10 +6620,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8213585780386057176}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 3409638136922284702}
+        m_TargetAssemblyTypeName: UIPanelController, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8670,12 +8702,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2562722681120848578, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4084211071312255876}
+    - target: {fileID: 2562722681120848578, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 4084211071312255876}
     - target: {fileID: 2562722681120848578, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: goleft
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562722681120848578, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: Close
+      objectReference: {fileID: 0}
+    - target: {fileID: 2562722681120848578, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIPanelController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2562722681120848578, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -8885,6 +8929,18 @@ PrefabInstance:
       propertyPath: m_Colors.m_SelectedColor.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5559176206382978461, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4084211071312255876}
+    - target: {fileID: 5559176206382978461, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: goright
+      objectReference: {fileID: 0}
+    - target: {fileID: 5559176206382978461, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIPanelController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5748667927023209811, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_Navigation.m_Mode
       value: 0
@@ -8900,6 +8956,18 @@ PrefabInstance:
     - target: {fileID: 5748667927023209811, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_Colors.m_SelectedColor.r
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748667927023209811, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4084211071312255876}
+    - target: {fileID: 5748667927023209811, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: goright
+      objectReference: {fileID: 0}
+    - target: {fileID: 5748667927023209811, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIPanelController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5910911191977835715, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: m_fontColor.b
@@ -9065,7 +9133,8 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: da4867119b865ec48927a0a3f76f8d9c, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3377551853176676973, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7069511246894028987, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
     m_AddedGameObjects:
@@ -9168,17 +9237,6 @@ MonoBehaviour:
   duration: 0.4
   openEase: 27
   closeEase: 26
---- !u!114 &4712492960256473411 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3377551853176676973, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
-  m_PrefabInstance: {fileID: 8050565739193785134}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2936351564971129129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cbc3f351ec1f91439e25beb721dd71f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &6432234506438527172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3961683153446507498, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
