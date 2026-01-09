@@ -1,3 +1,4 @@
+using DG.Tweening;
 using JetBrains.Annotations;
 using System;
 using System.Collections;
@@ -8,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class BaseHealth : MonoBehaviour
 {
+
     public int maxHealth = 100;
     public int health;
 
@@ -16,9 +18,12 @@ public class BaseHealth : MonoBehaviour
 
     public HealthSlider healthbar;
     public Boolean destructed = false;
-    public GameObject gameOver;
 
     public TMP_Text UIhealth;
+
+    [Header("UI Referenzen")]
+    public GameObject gameOverScreen;   // Das Fenster mit Buttons & Text
+    public CanvasGroup backgroundFade;
 
     private void Start()
     {
@@ -59,9 +64,15 @@ public class BaseHealth : MonoBehaviour
     }
     public void BaseDestruction()
     {
-        Destroy(gameObject);
+        if (destructed) return;
         destructed = true;
-        gameOver.SetActive(true);
+        gameOverScreen.SetActive(true);
+        if (backgroundFade != null)
+        {
+            backgroundFade.gameObject.SetActive(true); // Sicherstellen, dass es an ist
+            backgroundFade.alpha = 0f;                 // Start: Unsichtbar
+            backgroundFade.DOFade(1f, 1f).SetUpdate(true);
+        }
         Time.timeScale = 0f;
     }
 

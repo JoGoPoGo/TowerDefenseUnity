@@ -5,7 +5,7 @@ using TMPro;
 
 public class TowerInfoUI : MonoBehaviour
 {
-    public GameObject panel;
+    public UIPanelController panel;
     public TMP_Text damageText;
     public TMP_Text rangeText;
     public TMP_Text firerateText;
@@ -21,7 +21,8 @@ public class TowerInfoUI : MonoBehaviour
         DynamicRangePreview rangeSkript = towerObj.GetComponent<DynamicRangePreview>();
         rangeSkript.showActivated = true;
 
-        panel.SetActive(true);
+        if (panel != null) panel.Open();
+        //Debug.Log("Show");
 
         damageText.text = "Damage: " + tower.damageAmount.ToString();
         rangeText.text = "Range: " + tower.range.ToString();
@@ -33,12 +34,14 @@ public class TowerInfoUI : MonoBehaviour
 
     public void Hide()            //Versteckt die Rangepreview über das Deaktivieren von showActivated in DynamicRangePreview des Turms
     {
-        panel.SetActive(false);
+        if (panel != null) panel.Close();
 
-        GameObject towerObj = currentTower.gameObject;
-        DynamicRangePreview rangeSkript = towerObj.GetComponent<DynamicRangePreview>();
-        rangeSkript.showActivated = false;
-
+        if (currentTower != null)
+        {
+            GameObject towerObj = currentTower.gameObject;
+            DynamicRangePreview rangeSkript = towerObj.GetComponent<DynamicRangePreview>();
+            rangeSkript.showActivated = false;
+        }
     }
 
     public void OnUpgradeButtonPressed()
