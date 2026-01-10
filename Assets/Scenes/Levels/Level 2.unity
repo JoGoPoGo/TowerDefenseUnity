@@ -980,6 +980,10 @@ PrefabInstance:
       propertyPath: m_Size.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 703594698101053065, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 875480926982435018, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_Navigation.m_Mode
       value: 0
@@ -990,7 +994,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1453006070069495675, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_Convex
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1453006070069495675, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1636022610799300866, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_Colors.m_DisabledColor.b
