@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class DisturbBot : DamageTest
 {
-    private float updateInSeconds = 1.5f;
+    private float updateInSeconds = 3f;
     private float check;
-    private Tower debuffScript;
+    private HashSet<Tower> disturbedTowers = new HashSet<Tower>();  //alle Türme, die gerade gedebuff sind
+    private HashSet<Tower> normalTowers = new HashSet<Tower>(); //alle Türme, die NICHT MEHR in disturbedTowers sind
 
     [Header("Changeables")]
 
-    public float disturbRange;
+    public float disturbrange;
 
     public float debuffRange;
     public float debuffRate;
-    public int debuffDamage;
+    public float debuffDamage;
 
     protected override void Start()
     {
@@ -37,28 +38,74 @@ public class DisturbBot : DamageTest
     {
         GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
 
-        foreach (GameObject tower in towers)
+        normalTowers.Clear(); // reseted normalTowers
+
+        foreach (GameObject towerGO in towers)
         {
-            Vector3 direction = tower.transform.position - transform.position;
+            Tower tower = towerGO.GetComponent<Tower>();
+            if (tower == null)
+                continue;
+
+            Vector3 direction = towerGO.transform.position - transform.position;
             float distance = direction.magnitude;
 
-            if (distance < disturbRange) 
-            { 
-                debuffScript = tower.GetComponent<Tower>();
-                ChangeValues(debuffScript);
+            if (distance < disturbrange)   //wenn der Turm In Reichweite ist
+            {
+                if (!disturbedTowers.Contains(tower))        //wenn der Turm noch nicht debuffed wurde
+                {
+                    DebuffValues(tower);
+                    DisturbAnimation(towerGO);
+                    disturbedTowers.Add(tower);
+                }
             }
+            else if (disturbedTowers.Contains(tower))      //wenn der Turm außerhalb der Reichweite ist und schon debuffed wurde...
+            {
+                normalTowers.Add(tower);
+                disturbedTowers.Remove(tower);              //...wird er von disturbedTowers entfernt
+                ResetValues(tower);
+                StopDisturbAnimation(towerGO);
+            }
+
         }
     }
-    private void ChangeValues(Tower towerScript)
+    private void DebuffValues(Tower tower)
     {
-        debuffScript.range -= debuffRange;
-        if(debuffScript.range <= 0) 
-            debuffScript.range = 0;
-        debuffScript.fireRate -= debuffRate;
-        if(debuffScript.fireRate <= 0)
-            debuffScript.fireRate = 0;
-        debuffScript.damageAmount -= debuffDamage;
-        if(debuffScript.damageAmount <= 0) 
-            debuffScript.damageAmount = 0;
+        tower.range = Mathf.Max(0, tower.range * debuffRange);
+        tower.fireRate = Mathf.Max(0, tower.fireRate * debuffRate);
+        tower.damageAmount = (int)Mathf.Round(Mathf.Max(0, tower.damageAmount * debuffDamage));
+    }
+
+    private void ResetValues(Tower tower)
+    {
+        tower.range = Mathf.Max(0, tower.range / debuffRange);
+        tower.fireRate = Mathf.Max(0, tower.fireRate / debuffRate);
+        tower.damageAmount = (int)Mathf.Round(Mathf.Max(0, tower.damageAmount / debuffDamage));
+    }
+
+    public override void Die(bool didDamage)
+    {
+        foreach(Tower tower in disturbedTowers)
+        {
+            ResetValues(tower);
+            GameObject GO = tower.gameObject;
+            StopDisturbAnimation(GO);
+        }
+        disturbedTowers.Clear();
+        base.Die(didDamage);
+    }
+
+    private void DisturbAnimation(GameObject towerGo)
+    {
+        Tower tower = towerGo.GetComponent<Tower>();
+        if (tower == null) return;
+
+        tower.PlayDisturb();
+    }
+    private void StopDisturbAnimation(GameObject towerGo)
+    {
+        Tower tower = towerGo.GetComponent<Tower>();
+        if (tower == null) return;
+
+        tower.StopDisturb();
     }
 }

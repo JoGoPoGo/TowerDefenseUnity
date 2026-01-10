@@ -42,6 +42,9 @@ public class Tower : MonoBehaviour
 
     [Header("Funktion")]
     public GameObject target;           // Das aktuelle Ziel des Turms
+    public ParticleSystem disturbEffect;
+    public Animator animator;
+
     protected float fireCountdown = 0f; 
     private Tower[] allTowerComponents;   
     protected int UpdateCounter = 0;
@@ -265,6 +268,24 @@ public class Tower : MonoBehaviour
         worldPreviewScript.Hide();
 
         Destroy(gameObject);
+    }
+
+    public void PlayDisturb()
+    {
+        if (animator != null)
+            animator.SetBool("Disturbed", true);
+
+        if (disturbEffect != null && !disturbEffect.isPlaying)
+            disturbEffect.Play();
+    }
+
+    public void StopDisturb()
+    {
+        if (animator != null)
+            animator.SetBool("Disturbed", false);
+
+        if (disturbEffect != null)
+            disturbEffect.Stop();
     }
 }
 

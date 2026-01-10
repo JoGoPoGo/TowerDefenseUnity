@@ -232,10 +232,10 @@ MonoBehaviour:
   isLast: 0
   positionRandomizer: {x: 0, y: 0, z: 0}
   distanceTravelled: 0
-  disturbRange: 100
-  debuffRange: 10
-  debuffRate: 10
-  debuffDamage: 10
+  disturbrange: 30
+  debuffRange: 0.8
+  debuffRate: 0.8
+  debuffDamage: 0.8
 --- !u!114 &2671866503035872246
 MonoBehaviour:
   m_ObjectHideFlags: 0
