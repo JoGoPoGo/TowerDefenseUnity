@@ -16,7 +16,7 @@ public class MainDamage : MonoBehaviour
     {
         if (collision.gameObject.tag == "Base")
         {
-            
+            Debug.Log("with base");
             baseHealth = collision.gameObject.GetComponent<BaseHealth>();
 
             
