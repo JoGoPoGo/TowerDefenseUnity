@@ -15,7 +15,7 @@ public class SpeedManager : MonoBehaviour
 
     public void Faster()
     {
-        if(Time.timeScale < 8f)
+        if(Time.timeScale < 4f)
         {
             Time.timeScale *= 2f;
             timeText.text = "x" + Time.timeScale.ToString();

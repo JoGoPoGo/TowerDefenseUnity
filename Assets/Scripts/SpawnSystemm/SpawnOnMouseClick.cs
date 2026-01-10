@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class SpawnOnMouseClick : MonoBehaviour
@@ -55,6 +56,12 @@ public class SpawnOnMouseClick : MonoBehaviour
         // Wenn das Spawning aktiviert ist und die linke Maustaste gedrückt wird
         if (spawnEnabled && Input.GetMouseButtonDown(0))
         {
+            // Prüft, ob der Klick auf UI fällt
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("UI geklickt – keine Welt-Interaktion");
+                return; // hier abbrechen, nichts in der Welt tun
+            }
             if (gameManager.SpendCredits(cost))            // Tims Änderung  -- wenn der Preis bezahlbar ist.
             {
                 

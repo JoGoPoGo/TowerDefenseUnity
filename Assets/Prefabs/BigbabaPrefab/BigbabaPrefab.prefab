@@ -3447,7 +3447,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 183030366657863108}
         m_TargetAssemblyTypeName: CancelDictionaryProtoType, Assembly-CSharp
-        m_MethodName: ShowCancelArea
+        m_MethodName: Buttonpress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7740,8 +7740,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d74127cb3959396428293f9d458f2cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 4951933756827947215, guid: 69a12f096a194ad44a69ee715fa59e62, type: 3}
-  panel: {fileID: 0}
 --- !u!114 &4791198320209632719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7821,9 +7819,10 @@ MonoBehaviour:
   yOffset: 0.05
   plate: {fileID: 0}
   showDuration: 1000
-  lineMaterial: {fileID: 2100000, guid: 30ac09b033543ea459e1208c4fb53e55, type: 2}
+  lineMaterial: {fileID: 2100000, guid: 2cab8707145ceb444b262602baa61cd5, type: 2}
   lineWidth: 0.1
   smootheness: 0
+  active: 0
 --- !u!114 &5551678596280533265
 MonoBehaviour:
   m_ObjectHideFlags: 0
