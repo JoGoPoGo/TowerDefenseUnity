@@ -14,7 +14,8 @@ public class MainDamage : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Base")
+        //Debug.Log("Triggered with: " + collision.name);
+        if (collision.CompareTag("Base"))
         {
             Debug.Log("with base");
             baseHealth = collision.gameObject.GetComponent<BaseHealth>();
@@ -25,8 +26,7 @@ public class MainDamage : MonoBehaviour
                 baseHealth.TakeDamage(damage);
             }
 
-                damageScript.Die(true);
-            Destroy(gameObject);
+            damageScript.Die(true);
         }
     }
 }

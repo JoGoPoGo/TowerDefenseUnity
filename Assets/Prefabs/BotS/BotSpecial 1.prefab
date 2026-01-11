@@ -408,7 +408,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -428,17 +428,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833b66f5b90804f4d878655e2a910942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAlive: 1
   currentHealth: 0
   maxHealth: 800
   speed: 1
   reward: 4
-  healthbar: {fileID: 2310099508978704867}
-  isLast: 0
   randomization: 0
-  positionRandomizer: {x: 0, y: 0, z: 0}
+  healthbar: {fileID: 2310099508978704867}
+  thisBotScript: {fileID: 0}
   pathCreator: {fileID: 0}
   speedMultiplier: 0
+  isAlive: 1
+  isLast: 0
+  positionRandomizer: {x: 0, y: 0, z: 0}
+  distanceTravelled: 0
   splittingPrefab: {fileID: 5074364399676035807, guid: 8e7c47fdeab2ca741b41798cd3796f2e, type: 3}
   splittCount: 3
   pathSkript: {fileID: 0}
