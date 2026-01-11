@@ -54,7 +54,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 700
   speed: 1
-  reward: 2
+  reward: 10
   randomization: 1.2
   healthbar: {fileID: 4657579345608142651}
   thisBotScript: {fileID: 0}

@@ -215,6 +215,7 @@ public class Tower : MonoBehaviour
                     spawnCancelRadius = (int)Mathf.Round(save);
                 }
 
+                sellReturn += (int)Mathf.Round(upgradeCost / 2);
                 upgradeCost += 5;
 
                 Debug.Log($"{gameObject.name} wurde auf Level {level} geupgradet!");

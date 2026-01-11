@@ -1042,7 +1042,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2454070309858566500, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: credits
-      value: 18
+      value: 98
       objectReference: {fileID: 0}
     - target: {fileID: 2494839903386439347, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_Navigation.m_Mode

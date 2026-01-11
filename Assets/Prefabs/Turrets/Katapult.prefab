@@ -5192,8 +5192,8 @@ MonoBehaviour:
   damageBool: 1
   fireRateBool: 0
   cancelBool: 0
-  price: 28
-  sellReturn: 0
+  price: 140
+  sellReturn: 70
   spawnCancelRadius: 10
   turnSpeed: 10
   recoilSpeed: 0.1

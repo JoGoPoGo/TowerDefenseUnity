@@ -512,9 +512,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 200
+  maxHealth: 170
   speed: 3
-  reward: 1
+  reward: 5
   randomization: 2
   healthbar: {fileID: 2017507831991410414}
   thisBotScript: {fileID: 0}

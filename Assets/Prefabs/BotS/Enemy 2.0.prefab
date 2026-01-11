@@ -512,9 +512,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 200
+  maxHealth: 230
   speed: 3
-  reward: 1
+  reward: 6
   randomization: 2.5
   healthbar: {fileID: 2017507831991410414}
   thisBotScript: {fileID: 0}
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83be24f1ce71ff449b619a27c5166c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
+  damage: 35
   damageScript: {fileID: 988029194843444946}
 --- !u!54 &475451104684445445
 Rigidbody:
