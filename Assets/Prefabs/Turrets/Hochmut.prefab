@@ -4912,14 +4912,14 @@ MonoBehaviour:
   fireRate: 1.5
   level: 1
   maxLvl: 10
-  upgradeCost: 5
+  upgradeCost: 25
   upgradePercentage: 10
   rangeBool: 1
   damageBool: 0
   fireRateBool: 1
   cancelBool: 0
-  price: 16
-  sellReturn: 0
+  price: 80
+  sellReturn: 40
   spawnCancelRadius: 10
   turnSpeed: 10
   recoilSpeed: 0.1

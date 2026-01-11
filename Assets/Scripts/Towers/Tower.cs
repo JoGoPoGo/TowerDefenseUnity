@@ -216,7 +216,7 @@ public class Tower : MonoBehaviour
                 }
 
                 sellReturn += (int)Mathf.Round(upgradeCost / 2);
-                upgradeCost += 5;
+                upgradeCost = (int)Mathf.Round((float)upgradeCost * 1.2f);  //steigert den UpgradePreis um 20%
 
                 Debug.Log($"{gameObject.name} wurde auf Level {level} geupgradet!");
             }

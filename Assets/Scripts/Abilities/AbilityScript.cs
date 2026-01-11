@@ -10,6 +10,8 @@ public class AbilityScript : MonoBehaviour
     public Button FreezeButton;
     public Button PoisonButton;
 
+    public ParticleSystem poisonParticle;
+
     [Header("Freeze")]
     public int FreezeRange;
     public int speedPercentage;
@@ -85,6 +87,8 @@ public class AbilityScript : MonoBehaviour
 
     public IEnumerator PoisonRoutine()
     {
+        poisonParticle.transform.position = PlayerVariant.transform.position;
+        poisonParticle.Play();
         PoisonButton.interactable = false;
         yield return null;
 
@@ -95,6 +99,8 @@ public class AbilityScript : MonoBehaviour
             activePoisonCount++;
             StartCoroutine(Poisoned(enemy));
         }
+        yield return new WaitForSeconds(1);
+        poisonParticle.Stop();
         yield return new WaitUntil(() => activePoisonCount == 0);
         yield return new WaitForSeconds(PoisonAbklingzeit);
     }
