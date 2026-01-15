@@ -119,7 +119,7 @@ public class CancelDictionaryProtoType : MonoBehaviour
             List<Vector3> bezierPoints = CreateBezierPath(
                 basePoints,
                 samplesPerSegment: 10,
-                smoothness: 0.15f
+                smoothness: 0.25f
             );
 
             lr.positionCount = bezierPoints.Count;
