@@ -4941,7 +4941,7 @@ GameObject:
   - component: {fileID: 1393821732009389154}
   - component: {fileID: 6797471268200005565}
   m_Layer: 2
-  m_Name: Snippipie
+  m_Name: Snippipie 2
   m_TagString: lastSpawned
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
