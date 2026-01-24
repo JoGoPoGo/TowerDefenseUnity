@@ -69,9 +69,6 @@ public class Tower : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
 
         dictionary = gameManager.GetComponent<CancelDictionaryProtoType>();
-
-
-
     }
     protected virtual void Update()  
     {
@@ -99,10 +96,7 @@ public class Tower : MonoBehaviour
             return;
 
         // Turm dreht sich zum Ziel
-        Vector3 direction = target.transform.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-        Quaternion smoothedRotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
-        transform.rotation = Quaternion.Euler(0f, smoothedRotation.eulerAngles.y, 0f);
+        RotateTo(target);
 
         // Wenn die Zeit zum Schieﬂen gekommen ist, wird geschossen
         if (fireCountdown <= 0f)
@@ -119,6 +113,14 @@ public class Tower : MonoBehaviour
         
         fireCountdown -= Time.deltaTime;
     }
+    protected virtual void RotateTo(GameObject t)
+    {
+        Vector3 direction = t.transform.position - transform.position;
+        Quaternion lookRotation = Quaternion.LookRotation(direction);
+        Quaternion smoothedRotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+        transform.rotation = Quaternion.Euler(0f, smoothedRotation.eulerAngles.y, 0f);
+    }
+
     public string getName()
     {
         return(name);
@@ -166,7 +168,7 @@ public class Tower : MonoBehaviour
             else
             {
                 damageScript = target.GetComponent<DamageTest>();
-                damageScript.TakeDamage(damageAmount);
+                hitEnemy(damageScript);
             }
 
             /*if (canon != null)
@@ -300,7 +302,7 @@ public class Tower : MonoBehaviour
         if (enemy != null)
             damageScript = enemy.GetComponent<DamageTest>();
         if (damageScript != null)
-            damageScript.TakeDamage(damageAmount);
+            hitEnemy(damageScript);
 
         Destroy(projectile);
     }
@@ -342,6 +344,11 @@ public class Tower : MonoBehaviour
 
         if (disturbEffect != null)
             disturbEffect.Stop();
+    }
+
+    protected virtual void hitEnemy(DamageTest damageTest)
+    {
+        damageScript.TakeDamage(damageAmount);
     }
 }
 

@@ -48,10 +48,7 @@ public class TypeCanon : Tower
                 return;
 
             // Turm dreht sich zum Ziel
-            Vector3 direction = target.transform.position - transform.position;
-            Quaternion lookRotation = Quaternion.LookRotation(direction);
-            Quaternion smoothedRotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
-            transform.rotation = Quaternion.Euler(0f, smoothedRotation.eulerAngles.y, 0f);
+            RotateTo(target);
 
             // Wenn die Zeit zum Schieﬂen gekommen ist, wird geschossen
             if (fireCountdown <= 0f)

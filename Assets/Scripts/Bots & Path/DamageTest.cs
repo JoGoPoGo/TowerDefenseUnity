@@ -28,6 +28,7 @@ public class DamageTest : MonoBehaviour
 
     [Header("Funktion")]
     public bool isLast = false;
+    public bool isDebuffed = false;
 
     public Vector3 positionRandomizer;
     public float distanceTravelled = 0f;
