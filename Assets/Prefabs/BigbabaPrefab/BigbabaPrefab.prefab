@@ -13447,7 +13447,7 @@ PrefabInstance:
     - target: {fileID: 2098664592588450185, guid: 9031138a415095c4599610268e5ba477, type: 3}
       propertyPath: prefabsToSpawn.Array.data[0]
       value: 
-      objectReference: {fileID: 2249457114057599706, guid: c52c7a912391a874a94eb0a4f8eeddac, type: 3}
+      objectReference: {fileID: 2249457114057599706, guid: 848993e3fd33682439d5e75d478e60b6, type: 3}
     - target: {fileID: 2098664592588450185, guid: 9031138a415095c4599610268e5ba477, type: 3}
       propertyPath: prefabsToSpawn.Array.data[1]
       value: 
@@ -14003,6 +14003,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -452
       objectReference: {fileID: 0}
+    - target: {fileID: 6232532602952552845, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
+      propertyPath: Tower
+      value: 
+      objectReference: {fileID: 7604742267784297302, guid: 848993e3fd33682439d5e75d478e60b6, type: 3}
     - target: {fileID: 6232532602952552845, guid: 67dfa5e092bb67d40a289f72d42ec81f, type: 3}
       propertyPath: gameManager
       value: 

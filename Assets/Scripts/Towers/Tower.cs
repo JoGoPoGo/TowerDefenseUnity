@@ -45,6 +45,9 @@ public class Tower : MonoBehaviour
     public ParticleSystem disturbEffect;
     public Animator animator;
 
+    public GameObject projectilePrefab;
+    public GameObject firePoint;
+
     protected float fireCountdown = 0f; 
     private Tower[] allTowerComponents;   
     protected float UpdateCounter = 0;
@@ -149,8 +152,23 @@ public class Tower : MonoBehaviour
     {  // Erzeugt das Projektil an der Feuerposition und weist ihm die Richtung des Ziels zu#
         if (!spawnScript.spawned)
         {
-            damageScript = target.GetComponent<DamageTest>();
-            damageScript.TakeDamage(damageAmount);
+            if(projectilePrefab != null)
+            {
+                GameObject pro = Instantiate(
+                    projectilePrefab,
+                    firePoint.transform.position,
+                    firePoint.transform.rotation
+                );
+
+                pro.transform.SetParent(firePoint.transform, true);
+                StartCoroutine(ProjectileAnimation(pro, target));
+            }
+            else
+            {
+                damageScript = target.GetComponent<DamageTest>();
+                damageScript.TakeDamage(damageAmount);
+            }
+
             /*if (canon != null)
             {
                 Debug.Log("bola");
@@ -255,6 +273,41 @@ public class Tower : MonoBehaviour
 
             }
         }
+    }
+    protected IEnumerator ProjectileAnimation(GameObject projectile, GameObject enemy)
+    {
+        float duration = 0.4f;
+        float t = 0f;
+        Vector3 startPos = projectile.transform.position;
+        Vector3 targetPos = enemy.transform.position + new Vector3(0, 1f, 0);
+        float yPosTarget = targetPos.y;
+        float yPosCurrent = startPos.y;
+        targetPos.y = startPos.y;
+
+        float subtract = 0f;
+
+        while (t < duration)
+        {
+            yPosCurrent -= subtract;
+            subtract += (startPos.y - yPosTarget) / Sum0ToN((int)Mathf.Round(duration / Time.deltaTime));
+            Vector3 currentPos = Vector3.Lerp(startPos, targetPos, t / duration);
+            currentPos.y = yPosCurrent;
+            projectile.transform.position = currentPos;
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        if (enemy != null)
+            damageScript = enemy.GetComponent<DamageTest>();
+        if (damageScript != null)
+            damageScript.TakeDamage(damageAmount);
+
+        Destroy(projectile);
+    }
+
+    int Sum0ToN(int n)
+    {
+        return n * (n + 1) / 2;
     }
 
     //Sell wird beim Verkaufen ausgeführt

@@ -5,15 +5,12 @@ using UnityEngine;
 public class TypeTwoTargets : Tower
 {
     public GameObject targetSnd;
-    private DamageTest damageScriptSnd;
 
     public GameObject canonTargetOne;
     public GameObject canonTargetTwo;
 
     public GameObject projectileOne;
     public GameObject projectileTwo;
-
-    public GameObject projectilePrefab;
 
     [Header("Changeables")]
 
@@ -112,14 +109,26 @@ public class TypeTwoTargets : Tower
 
         if (target != null)
         {
-            GameObject proOne = Instantiate (projectilePrefab, projectileOne.transform);
+            GameObject proOne = Instantiate(
+                projectilePrefab,
+                projectileTwo.transform.position,
+                projectileTwo.transform.rotation
+            );
+
+            proOne.transform.SetParent(projectileTwo.transform, true);
             StartCoroutine(ProjectileAnimation(proOne, target));
 
         }
 
         if (targetSnd != null)
         {
-            GameObject proTwo = Instantiate(projectilePrefab, projectileTwo.transform);
+            GameObject proTwo = Instantiate(
+                projectilePrefab,
+                projectileTwo.transform.position,
+                projectileTwo.transform.rotation
+            );
+
+            proTwo.transform.SetParent(projectileTwo.transform, true);
             StartCoroutine(ProjectileAnimation(proTwo, targetSnd));
 
         }
@@ -149,39 +158,5 @@ public class TypeTwoTargets : Tower
         );
 
         canon.rotation = Quaternion.Euler(0f, smoothedRotation.eulerAngles.y, 0f);
-    }
-    IEnumerator ProjectileAnimation(GameObject projectile, GameObject enemy)
-    {
-        float duration = 0.4f;
-        float t = 0f;
-        Vector3 startPos = projectile.transform.position;
-        Vector3 targetPos = enemy.transform.position;
-        float yPosTarget = targetPos.y;
-        float yPosCurrent = startPos.y;
-        targetPos.y = startPos.y;
-
-        float subtract = 0f;
-
-        while (t < duration)
-        {
-            yPosCurrent -= subtract;
-            subtract += (startPos.y - yPosTarget) / Sum0ToN((int)Mathf.Round(duration / Time.deltaTime));
-            Vector3 currentPos = Vector3.Lerp(startPos, targetPos, t/duration);
-            currentPos.y = yPosCurrent;
-            projectile.transform.localScale += new Vector3(0, 0, 0.05f);
-            projectile.transform.position = currentPos;
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        damageScript = target.GetComponent<DamageTest>();
-        if (damageScript != null)
-            damageScript.TakeDamage(damageAmount);
-
-        Destroy(projectile);
-    }
-    int Sum0ToN(int n)
-    {
-        return n * (n + 1) / 2;
     }
 }

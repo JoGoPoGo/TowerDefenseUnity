@@ -5024,6 +5024,8 @@ MonoBehaviour:
   target: {fileID: 0}
   disturbEffect: {fileID: 9053197744754694527}
   animator: {fileID: 0}
+  projectilePrefab: {fileID: 4283661602787451110, guid: 6907b57d6320ed340ae7a9ba156057c8, type: 3}
+  firePoint: {fileID: 3134559678259585238}
 --- !u!114 &3690439561062189208
 MonoBehaviour:
   m_ObjectHideFlags: 0
