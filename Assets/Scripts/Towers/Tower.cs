@@ -55,6 +55,8 @@ public class Tower : MonoBehaviour
     protected LayerMask obstacleMask;
     protected int tiling = 1;
     protected float updateTargetIntervall = 0.5f;
+
+    protected float startSubtract = 0f;
  
 
     protected virtual void Start()
@@ -286,7 +288,7 @@ public class Tower : MonoBehaviour
         float yPosCurrent = startPos.y;
         targetPos.y = startPos.y;
 
-        float subtract = 0f;
+        float subtract = startSubtract;
 
         while (t < duration)
         {
