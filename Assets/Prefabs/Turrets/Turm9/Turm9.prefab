@@ -57,5 +57,50 @@ PrefabInstance:
     - {fileID: 65702495048144492, guid: f019a879e96f8ab41a2b0866cd75dfe7, type: 3}
     - {fileID: -8700617353114198275, guid: f019a879e96f8ab41a2b0866cd75dfe7, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f019a879e96f8ab41a2b0866cd75dfe7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1769714872990788044}
   m_SourcePrefab: {fileID: 100100000, guid: f019a879e96f8ab41a2b0866cd75dfe7, type: 3}
+--- !u!1 &4017654624932571292 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f019a879e96f8ab41a2b0866cd75dfe7, type: 3}
+  m_PrefabInstance: {fileID: 4251673242517018061}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1769714872990788044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4017654624932571292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0e980bbf978af74db7a2aa51bd55828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 15
+  damageAmount: 100
+  fireRate: 0.5
+  level: 1
+  maxLvl: 10
+  upgradeCost: 1
+  upgradePercentage: 50
+  rangeBool: 0
+  damageBool: 0
+  fireRateBool: 0
+  cancelBool: 0
+  price: 0
+  sellReturn: 0
+  spawnCancelRadius: 10
+  turnSpeed: 10
+  recoilSpeed: 0.1
+  recoilDistance: 0.2
+  canon: {fileID: 0}
+  shootSound: {fileID: 0}
+  enemyTag: Enemy
+  spawnScript: {fileID: 0}
+  target: {fileID: 0}
+  disturbEffect: {fileID: 0}
+  animator: {fileID: 0}
+  targetSnd: {fileID: 0}

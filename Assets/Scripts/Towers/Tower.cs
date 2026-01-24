@@ -47,7 +47,7 @@ public class Tower : MonoBehaviour
 
     protected float fireCountdown = 0f; 
     private Tower[] allTowerComponents;   
-    protected int UpdateCounter = 0;
+    protected float UpdateCounter = 0;
     protected bool dictionaryActivater = true;
     protected LayerMask obstacleMask;
     protected int tiling = 1;
@@ -79,7 +79,7 @@ public class Tower : MonoBehaviour
             dictionaryActivater = false;
         }
 
-        if(UpdateCounter == 30)
+        if(UpdateCounter >= 0.5f)
         {
             UpdateCounter = 0;
         }
@@ -89,7 +89,7 @@ public class Tower : MonoBehaviour
             UpdateTarget();  
         }
 
-        UpdateCounter ++;
+        UpdateCounter += Time.deltaTime;
 
         if (target == null)   //führt nichts aus, wenn kein Ziel gefunden wurde
             return;
@@ -105,7 +105,8 @@ public class Tower : MonoBehaviour
         {
             if (gameObject.CompareTag("Tower"))
             {
-                shootSound.Play();
+                if(shootSound != null)
+                    shootSound.Play();
                 Shoot();
             }
 
