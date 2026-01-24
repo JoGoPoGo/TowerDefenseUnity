@@ -19,7 +19,6 @@ public class SpawnOnMouseClick : MonoBehaviour
     public int cost = 0;       //wie viel Kostet der Turm?
     public int tiling = 1;
 
-
     void Start()
     {
         

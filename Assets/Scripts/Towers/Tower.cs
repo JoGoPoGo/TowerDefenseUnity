@@ -51,6 +51,7 @@ public class Tower : MonoBehaviour
     protected bool dictionaryActivater = true;
     protected LayerMask obstacleMask;
     protected int tiling = 1;
+    protected float updateTargetIntervall = 0.5f;
  
 
     protected virtual void Start()
@@ -79,7 +80,7 @@ public class Tower : MonoBehaviour
             dictionaryActivater = false;
         }
 
-        if(UpdateCounter >= 0.5f)
+        if(UpdateCounter >= updateTargetIntervall)
         {
             UpdateCounter = 0;
         }
