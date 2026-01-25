@@ -111,11 +111,11 @@ public class TypeTwoTargets : Tower
         {
             GameObject proOne = Instantiate(
                 projectilePrefab,
-                projectileTwo.transform.position,
-                projectileTwo.transform.rotation
+                projectileOne.transform.position,
+                projectileOne.transform.rotation
             );
 
-            proOne.transform.SetParent(projectileTwo.transform, true);
+            proOne.transform.SetParent(projectileOne.transform, true);
             StartCoroutine(ProjectileAnimation(proOne, target));
 
         }
