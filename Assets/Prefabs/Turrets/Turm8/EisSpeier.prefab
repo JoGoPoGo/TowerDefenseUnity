@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7962567070447334452}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CanonBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 4073888891365718087}
   - component: {fileID: 1717199388268107028}
   - component: {fileID: 587046723639761221}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Canonball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 7315377757693894789}
   - component: {fileID: 6311812501724095154}
   - component: {fileID: 5665728375549952276}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spike1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 3842698247157054919}
   - component: {fileID: 2203109101991631778}
   - component: {fileID: 5469863992899680918}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: StoneTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 6359721221249284583}
   - component: {fileID: 3333569251333955203}
   - component: {fileID: 5857685342909653864}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GlowTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   - component: {fileID: 3621015534565937252}
   - component: {fileID: 1150454368165063248}
   - component: {fileID: 3296147197156336102}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 6315802993188986937}
   - component: {fileID: 1154602587947407143}
   - component: {fileID: 3298168267585407501}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EisSpeier
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -552,6 +552,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   projectilePrefab: {fileID: 6954103012040562562, guid: 866c0020c622df74194a2a5f2b2c5ff7, type: 3}
   firePoint: {fileID: 1074876714187794180}
+  startSubtract: 0
   rangeDegrees: 180
   startDirection: {x: 0, y: 0, z: 0, w: 0}
   canonBase: {fileID: 1064125253584984522}
@@ -653,7 +654,7 @@ GameObject:
   - component: {fileID: 4200266104559138043}
   - component: {fileID: 6948913205081407195}
   - component: {fileID: 2934396526534532896}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GlowRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -736,7 +737,7 @@ GameObject:
   - component: {fileID: 8475200497803883953}
   - component: {fileID: 2380408561406653298}
   - component: {fileID: 6798685318286276328}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GlowLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}

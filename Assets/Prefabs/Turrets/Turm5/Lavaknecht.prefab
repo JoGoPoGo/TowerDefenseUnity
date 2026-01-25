@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7798580744990061375}
   - component: {fileID: 8287348264339349124}
   - component: {fileID: 2760563168401908948}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BodyBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2590598271357286114}
   - component: {fileID: 232955029104378215}
   - component: {fileID: 5907991433483539110}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CanonLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 2787179444925084035}
   - component: {fileID: 4238967205962239146}
   - component: {fileID: 3668612457626236109}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FireRight.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 2688700968732379748}
   - component: {fileID: 8895870557768815705}
   - component: {fileID: 8331573417803880184}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BodyTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 6650847672825723386}
   - component: {fileID: 7981889893659442979}
   - component: {fileID: 1528125267497927172}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Lavaknecht
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 4095022471934655427}
   - component: {fileID: 9046924028873452052}
   - component: {fileID: 5122358131668129801}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BodyRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,7 +601,7 @@ GameObject:
   - component: {fileID: 553381264908149318}
   - component: {fileID: 9102708077499094232}
   - component: {fileID: 816661365328824327}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -685,7 +685,7 @@ GameObject:
   - component: {fileID: 6391037989021264662}
   - component: {fileID: 7511569670805937956}
   - component: {fileID: 5209151000563944588}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CanonRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -770,7 +770,7 @@ GameObject:
   - component: {fileID: 449826304481070301}
   - component: {fileID: 5933546147741210156}
   - component: {fileID: 8330179650016667313}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FireLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -853,7 +853,7 @@ GameObject:
   - component: {fileID: 3000083705810528492}
   - component: {fileID: 4692280009842681353}
   - component: {fileID: 4754731588448742662}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BodyMid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -936,7 +936,7 @@ GameObject:
   - component: {fileID: 3689388167237278925}
   - component: {fileID: 8182335819863956621}
   - component: {fileID: 7784324198247961665}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}

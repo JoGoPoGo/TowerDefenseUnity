@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 731810702424830848}
   - component: {fileID: 8204578435558884953}
   - component: {fileID: 4218859164372255404}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ProjectileBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7438345436215480316}
   - component: {fileID: 8176452089497054600}
   - component: {fileID: 6409574391979647762}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3484462735703481170}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CanonBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 7381033214277908396}
   - component: {fileID: 7321361731802182445}
   - component: {fileID: 2539368965707463068}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 4133812030794088814}
   - component: {fileID: 8497055300176505677}
   - component: {fileID: 1675846929059748851}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cone.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 1515647599069282913}
   - component: {fileID: 4952355795621849398}
   - component: {fileID: 6270690073891981622}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 5127367615141662504}
   - component: {fileID: 8648650279031131311}
   - component: {fileID: 6584444792210495461}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -543,7 +543,7 @@ GameObject:
   - component: {fileID: 7657585954647463404}
   - component: {fileID: 8876488142601595895}
   - component: {fileID: 3343568515864959046}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cone.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ GameObject:
   - component: {fileID: 647363476209199427}
   - component: {fileID: 8144395122002337757}
   - component: {fileID: 288434737507451650}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,7 +709,7 @@ GameObject:
   - component: {fileID: 4851574403519591958}
   - component: {fileID: 1181405087042229582}
   - component: {fileID: 1960715011774578104}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -796,7 +796,7 @@ GameObject:
   - component: {fileID: 72279223389730026}
   - component: {fileID: 7288673077710185344}
   - component: {fileID: 7592042796958757128}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Loderturm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -890,6 +890,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   projectilePrefab: {fileID: 4283661602787451110, guid: 6907b57d6320ed340ae7a9ba156057c8, type: 3}
   firePoint: {fileID: 0}
+  startSubtract: 0
   targetSnd: {fileID: 0}
   canonTargetOne: {fileID: 6165798598601943223}
   canonTargetTwo: {fileID: 773076346526605736}
@@ -992,7 +993,7 @@ GameObject:
   - component: {fileID: 8476443747646807561}
   - component: {fileID: 8775023163226267984}
   - component: {fileID: 3795475745704099444}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1075,7 +1076,7 @@ GameObject:
   - component: {fileID: 5533731390089921323}
   - component: {fileID: 5808693915093853352}
   - component: {fileID: 7830764448550564023}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1158,7 +1159,7 @@ GameObject:
   - component: {fileID: 7386804153247254300}
   - component: {fileID: 146217462207071708}
   - component: {fileID: 6422442065924226423}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1239,7 +1240,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5238674762608945997}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CanonTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1275,7 +1276,7 @@ GameObject:
   - component: {fileID: 7507103355077288195}
   - component: {fileID: 4814279918665121176}
   - component: {fileID: 5423149532075463934}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ProjectileTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1358,7 +1359,7 @@ GameObject:
   - component: {fileID: 4927666226685828858}
   - component: {fileID: 5492970887058116632}
   - component: {fileID: 7333637048185082735}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1441,7 +1442,7 @@ GameObject:
   - component: {fileID: 4273220353036249881}
   - component: {fileID: 431144684279024111}
   - component: {fileID: 1985732805593620272}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cone.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}

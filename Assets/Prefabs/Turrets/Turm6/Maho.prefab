@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8838196655270233563}
   - component: {fileID: 7107799944763924561}
   - component: {fileID: 6326149832932430714}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: "B\xE9zierCurve"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 9214592549585350}
   - component: {fileID: 2657012113280550627}
   - component: {fileID: 4370185277141473589}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 7105883106352910333}
   - component: {fileID: 2315697825848643517}
   - component: {fileID: 4443087359451613041}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 1765636632865912258}
   - component: {fileID: 8936414989338720002}
   - component: {fileID: 2820070424975314857}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 5395995570390481935}
   - component: {fileID: 6655621423235095673}
   - component: {fileID: 5994725269755635188}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BlackArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 2472899346398653086}
   - component: {fileID: 2486788486075661757}
   - component: {fileID: 1521154327310880628}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 1274685915465718198}
   - component: {fileID: 6875259461651953065}
   - component: {fileID: 492088414244227624}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BlackArmor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,7 +592,7 @@ GameObject:
   - component: {fileID: 1564961220951717442}
   - component: {fileID: 2882455110815419510}
   - component: {fileID: 741389595434338240}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -673,7 +673,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4625298658949636628}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CanonBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,7 +714,7 @@ GameObject:
   - component: {fileID: 7638529443687456704}
   - component: {fileID: 5345918068801214103}
   - component: {fileID: 6737714026962841696}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Maho
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -802,6 +802,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   projectilePrefab: {fileID: 4545522622254507889, guid: d1b09e8544f311346898ed3c10e50e26, type: 3}
   firePoint: {fileID: 6951380427651333907}
+  startSubtract: 0
   CanonBase: {fileID: 7321680099667966585}
   RotatePoint: {fileID: 7321680099667966585}
 --- !u!114 &4844688351470916341

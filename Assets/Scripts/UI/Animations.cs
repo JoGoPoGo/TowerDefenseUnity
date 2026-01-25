@@ -21,7 +21,7 @@ public class UIPanelController : MonoBehaviour
     {
         // Jetzt kennt Visual Studio "rectTransform"
         rectTransform.DOKill();
-        rectTransform.DOAnchorPos(new Vector2(700, 0), 0.5f).SetEase(Ease.OutCubic);
+        rectTransform.DOAnchorPos(new Vector2(700, -100), 0.5f).SetEase(Ease.OutCubic);
     }
 
     public void goleft()

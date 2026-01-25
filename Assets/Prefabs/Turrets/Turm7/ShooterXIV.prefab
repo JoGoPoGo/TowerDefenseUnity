@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1984860836731452281}
   - component: {fileID: 6332867027734645861}
   - component: {fileID: 3814928540663904596}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GoldBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7320150740813064827}
   - component: {fileID: 1552453503831987083}
   - component: {fileID: 7816445048305403636}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Barrel1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 7711026887876516883}
   - component: {fileID: 6247689291491878439}
   - component: {fileID: 8429955656118955409}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Canon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 2788333754094313129}
   - component: {fileID: 7022482312806154481}
   - component: {fileID: 9072670416836032550}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Barrel4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 4108830891519329603}
   - component: {fileID: 3421097293232610540}
   - component: {fileID: 5628316854690212196}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Barrel3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 5347871071093029716}
   - component: {fileID: 9069402985546518334}
   - component: {fileID: 9056164042962052237}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GoldFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 7733662456177798707}
   - component: {fileID: 5143596798131275914}
   - component: {fileID: 8916494628849373794}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Barrel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,7 +596,7 @@ GameObject:
   - component: {fileID: 5762130084895410677}
   - component: {fileID: 2170575087658264618}
   - component: {fileID: 271143005328988708}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ShooterXIV
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -692,6 +692,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   projectilePrefab: {fileID: 4283661602787451110, guid: 0161716e956a1af48a67e611429b23e0, type: 3}
   firePoint: {fileID: 1835593614594084416}
+  startSubtract: 0
 --- !u!114 &398386256135465984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,7 +789,7 @@ GameObject:
   - component: {fileID: 6597812953219160520}
   - component: {fileID: 4591075571150782804}
   - component: {fileID: 8394976074959140987}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Barrel5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -871,7 +872,7 @@ GameObject:
   - component: {fileID: 812907393679012478}
   - component: {fileID: 7416377726981865530}
   - component: {fileID: 6958157645808958079}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BaseSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -954,7 +955,7 @@ GameObject:
   - component: {fileID: 68558369242529391}
   - component: {fileID: 4411123139937875936}
   - component: {fileID: 692163606428493679}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GoldSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1037,7 +1038,7 @@ GameObject:
   - component: {fileID: 8043909969415847746}
   - component: {fileID: 2194889017575267197}
   - component: {fileID: 7832438365275150704}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BaseMid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1120,7 +1121,7 @@ GameObject:
   - component: {fileID: 8902923160304901993}
   - component: {fileID: 4287943212576547682}
   - component: {fileID: 6147174105338860721}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LavaBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1203,7 +1204,7 @@ GameObject:
   - component: {fileID: 4349564247061986742}
   - component: {fileID: 9143125612747652598}
   - component: {fileID: 7163237731142169914}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}

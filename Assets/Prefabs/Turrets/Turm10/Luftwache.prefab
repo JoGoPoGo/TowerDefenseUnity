@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2113694171321862419}
   - component: {fileID: 4013847497912276360}
   - component: {fileID: 4483662013001465070}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8651021211589987543}
   - component: {fileID: 8809399981743685217}
   - component: {fileID: 7202108370223880387}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 457569921715300248}
   - component: {fileID: 8206175267443111457}
   - component: {fileID: 3037006758076271380}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Torus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 61273248714978841}
   - component: {fileID: 917865776052914496}
   - component: {fileID: 4744526851295139428}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 1439177303054397196}
   - component: {fileID: 8609957925227441612}
   - component: {fileID: 3196102268286014823}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 4156836187514825531}
   - component: {fileID: 2731274068225821880}
   - component: {fileID: 1862161319536318631}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +513,7 @@ GameObject:
   - component: {fileID: 9088232295670803167}
   - component: {fileID: 3669557330847983903}
   - component: {fileID: 9116525642400230504}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Luftwache
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -612,6 +612,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   projectilePrefab: {fileID: 4745399192247955626, guid: 3c507fd02911c3446a4fb783027ac8b9, type: 3}
   firePoint: {fileID: 5028418031441074599}
+  startSubtract: 0
 --- !u!114 &8254056497337381079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -708,7 +709,7 @@ GameObject:
   - component: {fileID: 3904495718862937606}
   - component: {fileID: 7286541307220049246}
   - component: {fileID: 7948313441036080552}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -791,7 +792,7 @@ GameObject:
   - component: {fileID: 487371597651416917}
   - component: {fileID: 335429823548150488}
   - component: {fileID: 4051221498670126277}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Torus.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -874,7 +875,7 @@ GameObject:
   - component: {fileID: 3626486982452848440}
   - component: {fileID: 972182165956175039}
   - component: {fileID: 3322366502917832693}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -957,7 +958,7 @@ GameObject:
   - component: {fileID: 6950011256719846001}
   - component: {fileID: 3585290020783735078}
   - component: {fileID: 2485486142201536806}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1040,7 +1041,7 @@ GameObject:
   - component: {fileID: 5637056926110154391}
   - component: {fileID: 3238015797736880172}
   - component: {fileID: 814963354257666695}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Torus.007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1123,7 +1124,7 @@ GameObject:
   - component: {fileID: 674575195823155274}
   - component: {fileID: 688992161011941225}
   - component: {fileID: 4472403761995632032}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1206,7 +1207,7 @@ GameObject:
   - component: {fileID: 1375143277230464956}
   - component: {fileID: 1216390436282129213}
   - component: {fileID: 6216772344918479244}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1289,7 +1290,7 @@ GameObject:
   - component: {fileID: 2694665179607227745}
   - component: {fileID: 157188687320882859}
   - component: {fileID: 8880839525040082486}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Torus.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1372,7 +1373,7 @@ GameObject:
   - component: {fileID: 1681076206743084481}
   - component: {fileID: 5302989312515151475}
   - component: {fileID: 8141685349028882369}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1455,7 +1456,7 @@ GameObject:
   - component: {fileID: 671879437996164401}
   - component: {fileID: 3007556943458440397}
   - component: {fileID: 5705874112358365694}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Torus.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
