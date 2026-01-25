@@ -58,7 +58,7 @@ public class Tower : MonoBehaviour
     protected int tiling = 1;
     protected float updateTargetIntervall = 0.5f;
 
-    protected float startSubtract = 0f;
+    public float startSubtract = 0f;
  
 
     protected virtual void Start()
@@ -76,33 +76,27 @@ public class Tower : MonoBehaviour
     }
     protected virtual void Update()  
     {
-        if (gameObject.CompareTag("Tower") && dictionaryActivater)
+        if (gameObject.CompareTag("Tower") && dictionaryActivater)  //wenn der Turm das erste Mal "Tower" ist
         {
             Vector2Int posi = new Vector2Int((int)Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.z));
 
-            OccupyPositionsInCircle(posi, spawnCancelRadius);
+            OccupyPositionsInCircle(posi, spawnCancelRadius);   //werden innerhalb des SpawnCancelRadius' keine Türme mehr spawnbar gemacht
             dictionaryActivater = false;
         }
 
-        if(UpdateCounter >= updateTargetIntervall)
-        {
+        if(UpdateCounter >= updateTargetIntervall)  //UpdateTarget soll in Abständen von updateTargetIntervall ausgeführt werden
             UpdateCounter = 0;
-        }
-
-        if(UpdateCounter == 0 && gameObject.CompareTag("Tower"))
-        {
+        if(UpdateCounter == 0 && gameObject.CompareTag("Tower"))    //wenn der Turm "Tower" ist
             UpdateTarget();  
-        }
-
         UpdateCounter += Time.deltaTime;
 
         if (target == null)   //führt nichts aus, wenn kein Ziel gefunden wurde
             return;
+        
+        
+        RotateTo(target);   // Turm dreht sich zum Ziel
 
-        // Turm dreht sich zum Ziel
-        RotateTo(target);
-
-        // Wenn die Zeit zum Schießen gekommen ist, wird geschossen
+        /// ---------FireRate--------------"Wenn die Zeit zum Schießen gekommen ist, wird geschossen"
         if (fireCountdown <= 0f)
         {
             if (gameObject.CompareTag("Tower"))
@@ -117,7 +111,7 @@ public class Tower : MonoBehaviour
         
         fireCountdown -= Time.deltaTime;
     }
-    protected virtual void RotateTo(GameObject t)
+    protected virtual void RotateTo(GameObject t)   //Rotiert den Turm zum GameObject t
     {
         Vector3 direction = t.transform.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
@@ -136,15 +130,15 @@ public class Tower : MonoBehaviour
         float shortestDistance = range; // maximale Reichweite
         GameObject nearestEnemy = null;
 
-        foreach (GameObject enemy in enemies)
+        foreach (GameObject enemy in enemies)   //prüft jeden Gegner in der Szene
         {
             Vector3 direction = enemy.transform.position - transform.position;
             float distance = direction.magnitude;
 
-            // ?? Mindest- UND Maximalreichweite prüfen
+            // Mindest- UND Maximalreichweite prüfen
             if (distance >= rangeMinimum && distance <= shortestDistance)
             {
-                // ?? Sichtprüfung (keine Hindernisse dazwischen)
+                // Sichtprüfung (keine Hindernisse dazwischen)
                 if (!Physics.Raycast(transform.position, direction.normalized, distance, obstacleMask))
                 {
                     shortestDistance = distance;
@@ -157,10 +151,10 @@ public class Tower : MonoBehaviour
     }
 
     protected virtual void Shoot()         // protected für Schussanimationen und Funktionen
-    {  // Erzeugt das Projektil an der Feuerposition und weist ihm die Richtung des Ziels zu#
+    {
         if (!spawnScript.spawned)
         {
-            if(projectilePrefab != null)
+            if(projectilePrefab != null)    //Wenn es ein Projektil gibt,...
             {
                 GameObject pro = Instantiate(
                     projectilePrefab,
@@ -169,9 +163,9 @@ public class Tower : MonoBehaviour
                 );
 
                 pro.transform.SetParent(firePoint.transform, true);
-                StartCoroutine(ProjectileAnimation(pro, target));
+                StartCoroutine(ProjectileAnimation(pro, target));   //...wird es hiermit (ProjectileAnimation) bewegt
             }
-            else
+            else               //Wenn nicht, wird direkt getroffen Ausgeführt
             {
                 damageScript = target.GetComponent<DamageTest>();
                 hitEnemy(damageScript);
@@ -282,7 +276,7 @@ public class Tower : MonoBehaviour
             }
         }
     }
-    protected virtual IEnumerator ProjectileAnimation(GameObject projectile, GameObject enemy)
+    protected virtual IEnumerator ProjectileAnimation(GameObject projectile, GameObject enemy)  //Wurfartige Flugbahn von projectile zum Gegner  
     {
         float duration = 0.4f;
         float t = 0f;
@@ -292,9 +286,9 @@ public class Tower : MonoBehaviour
         float yPosCurrent = startPos.y;
         targetPos.y = startPos.y;
 
-        float subtract = startSubtract;
+        float subtract = startSubtract; //Wenn startSubtract (siehe Inspector) kleiner null ist, zeigt der Startwinkel nach Oben
 
-        while (t < duration)
+        while (t < duration)    //Flugbahn
         {
             yPosCurrent -= subtract;
             subtract += (startPos.y - yPosTarget) / Sum0ToN((int)Mathf.Round(duration / Time.deltaTime));
@@ -352,7 +346,7 @@ public class Tower : MonoBehaviour
             disturbEffect.Stop();
     }
 
-    protected virtual void hitEnemy(DamageTest damageTest)
+    protected virtual void hitEnemy(DamageTest damageTest)  //wird beim Treffen des Gegners ausgeführt
     {
         damageScript.TakeDamage(damageAmount);
     }
