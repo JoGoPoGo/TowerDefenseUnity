@@ -514,7 +514,7 @@ GameObject:
   - component: {fileID: 3669557330847983903}
   - component: {fileID: 9116525642400230504}
   m_Layer: 0
-  m_Name: Turm10
+  m_Name: Luftwache
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

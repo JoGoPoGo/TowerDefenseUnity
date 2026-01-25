@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 1154602587947407143}
   - component: {fileID: 3298168267585407501}
   m_Layer: 0
-  m_Name: Turm8
+  m_Name: EisSpeier
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
