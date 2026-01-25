@@ -9,6 +9,8 @@ public class Tower : MonoBehaviour
 {
     [Header("Stats")]
     public float range = 15f;          // Reichweite des Turms
+    public float rangeMinimum = 0f;
+
     public int damageAmount = 50;       //Schaden
     public float fireRate = 1f;        // Schussfrequenz
 
@@ -130,7 +132,8 @@ public class Tower : MonoBehaviour
     protected virtual void UpdateTarget()   // protected für Schussfunktionen und Animationen
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        float shortestDistance = range; // Nur Gegner **innerhalb der Reichweite** sind relevant
+
+        float shortestDistance = range; // maximale Reichweite
         GameObject nearestEnemy = null;
 
         foreach (GameObject enemy in enemies)
@@ -138,9 +141,10 @@ public class Tower : MonoBehaviour
             Vector3 direction = enemy.transform.position - transform.position;
             float distance = direction.magnitude;
 
-            if (distance <= shortestDistance)
+            // ?? Mindest- UND Maximalreichweite prüfen
+            if (distance >= rangeMinimum && distance <= shortestDistance)
             {
-                // Sichtprüfung mit Raycast (verhindert Schüsse durch Mauern o.ä.)
+                // ?? Sichtprüfung (keine Hindernisse dazwischen)
                 if (!Physics.Raycast(transform.position, direction.normalized, distance, obstacleMask))
                 {
                     shortestDistance = distance;
@@ -149,7 +153,7 @@ public class Tower : MonoBehaviour
             }
         }
 
-        target = nearestEnemy;
+        target = nearestEnemy; // bleibt null, wenn kein gültiges Ziel gefunden wurde
     }
 
     protected virtual void Shoot()         // protected für Schussanimationen und Funktionen
@@ -278,7 +282,7 @@ public class Tower : MonoBehaviour
             }
         }
     }
-    protected IEnumerator ProjectileAnimation(GameObject projectile, GameObject enemy)
+    protected virtual IEnumerator ProjectileAnimation(GameObject projectile, GameObject enemy)
     {
         float duration = 0.4f;
         float t = 0f;

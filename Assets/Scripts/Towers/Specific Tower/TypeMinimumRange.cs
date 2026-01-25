@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class TypeMinimumRange : Tower
 {
-    public float rangeMinimum;
-    public GameObject projectile;
-    public GameObject Lauf;
-
     private bool updatingTarget = true;
 
     protected override void Update()
@@ -53,29 +49,5 @@ public class TypeMinimumRange : Tower
                 target = null; // Kein Gegner in Reichweite
             }
         }
-    }
-    protected override void Shoot()
-    {
-        updatingTarget = false;
-        shootSound.Play();
-        StartCoroutine(ShootAnimation(target));
-        base.Shoot();
-        updatingTarget = true;
-    }
-
-    IEnumerator ShootAnimation(GameObject currentTarget)
-    {
-        Vector3 targetPosition = currentTarget.transform.position;
-        Vector3 startPosition = projectile.transform.position;
-        float t = 0f;
-
-        while (t < 1f)
-        {
-            projectile.transform.position = Vector3.Lerp(startPosition, targetPosition + new Vector3 (0, 2, 0), t);
-            t = t + 4 * Time.deltaTime;
-            yield return null;
-        }
-
-        projectile.transform.position = Lauf.transform.position; 
     }
 }
