@@ -8,7 +8,6 @@ using UnityEngine;
 public class DynamicRangePreview : MonoBehaviour
 {
     public int rayCount = 180; // Auflösung (mehr = glatterer Kreis)
-    public int accuracy = 1;
 
     public Tower towerScript;
     public LayerMask obstacleMask; // Hindernisse
@@ -26,7 +25,6 @@ public class DynamicRangePreview : MonoBehaviour
     private float minRange = 0;
 
     private SpawnOnMouseClick spawnOnMouseClick;
-    private CancelDictionaryProtoType dictionary;
 
     private Vector3 lastPosition;
     private Quaternion lastRotation;
