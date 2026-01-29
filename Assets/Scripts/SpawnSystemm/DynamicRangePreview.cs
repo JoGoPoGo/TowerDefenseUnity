@@ -15,7 +15,7 @@ public class DynamicRangePreview : MonoBehaviour
 
     public int previewAngle = 360;
 
-    public bool showActivated = false;
+    public bool showActivated = false; //ist true, wenn die TowerInfo UI gezeigt wird
 
     private MeshRenderer meshRenderer;
     private MeshFilter meshFilter;
