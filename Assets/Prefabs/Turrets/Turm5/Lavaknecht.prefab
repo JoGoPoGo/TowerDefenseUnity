@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 6650847672825723386}
   - component: {fileID: 7981889893659442979}
   - component: {fileID: 1528125267497927172}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Lavaknecht
   m_TagString: Tower
   m_Icon: {fileID: 0}

@@ -54,7 +54,7 @@ public class AbilityScript : MonoBehaviour
             if (distance <= FreezeRange)
             {
                 Debug.Log("FreeeZEEEE");
-                DamageTest damageScript = enemy.GetComponent<DamageTest>();
+                EnemyScript damageScript = enemy.GetComponent<EnemyScript>();
                 if (damageScript == null) continue;
 
                 originalSpeeds[enemy] = damageScript.speed;
@@ -68,7 +68,7 @@ public class AbilityScript : MonoBehaviour
         {
             if (kvp.Key == null) continue;
 
-            DamageTest damageScript = kvp.Key.GetComponent<DamageTest>();
+            EnemyScript damageScript = kvp.Key.GetComponent<EnemyScript>();
             if (damageScript != null)
             {
                 damageScript.speed = kvp.Value;
@@ -112,7 +112,7 @@ public class AbilityScript : MonoBehaviour
             activePoisonCount--;
             yield break;
         }
-        DamageTest damageScript = enemy.GetComponent <DamageTest>();
+        EnemyScript damageScript = enemy.GetComponent <EnemyScript>();
 
         if (damageScript == null)
         {

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static UnityEngine.EventSystems.EventTrigger;
 
-public class DamageTest : MonoBehaviour
+public class EnemyScript : MonoBehaviour
 {
     [Header("Stats")]
     public int currentHealth; // Aktuelle Leben -- siehe public
@@ -25,6 +25,7 @@ public class DamageTest : MonoBehaviour
     private BaseHealth baseScript;
     public float speedMultiplier;
     public bool isAlive = true;
+    public Animator animator;
 
     [Header("Funktion")]
     public bool isLast = false;
@@ -82,41 +83,28 @@ public class DamageTest : MonoBehaviour
         {
             gameManager.AddCredits(reward);
         }
-        /*if (IsOnlyEnemy() && isLast)
+        if (animator != null)
         {
-            BotsOnPath[] botsOnPaths = FindObjectsOfType<BotsOnPath>();
-
-            int maxWaveCount = 0;
-
-            BotsOnPath targetScript = null;
-            if (botsOnPaths.Length > 1)  //ist nur nötig, wenn es mehr als ein BotsOnPath Skript in der Szene gibt
-            {
-                foreach (BotsOnPath Script in botsOnPaths)    //findet aus allen BotsOnPath Skripten der Szene das mit den meisten Wellen
-                {
-                    if (Script.waves.Length > maxWaveCount)
-                    {
-                        maxWaveCount = Script.waves.Length;
-                        targetScript = Script;
-                    }
-                }
-            }
-            if ((botsOnPaths.Length == 1 || targetScript == thisBotScript) && baseScript.health > 0) //wenn dieses der letzte von dem Skript mit den meisten Wellen ist, gewinnt der Spieler
-            {
-                Debug.Log("Is only enemy and the last one at DamageTest.79");
-                GameObject parent = GameObject.Find("Canvas");
-                if (parent != null)
-                {
-                    Transform winTransform = parent.transform.Find("WinScreen");
-                    if (winTransform != null)
-                    {
-                    winTransform.gameObject.SetActive(true);
-                    }
-                }
-            }
+            animator.SetBool("isDead", true);
+            speed = 0;
+            gameObject.tag = "Untagged";      //tag und layer ändern, damit die Türme nicht mehr angreifen
+            gameObject.layer = 0;
+            healthbar.Sethealth(-1);
+            StartCoroutine(WaitDeath(2));
         }
-        isAlive = false;*/
+        else
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
+    private IEnumerator WaitDeath(int a)
+    {
+        yield return new WaitForSeconds(a);
         Destroy(gameObject);
     }
+
     public void MoveAlongPath(PathCreator path, float pathPoint)    // soll als Ersatz für IEnumarator bei BotsOnPath dienen, welche die Bots bewegt
     {
         transform.position = path.path.GetPointAtDistance(pathPoint) + positionRandomizer;

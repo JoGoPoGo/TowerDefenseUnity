@@ -19,13 +19,13 @@ public class TypeDebuff : TypeCanon
         Quaternion smoothedRotation = Quaternion.Lerp(canonBase.transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
         canonBase.transform.rotation = Quaternion.Euler(0f, smoothedRotation.eulerAngles.y, 0f);
     }
-    protected override void hitEnemy(DamageTest damageTest)
+    protected override void hitEnemy(EnemyScript damageTest)
     {
         base.hitEnemy(damageTest);
         if(!damageTest.isDebuffed)
             StartCoroutine(DebuffEnemy(damageTest));
     }
-    IEnumerator DebuffEnemy(DamageTest enemyScript) 
+    IEnumerator DebuffEnemy(EnemyScript enemyScript) 
     {
         enemyScript.isDebuffed = true;
         float ogSpeed = enemyScript.speed;

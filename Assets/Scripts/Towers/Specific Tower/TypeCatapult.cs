@@ -27,7 +27,7 @@ public class TypeCatapult : Tower
     {
         if (!spawnScript.spawned)
         {
-            damageScript = target.GetComponent<DamageTest>();
+            damageScript = target.GetComponent<EnemyScript>();
             StartCoroutine(ShootAnimation());  //fügt schaden in stoneAnimation zu
 
         }
@@ -142,7 +142,7 @@ public class TypeCatapult : Tower
             float distanceToEnemy = Vector3.Distance(einschlag, enemy.transform.position);
             if (distanceToEnemy < Einschlagradius)
             {
-                damageScript = enemy.GetComponent<DamageTest>();
+                damageScript = enemy.GetComponent<EnemyScript>();
                 //betroffenList.Add(enemy);
                 damageScript.TakeDamage(damageAmount);
             }

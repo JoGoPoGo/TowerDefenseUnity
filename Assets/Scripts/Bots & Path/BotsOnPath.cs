@@ -172,7 +172,7 @@ public class BotsOnPath : MonoBehaviour
     {
         Vector3 spawnPosition = pathCreator.path.GetPoint(0);
         GameObject bot = Instantiate(botPrefab, spawnPosition, Quaternion.identity);
-        DamageTest damageScript = bot.GetComponent<DamageTest>();
+        EnemyScript damageScript = bot.GetComponent<EnemyScript>();
         if (isLast)
         {
             damageScript.isLast = true;
@@ -194,7 +194,7 @@ public class BotsOnPath : MonoBehaviour
     IEnumerator MoveBotAlongPath(GameObject enemy)
     {
         float distanceTravelled = 0f;
-        DamageTest damageScript = enemy.GetComponent<DamageTest>();
+        EnemyScript damageScript = enemy.GetComponent<EnemyScript>();
         yield return null;   // randomized wird erst genommen, wenn DamageTest einen Wert != 0 dafür hat
         Vector3 randomized = damageScript.positionRandomizer;
 

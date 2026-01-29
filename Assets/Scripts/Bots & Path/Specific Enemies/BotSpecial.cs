@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BotSpecial : DamageTest
+public class BotSpecial : EnemyScript
 {
     public GameObject splittingPrefab;
     public int splittCount;
@@ -52,7 +52,7 @@ public class BotSpecial : DamageTest
     {
         Vector3 spawnPosition = pathCreator.path.GetPointAtDistance(distanceTravelled) + positionRandomizer;
         GameObject bot = Instantiate(botPrefab, spawnPosition, Quaternion.identity);
-        DamageTest damageScript = bot.GetComponent<DamageTest>();
+        EnemyScript damageScript = bot.GetComponent<EnemyScript>();
         if (isLast)
         {
             damageScript.isLast = true;

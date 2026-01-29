@@ -39,7 +39,7 @@ public class Type3DRotation : Tower
         }
 
         if (enemy != null)
-            damageScript = enemy.GetComponent<DamageTest>();
+            damageScript = enemy.GetComponent<EnemyScript>();
         if (damageScript != null)
             hitEnemy(damageScript);
 

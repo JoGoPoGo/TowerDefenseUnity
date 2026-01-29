@@ -60,7 +60,9 @@ MonoBehaviour:
   pathCreator: {fileID: 0}
   speedMultiplier: 0
   isAlive: 1
+  animator: {fileID: 4897978747040034214}
   isLast: 0
+  isDebuffed: 0
   positionRandomizer: {x: 0, y: 0, z: 0}
   distanceTravelled: 0
 --- !u!114 &8665655983987140526
@@ -693,6 +695,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: cc633396b5f95da4b916357a5508ee4f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ececdfa10f51c2841813dab9e2ce0ee9, type: 2}
+    - target: {fileID: 9500000, guid: cc633396b5f95da4b916357a5508ee4f, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -701,5 +711,10 @@ PrefabInstance:
 --- !u!4 &4897978747030667846 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: cc633396b5f95da4b916357a5508ee4f, type: 3}
+  m_PrefabInstance: {fileID: 4897978747030542534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4897978747040034214 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: cc633396b5f95da4b916357a5508ee4f, type: 3}
   m_PrefabInstance: {fileID: 4897978747030542534}
   m_PrefabAsset: {fileID: 0}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisturbBot : DamageTest
+public class DisturbBot : EnemyScript
 {
     private float updateInSeconds = 3f;
     private float check;

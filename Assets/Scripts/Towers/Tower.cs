@@ -39,7 +39,7 @@ public class Tower : MonoBehaviour
     [Header("Scripts")]
     public SpawnOnMouseClick spawnScript; // Reference to the SpawnOnMouseClick script
     protected CancelDictionaryProtoType dictionary;
-    protected DamageTest damageScript;   // DamageTest von Target
+    protected EnemyScript damageScript;   // DamageTest von Target
     private GameManager gameManager;
 
     [Header("Funktion")]
@@ -167,7 +167,7 @@ public class Tower : MonoBehaviour
             }
             else               //Wenn nicht, wird direkt getroffen Ausgeführt
             {
-                damageScript = target.GetComponent<DamageTest>();
+                damageScript = target.GetComponent<EnemyScript>();
                 hitEnemy(damageScript);
             }
 
@@ -300,7 +300,7 @@ public class Tower : MonoBehaviour
         }
 
         if (enemy != null)
-            damageScript = enemy.GetComponent<DamageTest>();
+            damageScript = enemy.GetComponent<EnemyScript>();
         if (damageScript != null)
             hitEnemy(damageScript);
 
@@ -346,7 +346,7 @@ public class Tower : MonoBehaviour
             disturbEffect.Stop();
     }
 
-    protected virtual void hitEnemy(DamageTest damageTest)  //wird beim Treffen des Gegners ausgeführt
+    protected virtual void hitEnemy(EnemyScript damageTest)  //wird beim Treffen des Gegners ausgeführt
     {
         damageScript.TakeDamage(damageAmount);
     }

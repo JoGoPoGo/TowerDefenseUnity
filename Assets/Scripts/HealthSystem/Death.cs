@@ -5,11 +5,11 @@ using UnityEngine;
 public class Death : MonoBehaviour
 { 
 
-    private DamageTest life;
+    private EnemyScript life;
 
     void Start()
     {
-        life = GetComponent<DamageTest>();
+        life = GetComponent<EnemyScript>();
     }
 
     void Update()

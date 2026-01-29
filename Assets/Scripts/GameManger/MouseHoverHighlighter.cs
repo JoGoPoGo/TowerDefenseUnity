@@ -11,7 +11,10 @@ public class MouseHoverHighlighter : MonoBehaviour
     private List<Color> originalEmissions = new List<Color>();
 
 
+    private void Start()
+    {
 
+    }
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -44,11 +47,20 @@ public class MouseHoverHighlighter : MonoBehaviour
 
     private void MouseEnters(GameObject obj)
     {
-        lastRenderers = new List<Renderer>(obj.GetComponentsInChildren<Renderer>());
+        lastRenderers.Clear();
+
+        foreach (Renderer r in obj.GetComponentsInChildren<Renderer>())
+        {
+            if (r is TrailRenderer)
+                continue;
+
+            lastRenderers.Add(r);
+        }
+
         originalColors.Clear();
         originalEmissions.Clear();
 
-        foreach (var rend in lastRenderers)
+        foreach (Renderer rend in lastRenderers)
         {
             Material mat = rend.material;
 
@@ -61,7 +73,11 @@ public class MouseHoverHighlighter : MonoBehaviour
             {
                 originalEmissions.Add(mat.GetColor("_EmissionColor"));
                 mat.EnableKeyword("_EMISSION");
-                mat.SetColor("_EmissionColor", mat.color * 1.5f); // 50% heller
+                mat.SetColor("_EmissionColor", mat.color * 1.5f);
+            }
+            else
+            {
+                originalEmissions.Add(Color.black);
             }
         }
     }
@@ -82,6 +98,7 @@ public class MouseHoverHighlighter : MonoBehaviour
 
         for (int i = 0; i < lastRenderers.Count; i++)
         {
+            if (lastRenderers[i] == null) continue;
             Material mat = lastRenderers[i].material;
 
             if (mat.HasProperty("_EmissionColor"))

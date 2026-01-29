@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class HealBot : DamageTest
+public class HealBot : EnemyScript
 {
     public int healRange;
     public int healAmount = 10;
@@ -44,7 +44,7 @@ public class HealBot : DamageTest
             float distance = direction.magnitude;
             if (distance <= healRange)
             {
-                DamageTest botScript = member.GetComponent<DamageTest>();
+                EnemyScript botScript = member.GetComponent<EnemyScript>();
                 if (botScript.currentHealth + healAmount > botScript.maxHealth)
                 {
                     botScript.TakeDamage(currentHealth - maxHealth);

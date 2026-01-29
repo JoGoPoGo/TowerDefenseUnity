@@ -10,11 +10,11 @@ public class MoveAlongPath : MonoBehaviour
     public float speed = 5f; // Geschwindigkeit der Bewegung
     private float distanceTravelled;
 
-    private DamageTest life;
+    private EnemyScript life;
 
     void Start()
     {
-        life = GetComponent<DamageTest>();
+        life = GetComponent<EnemyScript>();
     }
 
     void Update()
