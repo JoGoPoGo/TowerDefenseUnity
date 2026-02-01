@@ -43,7 +43,6 @@ public class WorldPreview : MonoBehaviour
         previewAngle = towerPreviewAngle;
 
         GenerateMesh();
-        gameObject.SetActive(true);
     }
 
     public void Hide()
