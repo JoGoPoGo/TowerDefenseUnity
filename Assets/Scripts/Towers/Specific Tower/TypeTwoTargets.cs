@@ -14,7 +14,7 @@ public class TypeTwoTargets : Tower
 
     [Header("Changeables")]
 
-    public float weakerPercentage;
+    public float weakerPercentage = 0;
 
     protected override void Update()
     {
