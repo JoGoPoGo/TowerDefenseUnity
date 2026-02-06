@@ -90,7 +90,7 @@ public class TypeHammer : Tower
             float distance = direction.magnitude;
             if (distance <= range)
             {
-                hitEnemy(enemy);
+                hitEnemy(enemy.GetComponent<EnemyScript>());
             }
         }
 
