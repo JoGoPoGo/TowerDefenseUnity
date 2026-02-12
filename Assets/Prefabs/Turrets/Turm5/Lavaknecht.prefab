@@ -440,7 +440,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   projectilePrefab: {fileID: 6488139033275518911, guid: f62c1766166ec0b4c9278eaa5200b09c, type: 3}
   firePoint: {fileID: 0}
-  startSubtract: -0.1
+  startSubtract: -0.02
   firePoints:
   - {fileID: 5222258378229393087}
   - {fileID: 3359577823440359893}

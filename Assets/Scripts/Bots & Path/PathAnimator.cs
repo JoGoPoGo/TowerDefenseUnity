@@ -5,6 +5,7 @@ using PathCreation;
 using Unity.VisualScripting;
 using System.Runtime.CompilerServices;  // Für den Zugriff auf PathCreator
 
+
 public class PrefabSpawnerAlongPath : MonoBehaviour
 {
     public PathCreator pathCreator;    // Referenz zum PathCreator-Pfad
@@ -22,12 +23,12 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
     private SpawnOnMouseClick tilingScript;
 
     void Start()
-    {
+    {  
+        SnapPathToTerrain();
         if (pathCreator != null && prefabToSpawn != null)
         {
             SpawnPrefabsAlongPath();
         }
-
         tiling = 1;
         Debug.Log(tiling);
     }
@@ -109,6 +110,23 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
             }
         }
     }
+    void SnapPathToTerrain()
+    {
+        Terrain terrain = Terrain.activeTerrain;
+        if (terrain == null)
+            return;        
+        BezierPath bezierPath = pathCreator.bezierPath;
 
+        for (int i = 0; i < bezierPath.NumPoints; i++)
+        {
+            Vector3 point = bezierPath.GetPoint(i);
+
+            float height = terrain.SampleHeight(point);
+            point.y = height + terrain.transform.position.y;
+
+            bezierPath.SetPoint(i, point);
+            Debug.Log(point);
+        }
+    }
 }
 
