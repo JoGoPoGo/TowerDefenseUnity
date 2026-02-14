@@ -64,6 +64,10 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
 
             // Instanziere das Prefab
             Instantiate(prefabToSpawn, spawnPosition, spawnRotation, parent.transform);
+            // Passe das Terrain an
+            SetTerrainCircleHeight(spawnPosition, 2f, spawnPosition.y - 0.05f);
+
+
             if(Vector3.Distance(spawnPosition, lastCancelPosition) > tiling)
             {
                 onThisPosCancel = true;
@@ -127,6 +131,57 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
             bezierPath.SetPoint(i, point);
             Debug.Log(point);
         }
+    }
+    void SetTerrainCircleHeight(Vector3 worldPos, float radius, float targetWorldHeight)
+    {
+        Terrain terrain = Terrain.activeTerrain;
+        if (terrain == null) return;
+
+        TerrainData data = terrain.terrainData;
+
+        int resolution = data.heightmapResolution;
+
+        // Position relativ zum Terrain
+        Vector3 terrainPos = worldPos - terrain.transform.position;
+
+        int centerX = Mathf.RoundToInt((terrainPos.x / data.size.x) * resolution);
+        int centerZ = Mathf.RoundToInt((terrainPos.z / data.size.z) * resolution);
+
+        int radiusInSamples = Mathf.RoundToInt((radius / data.size.x) * resolution);
+
+        int size = radiusInSamples * 2;
+
+        // Clamp gegen Randfehler
+        int startX = Mathf.Clamp(centerX - radiusInSamples, 0, resolution - 1);
+        int startZ = Mathf.Clamp(centerZ - radiusInSamples, 0, resolution - 1);
+
+        size = Mathf.Clamp(size, 0, resolution - startX);
+        size = Mathf.Clamp(size, 0, resolution - startZ);
+
+        float[,] heights = data.GetHeights(startX, startZ, size, size);
+
+        // Zielhöhe normalisieren (0–1)
+        float normalizedHeight =
+            (targetWorldHeight - terrain.transform.position.y) / data.size.y;
+
+        normalizedHeight = Mathf.Clamp01(normalizedHeight);
+
+        for (int x = 0; x < size; x++)
+        {
+            for (int z = 0; z < size; z++)
+            {
+                float dist = Vector2.Distance(
+                    new Vector2(x, z),
+                    new Vector2(radiusInSamples, radiusInSamples));
+
+                if (dist < radiusInSamples)
+                {
+                    heights[z, x] = normalizedHeight;
+                }
+            }
+        }
+
+        data.SetHeights(startX, startZ, heights);
     }
 }
 

@@ -8,7 +8,26 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public int credits = 0;
-    
+
+    private Terrain terrain;
+    private TerrainData terrainData;
+    private float[,] originalHeights;
+
+    void Awake()
+    {
+        terrain = Terrain.activeTerrain;
+
+        terrain.terrainData = Instantiate(terrain.terrainData);
+
+        terrainData = terrain.terrainData;
+
+        originalHeights = terrainData.GetHeights(
+            0, 0,
+            terrainData.heightmapResolution,
+            terrainData.heightmapResolution);
+    }
+
+
     public bool SpendCredits(int amount, bool spend = true)
     {
         if(credits >= amount)
