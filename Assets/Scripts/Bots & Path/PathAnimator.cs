@@ -52,7 +52,23 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
         {
             // Bestimme Position und Rotation entlang des Pfads
             Vector3 spawnPosition = pathCreator.path.GetPointAtDistance(distanceTravelled);
-            Quaternion spawnRotation = pathCreator.path.GetRotationAtDistance(distanceTravelled) * Quaternion.Euler(0, 0, 90);
+            Terrain terrain = Terrain.activeTerrain;
+            TerrainData data = terrain.terrainData;
+
+            // Position relativ zum Terrain
+            Vector3 terrainPos = spawnPosition - terrain.transform.position;
+
+            float normX = terrainPos.x / data.size.x;
+            float normZ = terrainPos.z / data.size.z;
+
+            // Normale der Terrain-Oberfläche
+            Vector3 terrainNormal = data.GetInterpolatedNormal(normX, normZ);
+            //Quaternion spawnRotation = pathCreator.path.GetRotationAtDistance(distanceTravelled) * Quaternion.Euler(0, 0, 90);
+
+            Vector3 forward = pathCreator.path.GetDirectionAtDistance(distanceTravelled);
+
+            // Rotation mit Terrain-Neigung
+            Quaternion spawnRotation = Quaternion.LookRotation(forward, terrainNormal);
 
             if (RandomBool)
             {
