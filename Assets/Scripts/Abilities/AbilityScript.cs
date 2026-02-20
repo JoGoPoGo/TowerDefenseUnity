@@ -11,6 +11,7 @@ public class AbilityScript : MonoBehaviour
     public Button PoisonButton;
 
     public ParticleSystem poisonParticle;
+    public ParticleSystem iceParticle;
 
     [Header("Freeze")]
     public int FreezeRange;
@@ -39,6 +40,9 @@ public class AbilityScript : MonoBehaviour
         yield return null;
 
         FreezeButton.interactable = false;
+
+        iceParticle.Play();
+
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         Debug.Log(enemies.Length);
         Dictionary<GameObject, float> originalSpeeds = new Dictionary<GameObject, float>();
@@ -61,8 +65,11 @@ public class AbilityScript : MonoBehaviour
                 damageScript.speed *= speedPercentage / 100f;
             }
         }
+        yield return new WaitForSeconds(1);
 
-        yield return new WaitForSeconds(FreezeDuration);
+        iceParticle.Stop();
+
+        yield return new WaitForSeconds(FreezeDuration - 1);
 
         foreach (var kvp in originalSpeeds)
         {
