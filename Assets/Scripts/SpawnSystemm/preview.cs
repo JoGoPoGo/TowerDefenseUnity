@@ -22,6 +22,13 @@ public class Preview : MonoBehaviour
 
     private int tiling = 1;
 
+    [Header("Audio")]
+    public AudioClip placeSound;
+    private AudioSource audioSource;
+
+    [Header("Visuelle Effekte")]
+    public GameObject placeParticlesPrefab; // Ziehe hier dein Partikel-Prefab rein
+
     void Start()
     {
         GameManager gameManager = FindObjectOfType<GameManager>();
@@ -32,6 +39,12 @@ public class Preview : MonoBehaviour
         //previewObject = spawnScript.selectedPrefab;
         terrainObject = FindObjectOfType<Terrain>();
         terrainInScene = (terrainObject != null);          //prüft, ob ein Terrain in der Szene ist
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
 
     }
     // Update wird einmal pro Frame aufgerufen
@@ -88,6 +101,20 @@ public class Preview : MonoBehaviour
                 SetTerrainCircleHeight(previewObject.transform.position, 3f, previewObject.transform.position.y);
             }
             spawnScript.spawned = false; // Setze spawned auf false, wenn die linke Maustaste losgelassen wird
+
+            if (placeSound != null)
+            {
+                audioSource.PlayOneShot(placeSound);
+            }
+
+            if (placeParticlesPrefab != null && previewObject != null)
+            {
+                // Erstellt das Partikelsystem genau an der Position des Turms
+                GameObject particles = Instantiate(placeParticlesPrefab, previewObject.transform.position, Quaternion.identity);
+
+                // Zerstört das Partikel-Objekt nach 2 Sekunden, um Speicherplatz zu sparen
+                Destroy(particles, 2f);
+            }
 
             if (previewObject != null)
             {

@@ -53,6 +53,11 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
             // Bestimme Position und Rotation entlang des Pfads
             Vector3 spawnPosition = pathCreator.path.GetPointAtDistance(distanceTravelled);
             Terrain terrain = Terrain.activeTerrain;
+            if (terrain == null)
+            {
+                Debug.Log("FEHLER: Es wurde kein aktives Terrain in der Szene gefunden!");
+                break;
+            }
             TerrainData data = terrain.terrainData;
 
             // Position relativ zum Terrain

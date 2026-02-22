@@ -17,6 +17,21 @@ public class GameManager : MonoBehaviour
     {
         terrain = Terrain.activeTerrain;
 
+        // 1. Sicherheitscheck: Ist überhaupt ein Terrain in der Szene?
+        if (terrain == null)
+        {
+            Debug.Log("FEHLER im Awake: Es gibt kein aktives Terrain in dieser Szene!");
+            return; // Bricht die Methode hier sofort ab, um den Absturz zu verhindern
+        }
+
+        // 2. Sicherheitscheck: Hat das Terrain auch wirklich Terrain-Daten zugewiesen?
+        if (terrain.terrainData == null)
+        {
+            Debug.Log("FEHLER im Awake: Das Terrain hat keine TerrainData!");
+            return;
+        }
+
+        // Wenn beide Checks bestanden sind, machen wir sicher weiter:
         terrain.terrainData = Instantiate(terrain.terrainData);
 
         terrainData = terrain.terrainData;
