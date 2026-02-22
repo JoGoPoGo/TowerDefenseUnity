@@ -3703,15 +3703,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6919363120814203509, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[20].x
-      value: 21.21022
+      value: 33.766144
       objectReference: {fileID: 0}
     - target: {fileID: 6919363120814203509, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[20].y
-      value: 2.7421875
+      value: 2.3834305
       objectReference: {fileID: 0}
     - target: {fileID: 6919363120814203509, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[20].z
-      value: -42.259315
+      value: -38.221687
       objectReference: {fileID: 0}
     - target: {fileID: 6919363120814203509, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: editorData._bezierPath.points.Array.data[21].x
@@ -4294,7 +4294,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.71008545, g: 0.7028302, b: 1, a: 1}
-  m_Intensity: 0.85
+  m_Intensity: 0.91
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
