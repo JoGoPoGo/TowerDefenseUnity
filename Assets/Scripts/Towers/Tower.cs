@@ -139,7 +139,7 @@ public class Tower : MonoBehaviour
             if (distance >= rangeMinimum && distance <= shortestDistance)
             {
                 // Sichtprüfung (keine Hindernisse dazwischen)
-                if (!Physics.Raycast(transform.position, direction.normalized, distance, obstacleMask))
+                if (!Physics.Raycast(transform.position + new Vector3(0,2f,0), direction.normalized, distance, obstacleMask))
                 {
                     shortestDistance = distance;
                     nearestEnemy = enemy;

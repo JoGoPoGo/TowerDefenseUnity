@@ -348,7 +348,8 @@ GameObject:
   - component: {fileID: 6650847672825723386}
   - component: {fileID: 7981889893659442979}
   - component: {fileID: 1528125267497927172}
-  m_Layer: 0
+  - component: {fileID: 1260897438680513695}
+  m_Layer: 2
   m_Name: Lavaknecht
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -415,20 +416,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d3d7e1da66d8b48be345b05241e0dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 15
-  rangeMinimum: 0
-  damageAmount: 50
-  fireRate: 1
+  range: 30
+  rangeMinimum: 5
+  damageAmount: 70
+  fireRate: 0.8
   level: 1
-  maxLvl: 10
-  upgradeCost: 1
-  upgradePercentage: 50
-  rangeBool: 0
-  damageBool: 0
+  maxLvl: 5
+  upgradeCost: 3
+  upgradePercentage: 20
+  rangeBool: 1
+  damageBool: 1
   fireRateBool: 0
   cancelBool: 0
-  price: 0
-  sellReturn: 0
+  price: 90
+  sellReturn: 80
   spawnCancelRadius: 10
   turnSpeed: 10
   recoilSpeed: 0.1
@@ -508,6 +509,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &1260897438680513695
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4077014862200939417}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Height: 6
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.14, z: 0}
 --- !u!1 &4547830419621446318
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,7 +960,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7575313904026081486}
   - component: {fileID: 3464232594862601127}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: u_t6ka2409ua-wind-172559
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1145,13 +1169,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3737890684985276707}
     m_Modifications:
+    - target: {fileID: 14908418922785751, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1903675944145731648, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2482445440952991671, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4782474789175607200, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6126188424833946103, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c, type: 3}
       propertyPath: m_Name
       value: Debuff
+      objectReference: {fileID: 0}
+    - target: {fileID: 6126188424833946103, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6169707542896970202, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c, type: 3}
       propertyPath: playOnAwake
