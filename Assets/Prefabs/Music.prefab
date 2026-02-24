@@ -143,10 +143,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicClips:
-  - {fileID: 8300000, guid: 23577ba806913f74da859ed21cdce2a8, type: 3}
-  - {fileID: 8300000, guid: 37cf59ecf871ca54fa695bd43fffe41d, type: 3}
-  - {fileID: 8300000, guid: 00cc9a06f2dbaa64eb2907c547aa045d, type: 3}
-  - {fileID: 8300000, guid: aa8fcb7eea678b443a2b487078764bd7, type: 3}
+  - {fileID: 8300000, guid: 18eb9eaa7f84e7243838882424de1105, type: 3}
+  - {fileID: 8300000, guid: a59913d583f56ca4fa8922f12eb9d2b3, type: 3}
+  - {fileID: 8300000, guid: a299f9d82a844a748a8886d46ae6fd66, type: 3}
+  - {fileID: 8300000, guid: 05e6b7aad86570c4e94250cee485fbbc, type: 3}
+  - {fileID: 8300000, guid: 9b1538d410ccb564b935470640be604d, type: 3}
+  - {fileID: 8300000, guid: 297234eec599ac844b2dbeccd1e676ec, type: 3}
+  - {fileID: 8300000, guid: 63bc0faa3ccffda419f746c5232cb51d, type: 3}
+  - {fileID: 8300000, guid: c34497c41ea077b4b8e6262497be82fc, type: 3}
 --- !u!114 &3266952045191560501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,3 +165,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stopSceneName: Main Menu
   fadeOutTime: 1.5
+  pitchFadeTime: 1
