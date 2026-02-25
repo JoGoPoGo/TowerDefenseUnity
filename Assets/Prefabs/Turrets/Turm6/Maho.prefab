@@ -784,7 +784,7 @@ MonoBehaviour:
   upgradeCost: 3
   rangeBool: 0
   damageBool: 10
-  fireRateBool: 25
+  fireRateBool: 10
   cancelBool: 0
   price: 80
   sellReturn: 50
@@ -793,10 +793,10 @@ MonoBehaviour:
   recoilSpeed: 0.1
   recoilDistance: 0.2
   canon: {fileID: 0}
-  shootSound: {fileID: 0}
   enemyTag: Enemy
   maxHigher: 0
   spawnScript: {fileID: 0}
+  shootSound: {fileID: 0}
   target: {fileID: 0}
   disturbEffect: {fileID: 2223304697416441789}
   animator: {fileID: 0}

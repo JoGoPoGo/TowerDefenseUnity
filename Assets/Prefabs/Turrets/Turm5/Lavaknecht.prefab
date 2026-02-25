@@ -422,7 +422,7 @@ MonoBehaviour:
   fireRate: 0.8
   level: 1
   maxLvl: 5
-  upgradeCost: 3
+  upgradeCost: 10
   rangeBool: 10
   damageBool: 30
   fireRateBool: 0
