@@ -434,10 +434,10 @@ MonoBehaviour:
   recoilSpeed: 0.1
   recoilDistance: 0.2
   canon: {fileID: 0}
-  shootSound: {fileID: 3464232594862601127}
   enemyTag: Enemy
   maxHigher: 0
   spawnScript: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: db2f1ab6b97f4d74786f52e2c7da0e6b, type: 3}
   target: {fileID: 0}
   disturbEffect: {fileID: 4331468432623162149}
   animator: {fileID: 0}

@@ -30,7 +30,10 @@ public class KeepMusicPlaying : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         audioSource = GetComponent<AudioSource>();
-        originalPitch = audioSource.pitch; // Normale Tonhöhe speichern (meistens 1.0)
+        originalPitch = audioSource.pitch;
+
+        // --- NEU: Lade die Lautstärke direkt beim Start des Spiels ---
+        AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume", 1f);
     }
 
     void OnEnable()

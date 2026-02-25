@@ -63,7 +63,8 @@ public class DoubleShoot : Tower
 
             if (gameObject.CompareTag("Tower"))      //fängt den Schuss ab, wenn der Turm noch nicht platziert wurde
             {
-                shootSound.Play();
+                if (!spawnScript.spawned)
+                    audioSource.PlayOneShot(shootSound);
                 Shoot();
             }
 
