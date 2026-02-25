@@ -33,7 +33,6 @@ public class Tower : MonoBehaviour
     public float recoilSpeed = 0.1f;
     public float recoilDistance = 0.2f;
     public GameObject canon;
-    public AudioSource shootSound;
     public string enemyTag = "Enemy";  // Der Tag der Gegner (z.B. "Enemy")
     public int maxHigher = 0;
 
@@ -42,6 +41,10 @@ public class Tower : MonoBehaviour
     protected CancelDictionaryProtoType dictionary;
     protected EnemyScript damageScript;   // DamageTest von Target
     private GameManager gameManager;
+
+    [Header("Audio")]
+    public AudioClip shootSound;
+    protected AudioSource audioSource;
 
     [Header("Funktion")]
     public GameObject target;           // Das aktuelle Ziel des Turms
@@ -74,6 +77,15 @@ public class Tower : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
 
         dictionary = gameManager.GetComponent<CancelDictionaryProtoType>();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+            // Optional: Wenn der Sound leiser werden soll, je weiter die Kamera weg ist
+            audioSource.spatialBlend = 1f; 
+        }
     }
     protected virtual void Update()  
     {
@@ -102,8 +114,6 @@ public class Tower : MonoBehaviour
         {
             if (gameObject.CompareTag("Tower"))
             {
-                if(shootSound != null)
-                    shootSound.Play();
                 Shoot();
             }
 
@@ -155,7 +165,12 @@ public class Tower : MonoBehaviour
     {
         if (!spawnScript.spawned)
         {
-            if(projectilePrefab != null)    //Wenn es ein Projektil gibt,...
+            // Sound abspielen!
+            if (shootSound != null)
+            {
+                audioSource.PlayOneShot(shootSound);
+            }
+            if (projectilePrefab != null)    //Wenn es ein Projektil gibt,...
             {
                 GameObject pro = Instantiate(
                     projectilePrefab,

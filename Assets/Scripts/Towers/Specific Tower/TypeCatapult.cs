@@ -125,7 +125,7 @@ public class TypeCatapult : Tower
         //yield return new WaitForSeconds(0.1f);
         Vector3 schalePosition = Schale.transform.position;
         SearchForInRange(stone.transform.position);   //fügt allen Gegnern innerhalb des Einschlagradiuses schaden zu
-        shootSound.Play();
+        audioSource.PlayOneShot(shootSound);
         stone.transform.position = schalePosition;
     }
     void SearchForInRange(Vector3 einschlag)
