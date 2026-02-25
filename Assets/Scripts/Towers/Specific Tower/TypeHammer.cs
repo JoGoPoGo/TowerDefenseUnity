@@ -39,8 +39,7 @@ public class TypeHammer : Tower
         {
             if (gameObject.CompareTag("Tower"))
             {
-                if (!spawnScript.spawned)
-                    audioSource.PlayOneShot(shootSound);
+                shootSound.Play();
                 Shoot();
             }
 

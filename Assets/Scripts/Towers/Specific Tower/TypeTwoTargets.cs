@@ -47,11 +47,8 @@ public class TypeTwoTargets : Tower
         {
             if (gameObject.CompareTag("Tower"))
             {
-                if (!spawnScript.spawned)
-                {
-                    if (shootSound != null)
-                        audioSource.PlayOneShot(shootSound);
-                }
+                if (shootSound != null)
+                    shootSound.Play();
                 Shoot();
             }
 
