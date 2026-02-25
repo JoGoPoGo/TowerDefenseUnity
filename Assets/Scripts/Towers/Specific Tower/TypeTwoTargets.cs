@@ -59,7 +59,6 @@ public class TypeTwoTargets : Tower
     }
     protected override void UpdateTarget()
     {
-        Debug.Log("UpdateTarget");
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
 
         float shortestDistance = Mathf.Infinity;

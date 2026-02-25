@@ -34,6 +34,8 @@ public class EnemyScript : MonoBehaviour
     public Vector3 positionRandomizer;
     public float distanceTravelled = 0f;
 
+    private bool isDead = false;
+
     protected virtual void Start()
     {
         baseScript = FindObjectOfType<BaseHealth>();
@@ -69,33 +71,38 @@ public class EnemyScript : MonoBehaviour
     // Zerstört den Bot, wenn die Lebenspunkte auf 0 fallen
     public virtual void Die(bool didDamage)
     {
-        if (isLast)
+        if (!isDead)
         {
-            thisBotScript.deadBotsInLastWave++;
-
-            // Prüfen, ob ALLE Bots gespawnt und ALLE tot sind
-            if (thisBotScript.deadBotsInLastWave >= thisBotScript.totalBotsInLastWave)
+            isDead = true;
+            if (isLast)
             {
-                TriggerWin();
+                thisBotScript.deadBotsInLastWave++;
+
+                // Prüfen, ob ALLE Bots gespawnt und ALLE tot sind
+                if (thisBotScript.deadBotsInLastWave >= thisBotScript.totalBotsInLastWave)
+                {
+                    TriggerWin();
+                }
+            }
+            if (!didDamage)
+            {
+                gameManager.AddCredits(reward);
+            }
+            if (animator != null)
+            {
+                animator.SetBool("isDead", true);
+                speed = 0;
+                gameObject.tag = "Untagged";      //tag und layer ändern, damit die Türme nicht mehr angreifen
+                gameObject.layer = 0;
+                healthbar.Sethealth(-1);
+                StartCoroutine(WaitDeath(2));
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
-        if (!didDamage)
-        {
-            gameManager.AddCredits(reward);
-        }
-        if (animator != null)
-        {
-            animator.SetBool("isDead", true);
-            speed = 0;
-            gameObject.tag = "Untagged";      //tag und layer ändern, damit die Türme nicht mehr angreifen
-            gameObject.layer = 0;
-            healthbar.Sethealth(-1);
-            StartCoroutine(WaitDeath(2));
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        
 
     }
 

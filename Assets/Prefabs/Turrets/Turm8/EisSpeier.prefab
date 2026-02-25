@@ -526,19 +526,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 15
-  rangeMinimum: 0
+  rangeMinimum: 3
   damageAmount: 50
   fireRate: 1
   level: 1
-  maxLvl: 10
+  maxLvl: 5
   upgradeCost: 1
-  upgradePercentage: 50
-  rangeBool: 0
+  upgradePercentage: 30
+  rangeBool: 1
   damageBool: 0
   fireRateBool: 0
   cancelBool: 0
-  price: 0
-  sellReturn: 0
+  price: 105
+  sellReturn: 65
   spawnCancelRadius: 10
   turnSpeed: 10
   recoilSpeed: 0.1
@@ -556,8 +556,8 @@ MonoBehaviour:
   rangeDegrees: 180
   startDirection: {x: 0, y: 0, z: 0, w: 0}
   canonBase: {fileID: 1064125253584984522}
-  slowerPercentage: 90
-  debuffDuration: 10
+  slowerPercentage: 30
+  debuffDuration: 6
 --- !u!114 &466486305959886309
 MonoBehaviour:
   m_ObjectHideFlags: 0
