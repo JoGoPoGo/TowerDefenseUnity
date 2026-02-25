@@ -69,14 +69,14 @@ public class TypeTwoTargets : Tower
 
         foreach (GameObject enemy in enemies)
         {
-            Vector3 direction = enemy.transform.position - transform.position;
+            Vector3 direction = (enemy.transform.position + new Vector3(0, 2f, 0)) - transform.position;
             float distance = direction.magnitude;
 
             if (distance > range)
                 continue;
 
             // Sichtprüfung
-            if (Physics.Raycast(transform.position, direction.normalized, distance, obstacleMask))
+            if (Physics.Raycast(transform.position + new Vector3(0, 2f, 0), direction.normalized, distance, obstacleMask))
                 continue;
 
             if (distance < shortestDistance)

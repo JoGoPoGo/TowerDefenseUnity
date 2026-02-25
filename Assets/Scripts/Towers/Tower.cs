@@ -19,11 +19,11 @@ public class Tower : MonoBehaviour
     public int upgradeCost = 1;
 
     [Header("Upgrade Variables")]
-    public float upgradePercentage = 50;
-    public bool rangeBool = false;
-    public bool damageBool = false;
-    public bool fireRateBool = false;
-    public bool cancelBool = false;
+    //public float upgradePercentage = 50;
+    public int rangeBool = 0;
+    public int damageBool = 0;
+    public int fireRateBool = 0;
+    public int cancelBool = 0;
 
     [Header("Changeables")]
     public int price;
@@ -35,6 +35,7 @@ public class Tower : MonoBehaviour
     public GameObject canon;
     public AudioSource shootSound;
     public string enemyTag = "Enemy";  // Der Tag der Gegner (z.B. "Enemy")
+    public int maxHigher = 0;
 
     [Header("Scripts")]
     public SpawnOnMouseClick spawnScript; // Reference to the SpawnOnMouseClick script
@@ -132,11 +133,11 @@ public class Tower : MonoBehaviour
 
         foreach (GameObject enemy in enemies)   //prüft jeden Gegner in der Szene
         {
-            Vector3 direction = enemy.transform.position - transform.position;
+            Vector3 direction = (enemy.transform.position + new Vector3(0,2f,0)) - transform.position;
             float distance = direction.magnitude;
 
-            // Mindest- UND Maximalreichweite prüfen
-            if (distance >= rangeMinimum && distance <= shortestDistance)
+            // Mindest- UND Maximalreichweite UND höhenunterschied prüfen
+            if (distance >= rangeMinimum && distance <= shortestDistance && enemy.transform.position.y <= (transform.position.y + 2f + (float)maxHigher))
             {
                 // Sichtprüfung (keine Hindernisse dazwischen)
                 if (!Physics.Raycast(transform.position + new Vector3(0,2f,0), direction.normalized, distance, obstacleMask))
@@ -215,30 +216,30 @@ public class Tower : MonoBehaviour
             if (gameManager.SpendCredits((upgradeCost)))
             {
                 level++;
-                if (rangeBool)
+                if (rangeBool > 0)
                 {
-                    range *= (1 + upgradePercentage/100);
+                    range *= (1 + (float)rangeBool/100);
                     Debug.Log("Range Upgradet auf: " + range);
                 }
 
-                if (damageBool)
+                if (damageBool > 0)
                 {
-                    float save = damageAmount * (1  + upgradePercentage/100);
+                    float save = damageAmount * (1  + (float)damageBool/100);
                     damageAmount = (int)Mathf.Round(save);
                 }
-                if (fireRateBool)
+                if (fireRateBool > 0)
                 {
-                    fireRate *= (1 + upgradePercentage/100);
+                    fireRate *= (1 + (float)fireRateBool/100);
                 }
 
-                if (cancelBool)
+                if (cancelBool > 0)
                 {
-                    float save = spawnCancelRadius * (1 + upgradePercentage / 100);
+                    float save = spawnCancelRadius * (1 + (float)cancelBool / 100);
                     spawnCancelRadius = (int)Mathf.Round(save);
                 }
 
                 sellReturn += (int)Mathf.Round(upgradeCost / 2);
-                upgradeCost = (int)Mathf.Round((float)upgradeCost * 1.2f);  //steigert den UpgradePreis um 20%
+                upgradeCost = (int)Mathf.Round((float)upgradeCost * 1.2f) + 1;  //steigert den UpgradePreis um 20%
 
                 Debug.Log($"{gameObject.name} wurde auf Level {level} geupgradet!");
             }
@@ -278,6 +279,7 @@ public class Tower : MonoBehaviour
     }
     protected virtual IEnumerator ProjectileAnimation(GameObject projectile, GameObject enemy)  //Wurfartige Flugbahn von projectile zum Gegner  
     {
+        float distance = Vector3.Distance(projectile.transform.position, enemy.transform.position);
         float duration = 0.4f;
         float t = 0f;
         Vector3 startPos = projectile.transform.position;

@@ -869,10 +869,9 @@ MonoBehaviour:
   fireRate: 0.5
   level: 1
   maxLvl: 10
-  upgradeCost: 1
-  upgradePercentage: 10
-  rangeBool: 1
-  damageBool: 1
+  upgradeCost: 3
+  rangeBool: 10
+  damageBool: 15
   fireRateBool: 0
   cancelBool: 0
   price: 100
@@ -884,6 +883,7 @@ MonoBehaviour:
   canon: {fileID: 0}
   shootSound: {fileID: 0}
   enemyTag: Enemy
+  maxHigher: 0
   spawnScript: {fileID: 0}
   target: {fileID: 0}
   disturbEffect: {fileID: 4505798502184999283}
