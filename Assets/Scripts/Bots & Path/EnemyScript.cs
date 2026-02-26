@@ -21,6 +21,7 @@ public class EnemyScript : MonoBehaviour
     public HealthSlider healthbar; // Referenz zur Lebensanzeige  -- siehe public
     protected GameManager gameManager;
     public BotsOnPath thisBotScript; //von BotsOnPath
+
     public PathCreator pathCreator;
     private BaseHealth baseScript;
     public float speedMultiplier;

@@ -512,7 +512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 500
+  maxHealth: 450
   speed: 3
   reward: 10
   randomization: 2
@@ -521,7 +521,9 @@ MonoBehaviour:
   pathCreator: {fileID: 0}
   speedMultiplier: 0
   isAlive: 1
+  animator: {fileID: 0}
   isLast: 0
+  isDebuffed: 0
   positionRandomizer: {x: 0, y: 0, z: 0}
   distanceTravelled: 0
 --- !u!114 &7017896006237374713
