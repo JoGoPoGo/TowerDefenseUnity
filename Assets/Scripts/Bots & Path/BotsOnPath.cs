@@ -29,6 +29,8 @@ public class BotsOnPath : MonoBehaviour
 {
     public WaveConfiguration[] waves; // wie viele Wellen?
     public PathCreator pathCreator;
+    private BotsOnPath[] otherBotsOnPath;
+
     public float speedMultiplier = 2;
     
     public bool loopPath = false;
@@ -56,6 +58,8 @@ public class BotsOnPath : MonoBehaviour
 
         ButtonSkip = Skip.GetComponent<Button>();
         ButtonSkip.onClick.AddListener(OnSkip);
+
+        otherBotsOnPath = FindObjectsOfType<BotsOnPath>();
     }
 
     private void Update()
@@ -187,6 +191,7 @@ public class BotsOnPath : MonoBehaviour
         damageScript.pathCreator = pathCreator;
         damageScript.speedMultiplier = speedMultiplier;
         damageScript.thisBotScript = this;
+        damageScript.otherBotScripts = otherBotsOnPath;
         //StartCoroutine(MoveBotAlongPath(bot));
     }
 

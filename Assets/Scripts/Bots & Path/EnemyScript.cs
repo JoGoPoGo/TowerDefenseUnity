@@ -21,6 +21,7 @@ public class EnemyScript : MonoBehaviour
     public HealthSlider healthbar; // Referenz zur Lebensanzeige  -- siehe public
     protected GameManager gameManager;
     public BotsOnPath thisBotScript; //von BotsOnPath
+    public BotsOnPath[] otherBotScripts; //wird in BotsOnPath zugewiesen
 
     public PathCreator pathCreator;
     private BaseHealth baseScript;
@@ -80,7 +81,18 @@ public class EnemyScript : MonoBehaviour
                 thisBotScript.deadBotsInLastWave++;
 
                 // Prüfen, ob ALLE Bots gespawnt und ALLE tot sind
-                if (thisBotScript.deadBotsInLastWave >= thisBotScript.totalBotsInLastWave)
+                bool allFinished = true;
+
+                foreach (BotsOnPath bot in otherBotScripts) //prüft für alle BotsOnPath Skripte
+                {
+                    if (bot.deadBotsInLastWave < bot.totalBotsInLastWave)
+                    {
+                        allFinished = false;
+                        break;
+                    }
+                }
+
+                if (allFinished)
                 {
                     TriggerWin();
                 }
