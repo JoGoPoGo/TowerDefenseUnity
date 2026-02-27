@@ -3270,7 +3270,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7791960466707399285}
+      - m_Target: {fileID: 1832995372053337129}
         m_TargetAssemblyTypeName: AbilityScript, Assembly-CSharp
         m_MethodName: Poison
         m_Mode: 1
@@ -7291,7 +7291,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7791960466707399285}
+      - m_Target: {fileID: 1832995372053337129}
         m_TargetAssemblyTypeName: AbilityScript, Assembly-CSharp
         m_MethodName: Freeze
         m_Mode: 1
@@ -7402,7 +7402,6 @@ GameObject:
   - component: {fileID: 3202501563123559516}
   - component: {fileID: 3121080631115940469}
   - component: {fileID: 2144935889588168251}
-  - component: {fileID: 7791960466707399285}
   - component: {fileID: 3409638136922284702}
   m_Layer: 5
   m_Name: AbilityPanel
@@ -7410,7 +7409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3202501563123559516
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7473,32 +7472,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7791960466707399285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8213585780386057176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02008187e588ae142abe25db1c75e0e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerVariant: {fileID: 1462942286223125961}
-  FreezeButton: {fileID: 8889816055072268475}
-  PoisonButton: {fileID: 1807738898161551160}
-  poisonParticle: {fileID: 1808349062862494001}
-  iceParticle: {fileID: 6811959515080066399}
-  FreezeRange: 10
-  speedPercentage: 0
-  FreezeDuration: 10
-  FreezeAbklingzeit: 0
-  PoisonRange: 10
-  tickDamage: 10
-  ticks: 10
-  tickRate: 0.2
-  PoisonAbklingzeit: 5
 --- !u!114 &3409638136922284702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7948,7 +7921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1732121605056133213
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9709,6 +9682,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3637088660530645638, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5232367159053868367}
+    - targetCorrespondingSourceObject: {fileID: 3637088660530645638, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1832995372053337129}
   m_SourcePrefab: {fileID: 100100000, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
 --- !u!114 &2454070309858566500 stripped
 MonoBehaviour:
@@ -9868,6 +9844,32 @@ MonoBehaviour:
   levelNumber: 2
   totalStars: 0
   displayStars: 0
+--- !u!114 &1832995372053337129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3298786586999825128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02008187e588ae142abe25db1c75e0e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerVariant: {fileID: 1462942286223125961}
+  FreezeButton: {fileID: 8889816055072268475}
+  PoisonButton: {fileID: 1807738898161551160}
+  poisonParticle: {fileID: 1808349062862494001}
+  iceParticle: {fileID: 6811959515080066399}
+  FreezeRange: 10
+  speedPercentage: 50
+  FreezeDuration: 10
+  FreezeAbklingzeit: 5
+  PoisonRange: 10
+  tickDamage: 50
+  ticks: 10
+  tickRate: 0.2
+  PoisonAbklingzeit: 5
 --- !u!4 &7161661904229009533 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8997481492933369875, guid: 31889a8d5a089ab46a4ef9d1f3fd45fa, type: 3}
