@@ -272,7 +272,7 @@ public class Tower : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
-    public void OccupyPositionsInCircle(Vector2Int center, int range)
+    public void OccupyPositionsInCircle(Vector2Int center, int range, bool occupy = true)
     {
         int rangeSqr = range * range;
 
@@ -285,8 +285,10 @@ public class Tower : MonoBehaviour
 
                 if (dx * dx + dy * dy <= rangeSqr)
                 {
-                    dictionary.OccupyPosition(new Vector2Int(x,y));
-
+                    if (occupy)
+                        dictionary.OccupyPosition(new Vector2Int(x, y));
+                    else
+                        dictionary.FreePosition(new Vector2Int(x, y));
                 }
 
             }
@@ -335,6 +337,9 @@ public class Tower : MonoBehaviour
         gameManager.AddCredits(sellReturn);  //"Zurückzahlen"
 
         TowerInfoUI infoUIScript = gameManager.GetComponent<TowerInfoUI>();             //Verstecken der RangePreview & des TowerInfo - Panels
+
+        Vector2Int posi = new Vector2Int((int)Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.z));
+        OccupyPositionsInCircle(posi, spawnCancelRadius, false);
 
         DynamicRangePreview rangeScript = gameObject.GetComponent<DynamicRangePreview>();       
         WorldPreview worldPreviewScript = rangeScript.previewScript;
