@@ -371,6 +371,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Simple Door Frame
       objectReference: {fileID: 0}
+    - target: {fileID: 6706009287307104831, guid: 6336862f86e872944895b7c5569e9988, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706009287307104831, guid: 6336862f86e872944895b7c5569e9988, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.023
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706009287307104831, guid: 6336862f86e872944895b7c5569e9988, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.71221733
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706009287307104831, guid: 6336862f86e872944895b7c5569e9988, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.701959
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706009287307104831, guid: 6336862f86e872944895b7c5569e9988, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 89.169
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
