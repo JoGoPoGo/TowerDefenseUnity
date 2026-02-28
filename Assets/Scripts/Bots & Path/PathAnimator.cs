@@ -12,11 +12,11 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
     public GameObject prefabToSpawn;   // Das Prefab, das gespawnt werden soll
     public float spawnInterval = 0.2f; // Abstand zwischen den Spawns in Einheiten
     public GameObject parent;
+    public LayerMask bridgeLayer;
 
     public int cancelRange = 2;
 
     public bool RandomBool = false;
-
     private int tiling = 1;
     private CancelDictionaryProtoType dictionary;
     private GameObject gameManager;
@@ -38,6 +38,14 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
         tilingScript = FindObjectOfType<SpawnOnMouseClick>();
         tiling = tilingScript.tiling;
         dictionary = FindObjectOfType<CancelDictionaryProtoType>();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SnapPathToTerrain();
+        }
     }
 
     void SpawnPrefabsAlongPath()
@@ -146,11 +154,28 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
         {
             Vector3 point = bezierPath.GetPoint(i);
 
-            float height = terrain.SampleHeight(point);
-            point.y = height + terrain.transform.position.y;
+            RaycastHit bridgeHit;
+            bool isOnBridge = Physics.Raycast(
+                point,
+                Vector3.up,
+                out bridgeHit,
+                500f,
+                bridgeLayer
+            );
+            if (isOnBridge)
+            {
+                Debug.Log("Bridge Hittet");
+                point.y = bridgeHit.point.y;
+            }
+            else
+            {
+                float terrainHeight = terrain.SampleHeight(point)
+                                  + terrain.transform.position.y;
 
+                point.y = terrainHeight;
+            }
             bezierPath.SetPoint(i, point);
-            Debug.Log(point);
+            //Debug.Log(point);
         }
     }
     void SetTerrainCircleHeight(Vector3 worldPos, float radius, float targetWorldHeight)

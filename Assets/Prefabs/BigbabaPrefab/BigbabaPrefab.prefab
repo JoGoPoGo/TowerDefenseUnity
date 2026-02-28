@@ -7409,7 +7409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3202501563123559516
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10906,7 +10906,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3418950942266173532, guid: 3fa1197f9a5ea2c4885cde4c7cd5cef1, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 2551
+      value: 10743
       objectReference: {fileID: 0}
     - target: {fileID: 8718686467124546342, guid: 3fa1197f9a5ea2c4885cde4c7cd5cef1, type: 3}
       propertyPath: m_Name
@@ -10954,7 +10954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9016209081531591394, guid: 3fa1197f9a5ea2c4885cde4c7cd5cef1, type: 3}
       propertyPath: groundLayer.m_Bits
-      value: 2049
+      value: 10241
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
