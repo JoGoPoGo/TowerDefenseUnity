@@ -10044,6 +10044,10 @@ PrefabInstance:
       propertyPath: prefabToSpawn
       value: 
       objectReference: {fileID: 1187590036259114, guid: e1154cf6ac27b2f45b4ae35582e7e363, type: 3}
+    - target: {fileID: 2589470469533995245, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: bridgeLayer.m_Bits
+      value: 8192
+      objectReference: {fileID: 0}
     - target: {fileID: 3141426026322467330, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 5.87
