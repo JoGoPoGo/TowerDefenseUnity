@@ -30,9 +30,6 @@ public class UIClickSound : MonoBehaviour
     void PlaySound()
     {
         // PlayOneShot sorgt dafür, dass sich Sounds auch überlappen können (bei schnellem Klicken)
-        if (clickClip != null)
-        {
-            sfxPlayer.PlayOneShot(clickClip);
-        }
+        sfxPlayer.PlayOneShot(clickClip);
     }
 }
