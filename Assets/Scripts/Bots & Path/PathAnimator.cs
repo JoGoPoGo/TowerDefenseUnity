@@ -1,9 +1,10 @@
+using PathCreation;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using PathCreation;
-using Unity.VisualScripting;
+using System.Drawing;
 using System.Runtime.CompilerServices;  // Für den Zugriff auf PathCreator
+using Unity.VisualScripting;
+using UnityEngine;
 
 
 public class PrefabSpawnerAlongPath : MonoBehaviour
@@ -52,52 +53,88 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
     {
         float distanceTravelled = 0f;
         float pathLength = pathCreator.path.length;
+
         Vector3 lastCancelPosition = pathCreator.path.GetPointAtDistance(0);
         bool onThisPosCancel = false;
 
-        // Schleife über den Pfad mit festgelegtem Abstand
         while (distanceTravelled < pathLength)
         {
-            // Bestimme Position und Rotation entlang des Pfads
+            // =============================
+            // 1?. Position entlang des Pfads
+            // =============================
             Vector3 spawnPosition = pathCreator.path.GetPointAtDistance(distanceTravelled);
+
+            // =============================
+            // 2?. Brücken-Check
+            // =============================
+            RaycastHit bridgeHit;
+            bool isOnBridge = Physics.Raycast(
+                spawnPosition + Vector3.up * 10f,
+                Vector3.down,
+                out bridgeHit,
+                20f,
+                bridgeLayer
+            );
+
+            if (isOnBridge)
+                break;
+
+            // =============================
+            // 3?. Terrain holen
+            // =============================
             Terrain terrain = Terrain.activeTerrain;
             if (terrain == null)
             {
                 Debug.Log("FEHLER: Es wurde kein aktives Terrain in der Szene gefunden!");
                 break;
             }
+
             TerrainData data = terrain.terrainData;
 
             // Position relativ zum Terrain
             Vector3 terrainPos = spawnPosition - terrain.transform.position;
-
             float normX = terrainPos.x / data.size.x;
             float normZ = terrainPos.z / data.size.z;
 
-            // Normale der Terrain-Oberfläche
+            // Terrain-Normale
             Vector3 terrainNormal = data.GetInterpolatedNormal(normX, normZ);
-            //Quaternion spawnRotation = pathCreator.path.GetRotationAtDistance(distanceTravelled) * Quaternion.Euler(0, 0, 90);
 
+            // =============================
+            // 4?. Rotation berechnen
+            // =============================
             Vector3 forward = pathCreator.path.GetDirectionAtDistance(distanceTravelled);
-
-            // Rotation mit Terrain-Neigung
             Quaternion spawnRotation = Quaternion.LookRotation(forward, terrainNormal);
 
+            // =============================
+            // 5?. Optionale Randomisierung
+            // =============================
             if (RandomBool)
             {
-                spawnPosition += new Vector3(Random.Range(-1, 1), 0, Random.Range(-1, 1));
+                spawnPosition += new Vector3(
+                    Random.Range(-1, 1),
+                    0,
+                    Random.Range(-1, 1)
+                );
+
                 Vector3 euler = spawnRotation.eulerAngles;
                 euler += new Vector3(0, Random.Range(-90, 90), 0);
                 spawnRotation = Quaternion.Euler(euler);
             }
 
-            // Instanziere das Prefab
+            // =============================
+            // 6?. Prefab instanziieren
+            // =============================
             Instantiate(prefabToSpawn, spawnPosition, spawnRotation, parent.transform);
-            // Passe das Terrain an
+
+            // =============================
+            // 7?. Terrain anpassen
+            // =============================
             SetTerrainCircleHeight(spawnPosition, 2f, spawnPosition.y - 0.05f);
 
-
-            if(Vector3.Distance(spawnPosition, lastCancelPosition) > tiling)
+            // =============================
+            // 8?. Cancel-System
+            // =============================
+            if (Vector3.Distance(spawnPosition, lastCancelPosition) > tiling)
             {
                 onThisPosCancel = true;
                 lastCancelPosition = spawnPosition;
@@ -106,11 +143,15 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
             {
                 onThisPosCancel = false;
             }
+
             if (onThisPosCancel)
             {
                 CancelOn(spawnPosition);
             }
-            // Erhöhe den Abstand um das Intervall für den nächsten Spawn
+
+            // =============================
+            // 9?. Weiter entlang des Pfads
+            // =============================
             distanceTravelled += spawnInterval;
         }
     }
@@ -158,8 +199,8 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
 
             RaycastHit bridgeHit;
             bool isOnBridge = Physics.Raycast(
-                point,
-                Vector3.up,
+                point + Vector3.up*200f,
+                Vector3.down,
                 out bridgeHit,
                 500f,
                 bridgeLayer

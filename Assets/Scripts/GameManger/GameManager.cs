@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        // Wenn beide Checks bestanden sind, machen wir sicher weiter:
         terrain.terrainData = Instantiate(terrain.terrainData);
 
         terrainData = terrain.terrainData;
@@ -40,6 +39,9 @@ public class GameManager : MonoBehaviour
             0, 0,
             terrainData.heightmapResolution,
             terrainData.heightmapResolution);
+
+        TerrainCollider col = terrain.GetComponent<TerrainCollider>();
+        col.terrainData = terrain.terrainData;
     }
 
 
