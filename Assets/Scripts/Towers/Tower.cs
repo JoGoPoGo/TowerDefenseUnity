@@ -44,7 +44,7 @@ public class Tower : MonoBehaviour
 
     [Header("Audio")]
     public AudioClip shootSound;
-    protected AudioSource audioSource;
+    public AudioSource audioSource;
 
     [Header("Funktion")]
     public GameObject target;           // Das aktuelle Ziel des Turms
@@ -91,7 +91,8 @@ public class Tower : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
 
             // Optional: Wenn der Sound leiser werden soll, je weiter die Kamera weg ist
-            audioSource.spatialBlend = 1f; 
+            audioSource.spatialBlend = 1f;
+            audioSource.playOnAwake = false;
         }
     }
     protected virtual void Update()  

@@ -796,7 +796,8 @@ MonoBehaviour:
   enemyTag: Enemy
   maxHigher: 0
   spawnScript: {fileID: 0}
-  shootSound: {fileID: 0}
+  shootSound: {fileID: 8300000, guid: db2f1ab6b97f4d74786f52e2c7da0e6b, type: 3}
+  audioSource: {fileID: 0}
   target: {fileID: 0}
   disturbEffect: {fileID: 2223304697416441789}
   animator: {fileID: 0}

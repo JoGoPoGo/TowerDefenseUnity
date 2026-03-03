@@ -438,6 +438,7 @@ MonoBehaviour:
   maxHigher: 0
   spawnScript: {fileID: 0}
   shootSound: {fileID: 8300000, guid: db2f1ab6b97f4d74786f52e2c7da0e6b, type: 3}
+  audioSource: {fileID: 0}
   target: {fileID: 0}
   disturbEffect: {fileID: 4331468432623162149}
   animator: {fileID: 0}
@@ -993,7 +994,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: db2f1ab6b97f4d74786f52e2c7da0e6b, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.267
   m_Pitch: 1
   Loop: 0
