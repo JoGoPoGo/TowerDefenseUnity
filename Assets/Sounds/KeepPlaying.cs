@@ -27,12 +27,16 @@ public class KeepMusicPlaying : MonoBehaviour
         }
 
         instance = this;
+
+        // --- NEU: Befreit das Objekt von seinem Parent und macht es zum Root-Objekt ---
+        transform.SetParent(null);
+
+        // Jetzt funktioniert der Befehl fehlerfrei!
         DontDestroyOnLoad(gameObject);
 
         audioSource = GetComponent<AudioSource>();
         originalPitch = audioSource.pitch;
 
-        // --- NEU: Lade die Lautstärke direkt beim Start des Spiels ---
         AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume", 1f);
     }
 
