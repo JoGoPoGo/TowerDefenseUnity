@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5125671746486585057}
   - component: {fileID: 2098664592588450185}
   - component: {fileID: 3477797525609576267}
-  - component: {fileID: 31290050118249287}
   m_Layer: 0
   m_Name: SpawnHandler
   m_TagString: Untagged
@@ -53,10 +52,12 @@ MonoBehaviour:
   spawnButtons:
   - {fileID: 0}
   - {fileID: 0}
+  selectedPrefabIndex: 0
   selectedPrefab: {fileID: 0}
   previewScript: {fileID: 3477797525609576267}
   gameManager: {fileID: 0}
   cost: 0
+  tiling: 1
 --- !u!114 &3477797525609576267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,17 +71,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnScript: {fileID: 2098664592588450185}
---- !u!114 &31290050118249287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4649736812417529790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 330a0dc5ac87b5940a72ba238bdad62e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnScript: {fileID: 2098664592588450185}
-  partToActivate: {fileID: 0}
+  cancelScript: {fileID: 0}
+  normalMaterial: {fileID: 0}
+  sperrbereichMaterial: {fileID: 0}
+  placeSound: {fileID: 0}
+  placeParticlesPrefab: {fileID: 0}

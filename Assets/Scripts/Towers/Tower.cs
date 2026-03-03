@@ -37,7 +37,7 @@ public class Tower : MonoBehaviour
     public int maxHigher = 0;
 
     [Header("Scripts")]
-    public SpawnOnMouseClick spawnScript; // Reference to the SpawnOnMouseClick script
+    public SpawnOnMouseClick spawnScript; // "protected" oder "private", taucht nicht mehr im Inspector auf!
     protected CancelDictionaryProtoType dictionary;
     protected EnemyScript damageScript;   // DamageTest von Target
     private GameManager gameManager;
@@ -70,8 +70,15 @@ public class Tower : MonoBehaviour
         obstacleMask = LayerMask.GetMask("Obstacle");
         GameObject spawnHandler = GameObject.Find("SpawnHandler");
 
-        spawnScript = spawnHandler.GetComponent<SpawnOnMouseClick>();
-        tiling = spawnScript.tiling;
+        if (spawnHandler != null)
+        {
+            spawnScript = spawnHandler.GetComponent<SpawnOnMouseClick>();
+            tiling = spawnScript.tiling;
+        }
+        else
+        {
+            Debug.LogError("ACHTUNG: Kein Objekt mit dem Namen 'SpawnHandler' gefunden!");
+        }
 
         allTowerComponents = GetComponents<Tower>();      //Liste aller Komponenten der Towerklasse
         gameManager = FindObjectOfType<GameManager>();
