@@ -51,19 +51,21 @@ public class DisturbBot : EnemyScript
 
             if (distance < disturbrange)   //wenn der Turm In Reichweite ist
             {
-                if (!disturbedTowers.Contains(tower))        //wenn der Turm noch nicht debuffed wurde
+                if (!tower.isDisturbed)        //wenn der Turm noch nicht debuffed wurde
                 {
                     DebuffValues(tower);
                     DisturbAnimation(towerGO);
                     disturbedTowers.Add(tower);
+                    tower.isDisturbed = true;
                 }
             }
-            else if (disturbedTowers.Contains(tower))      //wenn der Turm außerhalb der Reichweite ist und schon debuffed wurde...
+            else if (tower.isDisturbed)      //wenn der Turm außerhalb der Reichweite ist und schon debuffed wurde...
             {
                 normalTowers.Add(tower);
                 disturbedTowers.Remove(tower);              //...wird er von disturbedTowers entfernt
                 ResetValues(tower);
                 StopDisturbAnimation(towerGO);
+                tower.isDisturbed = false;
             }
 
         }
@@ -73,6 +75,7 @@ public class DisturbBot : EnemyScript
         tower.range = Mathf.Max(0, tower.range * debuffRange);
         tower.fireRate = Mathf.Max(0, tower.fireRate * debuffRate);
         tower.damageAmount = (int)Mathf.Round(Mathf.Max(0, tower.damageAmount * debuffDamage));
+        Debug.Log("Debuff");
     }
 
     private void ResetValues(Tower tower)

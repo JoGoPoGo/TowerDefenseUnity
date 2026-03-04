@@ -63,6 +63,8 @@ public class Tower : MonoBehaviour
     protected float updateTargetIntervall = 0.5f;
 
     public float startSubtract = 0f;
+
+    public bool isDisturbed = false;
  
 
     protected virtual void Start()

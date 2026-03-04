@@ -224,7 +224,7 @@ MonoBehaviour:
   maxHealth: 400
   speed: 1
   reward: 10
-  randomization: 0
+  randomization: 1
   healthbar: {fileID: 5628729301853830619}
   thisBotScript: {fileID: 0}
   otherBotScripts: []
@@ -236,7 +236,8 @@ MonoBehaviour:
   isDebuffed: 0
   positionRandomizer: {x: 0, y: 0, z: 0}
   distanceTravelled: 0
-  disturbrange: 30
+  chake: 0
+  disturbrange: 18
   debuffRange: 0.8
   debuffRate: 0.8
   debuffDamage: 0.8
@@ -252,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83be24f1ce71ff449b619a27c5166c94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 15
   damageScript: {fileID: 0}
 --- !u!54 &6609769742069736970
 Rigidbody:
