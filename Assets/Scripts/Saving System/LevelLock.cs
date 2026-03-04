@@ -22,19 +22,19 @@ public class LevelLock : MonoBehaviour
 
         int smallestLockedLevel = 2;
 
-        if (stars >= 1)
-            smallestLockedLevel = 3;
         if (stars >= 2)
+            smallestLockedLevel = 3;
+        if (stars >= 5)
             smallestLockedLevel = 4;
-        if (stars >= 4)
-            smallestLockedLevel = 5;
-        if (stars >= 6)
-            smallestLockedLevel = 6;
-        if (stars >= 7)
-            smallestLockedLevel = 7; 
         if (stars >= 8)
+            smallestLockedLevel = 5;
+        if (stars >= 10)
+            smallestLockedLevel = 6;
+        if (stars >= 13)
+            smallestLockedLevel = 7; 
+        if (stars >= 16)
             smallestLockedLevel = 8;
-        if (stars >= 9) 
+        if (stars >= 20) 
             smallestLockedLevel = 9;
         if (stars >= 20)
             smallestLockedLevel = 10;
