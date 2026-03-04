@@ -110,11 +110,12 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
             // =============================
             if (RandomBool)
             {
-                spawnPosition += new Vector3(
-                    Random.Range(-1, 1),
-                    0,
-                    Random.Range(-1, 1)
-                );
+                float randomOffsetX = Mathf.Clamp(RandomGaussian(0f, 0.4f), -1f, 1f);
+                float randomOffsetZ = Mathf.Clamp(RandomGaussian(0f, 0.4f), -1f, 1f);
+
+                spawnPosition += new Vector3(randomOffsetX, 0, randomOffsetZ);
+
+                spawnPosition += new Vector3(randomOffsetX, 0, randomOffsetZ);
 
                 Vector3 euler = spawnRotation.eulerAngles;
                 euler += new Vector3(0, Random.Range(-90, 90), 0);
@@ -154,6 +155,16 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
             // =============================
             distanceTravelled += spawnInterval;
         }
+    }
+    float RandomGaussian(float mean, float stdDev)
+    {
+        float u1 = 1.0f - Random.value;
+        float u2 = 1.0f - Random.value;
+        float randStdNormal =
+            Mathf.Sqrt(-2.0f * Mathf.Log(u1)) *
+            Mathf.Sin(2.0f * Mathf.PI * u2);
+
+        return mean + stdDev * randStdNormal;
     }
     private void CancelOn(Vector3 cancelPosition)
     {

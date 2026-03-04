@@ -36,6 +36,8 @@ public class EnemyScript : MonoBehaviour
     public Vector3 positionRandomizer;
     public float distanceTravelled = 0f;
 
+    public bool chake = false;
+
     private bool isDead = false;
 
     protected virtual void Start()
