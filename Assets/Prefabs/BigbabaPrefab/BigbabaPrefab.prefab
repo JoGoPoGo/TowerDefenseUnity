@@ -9053,7 +9053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6876273215187374160, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6876273215187374160, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9061,7 +9061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6876273215187374160, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6876273215187374160, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9069,15 +9069,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6876273215187374160, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6876273215187374160, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6876273215187374160, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6876273215187374160, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9089,6 +9089,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6876273215187374160, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6876273215187374160, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6919363120814203509, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
+      propertyPath: editorData.vertexPathUpToDate
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6919363120814203509, guid: c447a6baa5ddf834285d636af78436ff, type: 3}

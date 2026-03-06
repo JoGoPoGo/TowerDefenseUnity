@@ -91,22 +91,8 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
 
             TerrainData data = terrain.terrainData;
 
-            // Position relativ zum Terrain
-            Vector3 terrainPos = spawnPosition - terrain.transform.position;
-            float normX = terrainPos.x / data.size.x;
-            float normZ = terrainPos.z / data.size.z;
-
-            // Terrain-Normale
-            Vector3 terrainNormal = data.GetInterpolatedNormal(normX, normZ);
-
             // =============================
-            // 4?. Rotation berechnen
-            // =============================
-            Vector3 forward = pathCreator.path.GetDirectionAtDistance(distanceTravelled);
-            Quaternion spawnRotation = Quaternion.LookRotation(forward, terrainNormal);
-
-            // =============================
-            // 5?. Optionale Randomisierung
+            // 4?. Optionale Randomisierung der Position
             // =============================
             if (RandomBool)
             {
@@ -114,11 +100,36 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
                 float randomOffsetZ = Mathf.Clamp(RandomGaussian(0f, 0.4f), -1f, 1f);
 
                 spawnPosition += new Vector3(randomOffsetX, 0, randomOffsetZ);
+            }
 
-                spawnPosition += new Vector3(randomOffsetX, 0, randomOffsetZ);
+            // =============================
+            // 5?. Terrain-Daten an der FINALEN Position holen
+            // =============================
+            Vector3 terrainPos = spawnPosition - terrain.transform.position;
 
+            float normX = terrainPos.x / data.size.x;
+            float normZ = terrainPos.z / data.size.z;
+
+            Vector3 terrainNormal = data.GetInterpolatedNormal(normX, normZ);
+
+            // Richtung entlang des Pfades
+            Vector3 forward = pathCreator.path.GetDirectionAtDistance(distanceTravelled);
+
+            // =============================
+            // 7?. Terrain anpassen
+            // =============================
+            SetTerrainCircleHeight(spawnPosition, 2f, spawnPosition.y - 0.05f);
+
+            // Rotation an Terrainneigung anpassen
+            Quaternion spawnRotation = Quaternion.LookRotation(forward, terrainNormal);
+
+            // =============================
+            // 6?. Optionale Random Y Rotation
+            // =============================
+            if (RandomBool)
+            {
                 Vector3 euler = spawnRotation.eulerAngles;
-                euler += new Vector3(0, Random.Range(-90, 90), 0);
+                euler.y += Random.Range(-90f, 90f);
                 spawnRotation = Quaternion.Euler(euler);
             }
 
@@ -126,11 +137,6 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
             // 6?. Prefab instanziieren
             // =============================
             Instantiate(prefabToSpawn, spawnPosition, spawnRotation, parent.transform);
-
-            // =============================
-            // 7?. Terrain anpassen
-            // =============================
-            SetTerrainCircleHeight(spawnPosition, 2f, spawnPosition.y - 0.05f);
 
             // =============================
             // 8?. Cancel-System
