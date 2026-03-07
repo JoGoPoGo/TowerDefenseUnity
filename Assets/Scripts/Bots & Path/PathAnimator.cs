@@ -118,7 +118,7 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
             // =============================
             // 7?. Terrain anpassen
             // =============================
-            SetTerrainCircleHeight(spawnPosition, 2f, spawnPosition.y - 0.05f);
+            /*SetTerrainCircleHeightSmooth(spawnPosition, 2f, 2f, spawnPosition.y*/
 
             // Rotation an Terrainneigung anpassen
             Quaternion spawnRotation = Quaternion.LookRotation(forward, terrainNormal);
@@ -240,39 +240,36 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
             //Debug.Log(point);
         }
     }
-    void SetTerrainCircleHeight(Vector3 worldPos, float radius, float targetWorldHeight)
+    void SetTerrainCircleHeightSmooth(Vector3 worldPos, float radius, float blend, float targetWorldHeight)
     {
         Terrain terrain = Terrain.activeTerrain;
         if (terrain == null) return;
 
         TerrainData data = terrain.terrainData;
-
         int resolution = data.heightmapResolution;
 
-        // Position relativ zum Terrain
         Vector3 terrainPos = worldPos - terrain.transform.position;
 
         int centerX = Mathf.RoundToInt((terrainPos.x / data.size.x) * resolution);
         int centerZ = Mathf.RoundToInt((terrainPos.z / data.size.z) * resolution);
 
-        int radiusInSamples = Mathf.RoundToInt((radius / data.size.x) * resolution);
+        int radiusSamples = Mathf.RoundToInt((radius / data.size.x) * resolution);
+        int blendSamples = Mathf.RoundToInt((blend / data.size.x) * resolution);
 
-        int size = radiusInSamples * 2;
+        int totalRadius = radiusSamples + blendSamples;
 
-        // Clamp gegen Randfehler
-        int startX = Mathf.Clamp(centerX - radiusInSamples, 0, resolution - 1);
-        int startZ = Mathf.Clamp(centerZ - radiusInSamples, 0, resolution - 1);
+        int startX = Mathf.Clamp(centerX - totalRadius, 0, resolution - 1);
+        int startZ = Mathf.Clamp(centerZ - totalRadius, 0, resolution - 1);
+
+        int size = totalRadius * 2;
 
         size = Mathf.Clamp(size, 0, resolution - startX);
         size = Mathf.Clamp(size, 0, resolution - startZ);
 
         float[,] heights = data.GetHeights(startX, startZ, size, size);
 
-        // Zielhöhe normalisieren (0–1)
         float normalizedHeight =
             (targetWorldHeight - terrain.transform.position.y) / data.size.y;
-
-        normalizedHeight = Mathf.Clamp01(normalizedHeight);
 
         for (int x = 0; x < size; x++)
         {
@@ -280,11 +277,23 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
             {
                 float dist = Vector2.Distance(
                     new Vector2(x, z),
-                    new Vector2(radiusInSamples, radiusInSamples));
+                    new Vector2(totalRadius, totalRadius)
+                );
 
-                if (dist < radiusInSamples)
+                if (dist < radiusSamples)
                 {
-                    heights[z, x] = normalizedHeight;
+                   heights[z, x] = normalizedHeight;
+                }
+                else if (dist < totalRadius)
+                {
+                    float t = (dist - radiusSamples) / blendSamples;
+                    t = Mathf.SmoothStep(0, 1, t);
+
+                    heights[z, x] = Mathf.Lerp(
+                        normalizedHeight,
+                        heights[z, x],
+                        t
+                    );
                 }
             }
         }
@@ -292,4 +301,5 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
         data.SetHeights(startX, startZ, heights);
     }
 }
+
 
