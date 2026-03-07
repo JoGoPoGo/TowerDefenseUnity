@@ -33,16 +33,30 @@ public class BotSpecial : EnemyScript
                 SpawnBot(splittingPrefab, isLast);
             }
 
-            if (isLast)
+            /*if (isLast)
             {
                 thisBotScript.deadBotsInLastWave++;
 
-                // Prüfen, ob ALLE Bots gespawnt wurden + ALLE tot sind
-                if (thisBotScript.deadBotsInLastWave >= thisBotScript.totalBotsInLastWave)
+                // Prüfen, ob ALLE Bots gespawnt und ALLE tot sind
+                bool allFinished = true;
+
+                foreach (BotsOnPath bot in otherBotScripts) //prüft für alle BotsOnPath Skripte
                 {
+                    Debug.Log(otherBotScripts);
+                    if (bot.deadBotsInLastWave < bot.totalBotsInLastWave)
+                    {
+                        allFinished = false;
+                        break;
+                    }
+                }
+
+                if (allFinished)
+                {
+
+                    Debug.Log("allFinished");
                     TriggerWin();
                 }
-            }
+            }*/
             
             isAlive = false;
             Destroy(gameObject);
@@ -68,5 +82,6 @@ public class BotSpecial : EnemyScript
         damageScript.speedMultiplier = speedMultiplier;
         damageScript.distanceTravelled = distanceTravelled;
         damageScript.thisBotScript = thisBotScript;
+        damageScript.otherBotScripts = otherBotScripts;
     }
 }

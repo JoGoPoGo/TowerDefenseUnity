@@ -77,7 +77,10 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
             );
 
             if (isOnBridge)
-                break;
+            {
+                distanceTravelled += spawnInterval;
+                continue;        //überspringt den rest des Codes dieser Iteration und beginnt mit der nächsten dieser While Schleife
+            }
 
             // =============================
             // 3?. Terrain holen
@@ -212,7 +215,7 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
         for (int i = 0; i < bezierPath.NumPoints; i++)
         {
             Vector3 point = bezierPath.GetPoint(i);
-            Debug.Log(i  + ": " + point);
+            //Debug.Log(i  + ": " + point);
 
             RaycastHit bridgeHit;
             bool isOnBridge = Physics.Raycast(
@@ -223,7 +226,7 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
                 bridgeLayer
             );
 
-            Debug.Log(bridgeHit.distance);
+            //Debug.Log(bridgeHit.distance);
             if (isOnBridge)
             {
                 Debug.Log("Bridge Hittet");

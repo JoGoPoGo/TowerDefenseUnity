@@ -66,7 +66,8 @@ public class DynamicRangePreview : MonoBehaviour
         if(towerScript.range != range)
         {
             UpdateStats();
-            previewScript.ShowRange(transform.position, orientedRotation, range, minRange, previewAngle);
+            if(previewScript != null) 
+                previewScript.ShowRange(transform.position, orientedRotation, range, minRange, previewAngle);
         }
         bool isTower = gameObject.CompareTag("Tower");
         if (isTower && !orientationSet)

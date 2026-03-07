@@ -87,6 +87,7 @@ public class EnemyScript : MonoBehaviour
 
                 foreach (BotsOnPath bot in otherBotScripts) //prüft für alle BotsOnPath Skripte
                 {
+                    Debug.Log(otherBotScripts);
                     if (bot.deadBotsInLastWave < bot.totalBotsInLastWave)
                     {
                         allFinished = false;
@@ -96,6 +97,8 @@ public class EnemyScript : MonoBehaviour
 
                 if (allFinished)
                 {
+                    
+                    Debug.Log("allFinished");
                     TriggerWin();
                 }
             }
