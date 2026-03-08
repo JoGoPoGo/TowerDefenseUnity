@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,6 +31,15 @@ public class SceneOnDistance: MonoBehaviour
         sceneLoaded = true;
         portal.Play();
         yield return new WaitForSeconds(wait);
-        SceneManager.LoadScene(loadScene);
+        float dist = Vector3.Distance(player.position, transform.position);
+        if (dist <= distance)
+        {
+            SceneManager.LoadScene(loadScene);
+        }
+        else
+        {
+            sceneLoaded=false;
+            portal.Stop();
+        }
     }
 }
