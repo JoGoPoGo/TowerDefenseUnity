@@ -6,6 +6,7 @@ public class DorOpen : MonoBehaviour
 {
     public float moveRight = 2f;     // Wie weit die Tür nach rechts fährt
     public float speed = 2f;         // Bewegungsgeschwindigkeit
+    public bool isLocked = false;
 
     private Vector3 closedPosition;
     private Vector3 openPosition;
@@ -20,7 +21,7 @@ public class DorOpen : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(1) && !isMoving) // Rechtsklick
+        if (Input.GetMouseButtonDown(1) && !isMoving && !isLocked) // Rechtsklick
         {
             if (isOpen)
                 StartCoroutine(MoveDoor(closedPosition));
