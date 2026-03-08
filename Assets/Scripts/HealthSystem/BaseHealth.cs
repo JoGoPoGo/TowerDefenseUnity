@@ -60,7 +60,7 @@ public class BaseHealth : MonoBehaviour
     void Update()
     {
         healthbar.Sethealth(health);
-        UIhealth.text = "Lebenspunkte: " + health.ToString() + ("/") + maxHealth.ToString();
+        UIhealth.text = health.ToString() + ("/") + maxHealth.ToString();
     }
     public void BaseDestruction()
     {
