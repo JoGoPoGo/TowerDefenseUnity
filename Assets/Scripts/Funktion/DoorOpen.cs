@@ -77,16 +77,16 @@ public class DoorOpen : MonoBehaviour
     private void Lock()
     {
         if(statusText != null)
-        statusText.text = "<color=#FF0000>LOCKED</color>";
-        if(licht != null)
+            statusText.color = new Color32(255, 60, 60, 255); // Rot
+        if (licht != null)
         licht.SetActive(false);
     }
 
     private void Unlock()
     {
         if(statusText != null)
-        statusText.text = "<color=#00FF00>UNLOCKED</color>";
-        if(licht != null)
+            statusText.color = new Color32(80, 255, 120, 255); // Grün
+        if (licht != null)
         licht.SetActive(true);
     }
 }
