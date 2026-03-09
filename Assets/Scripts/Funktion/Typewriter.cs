@@ -48,12 +48,10 @@ public class Typewriter : MonoBehaviour
                     textComponent[currentIndex -1].gameObject.SetActive(false);
                     ShowCurrentText();
                 }
-                else
-                {
-                    missionDoor.isLocked = false;
-                }
             }
         }
+        if (currentIndex >= textComponent.Length)
+            missionDoor.isLocked = false;
     }
 
     void ShowCurrentText()

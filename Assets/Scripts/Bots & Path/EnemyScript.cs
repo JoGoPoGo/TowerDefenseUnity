@@ -33,6 +33,12 @@ public class EnemyScript : MonoBehaviour
     public bool isLast = false;
     public bool isDebuffed = false;
 
+    public bool shieldAktiv = false;
+    public float shieldAktivSeconds;
+    public ParticleSystem shieldAktivParticles;
+
+    private bool aktivate = true;
+
     public Vector3 positionRandomizer;
     public float distanceTravelled = 0f;
 
@@ -48,6 +54,11 @@ public class EnemyScript : MonoBehaviour
         healthbar.SetMaxHealth(maxHealth); // Update der Lebensanzeige
         gameManager = FindObjectOfType<GameManager>();
         positionRandomizer = new Vector3 (UnityEngine.Random.Range(-randomization,randomization), 0, UnityEngine.Random.Range(-randomization,randomization));
+
+        if (aktivate)
+        {
+            StartCoroutine(AktivateShield(shieldAktivSeconds));
+        }
     }
     protected virtual void Update()
     {
@@ -56,6 +67,10 @@ public class EnemyScript : MonoBehaviour
             MoveAlongPath(pathCreator, distanceTravelled);
         }
         distanceTravelled += speed * speedMultiplier * Time.deltaTime;
+        if(shieldAktiv && aktivate)
+        {
+            StartCoroutine(AktivateShield(shieldAktivSeconds));
+        }
     }
 
     // Funktion zum Zufügen von Schaden
@@ -154,5 +169,26 @@ public class EnemyScript : MonoBehaviour
                 winTransform.gameObject.SetActive(true);
             }
         }
+    }
+    public IEnumerator AktivateShield(float seconds)
+    {   
+        aktivate = false;
+        this.tag = "Untagged";
+        if (shieldAktivParticles != null)
+        {
+            shieldAktivParticles.gameObject.SetActive(true);
+            shieldAktivParticles.Play();
+        }
+
+        yield return new WaitForSeconds(seconds);
+        this.tag = "Enemy";
+        if (shieldAktivParticles != null)
+        {
+            shieldAktivParticles.Stop();
+            shieldAktivParticles.gameObject.SetActive(false);
+            
+        }
+
+        aktivate = true;
     }
 }

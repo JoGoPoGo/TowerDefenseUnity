@@ -17,6 +17,8 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
 
     public int cancelRange = 2;
 
+    public bool shouldModifyTerrain = false;
+
     public bool RandomBool = false;
     private int tiling = 1;
     private CancelDictionaryProtoType dictionary;
@@ -121,7 +123,8 @@ public class PrefabSpawnerAlongPath : MonoBehaviour
             // =============================
             // 7?. Terrain anpassen
             // =============================
-            /*SetTerrainCircleHeightSmooth(spawnPosition, 2f, 2f, spawnPosition.y*/
+            if (shouldModifyTerrain)
+                SetTerrainCircleHeightSmooth(spawnPosition, 2f, 2f, spawnPosition.y);
 
             // Rotation an Terrainneigung anpassen
             Quaternion spawnRotation = Quaternion.LookRotation(forward, terrainNormal);
