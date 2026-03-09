@@ -866,13 +866,13 @@ MonoBehaviour:
   range: 25
   rangeMinimum: 5
   damageAmount: 65
-  fireRate: 0.5
+  fireRate: 0.6
   level: 1
   maxLvl: 10
   upgradeCost: 3
   rangeBool: 10
   damageBool: 15
-  fireRateBool: 0
+  fireRateBool: 6
   cancelBool: 0
   price: 100
   sellReturn: 65
@@ -881,16 +881,18 @@ MonoBehaviour:
   recoilSpeed: 0.1
   recoilDistance: 0.2
   canon: {fileID: 0}
-  shootSound: {fileID: 0}
   enemyTag: Enemy
   maxHigher: 0
   spawnScript: {fileID: 0}
+  shootSound: {fileID: 0}
+  audioSource: {fileID: 0}
   target: {fileID: 0}
   disturbEffect: {fileID: 4505798502184999283}
   animator: {fileID: 0}
   projectilePrefab: {fileID: 4283661602787451110, guid: 6907b57d6320ed340ae7a9ba156057c8, type: 3}
   firePoint: {fileID: 0}
   startSubtract: 0
+  isDisturbed: 0
   targetSnd: {fileID: 0}
   canonTargetOne: {fileID: 6165798598601943223}
   canonTargetTwo: {fileID: 773076346526605736}

@@ -527,13 +527,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 15
   rangeMinimum: 3
-  damageAmount: 50
+  damageAmount: 57
   fireRate: 1
   level: 1
   maxLvl: 5
   upgradeCost: 6
   rangeBool: 20
-  damageBool: 5
+  damageBool: 7
   fireRateBool: 0
   cancelBool: 0
   price: 102
@@ -547,12 +547,14 @@ MonoBehaviour:
   maxHigher: 0
   spawnScript: {fileID: 0}
   shootSound: {fileID: 0}
+  audioSource: {fileID: 0}
   target: {fileID: 0}
   disturbEffect: {fileID: 3836700962337034595}
   animator: {fileID: 0}
   projectilePrefab: {fileID: 6954103012040562562, guid: 866c0020c622df74194a2a5f2b2c5ff7, type: 3}
   firePoint: {fileID: 1074876714187794180}
   startSubtract: 0
+  isDisturbed: 0
   rangeDegrees: 180
   startDirection: {x: 0, y: 0, z: 0, w: 0}
   canonBase: {fileID: 1064125253584984522}
