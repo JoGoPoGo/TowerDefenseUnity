@@ -28,6 +28,7 @@ public class EnemyScript : MonoBehaviour
     public float speedMultiplier;
     public bool isAlive = true;
     public Animator animator;
+    public ParticleSystem shieldAktivParticles;
 
     [Header("Funktion")]
     public bool isLast = false;
@@ -35,7 +36,9 @@ public class EnemyScript : MonoBehaviour
 
     public bool shieldAktiv = false;
     public float shieldAktivSeconds;
-    public ParticleSystem shieldAktivParticles;
+
+    public float hoverAmplitude = 1f;   // Höhe der Bewegung
+    public float hoverFrequency = 2f;   // Geschwindigkeit der Welle
 
     private bool aktivate = true;
 
@@ -145,11 +148,21 @@ public class EnemyScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void MoveAlongPath(PathCreator path, float pathPoint)    // soll als Ersatz für IEnumarator bei BotsOnPath dienen, welche die Bots bewegt
+    public void MoveAlongPath(PathCreator path, float pathPoint)
     {
-        transform.position = path.path.GetPointAtDistance(pathPoint) + positionRandomizer;
+        Vector3 pos = path.path.GetPointAtDistance(pathPoint) + positionRandomizer;
+
+        if (chake)
+        {
+            float sinOffset = Mathf.Sin(Time.time * hoverFrequency) * hoverAmplitude;
+            pos.y += sinOffset;
+        }
+
+        transform.position = pos;
+
         transform.rotation = path.path.GetRotationAtDistance(pathPoint) * Quaternion.Euler(0, 0, 90);
-        if(distanceTravelled >= path.path.length)
+
+        if (distanceTravelled >= path.path.length)
         {
             Die(true);
         }
