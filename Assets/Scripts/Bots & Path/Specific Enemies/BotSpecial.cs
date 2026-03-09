@@ -33,12 +33,12 @@ public class BotSpecial : EnemyScript
                 SpawnBot(splittingPrefab, isLast);
             }
 
-            /*if (isLast)
+            if (isLast)
             {
                 thisBotScript.deadBotsInLastWave++;
 
                 // Prüfen, ob ALLE Bots gespawnt und ALLE tot sind
-                bool allFinished = true;
+                /*bool allFinished = true;
 
                 foreach (BotsOnPath bot in otherBotScripts) //prüft für alle BotsOnPath Skripte
                 {
@@ -55,8 +55,8 @@ public class BotSpecial : EnemyScript
 
                     Debug.Log("allFinished");
                     TriggerWin();
-                }
-            }*/
+                }*/
+            }
             
             isAlive = false;
             Destroy(gameObject);
