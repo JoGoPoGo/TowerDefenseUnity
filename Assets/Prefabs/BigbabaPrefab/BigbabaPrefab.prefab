@@ -539,6 +539,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 5337838995470998129}
+    - target: {fileID: 3599164249733900617, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d49c73df3741e764db499bfee785b53c, type: 3}
     - target: {fileID: 3662392689663127389, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -551,14 +555,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1627066094335010473}
+    - target: {fileID: 4598952589378054373, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: d49c73df3741e764db499bfee785b53c, type: 3}
+    - target: {fileID: 4727101202168011393, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: d49c73df3741e764db499bfee785b53c, type: 3}
+    - target: {fileID: 4837140045810193992, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: d49c73df3741e764db499bfee785b53c, type: 3}
     - target: {fileID: 5756146080324519862, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5551678596280533265}
+    - target: {fileID: 5807082462027340498, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5808507543842801886, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1832995372053337129}
+    - target: {fileID: 5900918572727298083, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6387032001723035928, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
       propertyPath: gameManager
       value: 
