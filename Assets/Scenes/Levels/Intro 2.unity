@@ -96,8 +96,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 1a52bcfac8a804142826680a4e20056f, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 9a4d3812691b1bc4d80a1a5abee0f962, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -269,10 +269,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 11.02
       objectReference: {fileID: 0}
+    - target: {fileID: 1447851546765492352, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: d49c73df3741e764db499bfee785b53c, type: 3}
     - target: {fileID: 1462942286223125965, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: groundLayer.m_Bits
       value: 2049
       objectReference: {fileID: 0}
+    - target: {fileID: 1889192547891560748, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d49c73df3741e764db499bfee785b53c, type: 3}
     - target: {fileID: 1910790296300528858, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: RandomBool
       value: 1
@@ -781,6 +789,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7558719619811098157, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: d49c73df3741e764db499bfee785b53c, type: 3}
+    - target: {fileID: 7664853008785814244, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: d49c73df3741e764db499bfee785b53c, type: 3}
     - target: {fileID: 7984082878645004321, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -897,6 +913,14 @@ PrefabInstance:
       propertyPath: waves.Array.data[1].groups.Array.data[0].botConfigs.Array.data[3].botPrefab
       value: 
       objectReference: {fileID: 5074364399676035807, guid: 0ea02ea1822926a48bf1e1f8f3a1fd97, type: 3}
+    - target: {fileID: 8800394730038001734, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8886702639069442743, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 703594698101053065, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
     - {fileID: 1453006070069495675, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
