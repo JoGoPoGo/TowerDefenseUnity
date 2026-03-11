@@ -15,6 +15,7 @@ public class Typewriter : MonoBehaviour
     private int currentIndex = 0;
     private bool isTyping = false;
     private Coroutine typingCoroutine;
+    private bool shouldShowMission = true;
 
     void Start()
     {
@@ -23,35 +24,62 @@ public class Typewriter : MonoBehaviour
         {
             t.gameObject.SetActive(false);
         }
-
+        if (ProgressManager.Instance.GetMissionRead())
+        {
+            shouldShowMission = false;
+            missionDoor.isLocked = false;
+        }
         ShowCurrentText();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (shouldShowMission)
         {
-            if (isTyping)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                // Text sofort vollständig anzeigen
-                StopCoroutine(typingCoroutine);
-                textComponent[currentIndex].text = fullText;
-                isTyping = false;
-            }
-            else
-            {
-                // nächstes Textelement
-                currentIndex++;
-
-                if (currentIndex < textComponent.Length)
+                if (isTyping)
                 {
-                    textComponent[currentIndex -1].gameObject.SetActive(false);
-                    ShowCurrentText();
+                    // Text sofort vollständig anzeigen
+                    StopCoroutine(typingCoroutine);
+                    textComponent[currentIndex].text = fullText;
+                    isTyping = false;
+                }
+                else
+                {
+                    // nächstes Textelement
+                    currentIndex++;
+
+                    if (currentIndex < textComponent.Length)
+                    {
+                        textComponent[currentIndex - 1].gameObject.SetActive(false);
+                        ShowCurrentText();
+                    }
                 }
             }
+            if (currentIndex >= textComponent.Length - 1)
+            {
+                missionDoor.isLocked = false;
+                ProgressManager.Instance.SetMissionRead(true);
+                shouldShowMission = false;
+            }
+
         }
-        if (currentIndex >= textComponent.Length)
-            missionDoor.isLocked = false;
+        else
+        {
+            if (currentIndex != textComponent.Length - 1)
+            {
+                currentIndex = textComponent.Length - 1;
+
+                foreach (var t in textComponent)
+                {
+                    t.gameObject.SetActive(false);
+                }
+
+                textComponent[currentIndex].gameObject.SetActive(true);
+            }
+        }
+
     }
 
     void ShowCurrentText()
@@ -73,5 +101,14 @@ public class Typewriter : MonoBehaviour
         }
 
         isTyping = false;
+    }
+    public void shouldShowMissionIsTrue()
+    {
+        shouldShowMission = true;
+        currentIndex = 0;
+        foreach (var t in textComponent)
+        {
+            t.gameObject.SetActive(false);
+        }
     }
 }

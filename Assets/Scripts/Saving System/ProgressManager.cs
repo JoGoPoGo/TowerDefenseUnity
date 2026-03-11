@@ -24,6 +24,8 @@ public class ProgressManager : MonoBehaviour
     public void Reset()
     {
         PlayerPrefs.SetInt("collectedStars", 0);
+        PlayerPrefs.SetInt("missionRead", 0);
+
         for (int f = 10; f > 0; f--)
         {
             int levelIndex = f;
@@ -101,5 +103,15 @@ public class ProgressManager : MonoBehaviour
             totalStars += GetStarsForLevel(i);
         }
         return totalStars;
+    }
+    public bool GetMissionRead()
+    {
+        return PlayerPrefs.GetInt("missionRead", 0) == 1;
+    }
+
+    public void SetMissionRead(bool value)
+    {
+        PlayerPrefs.SetInt("missionRead", value ? 1 : 0);
+        PlayerPrefs.Save();
     }
 }
