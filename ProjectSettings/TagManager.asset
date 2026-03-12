@@ -11,6 +11,7 @@ TagManager:
   - lastSpawned
   - Win
   - Lose
+  - EnemyNot
   layers:
   - Default
   - TransparentFX

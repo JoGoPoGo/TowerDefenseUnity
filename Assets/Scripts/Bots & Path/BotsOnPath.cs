@@ -1,8 +1,8 @@
+using PathCreation;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using PathCreation;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -32,7 +32,7 @@ public class BotsOnPath : MonoBehaviour
     private BotsOnPath[] otherBotsOnPath;
 
     public float speedMultiplier = 2;
-    
+
     public bool loopPath = false;
 
     public int totalBotsInLastWave = 0;
@@ -46,6 +46,7 @@ public class BotsOnPath : MonoBehaviour
     private Button ButtonSkip;
     public GameObject Skip;
     private bool SkipCountdown = false;
+    private bool alreadyLookedForOthers = false;
 
     //private int currentWave = 0;
 
@@ -64,7 +65,13 @@ public class BotsOnPath : MonoBehaviour
 
     private void Update()
     {
-        if(deadBotsInLastWave > totalBots)
+        if (!alreadyLookedForOthers)
+        {
+            otherBotsOnPath = FindObjectsOfType<BotsOnPath>();
+            alreadyLookedForOthers = true;
+            Debug.Log(otherBotsOnPath.Length);
+        }
+        if (deadBotsInLastWave > totalBots)
         {
             Debug.Log("Es wurden bereits " + deadBotsInLastWave + " von " + totalBotsInLastWave + " getötet");
             totalBots = deadBotsInLastWave;
@@ -111,7 +118,7 @@ public class BotsOnPath : MonoBehaviour
                         countdownText.text = "Letzte Welle beginnt in " + k + " Sekunden";
                     //Debug.Log("Welle " + (i + 1) + " in " + k + " Sekunden");
                 }
-                yield return new WaitForSeconds(1);               
+                yield return new WaitForSeconds(1);
             }
             SkipCountdown = false;
             CountdownObject.SetActive(false);
@@ -123,9 +130,12 @@ public class BotsOnPath : MonoBehaviour
             Debug.Log("Welle " + (i + 1) + " beendet!");
 
             // Warte bis alle Gegner dieser Welle TOT sind
-            yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
+            yield return new WaitForSeconds(0.1f);
+            yield return new WaitUntil(() =>
+                GameObject.FindGameObjectsWithTag("Enemy").Length +
+                GameObject.FindGameObjectsWithTag("EnemyNot").Length == 0
+            );
 
-            
         }
 
         Debug.Log("Alle Wellen abgeschlossen!");
@@ -161,9 +171,9 @@ public class BotsOnPath : MonoBehaviour
         {
             for (int i = 0; i < botConfig.timesBot; i++) // Anzahl der Bots pro Gruppe
             {
-                
+
                 SpawnNewBot(botConfig.botPrefab, isLast);
-                
+
 
                 yield return new WaitForSeconds(groupConfig.tillNextBot); // Kurze Pause zischen Bots (optional)
             }

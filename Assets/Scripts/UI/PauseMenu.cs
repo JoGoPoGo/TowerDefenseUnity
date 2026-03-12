@@ -96,6 +96,7 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Reset");
         onResetEvent.Invoke();
         Resume();
+        SceneManager.LoadScene(raumschiffSzene);
     }
 
     public void QuitGame()

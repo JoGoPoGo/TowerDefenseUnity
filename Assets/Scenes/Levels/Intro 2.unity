@@ -289,6 +289,10 @@ PrefabInstance:
       propertyPath: prefabToSpawn
       value: 
       objectReference: {fileID: 1187590036259114, guid: e1154cf6ac27b2f45b4ae35582e7e363, type: 3}
+    - target: {fileID: 1910790296300528858, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
+      propertyPath: shouldModifyTerrain
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2454070309858566500, guid: d41d4d2c55e19ba41865df437a2ca19a, type: 3}
       propertyPath: credits
       value: 220

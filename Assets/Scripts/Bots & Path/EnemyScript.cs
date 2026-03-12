@@ -186,7 +186,7 @@ public class EnemyScript : MonoBehaviour
     public IEnumerator AktivateShield(float seconds)
     {   
         aktivate = false;
-        this.tag = "Untagged";
+        this.tag = "EnemyNot";
         if (shieldAktivParticles != null)
         {
             shieldAktivParticles.gameObject.SetActive(true);

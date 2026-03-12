@@ -9,10 +9,11 @@ public class TerminalManager : MonoBehaviour
     public TextMeshProUGUI zeitEnergie;
     public GameObject clock;
     public GameObject missionButton;
+    private int energie;
     // Start is called before the first frame update
     void Start()
     {
-        int energie = ProgressManager.Instance.GetCollectedStars();
+        energie = ProgressManager.Instance.GetCollectedStars();
         zeitEnergie.text = "GESAMMELTE ZEITENERGIE: " + energie;
     }
     private void Update()
@@ -26,6 +27,10 @@ public class TerminalManager : MonoBehaviour
         {
             clock.SetActive(false);
             missionButton.SetActive(false);
+        }
+        if(ProgressManager.Instance.GetCollectedStars() > energie)
+        {
+            zeitEnergie.text = "GESAMMELTE ZEITENERGIE: " + ProgressManager.Instance.GetCollectedStars();
         }
     }
 }
