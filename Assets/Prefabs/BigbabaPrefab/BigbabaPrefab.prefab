@@ -519,6 +519,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 2454070309858566500}
+    - target: {fileID: 2586255640246152193, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2844796532952065201, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -567,6 +571,14 @@ PrefabInstance:
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 2800000, guid: d49c73df3741e764db499bfee785b53c, type: 3}
+    - target: {fileID: 5727349516414883352, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5727349516414883352, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 521
+      objectReference: {fileID: 0}
     - target: {fileID: 5756146080324519862, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -595,6 +607,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 5337838995470998129}
+    - target: {fileID: 7244394116660873873, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
+      propertyPath: m_margin.z
+      value: -100.0798
+      objectReference: {fileID: 0}
     - target: {fileID: 8212881963205650170, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1229,7 +1245,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9b7fdb11592b3664cb8ab62bf40426f1, type: 2}
     - target: {fileID: 5029725170675465611, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: health
-      value: 410
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 5029725170675465611, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: UIhealth
@@ -1241,7 +1257,7 @@ PrefabInstance:
       objectReference: {fileID: 5370465674432243689}
     - target: {fileID: 5029725170675465611, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 5029725170675465611, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: backgroundFade

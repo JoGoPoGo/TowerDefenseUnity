@@ -868,13 +868,13 @@ MonoBehaviour:
   damageAmount: 65
   fireRate: 0.6
   level: 1
-  maxLvl: 10
+  maxLvl: 5
   upgradeCost: 3
   rangeBool: 10
   damageBool: 15
-  fireRateBool: 6
+  fireRateBool: 3
   cancelBool: 0
-  price: 100
+  price: 110
   sellReturn: 65
   spawnCancelRadius: 10
   turnSpeed: 10

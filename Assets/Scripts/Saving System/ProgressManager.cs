@@ -23,7 +23,7 @@ public class ProgressManager : MonoBehaviour
     }
     public void Reset()
     {
-        PlayerPrefs.SetInt("collectedStars", 100);
+        PlayerPrefs.SetInt("collectedStars", 0);
         PlayerPrefs.SetInt("missionRead", 0);
 
         for (int f = 10; f > 0; f--)
@@ -78,6 +78,7 @@ public class ProgressManager : MonoBehaviour
             PlayerPrefs.Save();
         }
         Debug.Log("SavveStarsForLevel" + stars);
+        Debug.Log("CollectedStars: " + GetCollectedStars());
     }
 
     public int GetStarsForLevel(int levelIndex)
@@ -91,6 +92,7 @@ public class ProgressManager : MonoBehaviour
         int updated = current + plus;
         PlayerPrefs.SetInt("collectedStars", updated);
         PlayerPrefs.Save();
+        Debug.Log("CollectedStars: " + GetCollectedStars());
     }
     public int GetCollectedStars()
     {

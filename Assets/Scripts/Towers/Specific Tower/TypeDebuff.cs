@@ -10,6 +10,7 @@ public class TypeDebuff : TypeCanon
 
     public float slowerPercentage;
     public float debuffDuration;
+    public float debuffRange;
 
 
     protected override void RotateTo(GameObject t)
@@ -22,8 +23,21 @@ public class TypeDebuff : TypeCanon
     protected override void hitEnemy(EnemyScript damageTest)
     {
         base.hitEnemy(damageTest);
-        if(!damageTest.isDebuffed)
-            StartCoroutine(DebuffEnemy(damageTest));
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag); // Sucht nach allen Gegnern mit dem Tag "Enemy"
+        //int targetetEnemies = betroffenenAnzahl;
+
+        // Finde den nächsten Gegner innerhalb der Reichweite
+        foreach (GameObject enemy in enemies)
+        {
+            float distanceToEnemy = Vector3.Distance(damageTest.gameObject.transform.position, enemy.transform.position);
+            if (distanceToEnemy < debuffRange)
+            {
+                damageTest= enemy.GetComponent<EnemyScript>();
+                if (!damageTest.isDebuffed)
+                    StartCoroutine(DebuffEnemy(damageTest));
+            }
+        }
+
     }
     IEnumerator DebuffEnemy(EnemyScript enemyScript) 
     {

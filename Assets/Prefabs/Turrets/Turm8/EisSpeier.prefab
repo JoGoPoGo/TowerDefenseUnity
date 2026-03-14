@@ -560,6 +560,7 @@ MonoBehaviour:
   canonBase: {fileID: 1064125253584984522}
   slowerPercentage: 30
   debuffDuration: 6
+  debuffRange: 5
 --- !u!114 &466486305959886309
 MonoBehaviour:
   m_ObjectHideFlags: 0
