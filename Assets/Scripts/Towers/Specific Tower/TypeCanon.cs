@@ -59,6 +59,7 @@ public class TypeCanon : Tower
 
             fireCountdown -= Time.deltaTime;
         }
+        Debug.Log(range);
     }
 
     // Update is called once per frame

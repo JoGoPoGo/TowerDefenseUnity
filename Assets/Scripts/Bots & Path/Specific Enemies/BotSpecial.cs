@@ -83,5 +83,6 @@ public class BotSpecial : EnemyScript
         damageScript.distanceTravelled = distanceTravelled;
         damageScript.thisBotScript = thisBotScript;
         damageScript.otherBotScripts = otherBotScripts;
+        damageScript.wave = wave;
     }
 }

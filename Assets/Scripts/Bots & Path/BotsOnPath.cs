@@ -125,7 +125,7 @@ public class BotsOnPath : MonoBehaviour
             Skip.SetActive(false);
             // Ende des Countdowns
 
-            yield return StartCoroutine(SpawnGroupsInWave(currentWave, isLastWave));
+            yield return StartCoroutine(SpawnGroupsInWave(currentWave, isLastWave, i + 1));
 
             Debug.Log("Welle " + (i + 1) + " beendet!");
 
@@ -143,7 +143,7 @@ public class BotsOnPath : MonoBehaviour
 
 
     // Spawning von Gruppen in einer Welle
-    IEnumerator SpawnGroupsInWave(WaveConfiguration waveConfig, bool isLast)
+    IEnumerator SpawnGroupsInWave(WaveConfiguration waveConfig, bool isLast,int wave = 0)
     {
         for (int i = 0; i < waveConfig.groups.Length; i++) // Anzahl der Gruppen in dieser Welle
         {
@@ -151,12 +151,12 @@ public class BotsOnPath : MonoBehaviour
 
             if (isLast)
             {
-                yield return StartCoroutine(SpawnGroup(currentGroup, true)); // Spawne eine Gruppe
+                yield return StartCoroutine(SpawnGroup(currentGroup, true, wave)); // Spawne eine Gruppe
                 Debug.Log("Letzte Gruppe");
             }
             else
             {
-                yield return StartCoroutine(SpawnGroup(currentGroup, false));
+                yield return StartCoroutine(SpawnGroup(currentGroup, false, wave));
             }
 
             // Wartezeit nach der Gruppe, bevor die nächste Gruppe startet
@@ -165,14 +165,14 @@ public class BotsOnPath : MonoBehaviour
     }
 
     // Spawnt eine Gruppe von Bots
-    IEnumerator SpawnGroup(GroupConfiguration groupConfig, bool isLast)
+    IEnumerator SpawnGroup(GroupConfiguration groupConfig, bool isLast, int wave = 0)
     {
         foreach (BotConfiguration botConfig in groupConfig.botConfigs)
         {
             for (int i = 0; i < botConfig.timesBot; i++) // Anzahl der Bots pro Gruppe
             {
 
-                SpawnNewBot(botConfig.botPrefab, isLast);
+                SpawnNewBot(botConfig.botPrefab, isLast, wave);
 
 
                 yield return new WaitForSeconds(groupConfig.tillNextBot); // Kurze Pause zischen Bots (optional)
@@ -182,7 +182,7 @@ public class BotsOnPath : MonoBehaviour
 
 
     // Spawnt einen neuen Bot
-    void SpawnNewBot(GameObject botPrefab, bool isLast)
+    void SpawnNewBot(GameObject botPrefab, bool isLast, int wave = 0)
     {
         Vector3 spawnPosition = pathCreator.path.GetPoint(0);
         GameObject bot = Instantiate(botPrefab, spawnPosition, Quaternion.identity);
@@ -202,6 +202,7 @@ public class BotsOnPath : MonoBehaviour
         damageScript.speedMultiplier = speedMultiplier;
         damageScript.thisBotScript = this;
         damageScript.otherBotScripts = otherBotsOnPath;
+        damageScript.wave = wave;
         //StartCoroutine(MoveBotAlongPath(bot));
     }
 

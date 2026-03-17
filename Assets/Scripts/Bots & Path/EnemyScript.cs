@@ -32,6 +32,7 @@ public class EnemyScript : MonoBehaviour
 
     [Header("Funktion")]
     public bool isLast = false;
+    public int wave;
     public bool isDebuffed = false;
 
     public bool shieldAktiv = false;
@@ -51,6 +52,10 @@ public class EnemyScript : MonoBehaviour
 
     protected virtual void Start()
     {
+        for (int i = 1; i < wave; i++)
+        {
+            maxHealth = (int)Mathf.Round(maxHealth * 1.2f);
+        }
         baseScript = FindObjectOfType<BaseHealth>();
         // Setze die Lebenspunkte auf das Maximum
         currentHealth = maxHealth;
@@ -62,6 +67,7 @@ public class EnemyScript : MonoBehaviour
         {
             StartCoroutine(AktivateShield(shieldAktivSeconds));
         }
+
     }
     protected virtual void Update()
     {

@@ -1245,7 +1245,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9b7fdb11592b3664cb8ab62bf40426f1, type: 2}
     - target: {fileID: 5029725170675465611, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: health
-      value: 1000
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 5029725170675465611, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: UIhealth
@@ -1257,7 +1257,7 @@ PrefabInstance:
       objectReference: {fileID: 5370465674432243689}
     - target: {fileID: 5029725170675465611, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: maxHealth
-      value: 1000
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 5029725170675465611, guid: c447a6baa5ddf834285d636af78436ff, type: 3}
       propertyPath: backgroundFade
