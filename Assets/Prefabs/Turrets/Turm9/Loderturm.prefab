@@ -869,10 +869,10 @@ MonoBehaviour:
   fireRate: 0.6
   level: 1
   maxLvl: 5
-  upgradeCost: 3
+  upgradeCost: 10
   rangeBool: 10
   damageBool: 15
-  fireRateBool: 3
+  fireRateBool: 8
   cancelBool: 0
   price: 110
   sellReturn: 65
@@ -886,6 +886,7 @@ MonoBehaviour:
   spawnScript: {fileID: 0}
   shootSound: {fileID: 0}
   audioSource: {fileID: 0}
+  upgradeSound: {fileID: 8300000, guid: d76ac66dde43b481dad18b3943c0531a, type: 3}
   target: {fileID: 0}
   disturbEffect: {fileID: 4505798502184999283}
   animator: {fileID: 0}

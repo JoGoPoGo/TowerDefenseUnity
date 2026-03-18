@@ -25,6 +25,8 @@ public class Tower : MonoBehaviour
     public int fireRateBool = 0;
     public int cancelBool = 0;
 
+    //public GameObject[] upgradeScale; //alles, was beim Upgraden vergrößert werden soll (nicht der Turm) --> gerade nicht relevant
+
     [Header("Changeables")]
     public int price;
     public int sellReturn;
@@ -40,11 +42,12 @@ public class Tower : MonoBehaviour
     public SpawnOnMouseClick spawnScript; // "protected" oder "private", taucht nicht mehr im Inspector auf!
     protected CancelDictionaryProtoType dictionary;
     protected EnemyScript damageScript;   // DamageTest von Target
-    private GameManager gameManager;
+    protected GameManager gameManager;
 
     [Header("Audio")]
     public AudioClip shootSound;
     public AudioSource audioSource;
+    public AudioClip upgradeSound;
 
     [Header("Funktion")]
     public GameObject target;           // Das aktuelle Ziel des Turms
@@ -234,7 +237,7 @@ public class Tower : MonoBehaviour
         canon.transform.localPosition = originalPosition;
     }
     // **Upgrade-Funktion**
-    virtual public void UpgradeTower()
+    public virtual void UpgradeTower()
     {
         if(level < maxLvl)
         {
@@ -265,6 +268,10 @@ public class Tower : MonoBehaviour
 
                 sellReturn += (int)Mathf.Round(upgradeCost / 2);
                 upgradeCost = (int)Mathf.Round((float)upgradeCost * 1.2f) + 1;  //steigert den UpgradePreis um 20%
+
+                gameObject.transform.localScale *= 1.05f;
+                rangeMinimum *= 1.05f;
+                audioSource.PlayOneShot(upgradeSound);
 
                 Debug.Log($"{gameObject.name} wurde auf Level {level} geupgradet!");
             }
@@ -381,6 +388,26 @@ public class Tower : MonoBehaviour
     protected virtual void hitEnemy(EnemyScript damageTest)  //wird beim Treffen des Gegners ausgeführt
     {
         damageScript.TakeDamage(damageAmount);
+    }
+
+    private void ScaleObjects(GameObject[] objects, float scaleFactor)
+    {
+        if (objects.Length == 0) return;
+
+        Vector3 center = Vector3.zero; //  Mittelpunkt berechnen
+
+        foreach (GameObject obj in objects)
+        {
+            center += obj.transform.position;
+        }
+        center /= objects.Length;
+
+        foreach (GameObject obj in objects)         //Skalieren + Position anpassen
+        {
+            Vector3 dir = obj.transform.position - center;              // Abstand zum Mittelpunkt
+            obj.transform.position = center + dir * scaleFactor;                // Position skalieren
+            obj.transform.localScale *= scaleFactor;                // Eigene Größe skalieren
+        }
     }
 }
 

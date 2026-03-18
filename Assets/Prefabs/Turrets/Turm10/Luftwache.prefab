@@ -585,13 +585,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c7be45d8ade85419ed9dcc99ce3fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 20
+  range: 25
   rangeMinimum: 6
-  damageAmount: 50
+  damageAmount: 60
   fireRate: 1
   level: 1
   maxLvl: 5
-  upgradeCost: 3
+  upgradeCost: 10
   rangeBool: 30
   damageBool: 10
   fireRateBool: 0
@@ -603,16 +603,19 @@ MonoBehaviour:
   recoilSpeed: 0.1
   recoilDistance: 0.2
   canon: {fileID: 0}
-  shootSound: {fileID: 0}
   enemyTag: Enemy
   maxHigher: 0
   spawnScript: {fileID: 0}
+  shootSound: {fileID: 0}
+  audioSource: {fileID: 0}
+  upgradeSound: {fileID: 8300000, guid: d76ac66dde43b481dad18b3943c0531a, type: 3}
   target: {fileID: 0}
   disturbEffect: {fileID: 4327675924382719045}
   animator: {fileID: 0}
   projectilePrefab: {fileID: 4745399192247955626, guid: 3c507fd02911c3446a4fb783027ac8b9, type: 3}
   firePoint: {fileID: 5028418031441074599}
   startSubtract: 0
+  isDisturbed: 0
 --- !u!114 &8254056497337381079
 MonoBehaviour:
   m_ObjectHideFlags: 0

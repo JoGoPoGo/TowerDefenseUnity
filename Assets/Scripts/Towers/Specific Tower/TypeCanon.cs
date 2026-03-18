@@ -11,6 +11,7 @@ public class TypeCanon : Tower
     [Header("Funktion")]
     private int rotateCounter = 0;
     public Quaternion startDirection;
+    private float rotateWaiter = 0;
 
     private DynamicRangePreview rangePreviewScript;
     // Start is called before the first frame update
@@ -26,86 +27,82 @@ public class TypeCanon : Tower
 
     protected override void Update()
     {
-        if (gameObject.CompareTag("Tower") && dictionaryActivater)
-        {
-            Vector2Int posi = new Vector2Int((int)Mathf.Round(transform.position.x), (int)Mathf.Round(transform.position.z));
-
-            OccupyPositionsInCircle(posi, spawnCancelRadius);
-            dictionaryActivater = false;
-        }
-        if (spawnScript.spawned && Input.GetKey(KeyCode.R) && rotateCounter == 0)
-        {
-            Debug.Log("spawned");
-            transform.Rotate(0f,1, 0f);
-            startDirection = transform.rotation;    //gleicht startDirection der, vom Spieler bestimmten, Richtung an 
-        }
         if (!spawnScript.spawned)
         {
-            if(rotateCounter == 0) 
-                rotateCounter = 1;
-            UpdateTarget();     //sucht das Ziel
-            if (target == null)   //führt nichts aus, wenn kein Ziel gefunden wurde
-                return;
+            base.Update();
+            return;
+        }
 
-            // Turm dreht sich zum Ziel
-            RotateTo(target);
+        // Taste gedrückt ? Timer starten
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            rotateWaiter = 0f;
+        }
 
-            // Wenn die Zeit zum Schießen gekommen ist, wird geschossen
-            if (fireCountdown <= 0f)
+        // Taste gehalten ? langsame Rotation + Timer erhöhen
+        if (Input.GetKey(KeyCode.R) && rotateCounter == 0)
+        {
+            transform.Rotate(0f, 1f, 0f);
+            startDirection = transform.rotation;
+
+            rotateWaiter += Time.deltaTime;
+        }
+
+        // Taste losgelassen ? prüfen ob kurzer Klick
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            if (rotateWaiter < 0.2f)
             {
-                Shoot();
-                fireCountdown = 1f / fireRate; // Setze den Timer für den nächsten Schuss
+                transform.Rotate(0f, 90f, 0f);
+                startDirection = transform.rotation;
             }
 
-            fireCountdown -= Time.deltaTime;
+            rotateWaiter = 0f; // IMMER resetten
         }
-        Debug.Log(range);
+
+        base.Update();
     }
 
     // Update is called once per frame
-    protected override void UpdateTarget()   
+    protected override void UpdateTarget()
     {
-        // Sucht nach allen Gegnern mit dem Tag "Enemy"
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
 
-        // Finde den nächsten Gegner innerhalb der Reichweite
+        Vector3 forward = startDirection * Vector3.forward;
+
         foreach (GameObject enemy in enemies)
         {
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestDistance)
-            {
-                Vector3 dirToEnemy = (enemy.transform.position - transform.position).normalized;
-                RaycastHit hit;  // Prüft, ob zwischen dem Turm und dem Ziel ein Hinderniss ist
+            Vector3 dir = enemy.transform.position - transform.position;
+            float distance = dir.magnitude;
 
-                if (!Physics.Raycast(transform.position, dirToEnemy, out hit, range, obstacleMask))
-                {
-                    shortestDistance = distanceToEnemy;
-                    nearestEnemy = enemy;
-                }
+            // Direkt Reichweite prüfen
+            if (distance > range)
+                continue;
+
+            // Richtung normalisieren
+            Vector3 dirNormalized = dir.normalized;
+
+            // Winkel prüfen
+            float angle = Vector3.Angle(forward, dirNormalized);
+            if (angle > rangeDegrees / 2f)
+                continue;
+
+            // Raycast nur bis zum Gegner!
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, dirNormalized, out hit, distance, obstacleMask))
+                continue;
+
+            // Jetzt erst Distanz vergleichen
+            if (distance < shortestDistance)
+            {
+                shortestDistance = distance;
+                nearestEnemy = enemy;
             }
         }
 
-        // Wenn ein Gegner gefunden wurde, setze ihn als Ziel
-        if (nearestEnemy != null && shortestDistance <= range)
-        {
-            Vector3 toTarget = (nearestEnemy.transform.position - transform.position).normalized;
-            Vector3 forward = startDirection * Vector3.forward;
-
-            float angle = Vector3.Angle(forward, toTarget);
-            if(angle <= rangeDegrees / 2f)
-            {
-                target = nearestEnemy;
-            }
-            else
-            {
-                target = null;
-            }
-        }
-        else
-        {
-            target = null; // Kein Gegner in Reichweite
-        }
+        target = nearestEnemy;
     }
 }
