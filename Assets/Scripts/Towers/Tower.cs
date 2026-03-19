@@ -43,6 +43,7 @@ public class Tower : MonoBehaviour
     protected CancelDictionaryProtoType dictionary;
     protected EnemyScript damageScript;   // DamageTest von Target
     protected GameManager gameManager;
+    protected BotsOnPath waveScript;
 
     [Header("Audio")]
     public AudioClip shootSound;
@@ -68,6 +69,7 @@ public class Tower : MonoBehaviour
     public float startSubtract = 0f;
 
     public bool isDisturbed = false;
+    private int oldWave = 1;
  
 
     protected virtual void Start()
@@ -99,6 +101,7 @@ public class Tower : MonoBehaviour
             audioSource.spatialBlend = 1f;
             audioSource.playOnAwake = false;
         }
+        waveScript = FindObjectOfType<BotsOnPath>();
     }
     protected virtual void Update()  
     {
@@ -115,6 +118,12 @@ public class Tower : MonoBehaviour
         if(UpdateCounter == 0 && gameObject.CompareTag("Tower"))    //wenn der Turm "Tower" ist
             UpdateTarget();  
         UpdateCounter += Time.deltaTime;
+
+        if(waveScript.currentWaveNumber > oldWave)
+        {
+            oldWave = waveScript.currentWaveNumber;
+            maxLvl += 2;
+        }
 
         if (target == null)   //führt nichts aus, wenn kein Ziel gefunden wurde
             return;

@@ -37,6 +37,7 @@ public class BotsOnPath : MonoBehaviour
 
     public int totalBotsInLastWave = 0;
     public int deadBotsInLastWave = 0;
+    public int currentWaveNumber = 1;
 
     private int totalBots = 0;
 
@@ -96,6 +97,7 @@ public class BotsOnPath : MonoBehaviour
     {
         for (int i = 0; i < waves.Length; i++)
         {
+            currentWaveNumber = i + 1;
             WaveConfiguration currentWave = waves[i];
             yield return new WaitForSeconds(0.1f);
 

@@ -249,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 3000
-  speed: 1
+  speed: 0.9
   reward: 40
   randomization: 1
   healthbar: {fileID: 5939738080292200230}

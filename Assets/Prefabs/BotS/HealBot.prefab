@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 200
+  maxHealth: 500
   speed: 1
   reward: 10
   randomization: 0
@@ -234,17 +234,20 @@ MonoBehaviour:
   speedMultiplier: 0
   isAlive: 1
   animator: {fileID: 0}
+  shieldAktivParticles: {fileID: 8393261620998473220}
   isLast: 0
+  wave: 0
   isDebuffed: 0
   shieldAktiv: 0
   shieldAktivSeconds: 4
-  shieldAktivParticles: {fileID: 8393261620998473220}
+  hoverAmplitude: 1
+  hoverFrequency: 2
   positionRandomizer: {x: 0, y: 0, z: 0}
   distanceTravelled: 0
   chake: 0
   healRange: 20
   healAmount: 200
-  healIntervall: 5
+  healIntervall: 4
   particlePrefab: {fileID: 1324670471591712024}
 --- !u!114 &2671866503035872246
 MonoBehaviour:

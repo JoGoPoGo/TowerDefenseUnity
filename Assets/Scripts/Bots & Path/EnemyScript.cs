@@ -67,7 +67,7 @@ public class EnemyScript : MonoBehaviour
         {
             StartCoroutine(AktivateShield(shieldAktivSeconds));
         }
-
+        
     }
     protected virtual void Update()
     {
