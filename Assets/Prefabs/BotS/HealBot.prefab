@@ -246,7 +246,7 @@ MonoBehaviour:
   distanceTravelled: 0
   chake: 0
   healRange: 20
-  healAmount: 200
+  healAmount: 150
   healIntervall: 4
   particlePrefab: {fileID: 1324670471591712024}
 --- !u!114 &2671866503035872246
