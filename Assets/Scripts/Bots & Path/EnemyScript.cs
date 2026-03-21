@@ -80,6 +80,11 @@ public class EnemyScript : MonoBehaviour
         {
             StartCoroutine(AktivateShield(shieldAktivSeconds));
         }
+        if(currentHealth > maxHealth) 
+        {
+            maxHealth = currentHealth;
+            healthbar.SetMaxHealth(maxHealth);
+        }
     }
 
     // Funktion zum Zufügen von Schaden
