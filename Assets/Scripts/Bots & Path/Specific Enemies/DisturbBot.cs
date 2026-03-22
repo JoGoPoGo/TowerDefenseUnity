@@ -54,7 +54,7 @@ public class DisturbBot : EnemyScript
                 if (!tower.isDisturbed)        //wenn der Turm noch nicht debuffed wurde
                 {
                     DebuffValues(tower);
-                    DisturbAnimation(towerGO);
+                    DisturbAnimation(tower);
                     disturbedTowers.Add(tower);
                     tower.isDisturbed = true;
                 }
@@ -64,7 +64,7 @@ public class DisturbBot : EnemyScript
                 normalTowers.Add(tower);
                 disturbedTowers.Remove(tower);              //...wird er von disturbedTowers entfernt
                 ResetValues(tower);
-                StopDisturbAnimation(towerGO);
+                StopDisturbAnimation(tower);
                 tower.isDisturbed = false;
             }
 
@@ -91,22 +91,20 @@ public class DisturbBot : EnemyScript
         {
             ResetValues(tower);
             GameObject GO = tower.gameObject;
-            StopDisturbAnimation(GO);
+            StopDisturbAnimation(tower);
         }
         disturbedTowers.Clear();
         base.Die(didDamage);
     }
 
-    private void DisturbAnimation(GameObject towerGo)
+    private void DisturbAnimation(Tower tower)
     {
-        Tower tower = towerGo.GetComponent<Tower>();
         if (tower == null) return;
 
         tower.PlayDisturb();
     }
-    private void StopDisturbAnimation(GameObject towerGo)
+    private void StopDisturbAnimation(Tower tower)
     {
-        Tower tower = towerGo.GetComponent<Tower>();
         if (tower == null) return;
 
         tower.StopDisturb();
