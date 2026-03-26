@@ -13,11 +13,13 @@ public class TowerInfoUI : MonoBehaviour
     public TMP_Text costText;
 
     private Tower currentTower;
+    private UpgradeSystem currentUpgradeSystem;
 
     public void Show(Tower tower)
     {
         currentTower = tower;
         GameObject towerObj = tower.gameObject;
+        currentUpgradeSystem = towerObj.GetComponent<UpgradeSystem>();
         DynamicRangePreview rangeSkript = towerObj.GetComponent<DynamicRangePreview>();
         rangeSkript.showActivated = true;
 
@@ -39,6 +41,7 @@ public class TowerInfoUI : MonoBehaviour
         if (currentTower != null)
         {
             GameObject towerObj = currentTower.gameObject;
+            currentUpgradeSystem = towerObj.GetComponent<UpgradeSystem>();
             DynamicRangePreview rangeSkript = towerObj.GetComponent<DynamicRangePreview>();
             rangeSkript.showActivated = false;
         }
@@ -48,7 +51,7 @@ public class TowerInfoUI : MonoBehaviour
     {
         if (currentTower != null)
         {
-            currentTower.UpgradeTower();
+            currentUpgradeSystem.Upgrade();
             Show(currentTower);
         }
 

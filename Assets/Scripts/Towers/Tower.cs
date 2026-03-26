@@ -42,7 +42,7 @@ public class Tower : MonoBehaviour
     public SpawnOnMouseClick spawnScript; // "protected" oder "private", taucht nicht mehr im Inspector auf!
     protected CancelDictionaryProtoType dictionary;
     protected EnemyScript damageScript;   // DamageTest von Target
-    protected GameManager gameManager;
+    public GameManager gameManager;
     protected BotsOnPath waveScript;
 
     [Header("Audio")]
