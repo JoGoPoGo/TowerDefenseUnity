@@ -9,6 +9,7 @@ public class UpgradeSystem : MonoBehaviour
 {
     [Header("Referenzes")]
     public Tower thisTower;
+    private TowerInfoUI towerInfo;
 
     [Header("Upgrade")]
     public int level;
@@ -27,6 +28,7 @@ public class UpgradeSystem : MonoBehaviour
     private void Start()
     {
         thisTower = this.GetComponent<Tower>();
+        towerInfo = FindObjectOfType<TowerInfoUI>();
         if (costLvl == null)
         {
             costLvl = new List<int>() { thisTower.price, thisTower.price * 2, thisTower.price * 3 };

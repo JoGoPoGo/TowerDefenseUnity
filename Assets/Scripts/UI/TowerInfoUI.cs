@@ -11,9 +11,15 @@ public class TowerInfoUI : MonoBehaviour
     public TMP_Text firerateText;
     public TMP_Text levelText;
     public TMP_Text costText;
+    public GameObject infoText;
 
     private Tower currentTower;
     private UpgradeSystem currentUpgradeSystem;
+
+    public void switchInfoActive()
+    {
+        infoText.SetActive(!infoText.activeSelf);
+    }
 
     public void Show(Tower tower)
     {
