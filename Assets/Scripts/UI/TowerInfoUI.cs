@@ -30,7 +30,6 @@ public class TowerInfoUI : MonoBehaviour
         rangeText.text = "Range: " + tower.range.ToString();
         firerateText.text = "FIre Rate: " + ((Mathf.Round(tower.fireRate * 100))/100).ToString();
         levelText.text = "Level: " + tower.level.ToString();
-        costText.text = "Cost: " + tower.upgradeCost.ToString();
 
     }
 

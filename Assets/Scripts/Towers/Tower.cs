@@ -17,16 +17,6 @@ public class Tower : MonoBehaviour
     public float fireRate = 1f;        // Schussfrequenz
 
     public int level = 1;  // Turm-Level beginnt bei 1
-    public int maxLvl = 10;
-    public int upgradeCost = 1;
-
-    [Header("Upgrade Variables")]
-    //public float upgradePercentage = 50;
-    public int rangeBool = 0;
-    public int damageBool = 0;
-    public int fireRateBool = 0;
-    public int cancelBool = 0;
-
     //public GameObject[] upgradeScale; //alles, was beim Upgraden vergrößert werden soll (nicht der Turm) --> gerade nicht relevant
 
     [Header("Changeables")]
@@ -124,7 +114,6 @@ public class Tower : MonoBehaviour
         if(waveScript.currentWaveNumber > oldWave)
         {
             oldWave = waveScript.currentWaveNumber;
-            maxLvl += 2;
         }
 
         if (target == null)   //führt nichts aus, wenn kein Ziel gefunden wurde
@@ -246,48 +235,6 @@ public class Tower : MonoBehaviour
             yield return null;
         }
         canon.transform.localPosition = originalPosition;
-    }
-    // **Upgrade-Funktion**
-    public virtual void UpgradeTower()
-    {
-        if(level < maxLvl)
-        {
-            if (gameManager.SpendCredits((upgradeCost)))
-            {
-                level++;
-                if (rangeBool > 0)
-                {
-                    range *= (1 + (float)rangeBool/100);
-                    Debug.Log("Range Upgradet auf: " + range);
-                }
-
-                if (damageBool > 0)
-                {
-                    float save = damageAmount * (1  + (float)damageBool/100);
-                    damageAmount = (int)Mathf.Round(save);
-                }
-                if (fireRateBool > 0)
-                {
-                    fireRate *= (1 + (float)fireRateBool/100);
-                }
-
-                if (cancelBool > 0)
-                {
-                    float save = spawnCancelRadius * (1 + (float)cancelBool / 100);
-                    spawnCancelRadius = (int)Mathf.Round(save);
-                }
-
-                sellReturn += (int)Mathf.Round(upgradeCost / 2);
-                upgradeCost = (int)Mathf.Round((float)upgradeCost * 1.2f) + 1;  //steigert den UpgradePreis um 20%
-
-                gameObject.transform.localScale *= 1.05f;
-                rangeMinimum *= 1.05f;
-                audioSource.PlayOneShot(upgradeSound);
-
-                Debug.Log($"{gameObject.name} wurde auf Level {level} geupgradet!");
-            }
-        }
-        
     }
 
     public int GetLevel()

@@ -16,10 +16,13 @@ public class UpgradeSystem : MonoBehaviour
     public List<float> fireRateLvl;
     public List<float> rangeLvl;
     public List<int> costLvl;
+
     [Header("SpecialUpgrade")]
     public List<float> slowerPercentageLvl;
     public List<float> debuffDurationLvl;
     public List<float> debuffRangeLvl;
+
+    public List<GameObject> switchPrefabsLvl3;
 
     private void Start()
     {
@@ -81,13 +84,17 @@ public class UpgradeSystem : MonoBehaviour
             Debug.Log("UpgradeSystem");
             thisTower.level++;
 
+            if(thisTower.level == 3 && switchPrefabsLvl3.Count > 0)
+            {
+                switchPrefabs();
+                return;
+            }
             if (upgradeIndex < rangeLvl.Count)
             {
                 thisTower.range = rangeLvl[upgradeIndex];
                 thisTower.damageAmount = damageLvl[upgradeIndex];
                 thisTower.fireRate = fireRateLvl[upgradeIndex];
             }
-
 
             if (thisTower is TypeDebuff thisTypeDebuff)
             {
@@ -103,5 +110,9 @@ public class UpgradeSystem : MonoBehaviour
             gameObject.transform.localScale *= 1.05f;
             thisTower.audioSource.PlayOneShot(thisTower.upgradeSound);
         }
+    }
+    public void switchPrefabs()
+    {
+
     }
 }
