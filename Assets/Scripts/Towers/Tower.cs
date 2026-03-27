@@ -5,6 +5,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static Cinemachine.DocumentationSortingAttribute;
 
+[RequireComponent(typeof(UpgradeSystem))]
+[RequireComponent (typeof(TowerSelector))]
 public class Tower : MonoBehaviour
 {
     [Header("Stats")]
