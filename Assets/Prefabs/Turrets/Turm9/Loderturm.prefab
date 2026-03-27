@@ -890,11 +890,11 @@ MonoBehaviour:
   firePoint: {fileID: 0}
   startSubtract: 0
   isDisturbed: 0
-  targetSnd: {fileID: 0}
-  canonTargetOne: {fileID: 6165798598601943223}
-  canonTargetTwo: {fileID: 773076346526605736}
-  projectileOne: {fileID: 7017153297096719595}
-  projectileTwo: {fileID: 397023199533803459}
+  weaponSlots:
+  - canonTarget: {fileID: 773076346526605736}
+    projectileSpawn: {fileID: 397023199533803459}
+  - canonTarget: {fileID: 6165798598601943223}
+    projectileSpawn: {fileID: 7017153297096719595}
   weakerPercentage: 0
 --- !u!114 &3632087544527830929
 MonoBehaviour:
