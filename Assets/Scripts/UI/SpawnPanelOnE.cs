@@ -6,6 +6,13 @@ public class SpawnPanelOnE : MonoBehaviour
 {
     public GameObject handleObject;
     public KeyCode onKey;
+
+    private UIPanelController panelController;
+
+    private void Start()
+    {
+        panelController = GetComponent<UIPanelController>();
+    }
     // Update is called once per frame
     void Update()
     {
