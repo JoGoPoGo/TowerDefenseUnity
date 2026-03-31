@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class TowerInfoUI : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class TowerInfoUI : MonoBehaviour
     public GameObject infoText;
     public TMP_Text upgradeText;
 
+    public Button upgradeButton1;
+    public Button upgradeButton2;
+    public Button upgradeButton3;
+
     private Tower currentTower;
     private UpgradeSystem currentUpgradeSystem;
 
@@ -24,7 +29,10 @@ public class TowerInfoUI : MonoBehaviour
 
     public void Show(Tower tower)
     {
-        currentUpgradeSystem.isCurrentInfo = false;
+        if (currentTower != null)
+        {
+            currentUpgradeSystem.isCurrentInfo = false;
+        }
         currentTower = tower;
         GameObject towerObj = tower.gameObject;
         currentUpgradeSystem = towerObj.GetComponent<UpgradeSystem>();

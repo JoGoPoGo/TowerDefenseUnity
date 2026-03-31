@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using static Cinemachine.DocumentationSortingAttribute;
 using TMPro;
+using Unity.VisualScripting;
 
 public class UpgradeSystem : MonoBehaviour
 {
@@ -79,6 +80,20 @@ public class UpgradeSystem : MonoBehaviour
         if(isCurrentInfo && refresher)
         {
             refresher = false;
+            UpgradeButton buttonScript;
+            if(thisTower.level == 2)
+            {
+                towerInfo.upgradeButton1.gameObject.SetActive(switchPrefabsLvl3.Count > 0);
+                buttonScript = towerInfo.upgradeButton1.GetComponent<UpgradeButton>();
+                buttonScript.upgradeSystem = this;
+                towerInfo.upgradeButton2.gameObject.SetActive(switchPrefabsLvl3.Count > 1);
+                buttonScript = towerInfo.upgradeButton2.GetComponent<UpgradeButton>();
+                buttonScript.upgradeSystem = this;
+                towerInfo.upgradeButton3.gameObject.SetActive(switchPrefabsLvl3.Count > 2);
+                buttonScript = towerInfo.upgradeButton3.GetComponent<UpgradeButton>();
+                buttonScript.upgradeSystem = this;
+            }
+
         }
         else
         {
@@ -87,8 +102,9 @@ public class UpgradeSystem : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    public void Upgrade()
+    public void Upgrade(int number = 0)
     {
+        switchIntiger = number--;
         int upgradeIndex = thisTower.level - 1;
         // Prüfen ob es überhaupt dieses Upgrade gibt
         if (upgradeIndex >= costLvl.Count)
@@ -133,12 +149,14 @@ public class UpgradeSystem : MonoBehaviour
         }
         if (towerInfo.infoText.activeSelf)
             towerInfo.Show(thisTower);
+        refresher = true;
     }
     public void switchPrefabs()
     {
         Vector3 pos = gameObject.transform.position;
         Quaternion rot = Quaternion.identity;
-        Instantiate(switchPrefabsLvl3[switchIntiger], pos, rot);
+        GameObject newTower = Instantiate(switchPrefabsLvl3[switchIntiger], pos, rot);
+        newTower.layer = LayerMask.NameToLayer("Default");
         thisTower.price = 0;
         thisTower.Sell();
     }

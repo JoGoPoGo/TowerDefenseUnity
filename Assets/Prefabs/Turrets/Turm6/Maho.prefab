@@ -781,12 +781,6 @@ MonoBehaviour:
   damageAmount: 60
   fireRate: 1.4
   level: 1
-  maxLvl: 5
-  upgradeCost: 10
-  rangeBool: 0
-  damageBool: 10
-  fireRateBool: 12
-  cancelBool: 0
   price: 80
   sellReturn: 50
   spawnCancelRadius: 10
@@ -909,16 +903,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisTower: {fileID: 0}
   level: 1
-  damageLvl: 000000000000000000000000
+  damageLvl: 5000000064000000
   fireRateLvl:
-  - 0
-  - 0
-  - 0
+  - 1.9
+  - 2.3
   rangeLvl:
-  - 0
-  - 0
-  - 0
-  costLvl: 000000000000000000000000
+  - 20
+  - 20
+  costLvl: 3c00000046000000
   slowerPercentageLvl:
   - 0
   - 0
@@ -931,6 +923,12 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  switchPrefabsLvl3:
+  - {fileID: 4034064406895837922, guid: 4e37d0dedacb411419d3b3c16df8c096, type: 3}
+  - {fileID: 5717718026203293249, guid: 7186cec2fa35cc34fbe06dcde1857e1f, type: 3}
+  - {fileID: 4017654624932571292, guid: 3cf336c7d21513440bf60d198bed98aa, type: 3}
+  switchIntiger: 0
+  isCurrentInfo: 0
 --- !u!1001 &8507625398233599094
 PrefabInstance:
   m_ObjectHideFlags: 0
