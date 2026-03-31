@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static Cinemachine.DocumentationSortingAttribute;
+using TMPro;
 
 public class UpgradeSystem : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class UpgradeSystem : MonoBehaviour
 
     public List<GameObject> switchPrefabsLvl3;
     public int switchIntiger = 0;
+
+    [Header("Funktion")]
+    public bool isCurrentInfo = false;
+    private bool refresher = true;
 
     private void Start()
     {
@@ -65,6 +70,19 @@ public class UpgradeSystem : MonoBehaviour
         while (costLvl.Count < longestLength)
         {
             costLvl.Add(0);
+        }
+
+    }
+
+    private void Update()
+    {
+        if(isCurrentInfo && refresher)
+        {
+            refresher = false;
+        }
+        else
+        {
+            refresher= true;
         }
     }
 
@@ -113,6 +131,8 @@ public class UpgradeSystem : MonoBehaviour
             gameObject.transform.localScale *= 1.05f;
             thisTower.audioSource.PlayOneShot(thisTower.upgradeSound);
         }
+        if (towerInfo.infoText.activeSelf)
+            towerInfo.Show(thisTower);
     }
     public void switchPrefabs()
     {

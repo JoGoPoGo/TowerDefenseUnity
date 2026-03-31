@@ -387,6 +387,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8019854969772855266}
     - target: {fileID: 7505767596472362549, guid: 59d6d6fab890e364a9cb4c96c44967b4, type: 3}
+      propertyPath: upgradeText
+      value: 
+      objectReference: {fileID: 2410392041048806505}
+    - target: {fileID: 7505767596472362549, guid: 59d6d6fab890e364a9cb4c96c44967b4, type: 3}
       propertyPath: firerateText
       value: 
       objectReference: {fileID: 1542444798929643531}
@@ -784,6 +788,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2410392041048806505 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 771910516542831628, guid: 7d0c03b26577c5f49a080f5551bf7654, type: 3}
+  m_PrefabInstance: {fileID: 3153942833770588261}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!225 &2491367457478116736 stripped
