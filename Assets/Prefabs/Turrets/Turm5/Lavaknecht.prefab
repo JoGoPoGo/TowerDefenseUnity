@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 3737890684985276707}
   - component: {fileID: 6446541071774808601}
   - component: {fileID: 3892723386750448497}
+  - component: {fileID: 2454419744278955854}
   - component: {fileID: 6650847672825723386}
   - component: {fileID: 7981889893659442979}
   - component: {fileID: 1528125267497927172}
@@ -421,12 +422,6 @@ MonoBehaviour:
   damageAmount: 77
   fireRate: 0.8
   level: 1
-  maxLvl: 3
-  upgradeCost: 20
-  rangeBool: 20
-  damageBool: 54
-  fireRateBool: 5
-  cancelBool: 0
   price: 87
   sellReturn: 80
   spawnCancelRadius: 10
@@ -437,6 +432,7 @@ MonoBehaviour:
   enemyTag: Enemy
   maxHigher: 0
   spawnScript: {fileID: 0}
+  gameManager: {fileID: 0}
   shootSound: {fileID: 8300000, guid: db2f1ab6b97f4d74786f52e2c7da0e6b, type: 3}
   audioSource: {fileID: 0}
   upgradeSound: {fileID: 8300000, guid: d76ac66dde43b481dad18b3943c0531a, type: 3}
@@ -450,6 +446,32 @@ MonoBehaviour:
   firePoints:
   - {fileID: 5222258378229393087}
   - {fileID: 3359577823440359893}
+--- !u!114 &2454419744278955854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4077014862200939417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db12754985e7774d9467629d12ad232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisTower: {fileID: 3892723386750448497}
+  level: 0
+  damageLvl: 96000000f0000000
+  fireRateLvl:
+  - 0.78
+  - 0.76
+  rangeLvl:
+  - 30
+  - 36
+  costLvl: 500000005a000000
+  slowerPercentageLvl: []
+  debuffDurationLvl: []
+  debuffRangeLvl: []
+  switchPrefabsLvl3: []
 --- !u!114 &6650847672825723386
 MonoBehaviour:
   m_ObjectHideFlags: 0

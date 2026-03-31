@@ -995,14 +995,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisTower: {fileID: 0}
   level: 0
-  damageLvl: 
-  fireRateLvl: []
-  rangeLvl: []
-  costLvl: 
+  damageLvl: 78000000a0000000
+  fireRateLvl:
+  - 0.6
+  - 0.6
+  rangeLvl:
+  - 28
+  - 3
+  costLvl: 7300000096000000
   slowerPercentageLvl: []
   debuffDurationLvl: []
   debuffRangeLvl: []
-  switchPrefabsLvl3: []
+  switchPrefabsLvl3:
+  - {fileID: 4017654624932571292, guid: ed68cc24f60fff64282efa1d730025b8, type: 3}
 --- !u!1 &4881855676769071835
 GameObject:
   m_ObjectHideFlags: 0

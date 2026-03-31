@@ -24,6 +24,7 @@ public class UpgradeSystem : MonoBehaviour
     public List<float> debuffRangeLvl;
 
     public List<GameObject> switchPrefabsLvl3;
+    public int switchIntiger = 0;
 
     private void Start()
     {
@@ -115,6 +116,10 @@ public class UpgradeSystem : MonoBehaviour
     }
     public void switchPrefabs()
     {
-
+        Vector3 pos = gameObject.transform.position;
+        Quaternion rot = Quaternion.identity;
+        Instantiate(switchPrefabsLvl3[switchIntiger], pos, rot);
+        thisTower.price = 0;
+        thisTower.Sell();
     }
 }

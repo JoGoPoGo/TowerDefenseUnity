@@ -899,13 +899,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e980bbf978af74db7a2aa51bd55828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 25
+  range: 33
   rangeMinimum: 5
-  damageAmount: 65
+  damageAmount: 150
   fireRate: 0.6
   level: 1
   price: 110
-  sellReturn: 65
+  sellReturn: 180
   spawnCancelRadius: 10
   turnSpeed: 10
   recoilSpeed: 0.1
@@ -926,8 +926,12 @@ MonoBehaviour:
   startSubtract: 0
   isDisturbed: 0
   weaponSlots:
-  - canonTarget: {fileID: 0}
-    projectileSpawn: {fileID: 0}
+  - canonTarget: {fileID: 7610063218721506867}
+    projectileSpawn: {fileID: 8125835286597330657}
+  - canonTarget: {fileID: 2427667733343383378}
+    projectileSpawn: {fileID: 7117487131170121539}
+  - canonTarget: {fileID: 773076346526605736}
+    projectileSpawn: {fileID: 397023199533803459}
   weakerPercentage: 0
 --- !u!114 &3632087544527830929
 MonoBehaviour:
@@ -1036,6 +1040,7 @@ MonoBehaviour:
   debuffDurationLvl: []
   debuffRangeLvl: []
   switchPrefabsLvl3: []
+  switchIntiger: 0
 --- !u!1 &4371135609688667605
 GameObject:
   m_ObjectHideFlags: 0
