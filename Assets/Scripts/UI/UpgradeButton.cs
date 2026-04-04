@@ -19,6 +19,6 @@ public class UpgradeButton : MonoBehaviour
 
     void OnButtonClicked()
     {
-        upgradeSystem.Upgrade(number);
+        upgradeSystem.Upgrade(number--);
     }
 }

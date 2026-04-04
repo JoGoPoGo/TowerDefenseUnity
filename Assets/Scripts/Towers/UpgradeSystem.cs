@@ -81,6 +81,9 @@ public class UpgradeSystem : MonoBehaviour
         {
             refresher = false;
             UpgradeButton buttonScript;
+            towerInfo.upgradeButton1.gameObject.SetActive(false);
+            towerInfo.upgradeButton2.gameObject.SetActive(false);
+            towerInfo.upgradeButton3.gameObject.SetActive(false);
             if(thisTower.level == 2)
             {
                 towerInfo.upgradeButton1.gameObject.SetActive(switchPrefabsLvl3.Count > 0);
@@ -102,9 +105,9 @@ public class UpgradeSystem : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    public void Upgrade(int number = 0)
+    public void Upgrade(int number = -1)
     {
-        switchIntiger = number--;
+        switchIntiger = number;
         int upgradeIndex = thisTower.level - 1;
         // Prüfen ob es überhaupt dieses Upgrade gibt
         if (upgradeIndex >= costLvl.Count)
@@ -121,7 +124,7 @@ public class UpgradeSystem : MonoBehaviour
             Debug.Log("UpgradeSystem");
             thisTower.level++;
 
-            if(thisTower.level == 3 && switchPrefabsLvl3.Count > 0)
+            if(thisTower.level == 3 && switchPrefabsLvl3.Count >= 0)
             {
                 switchPrefabs();
                 return;
