@@ -22,7 +22,7 @@ public class TowerInfoUI : MonoBehaviour
     private Tower currentTower;
     private UpgradeSystem currentUpgradeSystem;
 
-    public void SwitchInfoActive()
+    public void switchInfoActive()
     {
         infoText.SetActive(!infoText.activeSelf);
     }
