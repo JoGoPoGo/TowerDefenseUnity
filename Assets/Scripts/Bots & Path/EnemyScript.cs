@@ -1,5 +1,4 @@
 using PathCreation;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -52,6 +51,9 @@ public class EnemyScript : MonoBehaviour
 
     protected virtual void Start()
     {
+        hoverAmplitude = Random.Range(hoverAmplitude * 0.9f, hoverAmplitude * 1.1f);
+        hoverFrequency = Random.Range(hoverFrequency * 0.9f, hoverFrequency * 1.1f);
+
         for (int i = 1; i < wave; i++)
         {
             maxHealth = (int)Mathf.Round(maxHealth * 1.2f);

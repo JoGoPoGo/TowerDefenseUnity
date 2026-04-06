@@ -124,14 +124,15 @@ public class UpgradeSystem : MonoBehaviour
             Debug.Log("UpgradeSystem");
             thisTower.level++;
 
-            // Spezialfall: Tower-Wechsel auf Level 3
-                List<TowerUpgradeData> branchUpgrades = GetBranchUpgradesForLevel3();
-
-                if (branchUpgrades[thisTower.level].switchPrefabs.Count != 0)
+            // Falls dieses Upgrade alternative Prefabs besitzt
+            if (currentUpgrade.switchPrefabs != null && currentUpgrade.switchPrefabs.Count > 0)
+            {
+                if (selectedUpgradeBranch >= 0 && selectedUpgradeBranch < currentUpgrade.switchPrefabs.Count)
                 {
-                    SwitchPrefab(branchUpgrades[thisTower.level--].switchPrefabs[number]);
+                    SwitchPrefab(currentUpgrade.switchPrefabs[selectedUpgradeBranch]);
                     return;
                 }
+            }
 
             // Normale Werte anwenden
             thisTower.range = currentUpgrade.range;
@@ -154,19 +155,6 @@ public class UpgradeSystem : MonoBehaviour
             towerInfo.Show(thisTower);
 
         refresher = true;
-    }
-
-    private List<TowerUpgradeData> GetBranchUpgradesForLevel3()
-    {
-        List<TowerUpgradeData> branches = new List<TowerUpgradeData>();
-
-        foreach (TowerUpgradeData upgrade in upgrades)
-        {
-            if (upgrade.switchPrefabs.Count != 0)
-                branches.Add(upgrade);
-        }
-
-        return branches;
     }
 
     public void SwitchPrefab(GameObject prefabToSpawn)

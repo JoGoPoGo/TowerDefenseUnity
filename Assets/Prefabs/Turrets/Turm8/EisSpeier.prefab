@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 6315802993188986937}
   - component: {fileID: 1154602587947407143}
   - component: {fileID: 3298168267585407501}
+  - component: {fileID: 2102497245641717230}
   m_Layer: 2
   m_Name: EisSpeier
   m_TagString: Tower
@@ -530,12 +531,6 @@ MonoBehaviour:
   damageAmount: 45
   fireRate: 1
   level: 1
-  maxLvl: 5
-  upgradeCost: 10
-  rangeBool: 20
-  damageBool: 10
-  fireRateBool: 0
-  cancelBool: 0
   price: 102
   sellReturn: 65
   spawnCancelRadius: 10
@@ -546,6 +541,7 @@ MonoBehaviour:
   enemyTag: Enemy
   maxHigher: 0
   spawnScript: {fileID: 0}
+  gameManager: {fileID: 0}
   shootSound: {fileID: 0}
   audioSource: {fileID: 0}
   upgradeSound: {fileID: 8300000, guid: d76ac66dde43b481dad18b3943c0531a, type: 3}
@@ -648,6 +644,48 @@ CapsuleCollider:
   m_Height: 10.41
   m_Direction: 1
   m_Center: {x: 0, y: 2.33, z: 0}
+--- !u!114 &2102497245641717230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5717718026203293249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3db12754985e7774d9467629d12ad232, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisTower: {fileID: 0}
+  level: 0
+  upgrades:
+  - damage: 0
+    fireRate: 0
+    range: 0
+    cost: 2
+    slowerPercentage: 0
+    debuffDuration: 0
+    debuffRange: 0
+    switchPrefabs: []
+  - damage: 0
+    fireRate: 0
+    range: 0
+    cost: 2
+    slowerPercentage: 0
+    debuffDuration: 0
+    debuffRange: 0
+    switchPrefabs: []
+  - damage: 0
+    fireRate: 0
+    range: 0
+    cost: 2
+    slowerPercentage: 0
+    debuffDuration: 0
+    debuffRange: 0
+    switchPrefabs:
+    - {fileID: 4034064406895837922, guid: 4e37d0dedacb411419d3b3c16df8c096, type: 3}
+    - {fileID: 7582384597532537001, guid: 8a5fa1711155dbe4b9b6875a1fc141b4, type: 3}
+  isCurrentInfo: 0
 --- !u!1 &5863019579591580101
 GameObject:
   m_ObjectHideFlags: 0

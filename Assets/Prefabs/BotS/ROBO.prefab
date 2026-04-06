@@ -524,14 +524,17 @@ MonoBehaviour:
   speedMultiplier: 0
   isAlive: 1
   animator: {fileID: 0}
+  shieldAktivParticles: {fileID: 5271119237085761407}
   isLast: 0
+  wave: 0
   isDebuffed: 0
   shieldAktiv: 0
   shieldAktivSeconds: 4
-  shieldAktivParticles: {fileID: 5271119237085761407}
+  hoverAmplitude: 1
+  hoverFrequency: 2
   positionRandomizer: {x: 0, y: 0, z: 0}
   distanceTravelled: 0
-  chake: 0
+  chake: 1
 --- !u!114 &7017896006237374713
 MonoBehaviour:
   m_ObjectHideFlags: 0
