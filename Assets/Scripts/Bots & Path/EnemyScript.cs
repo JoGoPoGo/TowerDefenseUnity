@@ -49,6 +49,16 @@ public class EnemyScript : MonoBehaviour
 
     private bool isDead = false;
 
+    [Header("Movement Variation")]
+    public float corridorWidth = 10f;       // Wie weit links/rechts vom Pfad
+    public float driftSpeed = 0.6f;          // Wie schnell der Gegner seitlich driftet
+    public float driftAmount = 0.25f;         // Wie stark die Drift ist
+    public float rotationSmoothness = 7f;    // Wie weich der Gegner dreht
+    public float lookAheadDistance = 0.8f;   // Wie weit nach vorne für Rotation geschaut wird
+
+    private float baseLateralOffset;         // Fester seitlicher Offset pro Gegner
+    private float driftSeed;                 // Zufälliger Seed für individuelle Drift
+
     protected virtual void Start()
     {
         hoverAmplitude = Random.Range(hoverAmplitude * 0.9f, hoverAmplitude * 1.1f);
@@ -63,7 +73,17 @@ public class EnemyScript : MonoBehaviour
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth); // Update der Lebensanzeige
         gameManager = FindObjectOfType<GameManager>();
-        positionRandomizer = new Vector3 (UnityEngine.Random.Range(-randomization,randomization), 0, UnityEngine.Random.Range(-randomization,randomization));
+        baseLateralOffset = Random.Range(-corridorWidth, corridorWidth);
+        driftSeed = Random.Range(0f, 100f);
+
+        // Optional kleine Geschwindigkeitsvariation
+        speed *= Random.Range(0.95f, 1.05f);
+
+        // Optional leichte Animationsvariation
+        if (animator != null)
+        {
+            animator.speed = Random.Range(0.97f, 1.03f);
+        }
 
         if (aktivate)
         {
@@ -163,18 +183,57 @@ public class EnemyScript : MonoBehaviour
 
     public void MoveAlongPath(PathCreator path, float pathPoint)
     {
-        Vector3 pos = path.path.GetPointAtDistance(pathPoint) + positionRandomizer;
+        // 1. Mittelpunkt auf dem Pfad
+        Vector3 centerPos = path.path.GetPointAtDistance(pathPoint);
 
+        // 2. Richtung des Pfades an dieser Stelle
+        Vector3 forward = path.path.GetDirectionAtDistance(pathPoint).normalized;
+
+        // 3. Seitliche Richtung relativ zum Pfad
+        Vector3 right = Vector3.Cross(Vector3.up, forward).normalized;
+
+        // 4. Sanfte Drift innerhalb des Korridors
+        float drift = Mathf.Sin(Time.time * driftSpeed + driftSeed) * driftAmount;
+
+        // 5. Endgültiger seitlicher Offset
+        float finalOffset = baseLateralOffset + drift;
+
+        // Begrenzen, damit Gegner nicht zu weit vom Weg wegkommen
+        finalOffset = Mathf.Clamp(finalOffset, -corridorWidth, corridorWidth);
+
+        // 6. Position berechnen
+        Vector3 pos = centerPos + right * finalOffset;
+
+        // 7. Optional Hover / Fliegen
         if (chake)
         {
             float sinOffset = Mathf.Sin(Time.time * hoverFrequency) * hoverAmplitude;
             pos.y += sinOffset;
         }
 
+        // 8. Position setzen
         transform.position = pos;
 
-        transform.rotation = path.path.GetRotationAtDistance(pathPoint) * Quaternion.Euler(0, 0, 90);
+        // 9. Weiche Rotation mit Blick etwas nach vorne
+        Vector3 futurePos = path.path.GetPointAtDistance(pathPoint + lookAheadDistance);
+        Vector3 futureForward = path.path.GetDirectionAtDistance(pathPoint + lookAheadDistance).normalized;
+        Vector3 futureRight = Vector3.Cross(Vector3.up, futureForward).normalized;
 
+        float futureDrift = Mathf.Sin(Time.time * driftSpeed + driftSeed) * driftAmount;
+        float futureOffset = Mathf.Clamp(baseLateralOffset + futureDrift, -corridorWidth, corridorWidth);
+
+        futurePos += futureRight * futureOffset;
+
+        Vector3 moveDir = (futurePos - transform.position).normalized;
+        moveDir.y = 0;
+
+        if (moveDir.sqrMagnitude > 0.001f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(moveDir) * Quaternion.Euler(0, 0, 0);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSmoothness * Time.deltaTime);
+        }
+
+        // 10. Base erreicht
         if (distanceTravelled >= path.path.length)
         {
             Die(true);

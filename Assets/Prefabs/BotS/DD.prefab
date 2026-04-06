@@ -74,6 +74,11 @@ MonoBehaviour:
   positionRandomizer: {x: 0, y: 0, z: 0}
   distanceTravelled: 0
   chake: 0
+  corridorWidth: 10
+  driftSpeed: 0.6
+  driftAmount: 0.25
+  rotationSmoothness: 7
+  lookAheadDistance: 0.8
 --- !u!114 &8665655983987140526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,8 +282,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2182741503474672569}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.49107265, y: -0.09, z: -2.73}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
