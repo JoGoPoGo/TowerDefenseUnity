@@ -49,6 +49,8 @@ public class EnemyScript : MonoBehaviour
 
     private bool isDead = false;
 
+    private Terrain terrain;
+
     [Header("Movement Variation")]
     public float corridorWidth = 10f;       // Wie weit links/rechts vom Pfad
     public float driftSpeed = 0.6f;          // Wie schnell der Gegner seitlich driftet
@@ -89,6 +91,7 @@ public class EnemyScript : MonoBehaviour
         {
             StartCoroutine(AktivateShield(shieldAktivSeconds));
         }
+        terrain = Terrain.activeTerrain;
         
     }
     protected virtual void Update()
@@ -203,6 +206,7 @@ public class EnemyScript : MonoBehaviour
 
         // 6. Position berechnen
         Vector3 pos = centerPos + right * finalOffset;
+        pos.y = terrain.SampleHeight(pos);
 
         // 7. Optional Hover / Fliegen
         if (chake)
